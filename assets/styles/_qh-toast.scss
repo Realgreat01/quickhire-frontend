@@ -1,0 +1,48 @@
+* {
+  --nv-tip-width: 4px;
+}
+
+.pop-in {
+  animation: pop-in-kf 200ms ease-in-out;
+}
+
+.pop-out {
+  animation: pop-out-kf 300ms ease-out;
+}
+
+.fade {
+  animation: fade-kf 1s ease-in-out;
+}
+
+@keyframes pop-in-kf {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pop-out-kf {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-kf {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

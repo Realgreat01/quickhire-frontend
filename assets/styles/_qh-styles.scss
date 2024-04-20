@@ -1,0 +1,31 @@
+.qh-button {
+}
+
+.qh-container {
+  @apply w-fit rounded border-dashed bg-dark text-red-500;
+}
+.qh-box {
+}
+
+.qh-text-1 {
+  @apply text-4xl font-bold;
+}
+.qh-text-2 {
+  @apply text-2xl font-medium;
+}
+.qh-text-3 {
+  @apply text-lg font-medium;
+}
+.qh-text-4 {
+  @apply text-sm font-normal;
+}
+.qh-text-normal {
+  @apply text-base font-normal;
+}
+.qh-full-width {
+  grid-column: span 2;
+}
+
+span {
+  font-weight: inherit !important;
+}

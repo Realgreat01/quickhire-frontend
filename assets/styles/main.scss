@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap');
+@import './qh-styles';
+@import './qh-form';
+@import './qh-toast';
+
+@import '../fonts/qh-fonts.scss';
+@import 'animate.css';
+
+@font-face {
+  font-family: 'SF Pro Display Regular';
+  src: url('.././fonts/SF-pro.ttf') format('truetype');
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  font-weight: normal;
+  --animate-duration: 500ms;
+}
+
+:root {
+  --animate-duration: 500ms;
+}
+html {
+  scroll-behavior: smooth !important;
+}
+
+body {
+  font-family: 'SF Pro Display Regular', sans-serif;
+  background: #f6fdf5;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  height: 20vh;
+  background: #c1c1c1;
+}
