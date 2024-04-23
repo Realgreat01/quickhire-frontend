@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap');
-@import './qh-styles';
-@import './qh-form';
-@import './qh-toast';
+@import './partials/qh-styles';
+@import './partials/qh-form';
+@import './partials/qh-toast';
+@import './partials/qh-calendar';
+@import './partials/qh-animations';
+@import './partials/qh-select';
 
 @import '../fonts/qh-fonts.scss';
 @import 'animate.css';
@@ -30,6 +33,7 @@ html {
 body {
   font-family: 'SF Pro Display Regular', sans-serif;
   background: #f6fdf5;
+  @apply text-dark;
 }
 
 *::-webkit-scrollbar {
@@ -45,4 +49,8 @@ body {
   border-radius: 10px;
   height: 20vh;
   background: #c1c1c1;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
 }

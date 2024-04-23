@@ -1,15 +1,11 @@
 <template>
   <qh-container @close="$emit('close')">
-    <form
-      class="mx-auto mt-10 w-full gap-4 p-2"
-      @submit.prevent="submitBasicDetails"
-    >
+    <form class="mx-auto mt-10 w-full gap-4 p-2" @submit.prevent="">
       <div class="grid grid-cols-1 gap-4">
         <qh-input
           v-for="(detail, index) in formDetails"
           v-bind="detail"
           :key="index"
-          v-model="basicDetails[detail.name]"
         />
       </div>
       <qh-button
@@ -40,7 +36,7 @@ const formDetails = ref([
     name: 'phone',
     label: 'phone',
     type: 'tel',
-    placeholder: 'your phone number',
+    placeholder: 'Your phone number',
   },
   {
     name: 'github',

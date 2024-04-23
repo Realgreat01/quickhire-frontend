@@ -10,11 +10,15 @@
         <component :is="nav.icon"></component>
       </qh-button> -->
     </div>
-    <div class="text-brand">Auth</div>
+    <RouterLink :to="ROUTES.LOGIN">
+      <qh-button label="Login" />
+    </RouterLink>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ROUTES } from '~/constants/routes';
+
 // const headerNavigations = ref([
 //   { title: 'About', icon: null },
 //   { title: 'How it Works', icon: null },

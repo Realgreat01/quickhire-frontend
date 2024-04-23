@@ -1,5 +1,5 @@
 <template>
-  <div>FOOTER</div>
+  <div>id</div>
 </template>
 
 <script setup lang="ts"></script>

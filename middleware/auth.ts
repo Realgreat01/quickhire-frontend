@@ -6,7 +6,8 @@ export default defineNuxtRouteMiddleware((to, from) => {
     if (token) {
       return true;
     } else {
-      return navigateTo(QH_CONSTANTS.LOGIN);
+      return true;
+      // return navigateTo(QH_CONSTANTS.LOGIN);
     }
   }
 });

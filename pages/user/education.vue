@@ -2,42 +2,18 @@
   <div class="flex flex-wrap gap-6 rounded">
     <div class="flex flex-wrap gap-6 rounded">
       <div
-        v-for="(project, index) in projects"
+        class="flex h-40 w-2/3 flex-col justify-between rounded bg-brand-100 px-12 py-8"
+        :class="index % 2 === 0 ? '' : 'justify-self-end'"
+        v-for="(education, index) in educations"
         :key="index"
-        class="flex w-80 flex-col justify-between gap-y-2 rounded-2xl bg-brand-50 p-4 shadow-xl"
       >
-        <div class="flex flex-col gap-y-4 text-sm font-light text-dark">
-          <h2 class="text-lg font-bold text-brand">
-            {{ project.projectName }}
-          </h2>
-          <h2 class="">
-            <p class="qh-test-3 font-semibold text-brand-800">Description</p>
-            {{ project.projectDescription }}
-          </h2>
-          <h2 class="">
-            <p class="qh-test-3 font-semibold text-brand-800">Lesson</p>
-            {{ project.projectLesson }}
-          </h2>
-          <h2 class="">
-            <p class="qh-test-3 font-semibold text-brand-800">Tools Used</p>
-            <div class="flex flex-wrap gap-2">
-              <qh-button
-                :label="tool"
-                class="border !border-brand-600 !bg-transparent !text-brand-600"
-                v-for="tool in project.projectTools"
-                :key="tool"
-              />
-            </div>
-          </h2>
-        </div>
-        <div class="flex justify-between">
-          <a :href="project.githubRepo">
-            <RiGlobalLine class="h-7 w-7 fill-brand" />
-          </a>
-          <a :href="project.previewLink">
-            <RiGithubFill class="h-7 w-7 fill-brand" />
-          </a>
-        </div>
+        <h2 class="qh-text-3 font-semibold">{{ education.institution }}</h2>
+        <h2 class="qh-text font-medium">{{ education.course }}</h2>
+        <h2 class="text-brand-text text-sm font-thin">
+          <span class="">{{ formatDate(education.entryDate) }}</span>
+          -
+          <span class="">{{ formatDate(education.graduationDate) }}</span>
+        </h2>
       </div>
     </div>
   </div>
@@ -59,7 +35,9 @@ useHead({
   title: 'QuickHire - Projects',
 });
 
-const { projects } = storeToRefs(useUserStore());
+const { formatDate, formatISODate } = useDate();
+
+const { educations } = storeToRefs(useUserStore());
 </script>
 
 <style scoped></style>

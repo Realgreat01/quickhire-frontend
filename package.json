@@ -10,26 +10,39 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "@splidejs/vue-splide": "^0.6.12",
+    "@vuepic/vue-datepicker": "^8.5.0",
+    "@vueup/vue-quill": "^1.2.0",
     "animate.css": "^4.1.1",
     "axios": "^1.6.8",
+    "date-fns": "^3.6.0",
+    "devicon": "^2.16.0",
     "notivue": "^2.4.4",
+    "numeral": "^2.0.6",
     "nuxt": "^3.11.2",
     "pinia": "^2.1.7",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "sass": "^1.75.0",
+    "v-calendar": "^3.1.2",
     "vee-validate": "^4.12.6",
-    "vue": "^3.4.21",
+    "vue": "^3.4.23",
+    "vue-datepicker-ui": "^3.1.1",
     "vue-remix-icons": "^3.10.0",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.2",
+    "vue-select": "^4.0.0-beta.6",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
+    "@types/numeral": "^2.0.5",
+    "@types/vue-select": "^3.16.8",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
-    "vue-tsc": "^1.8.27"
+    "vue-tsc": "^2.0.13",
+    "vue3-select-component": "^0.2.1"
   }
 }

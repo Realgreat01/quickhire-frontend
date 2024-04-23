@@ -3,9 +3,9 @@
     class="sticky bottom-0 top-0 flex h-screen flex-col items-center justify-center gap-2 bg-dark-50 pb-4 pt-10"
   >
     <div class="mt-10 flex w-full flex-col items-center justify-center">
-      <!-- <qh-circle :value="80"> -->
-      <image :src="basicDetails?.profile_picture" class="m-4 h-32" />
-      <!-- </qh-circle> -->
+      <qh-circle :value="80">
+        <!-- <image :src="basicDetails?.profile_picture" class="m-4 h-32" /> -->
+      </qh-circle>
       <h1 class="capitalize">{{ fullname }}</h1>
       <h1 class="text-brand">@{{ basicDetails?.username }}</h1>
       <h1 class="">FullStack Developer</h1>
@@ -55,42 +55,42 @@ const sidebar = markRaw([
     action: '',
     route: QH_CONSTANTS.DETAILS,
     icon: RiUser2Fill,
-    class: 'fill-teal-800 bg-teal-200 text-teal-800',
+    class: 'fill-teal-800 bg-teal-100 text-teal-800',
   },
   {
     title: 'Education',
     action: '',
     route: QH_CONSTANTS.EDUCATION,
     icon: RiGraduationCapFill,
-    class: 'fill-brand-500 bg-brand-200 text-brand',
+    class: 'fill-brand bg-brand-100 text-brand',
   },
   {
     title: 'Experience',
     action: '',
     route: QH_CONSTANTS.EXPERIENCE,
     icon: RiBriefcase2Fill,
-    class: 'fill-pink-800 bg-pink-200 text-pink-800',
+    class: 'fill-pink-800 bg-pink-100 text-pink-800',
   },
   {
     title: 'Applied Jobs',
     action: '',
     route: QH_CONSTANTS.JOBS,
     icon: RiSendPlaneFill,
-    class: 'fill-green-800 bg-green-200 text-green-800',
+    class: 'fill-success bg-success-100 text-success',
   },
   {
     title: 'Stacks',
     action: '',
     route: QH_CONSTANTS.STACKS,
     icon: RiCodeSSlashFill,
-    class: 'fill-purple-600 bg-purple-200 text-purple-600',
+    class: 'fill-purple-600 bg-purple-100 text-purple-600',
   },
   {
     title: 'Projects',
     action: '',
     route: QH_CONSTANTS.PROJECTS,
     icon: RiBox3Fill,
-    class: 'fill-indigo-800 bg-indigo-200 text-indigo-800',
+    class: 'fill-indigo-800 bg-indigo-100 text-indigo-800',
   },
 
   {
@@ -98,7 +98,7 @@ const sidebar = markRaw([
     action: '',
     route: QH_CONSTANTS.CONTACT,
     icon: RiContactsFill,
-    class: 'fill-cyan-800 bg-cyan-200 text-cyan-800',
+    class: 'fill-cyan-800 bg-cyan-100 text-cyan-800',
   },
 ]);
 </script>

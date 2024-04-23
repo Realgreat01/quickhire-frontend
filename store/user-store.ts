@@ -1,11 +1,16 @@
 import { defineStore } from 'pinia';
 import QH_CONSTANTS from '~/constants';
+
 import {
+  ADD_USER_PROJECTS,
+  DELETE_USER_PROJECTS,
+  EDIT_USER_PROJECTS,
   GET_USER_DETAILS,
   GET_USER_EDUCATION,
   GET_USER_EXPERIENCE,
   GET_USER_PROJECTS,
 } from '~/services/user.service';
+
 import type {
   BasicDetails,
   Projects,
@@ -22,69 +27,91 @@ interface UserType {
   Stacks: Stacks[] | null;
 }
 
-export const useUserStore = defineStore(
-  'user',
-  {
-    state: (): UserType => ({
+export const useUserStore = defineStore('user', {
+  state: (): UserType => {
+    return {
       BasicDetails: null,
       Projects: null,
       Educations: null,
       Experiences: null,
       Stacks: null,
-    }),
+    };
+  },
 
-    getters: {
-      basicDetails(): BasicDetails | null {
-        return this.BasicDetails;
-      },
-
-      projects(): Projects | null {
-        return this.Projects;
-      },
-
-      experiences(): Experience | null {
-        return this.Experiences;
-      },
-
-      educations(): Education | null {
-        return this.Educations;
-      },
-
-      fullname(): string {
-        return `${this.BasicDetails?.firstname.toLowerCase()} ${this.BasicDetails?.lastname.toLowerCase()}`;
-      },
+  getters: {
+    basicDetails(): BasicDetails | null {
+      return this.BasicDetails;
     },
 
-    actions: {
-      async getBasicDetails() {
-        const response = await GET_USER_DETAILS();
-        if (response.success) {
-          this.BasicDetails = response.data;
-          QH_CONSTANTS.USERNAME = this.basicDetails.username;
-        }
-      },
+    projects(): Projects[] | null {
+      return this.Projects;
+    },
 
-      async getProjects() {
-        const response = await GET_USER_PROJECTS();
-        if (response.success) {
-          this.Projects = response.data;
-        }
-      },
+    experiences(): Experience[] | null {
+      return this.Experiences;
+    },
 
-      async getExperiences() {
-        const response = await GET_USER_EXPERIENCE();
-        if (response.success) {
-          this.Experiences = response.data;
-        }
-      },
+    educations(): Education[] | null {
+      return this.Educations;
+    },
 
-      async getEducation() {
-        const response = await GET_USER_EDUCATION();
-        if (response.success) {
-          this.Educations = response.data;
-        }
-      },
+    fullname(): string {
+      return `${this.BasicDetails?.firstname.toLowerCase()} ${this.BasicDetails?.lastname.toLowerCase()}`;
     },
   },
-  { persist: true },
-);
+
+  actions: {
+    async getBasicDetails() {
+      const response = await GET_USER_DETAILS();
+      if (response.success) {
+        this.BasicDetails = response.data;
+        if (this.basicDetails?.username)
+          QH_CONSTANTS.USERNAME = this.basicDetails?.username;
+      }
+    },
+
+    async getProjects() {
+      const response = await GET_USER_PROJECTS();
+      if (response.success) {
+        this.Projects = response.data;
+      }
+    },
+
+    async addProject(data: Projects) {
+      const response = await ADD_USER_PROJECTS(data);
+      if (response.success) {
+        qhToast.success('Project added successfully!');
+        await this.getProjects();
+      }
+    },
+
+    async deleteProject(id: string) {
+      const response = await DELETE_USER_PROJECTS(id);
+      if (response.success) {
+        qhToast.success('Project deleted successfully');
+        await this.getProjects();
+      }
+    },
+    async editProject(data: Projects, id: string) {
+      const response = await EDIT_USER_PROJECTS(data, id);
+      if (response.success) {
+        qhToast.success('Project editted successfully');
+      }
+    },
+
+    async getExperiences() {
+      const response = await GET_USER_EXPERIENCE();
+      if (response.success) {
+        this.Experiences = response.data;
+      }
+    },
+
+    async getEducation() {
+      const response = await GET_USER_EDUCATION();
+      if (response.success) {
+        this.Educations = response.data;
+      }
+    },
+  },
+  persist: true,
+});

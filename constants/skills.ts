@@ -1,0 +1,170 @@
+import { ref, computed } from 'vue';
+
+export const frameworks = ref([
+  {
+    language: 'JavaScript',
+    frameworks: [
+      { name: 'React', icon: 'path_to_icon' },
+      { name: 'Vue', icon: 'path_to_icon' },
+      { name: 'Svelte', icon: 'path_to_icon' },
+      { name: 'Angular', icon: 'path_to_icon' },
+      { name: 'Next.js', icon: 'path_to_icon' },
+      { name: 'Nuxt.js', icon: 'path_to_icon' },
+      { name: 'Gatsby', icon: 'path_to_icon' },
+      { name: 'Ember', icon: 'path_to_icon' },
+      { name: 'Backbone', icon: 'path_to_icon' },
+      { name: 'Alpine.js', icon: 'path_to_icon' },
+      { name: 'Meteor', icon: 'path_to_icon' },
+      { name: 'Express', icon: 'path_to_icon' },
+      { name: 'Feathers', icon: 'path_to_icon' },
+      { name: 'Koa', icon: 'path_to_icon' },
+      { name: 'Polymer', icon: 'path_to_icon' },
+      { name: 'Aurelia', icon: 'path_to_icon' },
+      { name: 'Hyperapp', icon: 'path_to_icon' },
+      { name: 'Stimulus', icon: 'path_to_icon' },
+      { name: 'Mithril', icon: 'path_to_icon' },
+      { name: 'Preact', icon: 'path_to_icon' },
+    ],
+  },
+  {
+    language: 'Java',
+    frameworks: [
+      { name: 'Spring', icon: 'path_to_icon' },
+      { name: 'Hibernate', icon: 'path_to_icon' },
+      { name: 'Struts', icon: 'path_to_icon' },
+      { name: 'Grails', icon: 'path_to_icon' },
+      { name: 'Vaadin', icon: 'path_to_icon' },
+      { name: 'Apache Camel', icon: 'path_to_icon' },
+      { name: 'Dropwizard', icon: 'path_to_icon' },
+    ],
+  },
+  {
+    language: 'Python',
+    frameworks: [
+      { name: 'Django', icon: 'path_to_icon' },
+      { name: 'Flask', icon: 'path_to_icon' },
+      { name: 'Pyramid', icon: 'path_to_icon' },
+      { name: 'FastAPI', icon: 'path_to_icon' },
+      { name: 'Tornado', icon: 'path_to_icon' },
+    ],
+  },
+  {
+    language: 'PHP',
+    frameworks: [
+      { name: 'Laravel', icon: 'path_to_icon' },
+      { name: 'Symfony', icon: 'path_to_icon' },
+      { name: 'CodeIgniter', icon: 'path_to_icon' },
+      { name: 'Zend Framework', icon: 'path_to_icon' },
+      { name: 'Phalcon', icon: 'path_to_icon' },
+      { name: 'CakePHP', icon: 'path_to_icon' },
+    ],
+  },
+  {
+    language: 'Ruby',
+    frameworks: [
+      { name: 'Rails', icon: 'path_to_icon' },
+      { name: 'Sinatra', icon: 'path_to_icon' },
+      { name: 'Hanami', icon: 'path_to_icon' },
+    ],
+  },
+  {
+    language: 'C#',
+    frameworks: [
+      { name: 'ASP.NET', icon: 'path_to_icon' },
+      { name: 'Blazor', icon: 'path_to_icon' },
+      { name: 'Xamarin', icon: 'path_to_icon' },
+    ],
+  },
+  {
+    language: 'Go',
+    frameworks: [
+      { name: 'Gin', icon: 'path_to_icon' },
+      { name: 'Beego', icon: 'path_to_icon' },
+      { name: 'Echo', icon: 'path_to_icon' },
+    ],
+  },
+  {
+    language: 'Rust',
+    frameworks: [
+      { name: 'Actix', icon: 'path_to_icon' },
+      { name: 'Rocket', icon: 'path_to_icon' },
+      { name: 'Tide', icon: 'path_to_icon' },
+    ],
+  },
+  {
+    language: 'Swift',
+    frameworks: [
+      { name: 'Vapor', icon: 'path_to_icon' },
+      { name: 'Kitura', icon: 'path_to_icon' },
+      { name: 'Perfect', icon: 'path_to_icon' },
+    ],
+  },
+  {
+    language: 'C++',
+    frameworks: [
+      { name: 'Qt', icon: 'path_to_icon' },
+      { name: 'Boost', icon: 'path_to_icon' },
+      { name: 'Poco', icon: 'path_to_icon' },
+    ],
+  },
+]);
+
+export const programmingLanguages = ref<string[]>([
+  'HTML',
+  'CSS',
+  'JavaScript',
+  'PHP',
+  'Go',
+  'Java',
+  'Python',
+  'C++',
+  'C#',
+  'Carbon',
+  'Ruby',
+  'TypeScript',
+  'Swift',
+  'Kotlin',
+  'Objective-C',
+  'Scala',
+  'Perl',
+  'Lua',
+  'Groovy',
+  'R',
+  'Dart',
+  'Elixir',
+  'F#',
+  'Clojure',
+  'Haskell',
+  'Rust',
+  'Julia',
+  'Erlang',
+  'Bash',
+  'PowerShell',
+  'MATLAB',
+  'Scheme',
+  'Prolog',
+  'Fortran',
+  'Ada',
+  'COBOL',
+  'Assembly Language',
+  'VHDL',
+  'Verilog',
+  'Delphi',
+  'Elm',
+  'Smalltalk',
+  'Common Lisp',
+  'Racket',
+  'Pascal',
+  'VBA',
+  'OCaml',
+  'ABAP',
+  'Scratch',
+  'Solidity',
+]);
+
+export const allTools = computed(() => {
+  const data = frameworks.value.map((value) =>
+    value.frameworks.map((val) => val.name),
+  );
+  return data.flat().concat(programmingLanguages.value);
+});

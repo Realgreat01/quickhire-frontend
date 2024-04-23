@@ -26,6 +26,10 @@
   grid-column: span 2;
 }
 
+.qh-flex-center {
+  @apply flex items-center justify-center;
+}
+
 span {
   font-weight: inherit !important;
 }

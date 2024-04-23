@@ -1,20 +1,25 @@
 <template>
   <div
-    class="flex h-screen w-screen items-center justify-center bg-brand-900 bg-[url('~~/assets/images/office-image.jpg')] bg-contain bg-center bg-repeat p-4"
+    class="h-screen w-screen bg-[url('~~/assets/images/office-image.jpg')] bg-contain bg-center bg-repeat"
   >
-    <qh-container>
+    <qh-container title="login" @close="router.replace('/')">
       <VeeForm
         v-slot="{ handleSubmit, isSubmitting, errors }"
-        class="h-fit bg-white p-10"
+        class="h-fit p-10"
       >
         <form
           @submit.prevent="handleSubmit($event, login)"
           class="mx-4 flex flex-col justify-end gap-4"
         >
-          isisis {{ QH_CONSTANTS.AUTH_TOKEN }}
           <qh-input label="email" name="email" required />
           <qh-input label="Password" name="password" type="password" required />
-          <qh-button label="Login" class="qh-text-3 mt-4 py-2" type="submit" />
+          <qh-button
+            label="Login"
+            type="submit"
+            class="mt-4 h-10 w-full p-1"
+            :loading="isSubmitting"
+            :disabled="Object.keys(errors).length !== 0 || isSubmitting"
+          />
         </form>
       </VeeForm>
     </qh-container>

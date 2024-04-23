@@ -4,39 +4,36 @@
       <LayoutsSidebar class="sticky bottom-0 top-0 overflow-y-scroll" />
       <div class="sticky bottom-0 top-0">
         <LayoutsNavbar class="sticky top-0 z-10" />
+        <!-- <qh-modal /> -->
         <NuxtPage class="h-[80%] overflow-y-scroll" />
       </div>
     </div>
-    <forms-profile
-      v-if="route.query.add === QH_CONSTANTS.DETAILS"
-      @close="closeModal"
-    />
-    <forms-projects
-      v-if="route.query.add === QH_CONSTANTS.PROJECTS"
-      @close="closeModal"
-    />
-    <forms-experience
-      v-if="route.query.add === QH_CONSTANTS.EXPERIENCE"
-      @close="closeModal"
-    />
-    <forms-education
-      v-if="route.query.add === QH_CONSTANTS.EDUCATION"
-      @close="closeModal"
-    />
-    <forms-contact
-      v-if="route.query.add === QH_CONSTANTS.CONTACT"
-      @close="closeModal"
+    <forms-profile v-if="modalController.profile" @close="closeModal" />
+    <forms-projects v-if="modalController.projects" @close="closeModal" />
+    <forms-experience v-if="modalController.experience" @close="closeModal" />
+    <forms-education v-if="modalController.education" @close="closeModal" />
+    <forms-contact v-if="modalController.contact" @close="closeModal" />
+    <qh-modal
+      v-if="showModal"
+      @continue="modalStore.continue"
+      @cancel="modalStore.cancel"
+      @close="showModal = false"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
-import { useUserStore } from '~/store/user-store';
-
 import QH_CONSTANTS from '~/constants';
 
-const { getBasicDetails, getProjects, getExperiences } = useUserStore();
+import { useUserStore } from '~/store/user-store';
+import { useModalStore } from '~/store/modal-store';
+import { storeToRefs } from 'pinia';
+const { getBasicDetails, getProjects, getExperiences, getEducation } =
+  useUserStore();
+
+const { showModal } = storeToRefs(useModalStore());
+const modalStore = useModalStore();
 
 const route = useRoute();
 const router = useRouter();
@@ -45,10 +42,21 @@ const closeModal = () => {
   router.replace({});
 };
 
+const modalController = computed(() => {
+  return {
+    profile: route.query.add === QH_CONSTANTS.DETAILS,
+    projects: route.query.add === QH_CONSTANTS.PROJECTS,
+    experience: route.query.add === QH_CONSTANTS.EXPERIENCE,
+    education: route.query.add === QH_CONSTANTS.EDUCATION,
+    contact: route.query.add === QH_CONSTANTS.CONTACT,
+  };
+});
+
 onBeforeMount(() => {
   getBasicDetails();
   getProjects();
   getExperiences();
+  getEducation();
 });
 </script>
 

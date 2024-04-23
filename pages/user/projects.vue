@@ -12,11 +12,11 @@
           </h2>
           <h2 class="">
             <p class="qh-test-3 font-semibold text-brand-800">Description</p>
-            {{ project.projectDescription }}
+            <div v-html="project.projectDescription"></div>
           </h2>
           <h2 class="">
             <p class="qh-test-3 font-semibold text-brand-800">Lesson</p>
-            {{ project.projectLesson }}
+            <div v-html="project.projectLesson"></div>
           </h2>
           <h2 class="">
             <p class="qh-test-3 font-semibold text-brand-800">Tools Used</p>

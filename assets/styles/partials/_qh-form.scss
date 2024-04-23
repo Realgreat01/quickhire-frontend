@@ -1,0 +1,23 @@
+.form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+
+  .form-container {
+    @apply relative rounded-lg border border-dark-300 bg-white text-sm focus:outline-none;
+  }
+
+  .normal-box {
+    @apply border-dark-200;
+  }
+  .error-box {
+    @apply border border-error;
+  }
+  .form-error {
+    @apply text-error;
+  }
+  textarea {
+    min-height: 80px;
+  }
+}

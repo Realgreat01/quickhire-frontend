@@ -4,26 +4,26 @@
       <div
         v-for="(project, index) in projects"
         :key="index"
-        class="bg-brand-background w flex w-80 flex-col justify-between gap-y-2 rounded-2xl bg-brand-50 p-4 shadow-xl"
+        class="w flex w-80 flex-col justify-between gap-y-2 rounded-2xl bg-brand-50 p-4 shadow-xl"
       >
         <div class="flex flex-col gap-y-4 text-sm font-light text-dark">
           <h2 class="text-lg font-bold text-brand">
             {{ project.projectName }}
           </h2>
           <h2 class="">
-            <p class="qh-test-3 font-semibold text-brand-800">Description</p>
+            <p class="qh-test-3 font-semibold text-brand">Description</p>
             {{ project.projectDescription }}
           </h2>
           <h2 class="">
-            <p class="qh-test-3 font-semibold text-brand-800">Lesson</p>
+            <p class="qh-test-3 font-semibold text-brand">Lesson</p>
             {{ project.projectLesson }}
           </h2>
           <h2 class="">
-            <p class="qh-test-3 font-semibold text-brand-800">Tools Used</p>
+            <p class="qh-test-3 font-semibold text-brand">Tools Used</p>
             <div class="flex flex-wrap gap-2">
               <qh-button
                 :label="tool"
-                class="border !border-brand-600 !bg-transparent !text-brand-600"
+                class="border !border-brand-600 !bg-transparent !text-brand"
                 v-for="tool in project.projectTools"
                 :key="tool"
               />

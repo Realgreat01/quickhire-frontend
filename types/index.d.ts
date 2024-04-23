@@ -11,7 +11,8 @@ export interface BasicDetails {
   firstname: string;
   lastname: string;
   middlename: string;
-  gender: "male" | "female";
+  phone_number: string;
+  gender: 'male' | 'female' | 'others' | '';
 }
 
 export interface Stacks {
@@ -30,7 +31,7 @@ export interface Education {
 
 export interface Experience {
   company: string;
-  contributions: string[];
+  contributions: string;
   startDate: Date | string;
   endDate: Date | string | null;
   role: string;
@@ -43,4 +44,16 @@ export interface Projects {
   projectTools: string[];
   githubRepo: string;
   previewLink: string;
+}
+
+export interface Job {
+  posted_by?: string;
+  job_title: string;
+  job_description: string;
+  job_type: 'Fulltime' | 'Part-Time' | 'Contract' | 'Internship' | 'Voluntary';
+  posted_on: Date;
+  application_ends: Date;
+  job_duration: Date;
+  salary: string | number;
+  required_skills: string[];
 }

@@ -1,15 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  ssr: false,
   css: [
     '~/assets/styles/main.scss',
     '~/assets/styles/tailwind.scss',
     'notivue/notification.css',
     'notivue/animations.css',
+    '@vuepic/vue-datepicker/dist/main.css',
   ],
 
   build: {
-    transpile: ['vue-remix-icons'],
+    transpile: ['vue-remix-icons', '@vuepic/vue-datepicker'],
   },
 
   modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt', 'notivue/nuxt'],
