@@ -1,16 +1,19 @@
 <template>
   <div>
-    <h1 class="qh-text-1">Features</h1>
+    <h1 class="qh-text-1 mb-50 mt-20">Features</h1>
 
     <div class="grid grid-cols-3 gap-4">
       <div
-        class="rounded-2xl border bg-dark-50 p-6"
+        class="bg-secondary-200 rounded-2xl border p-6"
         v-for="(feature, index) in features"
       >
         <div class="flex h-10 items-start gap-x-4">
-          <component :is="feature.icon" class="block h-6 w-6 fill-brand-500" />
+          <component
+            :is="feature.icon"
+            class="fill-secondary-700 block h-6 w-6"
+          />
 
-          <h4 class="qh-text-3 mb-8 font-semibold text-brand-500">
+          <h4 class="qh-text-3 mb-8 font-semibold text-brand">
             {{ feature.title }}
           </h4>
         </div>

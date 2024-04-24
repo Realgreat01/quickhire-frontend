@@ -1,6 +1,16 @@
 <template>
-  <div class="">
-    <h1 class="qh-text-1">Latest Jobs</h1>
+  <div class="mt-20">
+    <div class="my-8 mb-5 flex w-full">
+      <h1 class="qh-text-1">Latest Jobs</h1>
+      <div class="">
+        <qh-input
+          label=""
+          name=""
+          placeholder="Search for jobs or talents"
+          class="h-10 w-[500px] pl-8 placeholder:!font-light"
+        />
+      </div>
+    </div>
     <div class="flex flex-col">
       <div
         class="grid w-full grid-cols-[0.5fr,2fr,0.75fr,1.75fr,2fr,2fr] border border-dashed border-b-brand py-3"
@@ -31,7 +41,7 @@
 
         <!-- 4 -->
         <div class="">
-          <h2 class="qh-text-4 text-center font-bold">Application Opens :</h2>
+          <h2 class="qh-text-4 text-center font-bold">Application Opens</h2>
           <h4 class="qh-text-4 text-center font-medium">
             {{ getReadableDate(job.posted_on) }}
             -
@@ -52,11 +62,11 @@
 
         <!-- 6 -->
         <div class="flex items-center justify-center gap-x-6">
-          <h4 class="">
-            <RiShareLine class="h-8 w-8 fill-brand" />
+          <h4 class="rounded-full border border-brand p-2">
+            <RiShareLine class="h-6 w-6 fill-brand !stroke-none" />
           </h4>
           <qh-button
-            class="h-10 w-20 rounded-full border border-brand bg-transparent font-medium !text-brand"
+            class="h-10 w-20 rounded-full border border-brand bg-transparent font-medium !text-brand hover:bg-brand-200"
             >Apply
           </qh-button>
         </div>

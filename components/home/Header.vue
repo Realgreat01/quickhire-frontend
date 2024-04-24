@@ -1,13 +1,7 @@
 <template>
   <div class="flex w-full items-center justify-between">
-    <div class="qh-container">logo Here</div>
+    <icons-logo class="text-brand" />
     <div class="flex">
-      <qh-input
-        label=""
-        name=""
-        placeholder="Search for jobs or talents"
-        class="h-10 w-80 pl-8 placeholder:!font-light"
-      />
       <qh-button
         class="!bg-transparent !font-medium !text-brand hover:!font-semibold hover:!text-brand-400"
         v-for="(nav, index) in headerNavigations"
@@ -17,9 +11,17 @@
         <component :is="nav.icon"></component>
       </qh-button>
     </div>
-    <RouterLink :to="QH_ROUTES.LOGIN">
-      <qh-button label="Login" />
-    </RouterLink>
+    <div class="flex gap-x-4">
+      <RouterLink :to="QH_ROUTES.LOGIN">
+        <qh-button class="h-10 w-36 rounded-full font-medium" label="Login" />
+      </RouterLink>
+      <RouterLink :to="QH_ROUTES.LOGIN">
+        <qh-button
+          label="Create Account"
+          class="h-10 w-36 rounded-full border border-brand bg-transparent font-medium !text-brand"
+        />
+      </RouterLink>
+    </div>
   </div>
 </template>
 

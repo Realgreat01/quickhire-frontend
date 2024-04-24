@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mt-20 grid w-full grid-cols-2 items-center justify-between gap-x-10"
+    class="my-20 grid w-full grid-cols-2 items-center justify-between gap-x-10"
   >
     <div class="flex flex-col gap-y-4">
       <h1 class="qh-text-1 !font-black">
@@ -20,7 +20,7 @@
         <qh-button
           class="h-12 w-48 rounded-full border border-brand bg-transparent font-medium !text-brand"
         >
-          Testimonials
+          Latest Jobs
         </qh-button>
       </div>
     </div>

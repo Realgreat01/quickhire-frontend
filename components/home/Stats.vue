@@ -1,9 +1,9 @@
 <template>
   <div class="">
-    <h1 class="qh-text-1">Checks</h1>
+    <h1 class="qh-text-1 m-5 mt-20">Operational Insights</h1>
     <div class="grid grid-cols-3 gap-6">
       <div
-        class="rounded-xl border border-brand bg-dark-50 p-10 text-brand"
+        class="bg-secondary-200 rounded-xl p-10 text-brand"
         v-for="(stat, index) in stats"
         :key="index"
       >
