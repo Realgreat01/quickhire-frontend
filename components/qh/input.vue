@@ -11,7 +11,7 @@
         <span>{{ label }} </span>
       </template>
 
-      <span class="!font-nokwrmal text-error" v-if="required">*</span>
+      <span class="!font-normal text-error" v-if="required">*</span>
     </label>
     <div class="">
       <div class="relative">

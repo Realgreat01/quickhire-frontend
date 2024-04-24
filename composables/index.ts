@@ -1,4 +1,5 @@
 import { push } from 'notivue';
+import { QH_ROUTES } from '~/constants/routes';
 
 export const qhToast = {
   success: (notification: Notification | string) => push.success(notification),
@@ -10,4 +11,7 @@ export const qhToast = {
 
 export const qhCloseModal = async () => {
   setTimeout(async () => await navigateTo({}), 1500);
+};
+export const qhReturnToHomepage = async () => {
+  setTimeout(async () => await navigateTo(QH_ROUTES.HOME), 200);
 };

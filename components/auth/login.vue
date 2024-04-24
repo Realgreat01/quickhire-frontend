@@ -2,7 +2,7 @@
   <div
     class="h-screen w-screen bg-[url('~~/assets/images/office-image.jpg')] bg-contain bg-center bg-repeat"
   >
-    <qh-container title="login" @close="router.replace('/')">
+    <qh-container title="login" @close="qhReturnToHomepage">
       <VeeForm
         v-slot="{ handleSubmit, isSubmitting, errors }"
         class="h-fit p-10"

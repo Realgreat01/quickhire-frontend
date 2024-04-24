@@ -192,6 +192,10 @@ export const generateUniqueHexCode = () => {
   for (let i = 0; i < 6; i++) {
     hexCode += characters[Math.floor(Math.random() * 16)];
   }
-
   return hexCode;
+};
+
+export const sliceWords = (words: string, slice: number = 24) => {
+  if (words.length > slice) return words.slice(0, slice) + ' ...';
+  else return words.slice(0, slice);
 };

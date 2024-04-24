@@ -12,11 +12,11 @@
           </h2>
           <h2 class="">
             <p class="qh-test-3 font-semibold text-brand-800">Description</p>
-            <div v-html="project.projectDescription"></div>
+            <span v-html="project.projectDescription"></span>
           </h2>
           <h2 class="">
-            <p class="qh-test-3 font-semibold text-brand-800">Lesson</p>
-            <div v-html="project.projectLesson"></div>
+            <p class="qh-test-3 font-semibold text-brand-800">Lessons:</p>
+            <span v-html="project.projectLesson"></span>
           </h2>
           <h2 class="">
             <p class="qh-test-3 font-semibold text-brand-800">Tools Used</p>

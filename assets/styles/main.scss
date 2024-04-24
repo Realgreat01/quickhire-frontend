@@ -5,6 +5,7 @@
 @import './partials/qh-calendar';
 @import './partials/qh-animations';
 @import './partials/qh-select';
+@import './partials/slider';
 
 @import '../fonts/qh-fonts.scss';
 @import 'animate.css';
@@ -53,4 +54,10 @@ body {
 
 input[type='number'] {
   -moz-appearance: textfield;
+}
+
+.svg-gradient-fill {
+  --tw-gradient-from: #0000ff; /* Blue */
+  --tw-gradient-to: #00ff00; /* Green */
+  fill: url(#svgGradient);
 }

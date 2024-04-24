@@ -1,4 +1,4 @@
-export class ROUTES {
+export class QH_ROUTES {
   static LOGIN = '/auth/login';
   static HOME = '/';
   static USER = {

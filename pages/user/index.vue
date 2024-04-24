@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { ROUTES } from '~/constants/routes';
+import { QH_ROUTES } from '~/constants/routes';
 import { useUserStore } from '~/store/user-store';
 
 definePageMeta({
@@ -21,7 +21,7 @@ const options = [
   { label: 'Option #2', value: 'option_2' },
   { label: 'Option #3', value: 'option_3' },
 ];
-onMounted(() => navigateTo(ROUTES.USER.PROFILE));
+onMounted(() => navigateTo(QH_ROUTES.USER.PROFILE));
 </script>
 
 <style lang="scss" scoped></style>
