@@ -1,21 +1,40 @@
 <template>
   <div class="mb-4 flex flex-col gap-4 bg-dark-50">
     <div class="flex items-center justify-between">
-      <h1 class="qh-text-1 m-4 capitalize">
-        {{ QH_CONSTANTS.APP_NAME }} | {{ route.meta.name ?? 'Dashboard' }}
+      <h1 class="qh-text-1 m-4 flex items-center capitalize text-brand-500">
+        <icons-logo />
+        <span class="block !font-bold"
+          >| {{ route.meta.name ?? 'Dashboard' }}</span
+        >
       </h1>
-      <qh-button class="mr-4 px-8" @click="openModalAndHandleResponse"
-        >Post A Job</qh-button
-      >
-    </div>
-    <!-- <div class="">
-      <div alt="" class="h-20 w-full bg-brand-50">
-        Date : <qh-date-picker /> Date :
-        <qh-input type="number" label="currency" name="currency" />
+      <div class="flex gap-x-3 p-4">
+        <div class="relative h-10 w-10">
+          <ChatBubbleBottomCenterTextIcon
+            class="h-8 w-8 fill-brand"
+            @click="openModalAndHandleResponse"
+          />
+          <span
+            class="qh-flex-center absolute bottom-6 right-0 h-5 w-5 rounded-full border border-white bg-error text-center text-[10px] text-white"
+            >10</span
+          >
+        </div>
+        <div class="relative h-10 w-10">
+          <RiNotification3Fill
+            class="h-8 w-8 fill-brand"
+            @click="openModalAndHandleResponse"
+          />
+          <span
+            class="qh-flex-center absolute bottom-6 right-0 h-5 w-5 rounded-full border border-white bg-error text-center text-[10px] text-white"
+            >10</span
+          >
+        </div>
       </div>
-    </div> -->
+    </div>
 
-    <div class="flex w-full justify-end gap-x-4 p-4">
+    <div
+      class="flex w-full justify-end gap-x-4 p-4"
+      v-if="!route.meta.name?.includes(SpecailPages)"
+    >
       <div
         :class="item.class"
         @click="item.action"
@@ -39,10 +58,13 @@
 <script setup lang="ts">
 import {
   RiAddCircleFill,
-  // RiEditBoxFill,
+  RiChat3Line,
+  RiDiscussFill,
+  RiNotification3Fill,
   // RiDeleteBin6Fill,
   RiProfileFill,
 } from 'vue-remix-icons';
+import { ChatBubbleBottomCenterTextIcon } from '@heroicons/vue/24/solid';
 import QH_CONSTANTS from '~/constants';
 import { useRoute, useRouter } from 'vue-router';
 import { useModalStore } from '~/store/modal-store';
@@ -51,6 +73,7 @@ const route = useRoute();
 const router = useRouter();
 const modalStore = useModalStore();
 
+const SpecailPages = ref(QH_CONSTANTS.DETAILS);
 async function openModalAndHandleResponse() {
   try {
     const result = await modalStore.openModal();

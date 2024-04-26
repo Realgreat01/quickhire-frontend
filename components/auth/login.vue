@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-screen w-screen bg-[url('~~/assets/images/office-image.jpg')] bg-contain bg-center bg-repeat"
+    class="h-screen w-screen bg-[url('~~/assets/images/office-image.jpg')] bg-cover bg-center bg-repeat"
   >
     <qh-container title="login" @close="qhReturnToHomepage">
       <VeeForm
@@ -22,6 +22,12 @@
           />
         </form>
       </VeeForm>
+      <h1 class="qh-text-4 mb-4 text-center">
+        Don't have an account ?
+        <RouterLink class="text-brand" :to="QH_ROUTES.REGISTER"
+          >Sign Up</RouterLink
+        >
+      </h1>
     </qh-container>
   </div>
 </template>
@@ -31,6 +37,7 @@ import { LOG_IN_USER } from '~~/services/auth.service';
 import { Form as VeeForm } from 'vee-validate';
 import QH_CONSTANTS from '~/constants';
 import { useRouter } from 'vue-router';
+import { QH_ROUTES } from '~/constants/routes';
 
 const router = useRouter();
 
@@ -39,9 +46,8 @@ const login = async (field: any) => {
   if (res.success) {
     localStorage.setItem(QH_CONSTANTS.AUTH_TOKEN, res.data.token);
     router.replace('/user');
-  }
+  } else qhToast.error(res.message);
 };
 </script>
 
 <style scoped></style>
-~/services/auth.service

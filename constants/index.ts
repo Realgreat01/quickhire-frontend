@@ -3,6 +3,10 @@ export default class QH_CONSTANTS {
   static LOGIN = '/auth/login';
   static APP_NAME = 'Quick Hire';
   public static USERNAME = '';
+  static SET_USER_TYPE(type: 'user' | 'company') {
+    localStorage.setItem('user-type', type);
+  }
+  public static USERTYPE = localStorage.getItem('user-type');
 
   static PROJECTS = 'projects';
   static DETAILS = 'profile';

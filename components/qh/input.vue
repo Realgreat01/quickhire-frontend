@@ -51,6 +51,7 @@
           :options="options"
           :required="required"
           :multiple="multiple"
+          :labelName="labelName"
           @change="handleChange"
         />
 
@@ -138,8 +139,8 @@ const props = defineProps({
   hint: String,
   buttonText: String,
   labelClass: String,
+  labelName: String,
   suffix: String,
-  labelName: { type: String, default: 'label' },
   options: { type: Array as PropType<any[]>, default: [] },
   multiple: Boolean,
   noDataMessage: String,

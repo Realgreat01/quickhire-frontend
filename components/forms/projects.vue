@@ -5,7 +5,6 @@
         class="mx-auto mt-4 w-full p-2"
         @submit.prevent="handleSubmit($event, submitProject)"
       >
-        toolsjdndsndsns {{ projectDetails.projectTools }}
         <div class="grid grid-cols-2 gap-4">
           <qh-input
             v-for="(project, index) in projects"
@@ -77,6 +76,7 @@ const projects = ref([
     required: true,
     clearable: false,
     multiple: true,
+    labelName: 'name',
     noDataMessage: 'No other skills',
     hint: 'The stacks used in this project, use the support menu if a stack is not listed to suggest them to us.',
     options: allTools.value,

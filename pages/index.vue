@@ -6,6 +6,7 @@
     <home-stats class="px-10" />
     <home-current-listings class="px-10" />
     <home-testimonials class="px-10" />
+    <home-campaign class="px-10" />
     <home-footer class="px-10" />
   </div>
 </template>

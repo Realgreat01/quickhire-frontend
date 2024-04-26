@@ -5,6 +5,7 @@
       v-bind="$attrs"
       :multiple="true"
       :is-clearable="false"
+      :label="labelName"
       :options="getSelectOptions"
       v-model="modelValueMultiple"
       :placeholder="placeholder"
@@ -54,6 +55,7 @@ const props = defineProps({
     default: 'No Data Available',
   },
   multiple: Boolean,
+  labelName: String,
   placeholder: String,
   clearable: Boolean,
 });

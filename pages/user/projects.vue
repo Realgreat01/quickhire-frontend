@@ -21,12 +21,13 @@
           <h2 class="">
             <p class="qh-test-3 font-semibold text-brand-800">Tools Used</p>
             <div class="flex flex-wrap gap-2">
-              <qh-button
+              <i
                 :label="tool"
-                class="border !border-brand-600 !bg-transparent !text-brand-600"
-                v-for="tool in project.projectTools"
-                :key="tool"
-              />
+                v-for="(tool, index) in project.projectTools"
+                :key="index"
+                :class="tool.icon"
+                class="colored text-2xl"
+              ></i>
             </div>
           </h2>
         </div>

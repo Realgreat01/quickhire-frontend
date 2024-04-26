@@ -199,3 +199,42 @@ export const sliceWords = (words: string, slice: number = 24) => {
   if (words.length > slice) return words.slice(0, slice) + ' ...';
   else return words.slice(0, slice);
 };
+
+export const qhDates = {
+  getOrdinalNum(n: any) {
+    let s = ['th', 'st', 'nd', 'rd'],
+      v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  },
+
+  formatDatePicker(date: string | Date) {
+    const day = this.getOrdinalNum(format(date, 'd'));
+    const monthYear = format(date, 'MMMM, yyyy');
+    return `${day} ${monthYear}`;
+  },
+
+  formatDate(date: string | Date | null) {
+    if (date === null || '') return 'Present';
+    const day = parseInt(format(date, 'd'), 10);
+    const ordinalDay = this.getOrdinalNum(day);
+    const month = format(date, 'MMMM');
+    const year = format(date, 'yyyy');
+    return `${month} ${ordinalDay}, ${year}`;
+  },
+};
+
+export const qhNumbers = {
+  formatNumber(value: number) {
+    if (isNaN(value)) return 0;
+    return `${numeral(value).format('0,0')}`;
+  },
+
+  formatCurrency(value: number) {
+    if (isNaN(value)) return 0;
+    return `$${numeral(value).format('0,0.00')}`;
+  },
+
+  formatRawCurrency(value: number): string {
+    return `$${value.toFixed(2)}`;
+  },
+};

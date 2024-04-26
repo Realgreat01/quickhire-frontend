@@ -1,19 +1,23 @@
 <template>
   <div
-    class="sticky bottom-0 top-0 flex h-screen flex-col items-center justify-center gap-2 bg-dark-50 pb-4 pt-10"
+    class="sticky bottom-0 top-0 flex h-screen flex-col items-center justify-center gap-2 bg-white"
   >
-    <div class="mt-10 flex w-full flex-col items-center justify-center">
-      <qh-circle :value="80">
-        <!-- <image :src="basicDetails?.profile_picture" class="m-4 h-32" /> -->
-      </qh-circle>
-      <h1 class="capitalize">{{ fullname }}</h1>
-      <h1 class="text-brand">@{{ basicDetails?.username }}</h1>
-      <h1 class="">FullStack Developer</h1>
+    <div
+      class="font-poppins my-10 flex h-60 w-max flex-col items-center justify-center rounded-2xl border-2 border-dark-50 bg-dark-50 p-8 shadow-md"
+    >
+      <img
+        class="block h-32 w-32 rounded-full border border-brand"
+        src="~/assets/images/company-logo.jpg"
+        alt=""
+      />
+      <h1 class="font-semibold capitalize">{{ fullname }}</h1>
+      <h1 class="qh-text-4 text-brand">@{{ basicDetails?.username }}</h1>
+      <h1 class="font-normal">Fullstack Developer</h1>
     </div>
     <RouterLink
       :to="{ name: item.route }"
       :class="item.class"
-      class="flex w-60 cursor-pointer rounded border p-2 hover:scale-[1.025]"
+      class="font-geologica flex w-60 cursor-pointer p-1 pl-4 font-semibold hover:scale-[1.025]"
       v-for="(item, index) in sidebar"
       :key="index"
     >
@@ -55,51 +59,51 @@ const sidebar = markRaw([
     action: '',
     route: QH_CONSTANTS.DETAILS,
     icon: RiUser2Fill,
-    class: 'fill-teal-800 bg-teal-100 text-teal-800',
+    class: 'fill-teal-600  text-teal-600',
   },
   {
     title: 'Education',
     action: '',
     route: QH_CONSTANTS.EDUCATION,
     icon: RiGraduationCapFill,
-    class: 'fill-brand bg-brand-100 text-brand',
+    class: 'fill-brand  text-brand',
   },
   {
     title: 'Experience',
     action: '',
     route: QH_CONSTANTS.EXPERIENCE,
     icon: RiBriefcase2Fill,
-    class: 'fill-pink-800 bg-pink-100 text-pink-800',
+    class: 'fill-pink-800  text-pink-800',
   },
   {
     title: 'Applied Jobs',
     action: '',
     route: QH_CONSTANTS.JOBS,
     icon: RiSendPlaneFill,
-    class: 'fill-success bg-success-100 text-success',
+    class: 'fill-violet-800  text-violet-800',
   },
-  {
-    title: 'Stacks',
-    action: '',
-    route: QH_CONSTANTS.STACKS,
-    icon: RiCodeSSlashFill,
-    class: 'fill-purple-600 bg-purple-100 text-purple-600',
-  },
+  // {
+  //   title: 'Stacks',
+  //   action: '',
+  //   route: QH_CONSTANTS.STACKS,
+  //   icon: RiCodeSSlashFill,
+  //   class: 'fill-purple-600  text-purple-600',
+  // },
   {
     title: 'Projects',
     action: '',
     route: QH_CONSTANTS.PROJECTS,
     icon: RiBox3Fill,
-    class: 'fill-indigo-800 bg-indigo-100 text-indigo-800',
+    class: 'fill-indigo-800  text-indigo-800',
   },
 
-  {
-    title: 'Contact',
-    action: '',
-    route: QH_CONSTANTS.CONTACT,
-    icon: RiContactsFill,
-    class: 'fill-cyan-800 bg-cyan-100 text-cyan-800',
-  },
+  // {
+  //   title: 'Contact',
+  //   action: '',
+  //   route: QH_CONSTANTS.CONTACT,
+  //   icon: RiContactsFill,
+  //   class: 'fill-cyan-800  text-cyan-800',
+  // },
 ]);
 </script>
 

@@ -15,7 +15,7 @@
       <RouterLink :to="QH_ROUTES.LOGIN">
         <qh-button class="h-10 w-36 rounded-full font-medium" label="Login" />
       </RouterLink>
-      <RouterLink :to="QH_ROUTES.LOGIN">
+      <RouterLink :to="QH_ROUTES.REGISTER">
         <qh-button
           label="Create Account"
           class="h-10 w-36 rounded-full border border-brand bg-transparent font-medium !text-brand"

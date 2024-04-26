@@ -3,6 +3,7 @@
     class="h-12 w-12"
     viewBox="0 0 75 80"
     fill="none"
+    :class="class"
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect
@@ -31,6 +32,8 @@
   </svg>
 </template>
 
-<script lang="ts"></script>
+<script setup lang="ts">
+defineProps({ class: String });
+</script>
 
 <style scoped></style>

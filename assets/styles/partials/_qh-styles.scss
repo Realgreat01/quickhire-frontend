@@ -30,6 +30,15 @@
   @apply flex items-center justify-center;
 }
 
+.qh-company-info {
+  @apply my-5;
+  .qh-company-header {
+    @apply font-bold text-dark;
+  }
+  .qh-company-content {
+    @apply text-sm;
+  }
+}
 span {
   font-weight: inherit !important;
 }

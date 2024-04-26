@@ -12,6 +12,7 @@ export const qhToast = {
 export const qhCloseModal = async () => {
   setTimeout(async () => await navigateTo({}), 1500);
 };
+
 export const qhReturnToHomepage = async () => {
   setTimeout(async () => await navigateTo(QH_ROUTES.HOME), 200);
 };

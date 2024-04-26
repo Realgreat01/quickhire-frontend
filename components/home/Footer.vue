@@ -111,16 +111,16 @@ const othersLinks = ref([
   { title: 'Academy', id: '#testimonials' },
   { title: 'Resume Tips', id: '#faqs' },
   { title: 'Hiring', id: '#contact' },
-  { title: 'Latest Jobs', id: '#about-us' },
-  { title: 'Blog', id: '#how-it-works' },
+  { title: 'Info', id: '#about-us' },
+  { title: 'Libraries', id: '#how-it-works' },
+  { title: 'Videos', id: '#testimonials' },
+  { title: 'Support', id: '#faqs' },
+  { title: 'Hiring Tips', id: '#contact' },
+  { title: 'Latest Tech News', id: '#about-us' },
+  { title: 'Social Media', id: '#how-it-works' },
   { title: 'Academy', id: '#testimonials' },
-  { title: 'Resume Tips', id: '#faqs' },
-  { title: 'Hiring', id: '#contact' },
-  { title: 'Latest Jobs', id: '#about-us' },
-  { title: 'Blog', id: '#how-it-works' },
-  { title: 'Academy', id: '#testimonials' },
-  { title: 'Resume Tips', id: '#faqs' },
-  { title: 'Hiring', id: '#contact' },
+  { title: 'Internation transactions', id: '#faqs' },
+  { title: 'AI integration', id: '#contact' },
 ]);
 
 const socialLinks = shallowRef([
@@ -133,16 +133,16 @@ const socialLinks = shallowRef([
 const contactInformation = shallowRef([
   {
     icon: RiWhatsappLine,
-    contact: '+7062215229',
+    contact: '+2347062215229',
     action: (): void => {
-      window.location.href = 'https://wa.me/+7062215229';
+      window.location.href = 'https://wa.me/+2347062215229';
     },
   },
   {
     icon: RiPhoneLine,
-    contact: '+7062215229',
+    contact: '+2347062215229',
     action: (): void => {
-      window.location.href = 'tel:' + '+7062215229';
+      window.location.href = 'tel:' + '+2347062215229';
     },
   },
   {
