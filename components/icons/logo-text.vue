@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-start gap-x-0 rounded p-2">
-    <icons-logo-svg :class="Class" />
-    <span class="qh-text-1 font-geologica" :class="Class"> uickHire</span>
+    <img src="~/assets/svgs/quickhire-logo.svg" class="h-4 w-4" />
+    <span class="qh-text-1 font-geologica" :class="Class">uickHire</span>
   </div>
 </template>
 

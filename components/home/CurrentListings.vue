@@ -1,8 +1,6 @@
 <template>
   <div class="mt-20">
-    <div class="my-8 mb-5 flex w-full">
-      <h1 class="qh-text-1">Latest Jobs</h1>
-    </div>
+    <h1 class="qh-text-1">Latest Jobs</h1>
     <qh-table :items="jobs" :headers="headers"> </qh-table>
   </div>
 </template>

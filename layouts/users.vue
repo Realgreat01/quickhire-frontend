@@ -1,10 +1,12 @@
 <template>
   <div class="h-screen">
-    <div class="relative grid grid-cols-[1fr,4fr]">
-      <LayoutsSidebar class="sticky bottom-0 top-0 overflow-y-scroll" />
+    <div class="relative grid md:grid-cols-[1fr,4fr]">
+      <LayoutsSidebar
+        class="sticky bottom-0 top-0 hidden overflow-y-scroll md:block"
+      />
       <div class="sticky bottom-0 top-0">
         <LayoutsNavbar class="sticky top-0 z-10" />
-        <NuxtPage class="scroll overflow-y-scroll p-4" />
+        <NuxtPage class="scroll overflow-y-scroll md:p-4" />
       </div>
     </div>
     <forms-profile v-if="modalController.profile" @close="closeModal" />

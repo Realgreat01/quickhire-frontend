@@ -27,28 +27,33 @@
     </div>
 
     <qh-dropdown class="block md:hidden">
-      <div class="mb-4 flex flex-col gap-x-4">
-        <a
-          :href="nav.link"
-          class="mr-4 flex !bg-transparent !font-medium !text-brand hover:!fill-brand-400 hover:!font-semibold hover:!text-brand-400"
-          v-for="(nav, index) in headerNavigations"
-          :key="index"
-        >
-          <component :is="nav.icon" class="mr-4 h-6 w-6"></component>
-          <span class=""> {{ nav.title }}</span></a
-        >
-      </div>
+      <div class="!min-w-[400px]">
+        <div class="mb-8 flex flex-col gap-y-4">
+          <a
+            :href="nav.link"
+            class="mr-4 flex !bg-transparent !font-medium !text-brand hover:!fill-brand-400 hover:stroke-brand hover:stroke-[3px] hover:!font-semibold hover:!text-brand-400"
+            v-for="(nav, index) in headerNavigations"
+            :key="index"
+          >
+            <component :is="nav.icon" class="mr-4 h-6 w-6"></component>
+            <span class=""> {{ nav.title }}</span></a
+          >
+        </div>
 
-      <div class="flex flex-col gap-4">
-        <RouterLink :to="QH_ROUTES.LOGIN">
-          <qh-button class="h-10 w-36 rounded-full font-medium" label="Login" />
-        </RouterLink>
-        <RouterLink :to="QH_ROUTES.REGISTER">
-          <qh-button
-            label="Create Account"
-            class="h-10 w-36 rounded-full border border-brand bg-transparent font-medium !text-brand"
-          />
-        </RouterLink>
+        <div class="flex flex-col gap-4">
+          <RouterLink :to="QH_ROUTES.LOGIN">
+            <qh-button
+              class="h-10 w-72 rounded-full font-medium"
+              label="Login"
+            />
+          </RouterLink>
+          <RouterLink :to="QH_ROUTES.REGISTER">
+            <qh-button
+              label="Create Account"
+              class="h-10 w-72 rounded-full border border-brand bg-transparent font-medium !text-brand"
+            />
+          </RouterLink>
+        </div>
       </div>
     </qh-dropdown>
   </div>

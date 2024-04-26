@@ -1,7 +1,9 @@
 <template>
-  <div class="my-20 grid grid-flow-dense gap-8 md:grid-cols-2">
-    <div class="w-4/5">
-      <h2 class="qh-text-2 mb-10 font-bold">Watch A Video About Us</h2>
+  <div class="my-5 grid grid-flow-dense gap-8 md:my-20 md:grid-cols-2">
+    <div class="mx-auto w-[96%]">
+      <h2 class="qh-text-1 mb-4 text-center font-bold md:mb-10">
+        Watch A Video About Us
+      </h2>
       <h2 class="qh-text-4">
         QuickHire is a career discovery platform and we reduce time to hire by
         40% and talent stays 3x longer than the industry average.
@@ -13,9 +15,9 @@
         operators.
       </h2>
     </div>
-    <div class="">
+    <div class="mx-auto">
       <iframe
-        class="h-40 w-fit md:h-[350px] md:w-[400px]"
+        class="h-40 w-[90vw] md:h-[350px] md:w-[500px]"
         src="https://www.youtube.com/embed/pL1y-qGHvTw?si=xgHdWNyyetNlc4vO"
         title="QuickHire "
         frameborder="10"

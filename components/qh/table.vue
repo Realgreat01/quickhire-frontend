@@ -3,7 +3,7 @@
     <qh-input
       :label="label"
       name=""
-      class="my-2 w-3/5"
+      class="my-2 md:w-3/5"
       v-model="searchValue"
       :placeholder="placeholder"
     />
@@ -37,7 +37,7 @@
       </template>
 
       <template v-slot:item-posted_by="job">
-        <div class="flex gap-x-2">
+        <div class="flex min-w-48 gap-x-2">
           <img
             src="~~/assets/images/company-logo.jpg"
             alt=""
@@ -57,7 +57,7 @@
       </template>
 
       <template v-slot:item-job_type="job">
-        <div class="qh-flex-center flex-col">
+        <div class="qh-flex-center min-w-20 flex-col">
           <h4 class="qh-text-4 font-semibold text-brand">
             {{ job.job_type }}
           </h4>
@@ -70,7 +70,7 @@
       <template v-slot:item-isActive="job"
         ><div class="qh-flex-center">
           <qh-button
-            class="flex h-8 w-28 gap-x-4 rounded-full bg-success-600"
+            class="flex h-8 w-28 gap-x-4 rounded-full bg-success-400"
             v-if="job.isActive"
           >
             <span class="">Active</span>
@@ -79,14 +79,14 @@
 
           <qh-button
             v-else
-            class="flex h-8 w-28 gap-x-4 rounded-full bg-error-600"
+            class="flex h-8 w-28 gap-x-4 rounded-full bg-error-400"
             ><span class="">Closed</span>
             <!-- <RiCloseCircleFill class="h-5 w-5 rounded-full" /> -->
           </qh-button>
         </div>
       </template>
       <template v-slot:item-posted_on="job">
-        <div class="qh-text-4 text-center">
+        <div class="qh-text-4 min-w-60 text-center">
           <h4 class="font-medium">
             {{ qhDates.getReadableDate(job.posted_on) }}
             -
@@ -103,7 +103,7 @@
 
       <template v-slot:item-required_skills="job">
         <div
-          class="flex h-full w-full flex-wrap items-center justify-center gap-2"
+          class="flex h-full w-full min-w-60 flex-wrap items-center justify-center gap-2"
         >
           <i
             :class="skill.icon"

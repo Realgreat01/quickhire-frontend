@@ -7,7 +7,7 @@
     >
       <img
         class="block h-32 w-32 rounded-full border border-brand"
-        src="~/assets/images/company-logo.jpg"
+        src="~/assets/images/user-profile.jpg"
         alt=""
       />
       <h1 class="font-semibold capitalize">{{ fullname }}</h1>

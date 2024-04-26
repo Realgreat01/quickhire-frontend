@@ -1,22 +1,22 @@
 <template>
-  <div class="mx-auto w-4/5 bg-white p-10">
+  <div class="mx-auto bg-white p-10 md:w-4/5">
     <!--  -->
     <div class="flex items-start justify-between">
       <div class="">
         <h1
-          class="qh-text-1 text-stroke font-geologica font-bold capitalize text-brand"
+          class="qh-text-2 text-stroke font-geologica font-bold capitalize text-brand"
         >
           {{ fullname }}
         </h1>
-        <h1 class="qh-text-3 font-medium capitalize">
+        <h1 class="qh-text-4 font-medium capitalize">
           Frontend Developer | Software Engineer | Technical Writer
         </h1>
       </div>
-      <div class="">
+      <div class="block">
         <img
           src="~/assets/images/user-profile.jpg"
           alt=""
-          class="h-32 w-32 rounded-full border-4 border-brand"
+          class="block w-36 rounded-[50%] border-4 border-brand"
         />
       </div>
     </div>
@@ -24,7 +24,7 @@
     <!--  -->
     <div class="">
       <h2
-        class="font-geologica text-stroke text-3xl font-bold uppercase text-brand"
+        class="font-geologica text-stroke qh-text-2 font-bold uppercase text-brand"
       >
         ABOUT ME
       </h2>
@@ -55,11 +55,11 @@
     <!--  -->
     <div class="mt-8 w-full">
       <h2
-        class="font-geologica text-stroke mb-2 text-3xl font-bold uppercase text-brand"
+        class="font-geologica text-stroke qh-text-2 mb-2 font-bold uppercase text-brand"
       >
         STACKS
       </h2>
-      <div class="grid grid-cols-2 gap-x-10">
+      <div class="grid gap-x-10 gap-y-4 md:grid-cols-2">
         <div class="bg-secondary-100 p-4">
           <h1 class="my-2 font-bold text-error-600">Programming Languages</h1>
           <div class="flex flex-wrap">

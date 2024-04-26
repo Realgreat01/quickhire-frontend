@@ -8,8 +8,9 @@
     </div>
 
     <qh-card
-      class="absolute right-2 top-10 max-w-48 bg-white"
+      class="absolute right-2 top-10 max-w-[80vw] bg-white"
       v-if="showDropDown"
+      @click="showDropDown = false"
     >
       <slot></slot>
     </qh-card>
@@ -17,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { RiMenu4Line, RiMenu4Fill } from 'vue-remix-icons';
+import { RiMenu4Fill } from 'vue-remix-icons';
 
-const showDropDown = ref(true);
+const showDropDown = ref(false);
 </script>
 
 <style scoped></style>

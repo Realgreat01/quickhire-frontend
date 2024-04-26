@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1 class="qh-text-1 mb-10 mt-20">Features</h1>
+    <h1 class="qh-text-1 mb-4 mt-20 md:mb-10">Features</h1>
 
     <div class="grid gap-4 md:grid-cols-3">
       <div
-        class="rounded-2xl border bg-white p-6"
+        class="rounded-2xl border bg-white p-6 py-10"
         v-for="(feature, index) in features"
       >
         <div class="flex items-start gap-x-4 md:h-10">
