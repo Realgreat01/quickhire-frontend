@@ -3,13 +3,10 @@
     class="h-screen w-screen bg-[url('~~/assets/images/office-image.jpg')] bg-cover bg-center bg-repeat"
   >
     <qh-container title="login" @close="qhReturnToHomepage">
-      <VeeForm
-        v-slot="{ handleSubmit, isSubmitting, errors }"
-        class="h-fit p-10"
-      >
+      <VeeForm v-slot="{ handleSubmit, isSubmitting, errors }" class="h-fit">
         <form
+          class="mx-auto mt-4 grid w-full gap-4"
           @submit.prevent="handleSubmit($event, login)"
-          class="mx-4 flex flex-col justify-end gap-4"
         >
           <qh-input label="email" name="email" required />
           <qh-input label="Password" name="password" type="password" required />
@@ -22,7 +19,7 @@
           />
         </form>
       </VeeForm>
-      <h1 class="qh-text-4 mb-4 text-center">
+      <h1 class="qh-text-4 my-4 text-center">
         Don't have an account ?
         <RouterLink class="text-brand" :to="QH_ROUTES.REGISTER"
           >Sign Up</RouterLink

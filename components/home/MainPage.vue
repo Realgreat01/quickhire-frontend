@@ -1,8 +1,8 @@
 <template>
   <div
-    class="my-20 grid w-full grid-cols-2 items-center justify-between gap-x-10"
+    class="my-20 grid w-full items-center justify-between gap-x-10 md:grid-cols-2"
   >
-    <div class="flex flex-col gap-y-4">
+    <div class="order-2 flex flex-col gap-y-4 md:order-1">
       <h1 class="qh-text-1 !font-black">
         A Quick way to <span class="text-brand">Hire <br />Developers</span> and
         <span class="text-brand">Get Hired</span>

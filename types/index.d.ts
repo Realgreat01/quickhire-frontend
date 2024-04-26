@@ -1,3 +1,6 @@
+declare module '@splidejs/vue-splide' {}
+declare module 'vue3-easy-data-table' {}
+
 export interface LOGIN_PAYlOAD {
   username?: string;
   email?: string;

@@ -1,5 +1,5 @@
 <template>
-  <div class="my-20 grid grid-cols-2">
+  <div class="my-20 grid grid-flow-dense gap-8 md:grid-cols-2">
     <div class="w-4/5">
       <h2 class="qh-text-1 mb-10">Watch A Video About Us</h2>
       <h2 class="qh-text-4">

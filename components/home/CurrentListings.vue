@@ -2,101 +2,8 @@
   <div class="mt-20">
     <div class="my-8 mb-5 flex w-full">
       <h1 class="qh-text-1">Latest Jobs</h1>
-      <div class="">
-        <qh-input
-          label=""
-          name=""
-          placeholder="Search for jobs or talents"
-          class="h-10 w-[500px] pl-8 placeholder:!font-light"
-        />
-      </div>
     </div>
-    <div class="flex flex-col">
-      <div
-        class="grid w-full grid-cols-[0.5fr,2fr,0.75fr,0.75fr,1.75fr,2fr,2fr] border border-dashed border-b-brand py-3"
-        v-for="(job, index) in latestJobs"
-      >
-        <img
-          src="~~/assets/images/company-logo.jpg"
-          alt=""
-          class="block h-12"
-        />
-        <!-- 2 -->
-        <div class="">
-          <h1 class="qh-text-3 font-semibold">{{ job.job_title }}</h1>
-          <h1 class="qh-text-3 text-brand">
-            {{ job.posted_by?.company_name }}
-          </h1>
-          <h1 class="qh-text-4">
-            {{ job.posted_by?.company_location }}
-          </h1>
-        </div>
-        <!-- 3 -->
-        <div class="">
-          <h4 class="qh-text-4 font-semibold text-brand">
-            {{ job.job_type }}
-          </h4>
-          <h4 class="qh-text-4 font-semibold">
-            {{ formatCurrency(job.salary) }}
-          </h4>
-        </div>
-        <!-- 3 -->
-        <div class="">
-          <qh-button
-            class="flex h-8 w-28 gap-x-4 rounded-full bg-success-400"
-            v-if="job.isActive"
-          >
-            <span class="">Active</span>
-            <RiCheckboxCircleFill class="h-5 w-5 rounded-full" />
-          </qh-button>
-
-          <qh-button
-            v-else
-            class="flex h-8 w-28 gap-x-4 rounded-full bg-error-300"
-            ><span class="">Closed</span>
-            <RiCloseCircleFill class="h-5 w-5 rounded-full" />
-          </qh-button>
-        </div>
-
-        <!-- 4 -->
-        <div class="qh-text-4 text-center">
-          <h2 class="font-bold">Application Opens</h2>
-          <h4 class="font-medium">
-            {{ getReadableDate(job.posted_on) }}
-            -
-            {{ getReadableDate(job.application_ends) }}
-          </h4>
-          <h4 class="">
-            <span class="text-secondary-600">
-              {{ formatNumber(2000 * (index + 0.678)) }}</span
-            >
-            Applicants
-          </h4>
-        </div>
-
-        <!-- 5 -->
-        <div
-          class="flex h-full w-full flex-wrap items-center justify-center gap-2"
-        >
-          <i
-            :class="skill.icon"
-            v-for="skill in job.required_skills"
-            class="colored h-10"
-          ></i>
-        </div>
-
-        <!-- 6 -->
-        <div class="flex items-center justify-center gap-x-6">
-          <h4 class="rounded-full border border-brand p-2">
-            <RiShareLine class="h-6 w-6 fill-brand !stroke-none" />
-          </h4>
-          <qh-button
-            class="h-10 w-20 rounded-full border border-brand bg-transparent font-medium !text-brand hover:bg-brand-200"
-            >Apply
-          </qh-button>
-        </div>
-      </div>
-    </div>
+    <qh-table :items="jobs" :headers="headers"> </qh-table>
   </div>
 </template>
 
@@ -108,9 +15,21 @@ import {
   RiCloseCircleFill,
 } from 'vue-remix-icons';
 import type { Job } from '~/types/company';
-
+// import type { Header, Item, SortType } from 'vue3-easy-data-table';
 const { formatCurrency, formatNumber } = useCurrency();
 const { formatDate, getReadableDate } = useDate();
+const headers: any[] = [
+  {
+    text: 'Company',
+    value: 'posted_by',
+    class: 'ml-4 justify-start text-left',
+  },
+  { text: 'Job Type', value: 'job_type' },
+  { text: 'Status', value: 'isActive', sortable: true },
+  { text: 'Application Opens', value: 'posted_on' },
+  { text: 'Required Skills', value: 'required_skills' },
+  { text: '', value: 'action' },
+];
 
 const latestJobs = ref<Job[]>([
   {
@@ -334,6 +253,11 @@ const latestJobs = ref<Job[]>([
     applicants: [],
   },
 ]);
+
+const jobs = latestJobs.value.map((item) => {
+  item['details'] = Object.values(item?.posted_by).join();
+  return item;
+});
 </script>
 
 <style scoped></style>

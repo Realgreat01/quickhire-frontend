@@ -1,13 +1,13 @@
 <template>
   <div>
-    <home-header class="px-10" />
-    <home-main-page class="px-10" />
-    <home-features class="px-10" />
-    <home-stats class="px-10" />
-    <home-current-listings class="px-10" />
-    <home-testimonials class="px-10" />
-    <home-campaign class="px-10" />
-    <home-footer class="px-10" />
+    <home-header class="px-10" id="home-header" />
+    <home-main-page class="px-10" id="main" />
+    <home-features class="px-10" id="features" />
+    <home-stats class="px-10" id="insights" />
+    <home-current-listings class="px-10" id="latest-jobs" />
+    <home-testimonials class="px-10" id="testimonials" />
+    <home-campaign class="px-10" id="about" />
+    <home-footer class="px-10" id="footer" />
   </div>
 </template>
 

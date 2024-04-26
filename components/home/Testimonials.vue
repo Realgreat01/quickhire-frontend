@@ -1,14 +1,14 @@
 <template>
   <div>
     <h1 class="qh-text-1 mb-5 mt-20">Testimonials</h1>
-    <div class="flex flex-wrap justify-around gap-x-2 gap-y-6">
+    <div class="flex w-full flex-wrap justify-around gap-x-2 gap-y-6">
       <div
         class=""
         v-for="(user, index) in testimonials"
         :key="index"
         :class="index % 3 === 0 ? 'mt-10' : 'mb-10'"
       >
-        <qh-card class="bg-secondary-200 w-[380px]">
+        <qh-card class="w-[380px] bg-secondary-200">
           <RiDoubleQuotesL class="h-6 w-6 fill-brand" />
           <h1 class="">{{ user.message }}</h1>
           <!-- <RiDoubleQuotesR class="h-6 w-6 fill-brand" /> -->

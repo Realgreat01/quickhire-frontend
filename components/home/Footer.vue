@@ -3,20 +3,20 @@
     <div>
       <h1 class="qh-text-1 mb-4 font-bold text-white">Join Our NewsLetter</h1>
       <div
-        class="mb-10 flex h-12 w-[90%] items-center overflow-hidden rounded-xl bg-white"
+        class="mb-10 flex h-12 items-center overflow-hidden rounded-xl bg-white md:w-[90%]"
       >
         <qh-input
           v-model="user_email"
           label=""
           name="email"
-          class="flex-1 rounded-none border-none"
+          class="w-full flex-1 rounded-none border-none"
         />
-        <qh-button label="Subscribe" class="h-14 !w-48" />
+        <qh-button label="Subscribe" class="h-14 md:!w-48" />
       </div>
     </div>
 
     <icons-logo class="text-white" />
-    <div class="grid grid-cols-[4fr,2fr,5fr,4fr] gap-x-12">
+    <div class="grid gap-x-12 gap-y-6 md:grid-cols-[4fr,2fr,5fr,4fr]">
       <div class="">
         <p class="mt-4">
           QuickHire swiftly connects developers with top tech jobs, streamlining
@@ -29,7 +29,7 @@
       <!--  -->
 
       <div class="">
-        <h2 class="qh-text-3 mb-10 font-semibold text-brand-200">
+        <h2 class="qh-text-3 mb-2 font-semibold text-brand-200 md:mb-20">
           Quick Links
         </h2>
         <h2
@@ -43,7 +43,7 @@
 
       <!--  -->
       <div class="">
-        <h2 class="qh-text-3 mb-10 font-semibold text-brand-200">
+        <h2 class="qh-text-3 mb-3 font-semibold text-brand-200 md:mb-20">
           Contact Address
         </h2>
         <div class="flex flex-col-reverse">
@@ -63,7 +63,9 @@
       <!--  -->
 
       <div class="">
-        <h2 class="qh-text-3 mb-10 font-semibold text-brand-200">Resources</h2>
+        <h2 class="qh-text-3 mb-3 font-semibold text-brand-200 md:mb-20">
+          Resources
+        </h2>
         <div class="flex h-80 flex-col flex-wrap">
           <h2
             class="mb-4 cursor-pointer"

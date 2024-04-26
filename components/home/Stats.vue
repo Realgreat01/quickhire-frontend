@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <h1 class="qh-text-1 m-5 mt-20">Operational Insights</h1>
-    <div class="grid grid-cols-3 gap-6">
+    <div class="grid grid-cols-2 gap-6 md:grid-cols-3">
       <div
         class="rounded-xl bg-secondary-100 p-10 text-brand"
         v-for="(stat, index) in stats"

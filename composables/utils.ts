@@ -221,6 +221,14 @@ export const qhDates = {
     const year = format(date, 'yyyy');
     return `${month} ${ordinalDay}, ${year}`;
   },
+
+  getReadableDate(value: string | Date) {
+    const date = new Date(value);
+    const shortMonth = date.toLocaleDateString('en-US', { month: 'short' });
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${shortMonth} ${day}, ${year}`;
+  },
 };
 
 export const qhNumbers = {

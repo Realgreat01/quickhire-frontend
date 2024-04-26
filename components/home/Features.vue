@@ -2,7 +2,7 @@
   <div>
     <h1 class="qh-text-1 mb-10 mt-20">Features</h1>
 
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid gap-4 md:grid-cols-3">
       <div
         class="rounded-2xl border bg-white p-6"
         v-for="(feature, index) in features"
