@@ -8,16 +8,16 @@
 }
 
 .qh-text-1 {
-  @apply text-4xl font-bold;
+  @apply text-2xl font-bold md:text-4xl;
 }
 .qh-text-2 {
-  @apply text-2xl font-medium;
+  @apply text-xl font-medium md:text-2xl;
 }
 .qh-text-3 {
-  @apply text-lg font-medium;
+  @apply text-base font-medium  md:text-lg;
 }
 .qh-text-4 {
-  @apply text-sm font-normal;
+  @apply text-xs font-normal  md:text-sm;
 }
 .qh-text-normal {
   @apply text-base font-normal;

@@ -100,6 +100,8 @@ import {
   RiWhatsappLine,
 } from 'vue-remix-icons';
 
+defineProps({ Class: String });
+
 const quickLinks = ref([
   { title: 'About Us', id: '#about-us' },
   { title: 'How it Works', id: '#how-it-works' },

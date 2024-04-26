@@ -7,13 +7,13 @@
         class="rounded-2xl border bg-white p-6"
         v-for="(feature, index) in features"
       >
-        <div class="flex h-10 items-start gap-x-4">
+        <div class="flex items-start gap-x-4 md:h-10">
           <component
             :is="feature.icon"
-            class="block h-8 w-8 fill-secondary-500"
+            class="block h-6 w-6 fill-secondary-500 md:h-8 md:w-8"
           />
 
-          <h4 class="qh-text-3 mb-8 font-semibold text-brand">
+          <h4 class="qh-text-3 mb-4 font-semibold text-brand md:mb-8">
             {{ feature.title }}
           </h4>
         </div>
@@ -36,7 +36,9 @@ import {
   RiMegaphoneFill,
 } from 'vue-remix-icons';
 
-const features = ref([
+defineProps({ Class: String });
+
+const features = shallowRef([
   // Developer-Centered Features
   {
     title: 'Resume Generator',

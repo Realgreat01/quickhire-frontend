@@ -8,24 +8,26 @@
         <span class="text-brand">Get Hired</span>
       </h1>
 
-      <p class="qh-text-normal">
+      <p class="qh-text-normal w-4/5 md:w-full">
         Escape the hurdles of job search and hiring challenges, lets make the
         process seamless for you !
       </p>
 
-      <div class="flex gap-x-8">
-        <qh-button class="h-12 w-48 rounded-full font-medium"
+      <div class="flex justify-between md:justify-start md:gap-x-8">
+        <qh-button class="h-10 w-32 rounded-full font-medium md:h-12 md:w-48"
           >Get Started
         </qh-button>
         <qh-button
-          class="h-12 w-48 rounded-full border border-brand bg-transparent font-medium !text-brand"
+          class="h-10 w-28 rounded-full border border-brand bg-transparent font-medium !text-brand md:h-12 md:w-48"
         >
           Latest Jobs
         </qh-button>
       </div>
     </div>
-    <div class="">
-      <icons-landing-page />
+    <div
+      class="order-1 mx-auto my-8 flex w-full items-center justify-center md:order-2"
+    >
+      <icons-landing-page class="" />
       <!-- <img src="~~/assets/images/office-image.jpg" alt="" class="" /> -->
     </div>
   </div>

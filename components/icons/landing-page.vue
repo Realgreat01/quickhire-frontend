@@ -3,7 +3,7 @@
     <!-- :width="width" -->
     <!-- :height="height" -->
     <svg
-      class="h-[360px] w-[345px] md:h-[400px] md:w-[390px]"
+      class="h-[200px] w-[200px] md:h-[400px] md:w-[390px]"
       viewBox="0 0 464 427"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

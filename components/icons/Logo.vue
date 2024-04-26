@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="class"
+    :class="Class"
     class="qh-text-1 flex items-center justify-start gap-x-0 rounded p-2 !normal-case"
   >
     <icons-logo-svg :class="Class" class="m-0 p-0" />

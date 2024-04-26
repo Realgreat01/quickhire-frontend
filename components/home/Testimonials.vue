@@ -8,7 +8,7 @@
         :key="index"
         :class="index % 3 === 0 ? 'mt-10' : 'mb-10'"
       >
-        <qh-card class="w-[380px] bg-secondary-200">
+        <qh-card class="w-fit bg-secondary-200 md:w-[380px]">
           <RiDoubleQuotesL class="h-6 w-6 fill-brand" />
           <h1 class="">{{ user.message }}</h1>
           <!-- <RiDoubleQuotesR class="h-6 w-6 fill-brand" /> -->
@@ -46,6 +46,9 @@ interface TestifiersType {
   job_title: string;
   current_workplace: string;
 }
+
+defineProps({ Class: String });
+
 const testimonials: TestifiersType[] = reactive([
   {
     name: 'Robert Johnson',

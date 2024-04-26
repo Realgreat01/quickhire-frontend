@@ -18,6 +18,9 @@ import type { Job } from '~/types/company';
 // import type { Header, Item, SortType } from 'vue3-easy-data-table';
 const { formatCurrency, formatNumber } = useCurrency();
 const { formatDate, getReadableDate } = useDate();
+
+defineProps({ Class: String });
+
 const headers: any[] = [
   {
     text: 'Company',

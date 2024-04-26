@@ -3,7 +3,7 @@
     class="sticky top-0 z-[99] flex w-full items-center justify-between bg-dark-50"
   >
     <icons-logo class="text-brand" />
-    <div class="qh-flex-center gap-x-4">
+    <div class="qh-flex-center hidden gap-x-4 md:flex">
       <a
         :href="nav.link"
         class="flex !bg-transparent !font-medium !text-brand hover:!fill-brand-400 hover:!font-semibold hover:!text-brand-400"
@@ -14,7 +14,7 @@
         <span class=""> {{ nav.title }}</span></a
       >
     </div>
-    <div class="flex gap-x-4">
+    <div class="hidden gap-x-4 md:flex">
       <RouterLink :to="QH_ROUTES.LOGIN">
         <qh-button class="h-10 w-36 rounded-full font-medium" label="Login" />
       </RouterLink>
@@ -25,12 +25,39 @@
         />
       </RouterLink>
     </div>
+
+    <qh-dropdown class="block md:hidden">
+      <div class="mb-4 flex flex-col gap-x-4">
+        <a
+          :href="nav.link"
+          class="mr-4 flex !bg-transparent !font-medium !text-brand hover:!fill-brand-400 hover:!font-semibold hover:!text-brand-400"
+          v-for="(nav, index) in headerNavigations"
+          :key="index"
+        >
+          <component :is="nav.icon" class="mr-4 h-6 w-6"></component>
+          <span class=""> {{ nav.title }}</span></a
+        >
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <RouterLink :to="QH_ROUTES.LOGIN">
+          <qh-button class="h-10 w-36 rounded-full font-medium" label="Login" />
+        </RouterLink>
+        <RouterLink :to="QH_ROUTES.REGISTER">
+          <qh-button
+            label="Create Account"
+            class="h-10 w-36 rounded-full border border-brand bg-transparent font-medium !text-brand"
+          />
+        </RouterLink>
+      </div>
+    </qh-dropdown>
   </div>
 </template>
 
 <script setup lang="ts">
 import { QH_ROUTES } from '~/constants/routes';
 
+defineProps({ Class: String });
 import {
   ArrowTrendingUpIcon,
   BriefcaseIcon,
