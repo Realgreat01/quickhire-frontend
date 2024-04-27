@@ -22,6 +22,8 @@
           :class="errorAvailable ? 'error-box' : 'normal-box'"
           class="relative w-full"
           v-model="modelValue"
+          v-bind="$attrs"
+          :placeholder="placeholder"
           @focus="handleFocus($event.target.value)"
           @change="handleNumbers($event.target.value)"
         />
@@ -33,6 +35,8 @@
           :class="errorAvailable ? 'error-box' : 'normal-box'"
           class="relative w-full"
           v-model="modelValue"
+          v-bind="$attrs"
+          :placeholder="placeholder"
           @focus="handleFocus($event.target.value)"
           @change="handleCurrency($event.target.value)"
         />
@@ -41,6 +45,8 @@
           v-else-if="type === 'date'"
           v-model="modelValue"
           :required="required"
+          v-bind="$attrs"
+          :placeholder="placeholder"
           @change="handleChange"
         />
 
@@ -51,13 +57,17 @@
           :options="options"
           :required="required"
           :multiple="multiple"
+          v-bind="$attrs"
           :labelName="labelName"
+          :placeholder="placeholder"
           @change="handleChange"
         />
 
         <qh-text-editor
           v-model="modelValue"
           :required="required"
+          v-bind="$attrs"
+          :placeholder="placeholder"
           v-else-if="type === 'editor'"
           @change="handleChange"
         />
@@ -67,6 +77,8 @@
           :rules="rules"
           :type="passwordType"
           v-model="modelValue"
+          v-bind="$attrs"
+          :placeholder="placeholder"
           v-else-if="type === 'password'"
           :class="errorAvailable ? 'error-box' : 'normal-box'"
           class="relative w-full"
@@ -81,6 +93,7 @@
           :class="errorAvailable ? 'error-box' : 'normal-box'"
           v-bind="$attrs"
           v-model="modelValue"
+          :placeholder="placeholder"
           class="relative w-full"
           @input="handleInput($event.target.value)"
           @change="handleChange($event.target.value)"
@@ -89,7 +102,7 @@
         <qh-button
           :label="buttonText"
           v-if="buttonText"
-          @click.stop="actionButtonClick"
+          @click="actionButtonClick"
           class="center-box transform border border-gray-300 bg-gray-300 !text-black shadow-lg shadow-gray-300"
         />
 
@@ -117,6 +130,15 @@
           message
         }}</span>
       </ErrorMessage>
+      <div class="ml-2 mt-1 flex items-center gap-x-2" v-if="hasCheckbox">
+        <input
+          type="checkbox"
+          v-model="checkBox"
+          class="block h-4 w-4 accent-brand"
+          @input="handleCheckbox"
+        />
+        <span class="qh-text-4 block text-dark-400">{{ checkboxText }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -124,7 +146,6 @@
 <script setup lang="ts">
 import { Field, ErrorMessage } from 'vee-validate';
 import { RiEyeOffLine, RiEyeLine } from 'vue-remix-icons';
-import { type Option } from 'vue3-select-component';
 import type { PropType } from 'vue';
 
 const props = defineProps({
@@ -144,6 +165,10 @@ const props = defineProps({
   options: { type: Array as PropType<any[]>, default: [] },
   multiple: Boolean,
   noDataMessage: String,
+  placeholder: String,
+
+  hasCheckbox: Boolean,
+  checkboxText: { type: String, default: 'This should be a chekbox content' },
 });
 const {
   formatCurrency,
@@ -156,9 +181,12 @@ const modelValue = ref<string | number>('');
 
 const selectedModel = ref([]);
 
+const checkBox = ref(false);
+
 const emit = defineEmits([
   'update:modelValue',
   'update:selected',
+  'update:checkbox',
   'input',
   'change',
   'button-click',
@@ -170,6 +198,11 @@ const passwordType = ref('password');
 const handleInput = (value: any) => {
   emit('update:modelValue', value);
   emit('input', value);
+};
+
+const handleCheckbox = async (value: any) => {
+  await nextTick();
+  setTimeout(() => emit('update:checkbox', checkBox.value), 100);
 };
 
 const handleChange = (value: any) => {

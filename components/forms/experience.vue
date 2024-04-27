@@ -7,10 +7,89 @@
       >
         <div class="grid grid-cols-2 gap-4">
           <qh-input
-            v-for="(experience, index) in experienceList"
-            :key="index"
-            v-model="experienceDetail[experience.name]"
-            v-bind="experience"
+            label="Role / Position"
+            type="text"
+            name="role"
+            class="qh-full-width"
+            v-model="experienceDetail.role"
+            :rules="ValidationRules.experience.role"
+            placeholder="Frontend Developer"
+            required
+          />
+          <qh-input
+            label="Company Name"
+            type="text"
+            name="company"
+            class="qh-full-width"
+            placeholder="Flutterwave"
+            v-model="experienceDetail.company"
+            :rules="ValidationRules.experience.company"
+            required
+          />
+          <qh-input
+            label="Company Location"
+            type="text"
+            name="company_location"
+            class="qh-full-width"
+            placeholder="Lagos, Nigeria"
+            v-model="experienceDetail.company"
+            :rules="ValidationRules.experience.company"
+            required
+          />
+
+          <qh-input
+            label="Job Location Type"
+            type="select"
+            name="role"
+            class="qh-full-width"
+            placeholder="Remote"
+            :options="locationTypes"
+            v-model="experienceDetail.role"
+            required
+          />
+          <qh-input
+            label="Job Type"
+            type="select"
+            name="role"
+            class="qh-full-width"
+            :options="jobTypes"
+            placeholder="Full-Time"
+            v-model="experienceDetail.role"
+            :rules="ValidationRules.experience.role"
+            hint="e.g. Frontend Developer"
+            required
+          />
+
+          <qh-input
+            label="Start Date"
+            type="date"
+            name="startDate"
+            :placeholder="qhDates.formatDate(new Date('12 04 2020'))"
+            v-model="experienceDetail.startDate"
+            required
+          />
+
+          <qh-input
+            label="End Date"
+            type="date"
+            name="endDate"
+            v-model="experienceDetail.endDate"
+            v-model:checkbox="checkBox"
+            checkboxText="Do you still work there ?"
+            :disabled="checkBox"
+            hasCheckbox
+            :placeholder="qhDates.formatDate(new Date())"
+          />
+
+          <qh-input
+            label="Contributions"
+            name="contributions"
+            type="editor"
+            hint="Your contributions to the team, kindly separate each with a paragraph"
+            v-model="experienceDetail.contributions"
+            :rules="ValidationRules.experience.contributions"
+            class="qh-full-width"
+            required
           />
         </div>
         <qh-button
@@ -34,52 +113,24 @@ import { useUserStore } from '~/store/user-store';
 
 const { getExperiences } = useUserStore();
 
-const experienceList = ref([
-  {
-    label: 'Company Name',
-    type: 'text',
-    name: 'company',
-    class: 'qh-full-width',
-    rules: ValidationRules.experience.company,
-    required: true,
-  },
-  {
-    label: 'Role / Position',
-    type: 'text',
-    name: 'role',
-    class: 'qh-full-width',
-    rules: ValidationRules.experience.role,
-    hint: 'e.g  Frontend Developer',
-    required: true,
-  },
-  {
-    label: 'Start Date',
-    type: 'date',
-    name: 'startDate',
-    required: true,
-  },
-  {
-    label: 'End Date',
-    type: 'date',
-    name: 'endDate',
-    hint: 'Leave blank if you still work there ',
-  },
-  {
-    label: 'Contributions',
-    name: 'contributions',
-    hint: 'Your contributions to the team, kindly separate each with a paragraph',
-    type: 'editor',
-    rules: ValidationRules.experience.contributions,
-    class: 'qh-full-width',
-    required: true,
-  },
-]);
+const checkBox = ref();
 
 const experienceDetail = ref<Experience | any>({
   startDate: '',
   endDate: null,
   role: '',
 });
+const buttonClick = () => console.log('button is clicked');
+const jobTypes = ref([
+  'Full-Time',
+  'Part-Time',
+  'Self Employed',
+  'Freelance',
+  'Contract',
+  'Internship',
+  'Voluntary',
+]);
+const locationTypes = ref(['Onsite', 'Remote', 'Hybrid']);
 
 const submitExperience = async (field: any) => {
   const response = await ADD_USER_EXPERIENCE({

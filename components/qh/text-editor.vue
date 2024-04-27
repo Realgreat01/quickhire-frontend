@@ -2,6 +2,7 @@
   <QuillEditor
     content-type="html"
     v-model:content="modelValue"
+    v-bind="$attrs"
     class="min-h-[200px] bg-white"
   />
 </template>

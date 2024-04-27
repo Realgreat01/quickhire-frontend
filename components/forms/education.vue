@@ -5,12 +5,11 @@
         class="mx-auto mt-4 w-full"
         @submit.prevent="handleSubmit($event, submitEducation)"
       >
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2">
           <qh-input
             v-for="(education, index) in educationList"
             :key="index"
             v-bind="education"
-            :required="true"
             v-model="educationDetail[education.name]"
             class="block w-full rounded bg-transparent p-2 text-white"
           />
@@ -41,27 +40,55 @@ const educationList = ref([
   {
     label: 'Institution Name',
     name: 'institution',
-    class: 'qh-full-width',
+    class: 'md:col-span-2',
+    required: true,
     rules: ValidationRules.education.institutionName,
   },
   {
     label: 'Course of Study',
     name: 'course',
     type: 'text',
-    class: 'qh-full-width',
+    class: 'md:col-span-2',
+    required: true,
     rules: ValidationRules.education.courseOfStudy,
   },
+  {
+    label: 'Degree Type',
+    name: 'E.g Bachelors',
+
+    type: 'text',
+    required: true,
+    rules: ValidationRules.education.courseOfStudy,
+  },
+  {
+    label: 'School Website',
+    name: 'E.g Bachelors',
+    type: 'text',
+    rules: ValidationRules.education.courseOfStudy,
+  },
+
   {
     label: 'Entry Date',
     name: 'entryDate',
     type: 'date',
+    required: true,
     rules: ValidationRules.education.entryDate,
   },
   {
     label: 'Graduation Date',
     name: 'graduationDate',
     type: 'date',
+    required: true,
+    hint: 'Expected graduation date',
     rules: ValidationRules.education.graduationDate,
+  },
+
+  {
+    label: 'Description',
+    name: 'description',
+    type: 'editor',
+    class: 'md:col-span-2',
+    rules: ValidationRules.education.courseOfStudy,
   },
 ]);
 const educationDetail = ref<Education | any>({

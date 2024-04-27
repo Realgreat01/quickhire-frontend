@@ -3,8 +3,9 @@ interface DevIcons {
   name: string;
   icon: string;
 }
+
 export const skillIcons: DevIcons[] = reactive([
-  { name: 'aarch 64', icon: 'aarch64' },
+  { name: 'Aarch 64', icon: 'aarch64' },
   { name: 'Adonis JS', icon: 'adonisjs' },
   { name: 'Adobe AfterEffects', icon: 'aftereffects' },
   { name: 'Akka', icon: 'akka' },

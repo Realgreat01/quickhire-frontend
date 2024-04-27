@@ -8,7 +8,7 @@
         :key="index"
         :class="index % 3 === 0 ? 'mt-10' : 'mb-10'"
       >
-        <qh-card class="w-fit bg-secondary-200 md:w-[380px]">
+        <qh-card class="w-fit bg-secondary-100 md:w-[380px]">
           <RiDoubleQuotesL class="h-6 w-6 fill-brand" />
           <h1 class="">{{ user.message }}</h1>
           <!-- <RiDoubleQuotesR class="h-6 w-6 fill-brand" /> -->

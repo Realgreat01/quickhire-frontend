@@ -12,7 +12,7 @@
       v-if="showDropDown"
       @click="showDropDown = false"
     >
-      <slot></slot>
+      <slot> </slot>
     </qh-card>
   </div>
 </template>

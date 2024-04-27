@@ -1,5 +1,8 @@
 <template>
-  <div class="sentence rounded-lg border border-[#d0d5dd] bg-white px-2 py-1">
+  <div
+    class="sentence rounded-lg border border-[#d0d5dd] bg-white px-2 py-1"
+    :class="{ 'disabled-class': disabled }"
+  >
     <DatePicker
       v-model="date"
       v-bind="$attrs"
@@ -15,6 +18,7 @@
       menu-class-name="qh-calendar-menu"
       @update:model-value="handleChange"
       :teleport="true"
+      :disabled="disabled"
       :required="required"
     >
       <template #calendar-header="{ day }">
@@ -47,6 +51,7 @@ const { formatDate, formatISODate } = useDate();
 
 defineProps({
   vModel: String,
+  disabled: Boolean,
   required: { type: Boolean, default: false },
 });
 const emit = defineEmits(['update:modelValue', 'change']);
@@ -71,11 +76,15 @@ const handleChange = (value: string) => {
   @apply text-dark-400;
 }
 .qh-calendar-input {
-  @apply border-none border-white  bg-white text-dark-400;
+  @apply border-none  border-white  bg-white text-dark-400  disabled:bg-dark-100;
 }
 
 .qh-menu {
   color: #023696;
   font-weight: 600;
+}
+
+.disabled-class {
+  @apply cursor-not-allowed bg-dark-100;
 }
 </style>
