@@ -12,4 +12,8 @@ export class QH_ROUTES {
     PROFILE: '/user/profile',
     EDUCATION: '/user/education',
   };
+
+  static JOB = {
+    ALL: '/jobs',
+  };
 }

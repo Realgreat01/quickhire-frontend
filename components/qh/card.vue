@@ -1,5 +1,10 @@
 <template>
-  <div class="card" :class="class" v-bind="$attrs">
+  <div
+    class="card"
+    :class="class"
+    v-bind="$attrs"
+    @close-modal="console.log('close-modal')"
+  >
     <div v-if="imageSrc" class="card-image">
       <img :src="imageSrc" :alt="imageAlt" />
     </div>
@@ -30,6 +35,8 @@ defineProps({
   footerContent: String,
   class: String,
 });
+
+const emit = defineEmits(['close-modal']);
 </script>
 
 <style scoped>

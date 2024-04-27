@@ -3,14 +3,14 @@
     class="sticky top-0 z-[99] flex w-full items-center justify-between bg-dark-50"
   >
     <icons-logo class="text-brand" />
-    <div class="qh-flex-center hidden gap-x-4 md:flex">
+    <div class="qh-flex-center hidden gap-x-2 md:flex">
       <a
         :href="nav.link"
-        class="flex !bg-transparent !font-medium !text-brand hover:!fill-brand-400 hover:!font-semibold hover:!text-brand-400"
+        class="flex rounded-full !bg-transparent px-3 py-1 !font-medium !text-brand duration-200 hover:!bg-brand-500 hover:!fill-brand-50 hover:!text-white"
         v-for="(nav, index) in headerNavigations"
         :key="index"
       >
-        <component :is="nav.icon" class="mr-1 h-6 w-6"></component>
+        <component :is="nav.icon" class="mr-2 h-6 w-6"></component>
         <span class=""> {{ nav.title }}</span></a
       >
     </div>
@@ -31,7 +31,8 @@
         <div class="mb-8 flex flex-col gap-y-4">
           <a
             :href="nav.link"
-            class="mr-4 flex !bg-transparent !font-medium !text-brand hover:!fill-brand-400 hover:stroke-brand hover:stroke-[3px] hover:!font-semibold hover:!text-brand-400"
+            @click="qhDropdown.close"
+            class="mr-4 flex !bg-transparent !font-medium !text-brand-400 hover:!fill-brand-400 hover:!text-brand-400"
             v-for="(nav, index) in headerNavigations"
             :key="index"
           >
@@ -43,14 +44,16 @@
         <div class="flex flex-col gap-4">
           <RouterLink :to="QH_ROUTES.LOGIN">
             <qh-button
-              class="h-10 w-72 rounded-full font-medium"
+              class="h-10 w-[60%] rounded-full font-medium"
               label="Login"
+              @click="qhDropdown.close"
             />
           </RouterLink>
           <RouterLink :to="QH_ROUTES.REGISTER">
             <qh-button
+              @click="qhDropdown.close"
               label="Create Account"
-              class="h-10 w-72 rounded-full border border-brand bg-transparent font-medium !text-brand"
+              class="h-10 w-[60%] rounded-full border border-brand bg-transparent font-medium !text-brand"
             />
           </RouterLink>
         </div>
@@ -69,11 +72,12 @@ import {
   ChatBubbleLeftIcon,
   StarIcon,
   QuestionMarkCircleIcon,
+  ChartBarIcon,
 } from '@heroicons/vue/24/outline';
 
 const headerNavigations = ref([
   { link: '#features', title: 'Features', icon: StarIcon },
-  { link: '#insights', title: 'Insights', icon: ArrowTrendingUpIcon },
+  { link: '#insights', title: 'Insights', icon: ChartBarIcon },
   { link: '#latest-jobs', title: 'Latest Jobs', icon: BriefcaseIcon },
   { link: '#testimonials', title: 'Testimonials', icon: ChatBubbleLeftIcon },
   { link: '#faqs', title: 'Faqs', icon: QuestionMarkCircleIcon },

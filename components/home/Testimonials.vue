@@ -6,9 +6,9 @@
         class=""
         v-for="(user, index) in testimonials"
         :key="index"
-        :class="index % 3 === 0 ? 'mt-10' : 'mb-10'"
+        :class="index % 3 === 0 ? 'md:mt-10' : 'md:mb-10'"
       >
-        <qh-card class="w-fit bg-secondary-100 md:w-[380px]">
+        <qh-card class="w-fit bg-white md:w-[380px]">
           <RiDoubleQuotesL class="h-6 w-6 fill-brand" />
           <h1 class="">{{ user.message }}</h1>
           <!-- <RiDoubleQuotesR class="h-6 w-6 fill-brand" /> -->

@@ -1,0 +1,244 @@
+[
+  {
+    "posted_by": {
+      "company_name": "Google",
+      "company_location": "Mountain View, CA, USA",
+      "company_logo": "",
+      "company_id": "GOOG"
+    },
+    "job_title": "Software Engineer - Machine Learning",
+    "job_description": "We are searching for a talented Software Engineer to join our Machine Learning team. You will be responsible for designing, developing, and deploying innovative machine learning solutions that push the boundaries of what's possible. In this role, you will work on cutting-edge projects that have the potential to impact millions of users worldwide. You will collaborate with a team of world-class researchers, engineers, and scientists to develop and implement machine learning models at scale.  **Key Responsibilities:**  * Design, develop, and deploy production-grade machine learning models. * Collaborate with researchers and data scientists to understand problem requirements and translate them into technical specifications. * Develop and maintain robust, scalable, and efficient machine learning pipelines. * Continuously improve model performance through experimentation and analysis. * Work closely with software engineers to integrate machine learning models into production systems.  **Required Skills:** * Proven experience in designing, developing, and deploying machine learning models. * Strong understanding of machine learning algorithms and techniques (e.g., deep learning, reinforcement learning). * Experience with machine learning frameworks (e.g., TensorFlow, PyTorch). * Excellent software engineering skills (e.g., Python, C++). * Experience with distributed computing systems (e.g., Hadoop, Spark). * Strong problem-solving and analytical skills. * Excellent communication and collaboration skills.",
+    "job_type": "Fulltime",
+    "salary": 150000,
+    "posted_on": "2024-04-27T06:05:00.000Z",
+    "application_ends": "2024-06-10T00:00:00.000Z",
+    "job_duration": "2024-06-10T00:00:00.000Z",
+    "required_skills": [
+      { "name": "Machine Learning", "icon": "devicon-machine-learning-plain" },
+      { "name": "TensorFlow", "icon": "devicon-tensorflow-original" },
+      { "name": "PyTorch", "icon": "devicon-pytorch-original" }
+    ]
+  },
+  {
+    "posted_by": {
+      "company_name": "Netflix",
+      "company_location": "Los Gatos, CA, USA",
+      "company_logo": "",
+      "company_id": "NFLX"
+    },
+    "job_title": "Content Delivery Engineer",
+    "job_description": "Netflix is seeking a talented Content Delivery Engineer to join our world-class engineering team. You will be responsible for designing, developing, and operating the systems that deliver high-quality streaming experiences to our millions of subscribers globally.  In this role, you will work on challenging problems that involve scaling our infrastructure to meet the ever-growing demand for streaming content. You will collaborate with a team of talented engineers, scientists, and product managers to ensure the smooth and efficient delivery of content across various devices and platforms.  Key Responsibilities: * Design, develop, and maintain highly scalable and reliable content delivery systems. * Optimize content delivery for performance, efficiency, and cost-effectiveness. * Troubleshoot and resolve issues related to content delivery. * Stay up-to-date on the latest technologies and trends in content delivery networks (CDNs). * Collaborate with other engineers to ensure a seamless user experience across all platforms.  Required Skills: * Proven experience in designing, developing, and operating large-scale distributed systems. * In-depth knowledge of networking protocols and technologies (e.g., TCP/IP, HTTP). * Experience with cloud platforms (e.g., AWS, Azure, GCP). * Strong scripting skills (e.g., Python, Bash). * Excellent problem-solving and analytical skills. * A passion for building and maintaining high-performance systems.",
+    "job_type": "Fulltime",
+    "salary": 145000,
+    "posted_on": "2024-04-27T06:05:00.000Z",
+    "application_ends": "2024-05-17T00:00:00.000Z",
+    "job_duration": "Not Applicable",
+    "required_skills": [
+      {
+        "name": "Content Delivery Network (CDN)",
+        "icon": "devicon-maxcdn-plain"
+      },
+      { "name": "AWS", "icon": "devicon-amazon-aws-plain" },
+      { "name": "Azure", "icon": "devicon-microsoft-azure-plain" },
+      {
+        "name": "Google Cloud Platform (GCP)",
+        "icon": "devicon-google-cloud-plain"
+      }
+    ]
+  },
+  {
+    "posted_by": {
+      "company_name": "Flutterwave",
+      "company_location": "Lagos, Nigeria",
+      "company_logo": "",
+      "company_id": "FLW"
+    },
+    "job_title": "Product Manager - Payments",
+    "job_description": "Flutterwave is seeking a passionate and results-oriented Product Manager to join our growing Payments team. You will be responsible for the entire product lifecycle, from ideation and strategy to development, launch, and growth.  In this role, you will play a key role in shaping the future of our payments products, ensuring they meet the evolving needs of our merchants and customers across Africa.  **Key Responsibilities:** * Conduct market research to identify customer needs and opportunities. * Develop and define product roadmaps and strategies. * Work closely with engineers, designers, and other stakeholders to bring product ideas to life. * Manage the product development process, ensuring products are launched on time and within budget. * Analyze product performance metrics and identify areas for improvement. * Develop and implement product marketing strategies to drive user adoption.  **Required Skills:** * Minimum 5 years of experience in product management, ideally within the fintech or payments industry. * Strong understanding of the African payments landscape and regulatory environment. * Proven track record of successfully launching and growing new products. * Excellent analytical and problem-solving skills. * Strong communication, collaboration, and leadership skills. * A passion for innovation and building user-centric products.",
+    "job_type": "Fulltime",
+    "salary": 3828229,
+    "posted_on": "2024-04-27T06:05:00.000Z",
+    "application_ends": "2024-06-15T00:00:00.000Z",
+    "job_duration": "Not Applicable",
+    "required_skills": [
+      { "name": "Product Management", "icon": "devicon-product-hunt-original" },
+      { "name": "Fintech", "icon": "devicon-stripe-plain" },
+      { "name": "Agile", "icon": "devicon-agile-plain" }
+    ]
+  },
+  {
+    "posted_by": {
+      "company_name": "Twitter",
+      "company_location": "San Francisco, CA, USA",
+      "company_logo": "",
+      "company_id": "TWTR"
+    },
+    "job_title": "Product Manager - Growth",
+    "job_description": "Twitter is searching for a strategic and data-driven Product Manager to join our Growth team. You will be responsible for developing and executing product strategies that drive user acquisition, engagement, and retention on the Twitter platform.  In this role, you will work on a variety of initiatives, such as improving onboarding experiences, optimizing user flows, and developing new features that encourage user participation. You will collaborate with a team of talented designers, engineers, researchers, and marketers to bring your ideas to life and measure their impact.  **Key Responsibilities:** * Conduct user research to understand user needs and pain points. * Develop and implement product strategies that drive user growth. * Design and iterate on user experiences to improve onboarding and engagement. * Analyze product usage data to identify areas for improvement. * Collaborate with cross-functional teams to bring product ideas to market. * Track and measure the success of product initiatives.  **Required Skills:** * Minimum 5 years of experience in product management, with a focus on growth. * Strong understanding of user behavior and growth principles. * Experience with user research methodologies (e.g., user interviews, A/B testing). * Proven ability to translate data insights into actionable product strategies. * Excellent communication, collaboration, and leadership skills. * A passion for Twitter and its mission to connect people and information.",
+    "job_type": "Fulltime",
+    "salary": 38228,
+    "posted_on": "2024-04-27T06:05:00.000Z",
+    "application_ends": "2024-06-07T00:00:00.000Z",
+    "job_duration": "Not Applicable",
+    "required_skills": [
+      { "name": "User Growth", "icon": "devicon-google-analytics-plain" },
+      { "name": "A/B Testing", "icon": "devicon-optimizely-plain" },
+      { "name": "User Research", "icon": "devicon-usertesting-plain" }
+    ]
+  },
+  {
+    "posted_by": {
+      "company_name": "Apple",
+      "company_location": "Cupertino, CA, USA",
+      "company_logo": "",
+      "company_id": "AAPL"
+    },
+    "job_title": "Artificial Intelligence Instructor",
+    "job_description": "Apple is searching for a talented and passionate individual to join our dynamic team.  In this role, you will be responsible for [ Briefly describe the core responsibilities of the job opening. What kind of problems will the person solve or what kind of projects will they work on?]. You will collaborate with a team of world-class engineers, designers, and marketers to [ Briefly describe the goal of the collaboration. What will the team achieve together?].  **Key Responsibilities:**\n  * [ List two to three key responsibilities of the position. Be specific but concise. ]\n  * [ List two to three more key responsibilities. ] \n  **Required Skills:**\n  * [ List two to three required skills for the job. Be specific and mention relevant technical skills or soft skills. ]\n  * [ List two to three more required skills. ]",
+    "job_type": "Fulltime",
+    "salary": 39239,
+    "posted_on": "2024-04-27T06:05:00.000Z",
+    "application_ends": "2024-06-14T00:00:00.000Z",
+    "job_duration": "Not Applicable",
+    "required_skills": [
+      {
+        "name": "Apple Products (e.g. iPhone, iPad)",
+        "icon": "devicon-apple-plain"
+      }
+    ]
+  },
+  {
+    "posted_by": {
+      "company_name": "Dangote Group",
+      "company_location": "Lagos, Nigeria",
+      "company_logo": "",
+      "company_id": "DANGOTE"
+    },
+    "job_title": "Operation Manager",
+    "job_description": "Dangote Group, the largest conglomerate in West Africa, is seeking talented and driven individuals to join our growing team. We offer a variety of exciting career opportunities across various industries, including cement production, sugar refining, and more.  In this role, you will be responsible for [ Briefly describe the core responsibilities of the job opening. What kind of problems will the person solve or what kind of projects will they work on?]. You will collaborate with a team of experienced professionals to [ Briefly describe the goal of the collaboration. What will the team achieve together?].  **Key Responsibilities:**\n  * [ List two to three key responsibilities of the position. Be specific but concise. ]\n  * [ List two to three more key responsibilities. ] \n  **Required Skills:**\n  * [ List two to three required skills for the job. Be specific and mention relevant technical skills or soft skills. ]\n  * [ List two to three more required skills. ]",
+    "job_type": "Fulltime",
+    "salary": 382989,
+    "posted_on": "2024-04-27T06:05:00.000Z",
+    "application_ends": "Not Applicable",
+    "job_duration": "Not Applicable",
+    "required_skills": [
+      { "name": "Manufacturing", "icon": "devicon-industry-plain" }
+    ]
+  },
+  {
+    "posted_by": {
+      "company_name": "Meta",
+      "company_location": "Menlo Park, CA, USA",
+      "company_logo": "",
+      "company_id": "META"
+    },
+    "job_title": "Product Manager - AI for Social Good",
+    "job_description": "Meta is seeking a passionate and results-oriented Product Manager to join our growing AI for Social Good team. You will play a key role in developing and launching innovative AI products that address important social challenges.  In this role, you will work on a variety of projects, such as developing tools to combat misinformation, promoting online safety, and supporting disaster relief efforts. You will collaborate with a team of talented engineers, researchers, and designers to bring your ideas to life and measure their impact.  **Key Responsibilities:** * Conduct user research to identify social challenges and opportunities for AI intervention. * Develop product roadmaps and strategies for AI-powered solutions. * Work closely with engineers, researchers, and designers to translate product vision into reality. * Manage the product development process, ensuring products are launched on time and within budget. * Analyze product usage data and user feedback to identify areas for improvement. * Advocate for the responsible and ethical use of AI.  **Required Skills:** * Minimum 5 years of experience in product management, with a focus on technology products. * Strong understanding of artificial intelligence and machine learning concepts. * Experience with user research methodologies (e.g., user interviews, A/B testing). * Proven ability to translate data insights into actionable product strategies. * Excellent communication, collaboration, and leadership skills. * A passion for using technology to make a positive social impact.",
+    "job_type": "Fulltime",
+    "salary": 463728,
+    "posted_on": "2024-04-27T06:05:00.000Z",
+    "application_ends": "2024-06-12T00:00:00.000Z",
+    "job_duration": "Not Applicable",
+    "required_skills": [
+      { "name": "Product Management", "icon": "devicon-product-hunt-original" },
+      {
+        "name": "Artificial Intelligence (AI)",
+        "icon": "devicon-tensorflow-plain"
+      },
+      { "name": "Machine Learning", "icon": "devicon-machine-learning-plain" },
+      { "name": "Social Impact", "icon": "devicon-charity-water-plain" }
+    ]
+  },
+  {
+    "posted_by": {
+      "company_name": "Netflix",
+      "company_location": "Los Gatos, CA, USA",
+      "company_logo": "",
+      "company_id": "NFLX"
+    },
+    "job_title": "User Experience (UX) Researcher",
+    "job_description": "Netflix is seeking a curious and detail-oriented User Experience (UX) Researcher to join our world-class research team. You will play a critical role in understanding our members' needs and behaviors, helping us to design and improve the Netflix experience.  In this role, you will conduct user research using a variety of methods, such as user interviews, usability testing, and A/B testing. You will analyze research data to identify user pain points and opportunities, and translate those insights into actionable recommendations for our product and design teams.  **Key Responsibilities:** * Conduct user research using various methodologies (e.g., user interviews, surveys, A/B testing). * Analyze user research data to identify trends, patterns, and opportunities for improvement. * Develop and present research findings to stakeholders (e.g., product managers, designers, engineers). * Collaborate with product and design teams to translate research insights into actionable recommendations. * Stay up-to-date on the latest UX research methods and best practices.  **Required Skills:** * Minimum 3 years of experience in user experience research. * Strong understanding of UX research methodologies (e.g., user interviews, usability testing, A/B testing). * Experience with data analysis tools and techniques. * Excellent communication, collaboration, and presentation skills. * A passion for understanding user behavior and designing user-centered products.",
+    "job_type": "Fulltime",
+    "salary": 120000,
+    "posted_on": "2024-04-27T06:05:00.000Z",
+    "application_ends": "2024-06-03T00:00:00.000Z",
+    "job_duration": "Not Applicable",
+    "required_skills": [
+      { "name": "User Research", "icon": "devicon-usertesting-plain" },
+      { "name": "A/B Testing", "icon": "devicon-optimizely-plain" },
+      {
+        "name": "User Experience (UX) Design",
+        "icon": "devicon-figma-original"
+      }
+    ]
+  },
+  {
+    "posted_by": {
+      "company_name": "Airbnb",
+      "company_location": "San Francisco, CA, USA",
+      "company_logo": "",
+      "company_id": "ABNB"
+    },
+    "job_title": "Community Safety Engineer",
+    "job_description": "Airbnb is looking for a passionate and results-oriented Community Safety Engineer to join our growing Trust and Safety team. You will play a key role in developing and implementing innovative solutions to ensure the safety and security of our global community of hosts and guests.  In this role, you will work on a variety of projects, such as developing fraud detection systems, improving risk assessment models, and creating tools to prevent safety incidents. You will collaborate with a team of talented engineers, data scientists, and safety experts to build a safer and more secure platform for everyone.  **Key Responsibilities:** * Design, develop, and implement technical solutions to address safety and security challenges. * Analyze data to identify trends and patterns in safety incidents. * Develop and improve risk assessment models to predict potential safety risks. * Work with product and design teams to integrate safety features into the Airbnb platform. * Stay up-to-date on the latest security threats and trends.  **Required Skills:** * Minimum 5 years of experience in software engineering, with a focus on security or data analysis. * Strong understanding of security principles and best practices. * Experience with data analysis tools and techniques (e.g., Python, SQL). * Proven ability to develop and implement scalable and reliable systems. * Excellent communication, collaboration, and problem-solving skills. * A passion for building safe and secure online communities.",
+    "job_type": "Fulltime",
+    "salary": 135000,
+    "posted_on": "2024-04-27T06:05:00.000Z",
+    "application_ends": "2024-06-17T00:00:00.000Z",
+    "job_duration": "Not Applicable",
+    "required_skills": [
+      { "name": "Security", "icon": "devicon-fortinet-original" },
+      { "name": "Data Analysis", "icon": "devicon-pandas-plain" },
+      { "name": "Machine Learning", "icon": "devicon-machine-learning-plain" }
+    ]
+  },
+  {
+    "posted_by": {
+      "company_name": "Tesla, Inc.",
+      "company_location": "Austin, TX, USA",
+      "company_logo": "",
+      "company_id": "TSLA"
+    },
+    "job_title": "Manufacturing Engineer - Battery Production",
+    "job_description": "Tesla is seeking a driven and results-oriented Manufacturing Engineer to join our growing team at Gigafactory Texas. You will play a critical role in optimizing and improving our battery production processes, ensuring the highest quality and efficiency.  In this role, you will be responsible for a variety of tasks, such as: * Analyzing production data to identify areas for improvement. * Developing and implementing process improvements to increase yield and throughput. * Troubleshooting and resolving production issues. * Collaborating with cross-functional teams (engineering, quality, operations) to ensure smooth production. * Maintaining and updating production documentation.  **Key Responsibilities:** * Analyze production data to identify trends, inefficiencies, and opportunities for improvement. * Develop and implement process improvements to increase production yield and throughput. * Troubleshoot and resolve production issues to minimize downtime and ensure quality standards are met. * Collaborate with cross-functional teams (engineering, quality, operations) to optimize production processes. * Maintain and update production documentation, including standard operating procedures (SOPs) and process control plans.  **Required Skills:** * Minimum 5 years of experience in manufacturing engineering, preferably in a high-volume production environment. * Strong understanding of manufacturing principles and processes, including lean manufacturing and Six Sigma. * Experience with data analysis tools and techniques (e.g., SPC, DOE). * Excellent problem-solving and analytical skills. * Strong communication, collaboration, and leadership skills. * A passion for continuous improvement and innovation.",
+    "job_type": "Fulltime",
+    "salary": 110000,
+    "posted_on": "2024-04-27T06:05:00.000Z",
+    "application_ends": "2024-06-10T00:00:00.000Z",
+    "job_duration": "Not Applicable",
+    "required_skills": [
+      {
+        "name": "Manufacturing Engineering",
+        "icon": "devicon-mechanical-engineering-plain"
+      },
+      { "name": "Lean Manufacturing", "icon": "devicon-b#-plain" },
+      { "name": "Six Sigma", "icon": "devicon-sigma-plain" }
+    ]
+  },
+  {
+    "posted_by": {
+      "company_name": "Shell plc",
+      "company_location": "The Hague, Netherlands",
+      "company_logo": "",
+      "company_id": "SHEL"
+    },
+    "job_title": "Chemical Engineer",
+    "job_description": "Shell is seeking a talented and motivated Chemical Engineer to join our growing team. You will play a key role in developing and optimizing processes for our chemicals business. In this role, you will work on a variety of projects, such as designing new chemical reactors, troubleshooting process problems, and improving product quality. You will collaborate with a team of experienced engineers, scientists, and operators to ensure the safe and efficient operation of our chemical plants.  **Key Responsibilities:**  * Design and optimize chemical processes for the production of various chemicals. * Conduct process simulations and analyze data to identify areas for improvement. * Troubleshoot and resolve process problems to ensure efficient and safe operations. * Develop and implement new technologies to improve product quality and yield. * Collaborate with cross-functional teams to ensure successful project execution. * Maintain and update process documentation.  **Required Skills:** * Minimum 5 years of experience in chemical engineering, preferably in the oil and gas industry. * Strong understanding of chemical engineering principles and processes. * Experience with process simulation software (e.g., Aspen HYSYS). * Excellent problem-solving and analytical skills. * Strong communication, collaboration, and teamwork skills. * A commitment to safety and environmental responsibility.",
+    "job_type": "Fulltime",
+    "salary": 125000,
+    "posted_on": "2024-04-27T06:05:00.000Z",
+    "application_ends": "2024-06-21T00:00:00.000Z",
+    "job_duration": "Not Applicable",
+    "required_skills": [
+      {
+        "name": "Chemical Engineering",
+        "icon": "devicon-chemical-engineering-plain"
+      },
+      { "name": "Process Engineering", "icon": "devicon-blender-2.8-plain" },
+      {
+        "name": "HSE (Health, Safety, Environment)",
+        "icon": "devicon-safety-signed-certificate-outline"
+      }
+    ]
+  }
+]

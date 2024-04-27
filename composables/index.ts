@@ -16,3 +16,19 @@ export const qhCloseModal = async () => {
 export const qhReturnToHomepage = async () => {
   setTimeout(async () => await navigateTo(QH_ROUTES.HOME), 200);
 };
+
+export const qhHelpers = {
+  sliceWords(words: string, slice: number = 24) {
+    if (words.length > slice) return words.slice(0, slice) + ' ...';
+    else return words.slice(0, slice);
+  },
+};
+export const qhDropdown = reactive({
+  show: false,
+  close() {
+    this.show = false;
+  },
+  toggle() {
+    this.show = !this.show;
+  },
+});

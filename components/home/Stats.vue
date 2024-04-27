@@ -3,7 +3,7 @@
     <h1 class="qh-text-1 mb-3 mt-20 md:m-5">Operational Insights</h1>
     <div class="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-6">
       <div
-        class="rounded-xl bg-secondary-100 p-4 text-brand md:p-10"
+        class="rounded bg-white p-4 text-brand md:p-10"
         v-for="(stat, index) in stats"
         :key="index"
       >

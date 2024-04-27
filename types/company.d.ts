@@ -23,13 +23,14 @@ export interface Job {
     company_id: string;
   } | null;
   job_title: string;
-  isActive: boolean;
+  // isActive: boolean;
   job_description: string;
-  job_type: 'Fulltime' | 'Part-Time' | 'Contract' | 'Internship' | 'Voluntary';
+  // job_type: 'Fulltime' | 'Part-Time' | 'Contract' | 'Internship' | 'Voluntary';
+  job_type: string;
   posted_on: Date | string;
   application_ends: Date | string;
   job_duration: Date | string;
   salary: number;
   required_skills: Skill[];
-  applicants: string[];
+  // applicants: string[];
 }

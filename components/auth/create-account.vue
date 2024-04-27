@@ -38,10 +38,13 @@
 <script setup lang="ts">
 import { Form as VeeForm } from 'vee-validate';
 import * as Yup from 'yup';
+import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
-import { ValidationRules } from '~/constants/validation-rules';
+import { REGISTER_USER } from '~/services/auth.service';
+import { useRouter } from 'vue-router';
 
 const registrationDetails = ref<any>({ password: '', confirmPassword: '' });
+const router = useRouter();
 
 const rules = ref({
   password: Yup.string()
@@ -94,7 +97,13 @@ const registrationForm = ref([
   },
 ]);
 
-const createAccount = (field: any) => {};
+const createAccount = async (field: any) => {
+  const res = await REGISTER_USER(field);
+  if (res.success) {
+    localStorage.setItem(QH_CONSTANTS.AUTH_TOKEN, res.data.token);
+    router.push('/user');
+  } else qhToast.error(res.message);
+};
 </script>
 
 <style scoped></style>

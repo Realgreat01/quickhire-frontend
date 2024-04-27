@@ -8,7 +8,6 @@
         > -->
       </h1>
 
-      <qh-button label="download csv" @click="downloadCSV" />
       <div class="flex gap-x-3 p-4">
         <div class="relative h-10 w-10">
           <ChatBubbleBottomCenterTextIcon
@@ -50,6 +49,7 @@
             <div class="my-5">
               <RouterLink
                 :to="{ name: item.route }"
+                @click="qhDropdown.close"
                 :class="item.class"
                 class="font-geologica flex w-60 cursor-pointer p-1 pl-4 font-semibold hover:scale-[1.025]"
                 v-for="(item, index) in sidebar"
@@ -116,21 +116,15 @@ import { useRoute, useRouter } from 'vue-router';
 import { useModalStore } from '~/store/modal-store';
 import { storeToRefs } from 'pinia';
 import { useUserStore } from '~/store/user-store';
-import { exportDataAsDocument } from './test';
 const { fullname, basicDetails } = storeToRefs(useUserStore());
 
 const route = useRoute();
 const router = useRouter();
 const modalStore = useModalStore();
 
+const emit = defineEmits(['close-modal']);
 const SpecailPages = ref(QH_CONSTANTS.DETAILS);
-const downloadCSV = async () => {
-  await exportDataAsDocument({
-    endpoint: '/test-jeff.csv',
-    file_type: 'csv',
-    file_name: 'Jeff Test for CSV File',
-  });
-};
+
 async function openModalAndHandleResponse() {
   try {
     const result = await modalStore.openModal();
