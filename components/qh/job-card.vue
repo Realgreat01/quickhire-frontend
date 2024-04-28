@@ -39,8 +39,9 @@
       {{ qhHelpers.sliceWords(job.job_description, 200) }}
     </h1>
     <div class="mt-10 flex w-full items-center justify-between">
-      <h1 class="qh-text-4">
-        Posted On - {{ qhDates.formatDate(job.posted_on) }}
+      <h1 class="qh-text-4 flex items-center gap-x-2 text-dark-400">
+        <ClockIcon class="apply-icon h-4 w-4 duration-500" />
+        <span class="">{{ qhDates.formatDate(job.posted_on) }}</span>
       </h1>
       <qh-button
         class="apply-button h-6 w-28 gap-x-4 self-end rounded-full border border-brand bg-transparent font-medium !text-brand"
@@ -56,6 +57,7 @@
 
 <script setup lang="ts">
 import { ArrowRightCircleIcon } from '@heroicons/vue/24/outline';
+import { ClockIcon } from '@heroicons/vue/24/outline';
 import {
   RiVerifiedBadgeFill,
   RiHomeOfficeFill,

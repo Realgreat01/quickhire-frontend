@@ -8,7 +8,7 @@
 <script setup lang="ts">
 definePageMeta({
   layout: 'company',
-  middleware: 'auth',
+  middleware: ['auth', 'company'],
 });
 
 useHead({

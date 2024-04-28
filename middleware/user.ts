@@ -1,13 +1,13 @@
 import QH_CONSTANTS from '~/constants';
+import { QH_ROUTES } from '~/constants/routes';
 
 export default defineNuxtRouteMiddleware((to, from) => {
   if (process.client) {
-    let token = localStorage.getItem(QH_CONSTANTS.AUTH_TOKEN);
-    if (token) {
+    let userType = QH_CONSTANTS.USERTYPE;
+    if (userType === 'user') {
       return true;
     } else {
-      // return true;
-      return navigateTo(QH_CONSTANTS.LOGIN);
+      return navigateTo(QH_ROUTES.LOGIN);
     }
   }
 });

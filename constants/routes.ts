@@ -7,6 +7,7 @@ export class QH_ROUTES {
     REGISTER: '/',
     LOGIN: '/',
     DASHBOARD: '/company',
+    CREATE_JOB: 'create-job',
   };
   static USER = {
     PROFILE: '/user/profile',
@@ -14,6 +15,6 @@ export class QH_ROUTES {
   };
 
   static JOB = {
-    ALL: '/jobs',
+    ALL: '/job',
   };
 }

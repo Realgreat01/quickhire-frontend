@@ -9,6 +9,7 @@
         <NuxtPage class="scroll overflow-y-scroll p-4" />
       </div>
     </div>
+    <forms-create-job v-if="modalController.createJob" @close="closeModal" />
   </div>
 </template>
 
@@ -16,6 +17,22 @@
 import { useCompanyStore } from '~/store/company-store';
 const { getCurrentCompany } = useCompanyStore();
 
+import { useRoute, useRouter } from 'vue-router';
+
+import { QH_ROUTES } from '~/constants/routes';
+
+const route = useRoute();
+const router = useRouter();
+
+const closeModal = () => {
+  router.replace({});
+};
+
+const modalController = computed(() => {
+  return {
+    createJob: route.query.action === QH_ROUTES.COMPANY.CREATE_JOB,
+  };
+});
 onMounted(() => {
   getCurrentCompany();
 });

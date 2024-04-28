@@ -18,7 +18,9 @@
             {{ currentCompany?.company_location }}
           </h1>
         </div>
-        <qh-button class="rounded-full !px-16">Post New Job</qh-button>
+        <qh-button class="rounded-full !px-16" @click="createJob"
+          >Post New Job</qh-button
+        >
       </div>
     </div>
   </div>
@@ -27,7 +29,12 @@
 <script setup lang="ts">
 import { useCompanyStore } from '~/store/company-store';
 import { storeToRefs } from 'pinia';
+import { QH_ROUTES } from '~/constants/routes';
 const { currentCompany } = storeToRefs(useCompanyStore());
+
+const router = useRouter();
+const createJob = () =>
+  router.replace({ query: { action: QH_ROUTES.COMPANY.CREATE_JOB } });
 </script>
 
 <style scoped></style>
