@@ -1,35 +1,78 @@
 <template>
   <div class="flex flex-wrap gap-6 rounded">
     <div class="flex flex-wrap gap-6 rounded">
-      <div
+      <qh-card
         v-for="(experience, index) in experiences"
         :key="index"
-        class="flex w-80 flex-col justify-between gap-y-2 rounded-2xl bg-brand-50 p-4 shadow-xl"
+        class="flex w-4/5 flex-col justify-between gap-4 rounded-2xl p-4 shadow-xl"
       >
-        <div class="flex flex-col text-sm font-light text-dark">
-          <h2 class="qh-text-4">Company:</h2>
-          <h1 class="text-lg font-bold text-brand">{{ experience.company }}</h1>
+        <div class="">
+          <RiBuildingFill class="icon h-6 w-6" />
+          <h1 class="qh-text-2 font-bold text-brand">
+            {{ experience.company }}
+          </h1>
+        </div>
 
-          <h2 class="qh-text-4 mt-3">Role:</h2>
+        <div class="flex">
+          <RiMapPinFill class="icon h-6 w-6" />
+          <h1 class="font-bold text-brand">Nigeria</h1>
+        </div>
+        <div class="flex">
+          <RiGlobeFill class="icon h-6 w-6" />
+          <h1 class="font-bold text-brand">Remote</h1>
+        </div>
+        <div class="flex">
+          <RiToolsFill class="icon h-6 w-6" />
           <h1 class="font-bold text-brand">{{ experience.role }}</h1>
+        </div>
 
-          <h2 class="qh-text-4 mt-3">Duration:</h2>
+        <div class="flex">
+          <RiCalendar2Fill class="icon h-6 w-6" />
           <h1 class="text-sm font-bold text-brand">
             <span class="">{{ formatDate(experience.startDate) }}</span>
             -
             <span class="">{{ formatDate(experience.endDate) }}</span>
           </h1>
-
-          <h2 class="qh-text-4 mt-3">Contributions:</h2>
-          <span class="block" v-html="experience.contributions"></span>
         </div>
-      </div>
+
+        <div class="">
+          <RiFileListFill class="icon h-6 w-6" />
+          <h2 class="">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
+            exercitationem quia quos id illo consectetur vero ducimus
+            distinctio, ipsum incidunt dicta vel nostrum tempore excepturi
+            impedit quo quod voluptates quaerat dolore beatae fuga, ab error!
+            Corporis autem distinctio, quidem repellat animi amet minima
+            dolorem, corrupti mollitia laudantium voluptatum at vel architecto
+            non, beatae porro neque perferendis ipsa rem minus sint. In
+            accusamus ex repellendus sit, distinctio repellat sequi sapiente vel
+            quam dicta sed voluptas voluptatibus autem maiores, recusandae
+            temporibus doloremque corporis minima reiciendis odio laboriosam,
+            commodi inventore? Error nesciunt recusandae dolores, numquam
+            veritatis fugit nisi eos magni, facere veniam dignissimos? Cum,
+            repellat? Pariatur, officiis nulla maiores repellat maxime alias cum
+            totam, dolorem ipsa, voluptatibus numquam iusto eum commodi ullam
+            aut!
+          </h2>
+          <!-- <span class="block" v-html="experience.contributions"></span> -->
+        </div>
+      </qh-card>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { RiWebhookFill, RiGithubFill, RiGlobalLine } from 'vue-remix-icons';
+import {
+  RiBuildingFill,
+  RiToolsFill,
+  RiWebhookFill,
+  RiMapPinFill,
+  RiGlobeFill,
+  RiGithubFill,
+  RiCalendar2Fill,
+  RiFileListFill,
+  RiGlobalLine,
+} from 'vue-remix-icons';
 import QH_CONSTANTS from '~/constants';
 import { useUserStore } from '~/store/user-store';
 const { formatDate, getOrdinalDate, getReadableDate } = useDate();
@@ -47,4 +90,8 @@ useHead({
 const { experiences } = storeToRefs(useUserStore());
 </script>
 
-<style scoped></style>
+<style scoped>
+.icon {
+  @apply mr-3 fill-success-500;
+}
+</style>

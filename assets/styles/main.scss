@@ -64,3 +64,14 @@ input[type='number'] {
   -webkit-text-stroke: 0.5px #023696; /* Define the width and color of your stroke */
   color: white; /* Optional: Define the text fill color */
 }
+
+.apply-button:hover {
+  @apply scale-[1.05] bg-brand text-white;
+  .apply-icon,
+  span {
+    color: white !important;
+  }
+  svg {
+    @apply translate-x-2 transform text-white;
+  }
+}

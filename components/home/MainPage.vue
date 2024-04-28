@@ -1,8 +1,10 @@
 <template>
   <div
-    class="my-20 grid w-full items-center justify-between gap-x-10 md:grid-cols-2"
+    class="my-20 grid w-full items-start justify-between gap-x-10 md:grid-cols-2"
   >
-    <div class="order-2 flex flex-col gap-y-4 md:order-1">
+    <div
+      class="order-2 flex h-[60%] flex-col justify-around gap-y-4 md:order-1"
+    >
       <h1 class="qh-text-0 ml-1">
         A Quick way to
         <span class="text-brand">
@@ -16,6 +18,8 @@
 
       <p class="qh-text-normal w-[90%] md:w-full">
         Escape the hurdles of job search and hiring challenges, lets make the
+        process seamless for you !
+         Escape the hurdles of job search and hiring challenges, lets make the
         process seamless for you !
       </p>
 
@@ -33,7 +37,7 @@
     <div
       class="order-1 mx-auto mb-4 flex w-full items-center justify-center md:order-2"
     >
-      <icons-landing-page class="" />
+      <icons-landing-page-2 class="" />
       <!-- <img src="~~/assets/images/office-image.jpg" alt="" class="" /> -->
     </div>
   </div>

@@ -1,15 +1,7 @@
 <template>
-  <div class="relative h-96 w-full bg-success">
-    <qh-button @mouse-enter="handleMouseEnter" @mouse-leave="handleMouseLeave"
-      >tools
-    </qh-button>
-
-    {{ showTooltip }}
-    <span
-      v-if="showTooltip"
-      class="tooltip whitespace-nowrap rounded-md bg-gray-800 px-2 py-1 text-white"
-      >dhsdsbhsdbhs</span
-    >
+  <div class="relative">
+    <!-- <button>{{ icon.name }}</button> -->
+    <img :src="`/dev-icon/${icon.icon}.svg`" alt="" class="h-6 w-6" />
   </div>
 </template>
 
@@ -18,18 +10,14 @@ import type { PropType } from 'vue';
 
 interface DevIcon {
   name: string;
-  icons: string;
+  icon: string;
 }
 
-// defineProps({
-//   icon: {
-//     type: Object as PropType<DevIcon>,
-//     required: true,
-//   },
-// });
-
-const props = defineProps({
-  text: String, // Text to be displayed in the tooltip
+defineProps({
+  icon: {
+    type: Object as PropType<DevIcon>,
+    required: true,
+  },
 });
 
 const showTooltip = ref(false);

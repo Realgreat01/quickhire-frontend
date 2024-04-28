@@ -232,17 +232,24 @@ export const qhDates = {
 };
 
 export const qhNumbers = {
-  formatNumber(value: number) {
-    if (isNaN(value)) return 0;
-    return `${numeral(value).format('0,0')}`;
+  formatNumber(value: number | string) {
+    const num = this.convertCurrencyToNumber(value);
+    return `${numeral(num).format('0,0')}`;
   },
 
-  formatCurrency(value: number) {
-    if (isNaN(value)) return 0;
-    return `$${numeral(value).format('0,0.00')}`;
+  formatCurrency(value: number | string) {
+    const num = this.convertCurrencyToNumber(value);
+    return `$${numeral(num).format('0,0.00')}`;
   },
 
   formatRawCurrency(value: number): string {
     return `$${value.toFixed(2)}`;
+  },
+
+  convertCurrencyToNumber(value: string | number) {
+    if (typeof value === 'number') return value;
+    const numberString = value.replace(/[^0-9.-]+/g, '');
+    if (numberString === '') return 0;
+    return parseFloat(numberString);
   },
 };

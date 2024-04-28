@@ -25,10 +25,12 @@ export const qhHelpers = {
 };
 export const qhDropdown = reactive({
   show: false,
-  close() {
+  close(): boolean | undefined {
     this.show = false;
+    return true;
   },
-  toggle() {
+  toggle(): boolean | undefined {
     this.show = !this.show;
+    return true;
   },
 });

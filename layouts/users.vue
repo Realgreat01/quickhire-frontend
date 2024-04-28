@@ -1,13 +1,13 @@
 <template>
   <div class="h-screen">
-    <div class="relative grid md:grid-cols-[1fr,4fr]">
+    <div class="relative grid gap-4 md:grid-cols-[1fr,4fr]">
       <LayoutsSidebar
         class="sticky bottom-0 top-0 hidden overflow-y-scroll md:block"
       />
       <div class="sticky bottom-0 top-0">
         <LayoutsNavbar class="sticky top-0 z-10" />
 
-        <NuxtPage class="scroll overflow-y-scroll md:p-4" />
+        <NuxtPage class="scroll overflow-y-scroll bg-white p-4" />
       </div>
     </div>
     <forms-profile v-if="modalController.profile" @close="closeModal" />
@@ -31,9 +31,10 @@ import QH_CONSTANTS from '~/constants';
 import { useUserStore } from '~/store/user-store';
 import { useModalStore } from '~/store/modal-store';
 import { storeToRefs } from 'pinia';
+import { useJobStore } from '~/store/job-store';
 const { getBasicDetails, getProjects, getExperiences, getEducation } =
   useUserStore();
-
+const { getAllJobs } = useJobStore();
 const { showModal } = storeToRefs(useModalStore());
 const modalStore = useModalStore();
 
@@ -59,6 +60,7 @@ onBeforeMount(() => {
   getProjects();
   getExperiences();
   getEducation();
+  getAllJobs();
 });
 </script>
 

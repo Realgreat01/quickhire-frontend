@@ -41,6 +41,7 @@ import {
   RiSearchLine,
 } from 'vue-remix-icons';
 import QH_CONSTANTS from '~/constants';
+import { QH_ROUTES } from '~/constants/routes';
 
 const { fullname, basicDetails } = storeToRefs(useUserStore());
 
@@ -55,7 +56,7 @@ const sidebar = markRaw([
   {
     title: 'Open Applications',
     action: '',
-    route: QH_CONSTANTS.EDUCATION,
+    route: QH_ROUTES.COMPANY.OPENINGS,
     icon: RiBriefcase2Fill,
     class: 'fill-brand  text-brand',
   },

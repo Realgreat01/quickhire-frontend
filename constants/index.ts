@@ -6,15 +6,15 @@ export default class QH_CONSTANTS {
   static SET_USER_TYPE(type: 'user' | 'company') {
     localStorage.setItem('user-type', type);
   }
-  public static USERTYPE = localStorage.getItem('user-type');
+  public static GET_USER_TYPE = () => localStorage.getItem('user-type');
 
-  static PROJECTS = 'projects';
-  static DETAILS = 'profile';
-  static EDUCATION = 'education';
-  static EXPERIENCE = 'experience';
-  static STACKS = 'stacks';
-  static CONTACT = 'contact';
-  static JOBS = 'jobs';
+  static PROJECTS = 'user-projects';
+  static DETAILS = 'user-profile';
+  static EDUCATION = 'user-education';
+  static EXPERIENCE = 'user-experience';
+  static STACKS = 'user-stacks';
+  static CONTACT = 'user-contact';
+  static JOBS = 'user-jobs';
 
   //
   //

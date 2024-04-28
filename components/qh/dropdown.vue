@@ -1,5 +1,9 @@
 <template>
-  <div class="relative flex flex-col" ref="dropdown">
+  <div
+    class="relative flex flex-col"
+    ref="dropdown"
+    v-on-click-outside="qhDropdown.close"
+  >
     <div class="h-6 w-6 fill-brand stroke-brand" @click="qhDropdown.toggle()">
       <slot name="icon"> <RiMenu4Fill class="fill-[inherit]" /></slot>
     </div>
@@ -23,10 +27,14 @@
 <script setup lang="ts">
 import { RiMenu4Fill } from 'vue-remix-icons';
 import { onClickOutside } from '@vueuse/core';
+import { vOnClickOutside } from '@vueuse/components';
 
 const dropdown = ref();
 
-onClickOutside(dropdown, qhDropdown.close);
+function closeModal() {
+  qhDropdown.close();
+}
+onClickOutside(dropdown, closeModal);
 </script>
 
 <style scoped></style>

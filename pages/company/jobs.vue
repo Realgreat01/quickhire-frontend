@@ -1,6 +1,5 @@
 <template>
   <div class="">
-    <company-info />
     <company-jobs />
   </div>
 </template>
@@ -12,7 +11,7 @@ definePageMeta({
 });
 
 useHead({
-  title: 'QuickHire - Company Profile',
+  title: 'QuickHire - Open Applications',
 });
 </script>
 

@@ -7,11 +7,3 @@ export const GET_CURRENT_COMPANY = async () => {
     url: '/company',
   });
 };
-
-export const CREATE_NEW_JOB = async (data: any) => {
-  return await ApiService.run({
-    method: ApiService.POST,
-    url: '/company/job',
-    data,
-  });
-};

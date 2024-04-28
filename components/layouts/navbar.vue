@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-4 flex flex-col gap-4 bg-dark-50">
+  <div class="mb-4 flex flex-col gap-4 bg-white">
     <div class="flex items-center justify-between">
       <h1 class="qh-text-1 m-4 flex items-center capitalize text-brand-500">
         <icons-logo />
@@ -72,7 +72,7 @@
 
     <div
       class="flex w-full justify-end gap-x-4 p-4"
-      v-if="!route.meta.name?.includes(SpecailPages)"
+      v-if="actionButtonPages.includes($route.meta?.name)"
     >
       <div
         :class="item.class"
@@ -123,7 +123,11 @@ const router = useRouter();
 const modalStore = useModalStore();
 
 const emit = defineEmits(['close-modal']);
-const SpecailPages = ref(QH_CONSTANTS.DETAILS);
+const actionButtonPages = ref([
+  QH_CONSTANTS.EDUCATION,
+  QH_CONSTANTS.EXPERIENCE,
+  QH_CONSTANTS.PROJECTS,
+]);
 
 async function openModalAndHandleResponse() {
   try {

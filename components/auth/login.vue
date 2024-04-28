@@ -35,13 +35,15 @@ import { Form as VeeForm } from 'vee-validate';
 import QH_CONSTANTS from '~/constants';
 import { useRouter } from 'vue-router';
 import { QH_ROUTES } from '~/constants/routes';
+import ApiService from '~/services/api-service.service';
 
 const router = useRouter();
 
 const login = async (field: any) => {
   const res = await LOG_IN_USER(field);
   if (res.success) {
-    localStorage.setItem(QH_CONSTANTS.AUTH_TOKEN, res.data.token);
+    ApiService.setToken(res.data.token);
+    QH_CONSTANTS.SET_USER_TYPE('user');
     router.replace('/user');
   } else qhToast.error(res.message);
 };

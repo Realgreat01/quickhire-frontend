@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto bg-white p-10 md:w-4/5">
+  <div class="mx-auto bg-white p-5 md:w-[90%]">
     <!--  -->
     <div class="flex items-start justify-between">
       <div class="">
@@ -59,8 +59,8 @@
       >
         STACKS
       </h2>
-      <div class="grid gap-x-10 gap-y-4 md:grid-cols-2">
-        <div class="bg-secondary-100 p-4">
+      <div class="grid gap-x-10 gap-y-4 md:grid-cols-1">
+        <qh-card class="p-4">
           <h1 class="my-2 font-bold text-error-600">Programming Languages</h1>
           <div class="flex flex-wrap">
             <i
@@ -70,9 +70,9 @@
               class="colored p-2 text-3xl"
             ></i>
           </div>
-        </div>
+        </qh-card>
 
-        <div class="bg-secondary-100 p-4">
+        <qh-card class="p-4">
           <h1 class="my-2 font-bold text-error-600">
             Framworks and Technologies
           </h1>
@@ -84,7 +84,7 @@
               class="colored p-2 text-3xl"
             ></i>
           </div>
-        </div>
+        </qh-card>
       </div>
     </div>
   </div>
