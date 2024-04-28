@@ -91,7 +91,7 @@
 import type { Experience } from '~/types';
 import { Form as VeeForm } from 'vee-validate';
 
-import { CREATE_NEW_JOB } from '~/services/company.service';
+import { CREATE_NEW_JOB } from '~/services/job';
 
 const experienceDetail = ref<Experience | any>({});
 
