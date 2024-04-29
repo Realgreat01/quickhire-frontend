@@ -34,7 +34,7 @@
             />
           </div>
           <h1 class="qh-text-3 font-bold text-success-800">
-            {{ qhNumbers.formatCurrency(job.salary) }}
+            <!-- {{ qhNumbers.formatCurrency(job.salary) }} -->
           </h1>
         </div>
         <div class="flex h-full flex-col items-end justify-between">
@@ -54,7 +54,7 @@
           />
 
           <h2 class="block md:hidden">
-            {{ qhNumbers.formatNumber(job?.applicants.length) }}
+            <!-- {{ qhNumbers.formatNumber(job?.applicants.length) }} -->
             Applicants
           </h2>
         </div>
@@ -70,11 +70,11 @@
       <div class="flex justify-between">
         <div class="">
           <h1 class="qh-text-4 font-bold">Posted By</h1>
-          <p class="">{{ qhDates.formatDate(job?.posted_on) }}</p>
+          <!-- <p class="">{{ qhDates.formatDate(job?.posted_on) }}</p> -->
         </div>
         <div class="">
           <h1 class="qh-text-4 font-bold">Application End</h1>
-          <p class="">{{ qhDates.formatDate(job?.application_ends) }}</p>
+          <!-- <p class="">{{ qhDates.formatDate(job?.application_ends) }}</p> -->
         </div>
       </div>
     </div>

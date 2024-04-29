@@ -72,8 +72,11 @@ useHead({
 });
 
 onBeforeMount(async () => {
-  console.log({ route });
-  await getSingleJob(route.params.id);
+  if (process.client) {
+    console.log({ route });
+    if (typeof route.params.id === 'string')
+      await getSingleJob(route.params.id);
+  }
 });
 </script>
 
