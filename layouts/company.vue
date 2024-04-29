@@ -1,8 +1,8 @@
 <template>
   <div class="h-screen">
-    <div class="relative grid grid-cols-[1fr,4fr]">
+    <div class="relative grid md:grid-cols-[1fr,4fr]">
       <layouts-company-sidebar
-        class="scroll sticky bottom-0 top-0 overflow-y-scroll"
+        class="scroll top-overflow-y-scroll sticky bottom-0 hidden md:block"
       />
       <div class="sticky bottom-0 top-0">
         <layouts-company-navbar class="sticky top-0 z-10" />
@@ -30,7 +30,7 @@ const closeModal = () => {
 
 const modalController = computed(() => {
   return {
-    createJob: route.query.action === QH_ROUTES.COMPANY.CREATE_JOB,
+    createJob: route.query.action === QH_ROUTES.JOB.CREATE_JOB,
   };
 });
 onMounted(() => {

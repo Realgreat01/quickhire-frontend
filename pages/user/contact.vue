@@ -20,14 +20,7 @@
           </h2>
           <h2 class="">
             <p class="qh-test-3 font-semibold text-brand">Tools Used</p>
-            <div class="flex flex-wrap gap-2">
-              <qh-button
-                :label="tool"
-                class="border !border-brand-600 !bg-transparent !text-brand"
-                v-for="tool in project.projectTools"
-                :key="tool"
-              />
-            </div>
+            <div class="flex flex-wrap gap-2"></div>
           </h2>
         </div>
         <div class="flex justify-between">
@@ -47,12 +40,13 @@
 import { storeToRefs } from 'pinia';
 import { RiWebhookFill, RiGithubFill, RiGlobalLine } from 'vue-remix-icons';
 import QH_CONSTANTS from '~/constants';
+import { QH_ROUTES } from '~/constants/routes';
 import { useUserStore } from '~/store/user-store';
 
 definePageMeta({
   layout: 'users',
-  middleware: 'auth',
-  name: QH_CONSTANTS.CONTACT,
+  middleware: ['auth', 'user'],
+  name: QH_ROUTES.USER.CONTACT,
 });
 
 useHead({

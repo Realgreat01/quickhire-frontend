@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="relative grid w-full gap-4 md:grid-cols-[5fr,3fr]">
-      <jobs-single :job="job" />
+      <jobs-single />
       <div class="sticky top-0 mb-4 h-fit bg-white p-4">
         <h1 class="qh-text-2 mb-5 text-center font-bold">Other Jobs</h1>
         <div
@@ -57,14 +57,14 @@ import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 
 import { useJobStore } from '~/store/job-store';
-const { job, otherJobs } = storeToRefs(useJobStore());
+const { otherJobs } = storeToRefs(useJobStore());
 const { getSingleJob } = useJobStore();
 const route = useRoute();
 
 definePageMeta({
   layout: 'users',
-  // middleware: ['auth', 'user'],
-  // name: QH_ROUTES.JOB,
+  middleware: ['auth', 'user'],
+  name: QH_ROUTES.JOB.SINGLE,
 });
 
 useHead({

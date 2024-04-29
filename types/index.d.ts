@@ -8,6 +8,7 @@ export interface LOGIN_PAYlOAD {
 }
 
 export interface BasicDetails {
+  id: string;
   email: string;
   username: string;
   profile_picture: string;

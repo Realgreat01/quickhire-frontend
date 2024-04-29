@@ -27,9 +27,18 @@
           />
         </form>
       </VeeForm>
-      <h1 class="qh-text-4 my-4 text-center">
+      <h1 class="qh-text-4 my-2 text-center">
         Already have an account ?
-        <RouterLink class="text-brand" :to="QH_ROUTES.LOGIN">Login</RouterLink>
+        <RouterLink class="text-brand" :to="{ name: QH_ROUTES.USER.LOGIN }"
+          >Login</RouterLink
+        >
+      </h1>
+      <h1 class="qh-text-4 text-center">
+        <RouterLink
+          class="text-brand"
+          :to="{ name: QH_ROUTES.COMPANY.REGISTER }"
+          >Register Company</RouterLink
+        >
       </h1>
     </qh-container>
   </div>
@@ -42,6 +51,7 @@ import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 import { REGISTER_USER } from '~/services/auth.service';
 import { useRouter } from 'vue-router';
+import ApiService from '~/services/api-service.service';
 
 const registrationDetails = ref<any>({ password: '', confirmPassword: '' });
 const router = useRouter();
@@ -100,8 +110,9 @@ const registrationForm = ref([
 const createAccount = async (field: any) => {
   const res = await REGISTER_USER(field);
   if (res.success) {
-    localStorage.setItem(QH_CONSTANTS.AUTH_TOKEN, res.data.token);
-    router.push('/user');
+    ApiService.setToken(res.data.token);
+    QH_CONSTANTS.SET_USER_TYPE('user');
+    router.replace({ name: QH_ROUTES.USER.PROFILE });
   } else qhToast.error(res.message);
 };
 </script>

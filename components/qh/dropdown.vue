@@ -1,10 +1,6 @@
 <template>
-  <div
-    class="relative flex flex-col"
-    ref="dropdown"
-    v-on-click-outside="qhDropdown.close"
-  >
-    <div class="h-6 w-6 fill-brand stroke-brand" @click="qhDropdown.toggle()">
+  <div class="relative flex flex-col" ref="dropdown">
+    <div class="h-6 w-6 fill-brand stroke-brand" @click="toggleDropdown">
       <slot name="icon"> <RiMenu4Fill class="fill-[inherit]" /></slot>
     </div>
 
@@ -16,7 +12,7 @@
     >
       <qh-card
         class="absolute right-2 top-10 max-w-[80vw] bg-white"
-        v-if="qhDropdown.show"
+        v-if="showDropdown"
       >
         <slot> </slot>
       </qh-card>
@@ -28,13 +24,16 @@
 import { RiMenu4Fill } from 'vue-remix-icons';
 import { onClickOutside } from '@vueuse/core';
 import { vOnClickOutside } from '@vueuse/components';
+import { useModalStore } from '~/store/modal-store';
+import { storeToRefs } from 'pinia';
+
+const { showDropdown } = storeToRefs(useModalStore());
+
+const { closeDropdown, toggleDropdown } = useModalStore();
 
 const dropdown = ref();
 
-function closeModal() {
-  qhDropdown.close();
-}
-onClickOutside(dropdown, closeModal);
+onClickOutside(dropdown, closeDropdown);
 </script>
 
 <style scoped></style>

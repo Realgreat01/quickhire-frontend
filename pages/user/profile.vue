@@ -6,12 +6,13 @@
 import { storeToRefs } from 'pinia';
 import { RiWebhookFill, RiGithubFill, RiGlobalLine } from 'vue-remix-icons';
 import QH_CONSTANTS from '~/constants';
+import { QH_ROUTES } from '~/constants/routes';
 import { useUserStore } from '~/store/user-store';
 
 definePageMeta({
   layout: 'users',
-  middleware: 'auth',
-  name: QH_CONSTANTS.DETAILS,
+  middleware: ['auth', 'user'],
+  name: QH_ROUTES.USER.PROFILE,
 });
 
 useHead({

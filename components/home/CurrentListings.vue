@@ -11,7 +11,7 @@
     <div class="hidden flex-wrap gap-4 md:flex">
       <qh-job-card v-for="job in allJobs.slice(0, 6)" :job="job" />
     </div>
-    <RouterLink :to="QH_ROUTES.JOB.ALL">
+    <RouterLink :to="{ name: QH_ROUTES.JOB.ALL }">
       <qh-button
         class="apply-button my-6 min-w-[40%] max-w-96 gap-x-6 rounded-full border border-brand bg-transparent font-medium !text-brand"
       >

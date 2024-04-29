@@ -1,4 +1,5 @@
 import QH_CONSTANTS from '~/constants';
+import { QH_ROUTES } from '~/constants/routes';
 
 export default defineNuxtRouteMiddleware((to, from) => {
   if (process.client) {
@@ -6,7 +7,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     if (userType === 'company') {
       return true;
     } else {
-      return abortNavigation();
+      return navigateTo({ name: QH_ROUTES.USER.PROFILE });
     }
   }
 });

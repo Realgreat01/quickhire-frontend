@@ -77,10 +77,11 @@ import QH_CONSTANTS from '~/constants';
 import { useUserStore } from '~/store/user-store';
 const { formatDate, getOrdinalDate, getReadableDate } = useDate();
 import { storeToRefs } from 'pinia';
+import { QH_ROUTES } from '~/constants/routes';
 definePageMeta({
   layout: 'users',
-  middleware: 'auth',
-  name: QH_CONSTANTS.EXPERIENCE,
+  middleware: ['auth', 'user'],
+  name: QH_ROUTES.USER.EXPERIENCE,
 });
 
 useHead({

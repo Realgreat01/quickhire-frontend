@@ -2,16 +2,17 @@
   <div
     class="h-screen w-screen bg-[url('~~/assets/images/office-image.jpg')] bg-cover bg-center bg-repeat"
   >
-    <qh-container title="login" @close="qhReturnToHomepage">
-      <VeeForm
-        v-slot="{ handleSubmit, isSubmitting, errors }"
-        class="h-fit p-10"
-      >
+    <qh-container title="login Company" @close="qhReturnToHomepage">
+      <VeeForm v-slot="{ handleSubmit, isSubmitting, errors }" class="h-fit">
         <form
           @submit.prevent="handleSubmit($event, loginCompany)"
           class="mx-4 flex flex-col justify-end gap-4"
         >
-          <qh-input label="email" name="emailOrCompanyID" required />
+          <qh-input
+            label="Email / Company ID"
+            name="emailOrCompanyID"
+            required
+          />
           <qh-input
             label="Password"
             name="company_password"
@@ -27,10 +28,17 @@
           />
         </form>
       </VeeForm>
-      <h1 class="qh-text-4 mb-4 text-center">
-        Don't have an account ?
-        <RouterLink class="text-brand" :to="QH_ROUTES.REGISTER"
+      <h1 class="qh-text-4 mt-4 text-center">
+        Don't have a company account ?
+        <RouterLink
+          class="text-brand"
+          :to="{ name: QH_ROUTES.COMPANY.REGISTER }"
           >Sign Up</RouterLink
+        >
+      </h1>
+      <h1 class="qh-text-4 text-center">
+        <RouterLink class="text-brand" :to="{ name: QH_ROUTES.USER.LOGIN }"
+          >Log in as User</RouterLink
         >
       </h1>
     </qh-container>
@@ -43,15 +51,16 @@ import { Form as VeeForm } from 'vee-validate';
 import QH_CONSTANTS from '~/constants';
 import { useRouter } from 'vue-router';
 import { QH_ROUTES } from '~/constants/routes';
+import ApiService from '~/services/api-service.service';
 
 const router = useRouter();
 
 const loginCompany = async (field: any) => {
   const res = await LOG_IN_COMPANY(field);
   if (res.success) {
-    localStorage.setItem(QH_CONSTANTS.AUTH_TOKEN, res.data.token);
     QH_CONSTANTS.SET_USER_TYPE('company');
-    router.replace(QH_ROUTES.COMPANY.DASHBOARD);
+    ApiService.setToken(res.data.token);
+    router.replace({ name: QH_ROUTES.COMPANY.DASHBOARD });
   } else qhToast.error(res.message);
 };
 </script>

@@ -4,7 +4,7 @@
     <label
       :for="name"
       :class="labelClass"
-      class="flex gap-x-1 text-base font-semibold !capitalize !text-brand"
+      class="flex gap-x-1 text-base font-medium !capitalize !text-brand"
     >
       <slot v-if="$slots.default"></slot>
       <template v-else>

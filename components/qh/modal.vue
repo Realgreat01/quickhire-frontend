@@ -17,12 +17,12 @@
         </div>
 
         <div
-          class="flex w-48 items-center justify-center gap-x-1 rounded-lg border bg-success-100 px-4 py-2"
+          class="flex w-48 items-center justify-center gap-x-1 rounded-lg border bg-brand-100 px-4 py-2"
           @click="$emit('continue')"
         >
-          <RiCheckboxCircleFill class="h-8 w-8 fill-success" />
+          <RiCheckboxCircleFill class="h-8 w-8 fill-brand" />
           <qh-button
-            class="bg-transparent !px-2 !text-success"
+            class="bg-transparent !px-2 !text-brand"
             label="Continue"
           />
         </div>

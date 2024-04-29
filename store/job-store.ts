@@ -1,4 +1,8 @@
-import { GET_ALL_JOBS, GET_SINGLE_JOB } from '~/services/job.service';
+import {
+  APPLY_FOR_JOB,
+  GET_ALL_JOBS,
+  GET_SINGLE_JOB,
+} from '~/services/job.service';
 import type { Job } from '~/types/job';
 interface JobType {
   Job: Job | null;
@@ -25,8 +29,8 @@ export const useJobStore = defineStore('job', {
       return this.Job;
     },
 
-    otherJobs() {
-      return this.allJobs.filter((job: any) => job._id != this.job._id);
+    otherJobs(): Job[] {
+      return this.AllJobs.filter((job: any) => job._id != this.job._id);
     },
   },
 
@@ -44,6 +48,15 @@ export const useJobStore = defineStore('job', {
       if (res.success) {
         this.Job = res.data;
       } else qhToast.error('Unable to get Job');
+    },
+
+    async getApplyForJob(id: string) {
+      const res = await APPLY_FOR_JOB(id);
+      if (res.success) {
+        qhToast.success('Successfully applied for job');
+        await this.getAllJobs();
+        await this.getSingleJob(id);
+      } else qhToast.error('Error applying for job');
     },
   },
   persist: true,

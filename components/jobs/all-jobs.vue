@@ -2,10 +2,12 @@
   <div class="mt-20 p-4">
     <h1 class="qh-text-1 my-4">Latest Jobs</h1>
     <div class="flex flex-wrap gap-4">
-      <qh-job-card v-for="(job, index) in allJobs" :job="job" class="w-full" />
+      <div class="" v-for="(job, index) in allJobs">
+        <qh-job-card :job="job" class="w-full" v-if="job._id" />
+      </div>
     </div>
 
-    <RouterLink :to="QH_ROUTES.JOB.ALL">
+    <RouterLink :to="{ name: QH_ROUTES.JOB.ALL }">
       <qh-button
         class="apply-button my-6 min-w-[40%] max-w-96 gap-x-6 rounded-full border border-brand bg-transparent font-medium !text-brand"
       >
@@ -19,15 +21,12 @@
 </template>
 
 <script setup lang="ts">
-import type { Job } from '~/types/company';
-import jobs from '~/data/jobs.json';
 import { QH_ROUTES } from '~/constants/routes';
 import { ArrowRightCircleIcon } from '@heroicons/vue/24/solid';
-defineProps({ Class: String });
 import { useJobStore } from '~/store/job-store';
 
+defineProps({ Class: String });
 const { allJobs } = storeToRefs(useJobStore());
-const latestJobs = ref<Job[]>(jobs);
 </script>
 
 <style scoped lang="scss">

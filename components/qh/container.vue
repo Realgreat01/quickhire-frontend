@@ -13,11 +13,11 @@
           leave-active-class="animate__animated animate__zoomOut"
         >
           <div
-            class="scroll modal-content relative rounded-lg bg-dark-50 px-4 pb-4"
+            class="scroll modal-content relative rounded-lg bg-white px-4 pb-4"
             :class="class"
           >
             <div
-              class="sticky top-0 z-50 flex w-full items-center justify-center bg-dark-50 pt-4"
+              class="sticky top-0 z-50 flex w-full items-center justify-center border-b bg-white pb-2 pt-4"
             >
               <h2
                 class="qh-text-2 ml-4 mt-4 w-fit justify-self-center text-center font-black capitalize text-brand"

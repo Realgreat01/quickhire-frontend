@@ -3,9 +3,6 @@
     <div class="flex items-center justify-between">
       <h1 class="qh-text-1 m-4 flex items-center capitalize text-brand-500">
         <icons-logo />
-        <!-- <span class="block !font-bold"
-          >| {{ route.meta.name ?? 'Dashboard' }}</span
-        > -->
       </h1>
 
       <div class="flex gap-x-3 p-4">
@@ -29,6 +26,13 @@
             >10</span
           >
         </div>
+        <div class="relative hidden h-10 w-12 md:block">
+          <ArrowRightStartOnRectangleIcon
+            class="h-8 w-8 fill-error text-error"
+            @click="openLogoutModal"
+          />
+          <p class="">Logout</p>
+        </div>
 
         <qh-dropdown class="md:hidden">
           <div class="">
@@ -49,20 +53,23 @@
             <div class="my-5">
               <RouterLink
                 :to="{ name: item.route }"
-                @click="qhDropdown.close"
-                :class="item.class"
-                class="font-geologica flex w-60 cursor-pointer p-1 pl-4 font-semibold hover:scale-[1.025]"
                 v-for="(item, index) in sidebar"
                 :key="index"
               >
-                <component
-                  :is="item.icon"
+                <div
+                  @click="item.action"
                   :class="item.class"
-                  class="mr-3 h-7 w-7 rounded"
-                />
-                <h1 class="qh-text-3 font-semi">
-                  {{ item.title }}
-                </h1>
+                  class="font-geologica flex w-60 cursor-pointer p-1 pl-4 font-semibold hover:scale-[1.025]"
+                >
+                  <component
+                    :is="item.icon"
+                    :class="item.class"
+                    class="mr-3 h-7 w-7 rounded"
+                  />
+                  <h1 class="qh-text-3 font-semi">
+                    {{ item.title }}
+                  </h1>
+                </div>
               </RouterLink>
             </div>
           </div>
@@ -72,7 +79,7 @@
 
     <div
       class="grid w-full grid-cols-2 justify-end gap-x-4 p-4 md:flex"
-      v-if="actionButtonPages.includes($route.meta?.name)"
+      v-if="actionButtonPages.includes(route.name as string)"
     >
       <div
         :class="item.class"
@@ -97,25 +104,22 @@
 <script setup lang="ts">
 import {
   RiAddCircleFill,
-  RiChat3Line,
-  RiDiscussFill,
   RiNotification3Fill,
-  // RiDeleteBin6Fill,
   RiUser2Fill,
   RiBriefcase2Fill,
   RiBox3Fill,
-  RiCodeSSlashFill,
   RiGraduationCapFill,
-  RiContactsFill,
   RiSendPlaneFill,
   RiProfileFill,
 } from 'vue-remix-icons';
+import { ArrowRightStartOnRectangleIcon } from '@heroicons/vue/24/outline';
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/vue/24/solid';
-import QH_CONSTANTS from '~/constants';
 import { useRoute, useRouter } from 'vue-router';
 import { useModalStore } from '~/store/modal-store';
 import { storeToRefs } from 'pinia';
 import { useUserStore } from '~/store/user-store';
+import { QH_ROUTES } from '~/constants/routes';
+const { closeDropdown } = useModalStore();
 const { fullname, basicDetails } = storeToRefs(useUserStore());
 
 const route = useRoute();
@@ -124,9 +128,9 @@ const modalStore = useModalStore();
 
 const emit = defineEmits(['close-modal']);
 const actionButtonPages = ref([
-  QH_CONSTANTS.EDUCATION,
-  QH_CONSTANTS.EXPERIENCE,
-  QH_CONSTANTS.PROJECTS,
+  QH_ROUTES.USER.EDUCATION,
+  QH_ROUTES.USER.EXPERIENCE,
+  QH_ROUTES.USER.PROJECTS,
 ]);
 
 async function openModalAndHandleResponse() {
@@ -141,6 +145,7 @@ async function openModalAndHandleResponse() {
     // Handle cancel operation here
   }
 }
+
 async function openNotificationModal() {
   try {
     const result = await modalStore.openModal();
@@ -152,6 +157,18 @@ async function openNotificationModal() {
     console.log('User cancelled notification:', error);
     // Handle cancel operation here
   }
+}
+async function openLogoutModal() {
+  try {
+    const result = await modalStore.openModal({
+      title: 'Logout ?',
+      message: 'Do you really want to logout',
+    });
+    if (result) {
+      qhHelpers.logout();
+      qhToast.success('logout successfully');
+    }
+  } catch (error) {}
 }
 
 const navbar = markRaw([
@@ -174,29 +191,29 @@ const navbar = markRaw([
 const sidebar = markRaw([
   {
     title: 'Profile',
-    action: '',
-    route: QH_CONSTANTS.DETAILS,
+    action: closeDropdown,
+    route: QH_ROUTES.USER.DETAILS,
     icon: RiUser2Fill,
     class: 'fill-teal-600  text-teal-600',
   },
   {
     title: 'Education',
-    action: '',
-    route: QH_CONSTANTS.EDUCATION,
+    action: closeDropdown,
+    route: QH_ROUTES.USER.EDUCATION,
     icon: RiGraduationCapFill,
     class: 'fill-brand  text-brand',
   },
   {
     title: 'Experience',
-    action: '',
-    route: QH_CONSTANTS.EXPERIENCE,
+    action: closeDropdown,
+    route: QH_ROUTES.USER.EXPERIENCE,
     icon: RiBriefcase2Fill,
     class: 'fill-pink-800  text-pink-800',
   },
   {
     title: 'Applied Jobs',
-    action: '',
-    route: QH_CONSTANTS.JOBS,
+    action: closeDropdown,
+    route: QH_ROUTES.USER.APPLIED_JOBS,
     icon: RiSendPlaneFill,
     class: 'fill-violet-800  text-violet-800',
   },
@@ -209,19 +226,19 @@ const sidebar = markRaw([
   // },
   {
     title: 'Projects',
-    action: '',
-    route: QH_CONSTANTS.PROJECTS,
+    action: closeDropdown,
+    route: QH_ROUTES.USER.PROJECTS,
     icon: RiBox3Fill,
     class: 'fill-indigo-800  text-indigo-800',
   },
 
-  // {
-  //   title: 'Contact',
-  //   action: '',
-  //   route: QH_CONSTANTS.CONTACT,
-  //   icon: RiContactsFill,
-  //   class: 'fill-cyan-800  text-cyan-800',
-  // },
+  {
+    title: 'Logout',
+    action: openLogoutModal,
+    route: '',
+    icon: ArrowRightStartOnRectangleIcon,
+    class: 'fill-error-800  text-error-800',
+  },
 ]);
 </script>
 

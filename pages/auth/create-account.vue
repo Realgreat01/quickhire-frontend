@@ -4,6 +4,8 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { QH_ROUTES } from '~/constants/routes';
 
-<style scoped></style>
+definePageMeta({ name: QH_ROUTES.USER.REGISTER });
+</script>

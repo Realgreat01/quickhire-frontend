@@ -12,8 +12,10 @@
 </template>
 
 <script setup lang="ts">
+import { QH_ROUTES } from '~/constants/routes';
+
 definePageMeta({
-  title: '',
+  name: QH_ROUTES.HOME,
 });
 
 useHead({

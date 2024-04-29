@@ -3,7 +3,12 @@
     <auth-login />
   </div>
 </template>
+<script setup lang="ts">
+import { QH_ROUTES } from '~/constants/routes';
 
-<script setup lang="ts"></script>
+definePageMeta({ name: QH_ROUTES.USER.LOGIN });
+</script>
+
+<style lang="scss" scoped></style>
 
 <style scoped></style>

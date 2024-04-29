@@ -15,10 +15,10 @@
       >
     </div>
     <div class="hidden gap-x-4 md:flex">
-      <RouterLink :to="QH_ROUTES.LOGIN">
+      <RouterLink :to="{ name: QH_ROUTES.USER.LOGIN }">
         <qh-button class="h-10 w-36 rounded-full font-medium" label="Login" />
       </RouterLink>
-      <RouterLink :to="QH_ROUTES.REGISTER">
+      <RouterLink :to="{ name: QH_ROUTES.USER.REGISTER }">
         <qh-button
           label="Create Account"
           class="h-10 w-36 rounded-full border border-brand bg-transparent font-medium !text-brand"
@@ -41,19 +41,19 @@
           >
         </div>
 
-        <div class="flex flex-col gap-4">
-          <RouterLink :to="QH_ROUTES.LOGIN">
+        <div class="flex w-full flex-col gap-4">
+          <RouterLink :to="{ name: QH_ROUTES.USER.LOGIN }">
             <qh-button
-              class="h-10 w-[60%] rounded-full font-medium"
+              class="mx-4 h-10 !w-[60%] rounded-full font-medium"
               label="Login"
               @click="qhDropdown.close"
             />
           </RouterLink>
-          <RouterLink :to="QH_ROUTES.REGISTER">
+          <RouterLink :to="{ name: QH_ROUTES.USER.REGISTER }">
             <qh-button
               @click="qhDropdown.close"
               label="Create Account"
-              class="h-10 w-[60%] rounded-full border border-brand bg-transparent font-medium !text-brand"
+              class="mx-4 h-10 !w-[60%] rounded-full border border-brand bg-transparent font-medium !text-brand"
             />
           </RouterLink>
         </div>

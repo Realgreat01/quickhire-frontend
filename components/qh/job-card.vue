@@ -1,5 +1,5 @@
 <template>
-  <qh-card class="w-full bg-white md:w-96" :class="Class">
+  <qh-card class="w-full bg-white md:w-96" :class="Class" v-if="job._id">
     <div class="flex justify-between gap-x-2">
       <div class="flex">
         <img
@@ -65,7 +65,7 @@
           <RiUserFill class="h-4 w-4" />
 
           <h2 class="ml-1 font-bold">
-            <!-- {{ qhNumbers.formatNumber(job.applicants.length) }} -->
+            {{ qhNumbers.formatNumber(job.applicants.length) }}
           </h2>
           <h2 class="block">Applicants</h2>
         </h2>
@@ -78,8 +78,6 @@
 import { ArrowRightCircleIcon, ClockIcon } from '@heroicons/vue/24/outline';
 import {
   RiVerifiedBadgeFill,
-  RiHomeOfficeFill,
-  RiGlobalLine,
   RiUserFill,
   RiBuildingLine,
 } from 'vue-remix-icons';
@@ -96,7 +94,6 @@ defineProps({
 const route = useRoute();
 const { allJobs } = storeToRefs(useJobStore());
 const { getSingleJob } = useJobStore();
-onMounted(() => console.log(route));
 </script>
 
 <style scoped lang="scss">

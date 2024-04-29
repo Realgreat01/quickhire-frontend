@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 interface State {
   showModal: boolean;
+  showDropdown: boolean;
   message: string;
   title: string;
   resolve: any;
@@ -17,14 +18,18 @@ Do you really want to proceed with this action.
 
  Action may be irreversible!`;
 const defaultTitle = 'Are you sure ?!';
+
 export const useModalStore = defineStore('modal', {
   state: (): State => ({
     showModal: false,
+    showDropdown: false,
     message: defaultMessage,
     title: defaultTitle,
     resolve: null,
     reject: null,
   }),
+
+  getters: {},
 
   actions: {
     async openModal(option?: modalOptions) {
@@ -59,6 +64,14 @@ export const useModalStore = defineStore('modal', {
         this.reject(false);
       }
       this.closeModal();
+    },
+
+    closeDropdown() {
+      this.showDropdown = false;
+    },
+
+    toggleDropdown() {
+      this.showDropdown = !this.showDropdown;
     },
   },
 });

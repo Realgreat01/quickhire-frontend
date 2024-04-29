@@ -174,5 +174,3 @@ export const allTools = computed(() => {
   const data = frameworks.map((value) => value.frameworks.map((val) => val));
   return data.flat().concat(programmingLanguages);
 });
-
-console.log(allTools.value);

@@ -19,10 +19,15 @@
           />
         </form>
       </VeeForm>
-      <h1 class="qh-text-4 my-4 text-center">
+      <h1 class="qh-text-4 mb-2 mt-4 text-center">
         Don't have an account ?
-        <RouterLink class="text-brand" :to="QH_ROUTES.REGISTER"
+        <RouterLink class="text-brand" :to="{ name: QH_ROUTES.USER.REGISTER }"
           >Sign Up</RouterLink
+        >
+      </h1>
+      <h1 class="qh-text-4 text-center">
+        <RouterLink class="text-brand" :to="{ name: QH_ROUTES.COMPANY.LOGIN }"
+          >Log in as Company</RouterLink
         >
       </h1>
     </qh-container>
@@ -44,7 +49,7 @@ const login = async (field: any) => {
   if (res.success) {
     ApiService.setToken(res.data.token);
     QH_CONSTANTS.SET_USER_TYPE('user');
-    router.replace('/user');
+    router.replace({ name: QH_ROUTES.USER.PROFILE });
   } else qhToast.error(res.message);
 };
 </script>

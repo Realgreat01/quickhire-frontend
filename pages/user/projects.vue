@@ -103,12 +103,13 @@ import {
   RiArticleFill,
 } from 'vue-remix-icons';
 import QH_CONSTANTS from '~/constants';
+import { QH_ROUTES } from '~/constants/routes';
 import { useUserStore } from '~/store/user-store';
 
 definePageMeta({
   layout: 'users',
   middleware: ['auth', 'user'],
-  name: QH_CONSTANTS.PROJECTS,
+  name: QH_ROUTES.USER.PROJECTS,
 });
 
 useHead({

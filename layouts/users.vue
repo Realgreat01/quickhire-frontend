@@ -17,28 +17,18 @@
     <forms-experience v-if="modalController.experience" @close="closeModal" />
     <forms-education v-if="modalController.education" @close="closeModal" />
     <forms-contact v-if="modalController.contact" @close="closeModal" />
-    <qh-modal
-      v-if="showModal"
-      @continue="modalStore.continue"
-      @cancel="modalStore.cancel"
-      @close="showModal = false"
-    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
-import QH_CONSTANTS from '~/constants';
-
 import { useUserStore } from '~/store/user-store';
-import { useModalStore } from '~/store/modal-store';
-import { storeToRefs } from 'pinia';
 import { useJobStore } from '~/store/job-store';
+import { QH_ROUTES } from '~/constants/routes';
+
 const { getBasicDetails, getProjects, getExperiences, getEducation } =
   useUserStore();
 const { getAllJobs } = useJobStore();
-const { showModal } = storeToRefs(useModalStore());
-const modalStore = useModalStore();
 
 const route = useRoute();
 const router = useRouter();
@@ -49,11 +39,11 @@ const closeModal = () => {
 
 const modalController = computed(() => {
   return {
-    profile: route.query.add === QH_CONSTANTS.DETAILS,
-    projects: route.query.add === QH_CONSTANTS.PROJECTS,
-    experience: route.query.add === QH_CONSTANTS.EXPERIENCE,
-    education: route.query.add === QH_CONSTANTS.EDUCATION,
-    contact: route.query.add === QH_CONSTANTS.CONTACT,
+    profile: route.query.add === QH_ROUTES.USER.DETAILS,
+    projects: route.query.add === QH_ROUTES.USER.PROJECTS,
+    experience: route.query.add === QH_ROUTES.USER.EXPERIENCE,
+    education: route.query.add === QH_ROUTES.USER.EDUCATION,
+    contact: route.query.add === QH_ROUTES.USER.CONTACT,
   };
 });
 

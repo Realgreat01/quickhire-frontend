@@ -7,7 +7,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     if (userType === 'user') {
       return true;
     } else {
-      return abortNavigation();
+      return navigateTo({ name: QH_ROUTES.COMPANY.DASHBOARD });
     }
   }
 });

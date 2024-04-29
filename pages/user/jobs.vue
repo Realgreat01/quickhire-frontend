@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="p-6">
-      <RouterLink :to="QH_ROUTES.JOB.ALL" class="p-6">
+      <RouterLink :to="{ name: QH_ROUTES.JOB.ALL }" class="p-6">
         <qh-button
           class="apply-button w-full gap-x-6 rounded-full border border-brand bg-transparent font-medium !text-brand md:w-96"
         >
@@ -74,8 +74,8 @@ import { useJobStore } from '~/store/job-store';
 
 definePageMeta({
   layout: 'users',
-  middleware: 'auth',
-  name: QH_CONSTANTS.JOBS,
+  middleware: ['auth', 'user'],
+  name: QH_ROUTES.USER.APPLIED_JOBS,
 });
 
 useHead({

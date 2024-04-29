@@ -11,7 +11,7 @@
               {{ job?.job_title }}
             </h1>
             <qh-button
-              v-if="job?.isActive"
+              v-if="!job?.isActive"
               label="Active"
               class="qh-text-4 h-4 rounded-full bg-green-500 px-4 font-medium"
             />
@@ -34,12 +34,12 @@
             />
           </div>
           <h1 class="qh-text-3 font-bold text-success-800">
-            <!-- {{ qhNumbers.formatCurrency(job.salary) }} -->
+            {{ qhNumbers.formatCurrency(job.salary) }}
           </h1>
         </div>
         <div class="flex h-full flex-col items-end justify-between">
           <h2 class="hidden md:block">
-            <!-- {{ qhNumbers.formatNumber(job?.applicants.length) }} -->
+            {{ qhNumbers.formatNumber(job?.applicants.length) }}
             Applicants
           </h2>
           <qh-button
@@ -48,13 +48,19 @@
             label="See Applicants"
           />
           <qh-button
+            v-else-if="job.applicants.includes(basicDetails?.id)"
+            class="disabled h-8 w-fit rounded-full bg-brand-400 px-8"
+            label="Appllied"
+          />
+          <qh-button
             v-else
+            @click="getApplyForJob(job._id)"
             class="h-8 w-fit rounded-full bg-brand px-8"
             label="Apply"
           />
 
           <h2 class="block md:hidden">
-            <!-- {{ qhNumbers.formatNumber(job?.applicants.length) }} -->
+            {{ qhNumbers.formatNumber(job?.applicants.length) }}
             Applicants
           </h2>
         </div>
@@ -70,11 +76,11 @@
       <div class="flex justify-between">
         <div class="">
           <h1 class="qh-text-4 font-bold">Posted By</h1>
-          <!-- <p class="">{{ qhDates.formatDate(job?.posted_on) }}</p> -->
+          <p class="">{{ qhDates.formatDate(job?.posted_on) }}</p>
         </div>
         <div class="">
           <h1 class="qh-text-4 font-bold">Application End</h1>
-          <!-- <p class="">{{ qhDates.formatDate(job?.application_ends) }}</p> -->
+          <p class="">{{ qhDates.formatDate(job?.application_ends) }}</p>
         </div>
       </div>
     </div>
@@ -83,18 +89,13 @@
 
 <script setup lang="ts">
 import type { Job } from '~/types/job';
-
-import jobs from '~/data/jobs.json';
 import QH_CONSTANTS from '~/constants';
+import { useJobStore } from '~/store/job-store';
+import { useUserStore } from '~/store/user-store';
 
-const route = useRoute();
-
-defineProps({
-  job: {
-    type: Object as PropType<Job | null>,
-    required: true,
-  },
-});
+const { getApplyForJob } = useJobStore();
+const { job } = storeToRefs(useJobStore());
+const { basicDetails } = storeToRefs(useUserStore());
 </script>
 
 <style scoped></style>

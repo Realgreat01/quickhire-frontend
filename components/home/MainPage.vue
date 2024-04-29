@@ -18,14 +18,15 @@
 
       <p class="qh-text-normal w-[90%] md:w-full">
         Escape the hurdles of job search and hiring challenges, lets make the
-        process seamless for you !
-         Escape the hurdles of job search and hiring challenges, lets make the
-        process seamless for you !
+        process seamless for you ! Escape the hurdles of job search and hiring
+        challenges, lets make the process seamless for you !
       </p>
 
       <div class="flex justify-between md:justify-start md:gap-x-8">
         <qh-button class="h-10 w-40 rounded-full font-medium md:h-12 md:w-48">
-          <router-link :to="QH_ROUTES.REGISTER"> Get Started </router-link>
+          <router-link :to="{ name: QH_ROUTES.USER.REGISTER }">
+            Get Started
+          </router-link>
         </qh-button>
         <qh-button
           class="h-10 w-40 rounded-full border border-brand bg-transparent font-medium !text-brand md:h-12 md:w-48"

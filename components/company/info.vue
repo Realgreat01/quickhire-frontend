@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white">
-    <div class="grid grid-cols-[4fr,1fr]">
+    <div class="grid gap-y-6 md:grid-cols-[4fr,1fr]">
       <div class="h-fit border p-8 shadow">
         <div class="">
           <h1 class="qh-text-2 font-bold">About</h1>
@@ -14,8 +14,8 @@
         </div>
       </div>
 
-      <div class="h-full border shadow">
-        <h2 class="qh-text-3 mt-8 text-center font-semibold">
+      <div class="h-full border py-4 pb-8 shadow">
+        <h2 class="qh-text-3 text-center font-semibold md:mt-8">
           Hiring Managers
         </h2>
         <h2
