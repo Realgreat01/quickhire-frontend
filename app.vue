@@ -12,13 +12,14 @@
 </template>
 <script setup lang="ts">
 import 'notivue/notification-progress.css';
-import {
-  Notivue,
-  Notification,
-  NotificationProgress,
-  pastelTheme,
-  materialTheme,
-  darkTheme,
-  slateTheme,
-} from 'notivue';
+import { Notivue, Notification, NotificationProgress } from 'notivue';
+
+import { useJobStore } from '~/store/job-store';
+
+const { getAllJobs } = useJobStore();
+onMounted(() => {
+  if (process.client) {
+    getAllJobs();
+  }
+});
 </script>

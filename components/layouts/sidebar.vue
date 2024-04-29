@@ -1,19 +1,19 @@
 <template>
   <div
-    class="sticky bottom-0 top-0 flex h-screen flex-col items-center justify-center gap-2 bg-white"
+    class="sticky bottom-0 top-0 flex h-screen flex-col items-center justify-center gap-2 bg-white px-1"
   >
-    <div
-      class="font-poppins my-10 flex h-60 w-max flex-col items-center justify-center rounded-2xl border-2 border-dark-50 bg-dark-50 p-8 shadow-md"
+    <qh-card
+      class="font-poppins my-10 flex h-60 w-full flex-col items-center justify-center border-2 !border-brand"
     >
       <img
-        class="block h-32 w-32 rounded-full border border-brand"
+        class="m-2 block h-32 w-32 rounded-full border border-brand"
         src="~/assets/images/user-profile.jpg"
         alt=""
       />
-      <h1 class="font-semibold capitalize">{{ fullname }}</h1>
-      <h1 class="qh-text-4 text-brand">@{{ basicDetails?.username }}</h1>
-      <h1 class="font-normal">Fullstack Developer</h1>
-    </div>
+      <h1 class="qh-text-3 font-semibold capitalize">{{ fullname }}</h1>
+      <h1 class="text-xs text-brand">@{{ basicDetails?.username }}</h1>
+      <h1 class="qh-text-4 font-normal">Fullstack Developer</h1>
+    </qh-card>
     <RouterLink
       :to="{ name: item.route }"
       :class="item.class"

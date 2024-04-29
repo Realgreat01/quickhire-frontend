@@ -1,6 +1,6 @@
 <template>
-  <qh-card class="bg-white">
-    <div class="flex w-full justify-between gap-x-2">
+  <qh-card class="w-full bg-white md:w-96" :class="Class">
+    <div class="flex justify-between gap-x-2">
       <div class="flex">
         <img
           src="~~/assets/images/company-logo.jpg"
@@ -91,6 +91,7 @@ defineProps({
     type: Object as PropType<Job>,
     required: true,
   },
+  Class: String,
 });
 const route = useRoute();
 const { allJobs } = storeToRefs(useJobStore());
