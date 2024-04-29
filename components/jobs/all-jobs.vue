@@ -1,8 +1,8 @@
 <template>
-  <div class="mt-20">
-    <h1 class="qh-text-1">Latest Jobs</h1>
+  <div class="mt-20 p-4">
+    <h1 class="qh-text-1 my-4">Latest Jobs</h1>
     <div class="flex flex-wrap gap-4">
-      <qh-job-card v-for="(job, index) in allJobs" :job="job" />
+      <qh-job-card v-for="(job, index) in allJobs" :job="job" class="w-full" />
     </div>
 
     <RouterLink :to="QH_ROUTES.JOB.ALL">

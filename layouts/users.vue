@@ -7,7 +7,9 @@
       <div class="sticky bottom-0 top-0">
         <LayoutsNavbar class="sticky top-0 z-10" />
 
-        <NuxtPage class="scroll overflow-y-scroll bg-white p-4" />
+        <NuxtPage
+          class="scroll overflow-y-scroll bg-dark-50 md:bg-white md:p-4"
+        />
       </div>
     </div>
     <forms-profile v-if="modalController.profile" @close="closeModal" />

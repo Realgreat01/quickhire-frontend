@@ -2,7 +2,7 @@
   <div class="flex flex-wrap gap-6 rounded">
     <div class="flex flex-wrap gap-6 rounded">
       <qh-card
-        class="flex h-fit w-2/3 flex-col items-start justify-between rounded px-12 py-8"
+        class="flex h-fit flex-col items-start justify-between rounded px-4 py-6 md:w-2/3 md:px-12 md:py-8"
         :class="index % 2 === 0 ? '' : 'justify-self-end'"
         v-for="(education, index) in educations"
         :key="index"

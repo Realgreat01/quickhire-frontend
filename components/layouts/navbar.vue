@@ -71,13 +71,13 @@
     </div>
 
     <div
-      class="flex w-full justify-end gap-x-4 p-4"
+      class="grid w-full grid-cols-2 justify-end gap-x-4 p-4 md:flex"
       v-if="actionButtonPages.includes($route.meta?.name)"
     >
       <div
         :class="item.class"
         @click="item.action"
-        class="flex w-48 cursor-pointer rounded p-2 shadow hover:scale-[1.025] md:w-60"
+        class="flex w-full rounded p-2 shadow first-line:cursor-pointer hover:scale-[1.025] md:w-60"
         v-for="(item, index) in navbar"
         :key="index"
       >

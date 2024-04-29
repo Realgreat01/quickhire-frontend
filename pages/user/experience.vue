@@ -4,7 +4,7 @@
       <qh-card
         v-for="(experience, index) in experiences"
         :key="index"
-        class="flex w-4/5 flex-col justify-between gap-4 rounded-2xl p-4 shadow-xl"
+        class="flex flex-col justify-between gap-4 rounded-2xl p-4 shadow-xl md:w-4/5"
       >
         <div class="">
           <RiBuildingFill class="icon h-6 w-6" />
@@ -92,6 +92,6 @@ const { experiences } = storeToRefs(useUserStore());
 
 <style scoped>
 .icon {
-  @apply mr-3 fill-success-500;
+  @apply mr-3 fill-brand-500;
 }
 </style>

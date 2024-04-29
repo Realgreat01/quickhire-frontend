@@ -1,10 +1,13 @@
 <template>
   <div>
-    <div class="relative grid grid-cols-[5fr,3fr] gap-2">
+    <div class="relative grid w-full gap-4 md:grid-cols-[5fr,3fr]">
       <jobs-single :job="job" />
-      <div class="sticky top-0 h-fit bg-white p-4">
+      <div class="sticky top-0 mb-4 h-fit bg-white p-4">
         <h1 class="qh-text-2 mb-5 text-center font-bold">Other Jobs</h1>
-        <div class="flex items-start justify-between" v-for="job in otherJobs">
+        <div
+          class="flex items-start justify-between pb-4"
+          v-for="job in otherJobs"
+        >
           <div
             class="flex w-full gap-x-2 border-b border-dashed border-brand pb-2"
           >

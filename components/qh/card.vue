@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :class="Class" v-bind="$attrs">
+  <div class="card p-4" :class="Class" v-bind="$attrs">
     <slot></slot>
   </div>
 </template>

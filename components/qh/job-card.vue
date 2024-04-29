@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex w-96 flex-col rounded-lg border border-dark-100 bg-white p-6 pb-0 shadow"
-  >
+  <qh-card class="bg-white">
     <div class="flex w-full justify-between gap-x-2">
       <div class="flex">
         <img
@@ -67,13 +65,13 @@
           <RiUserFill class="h-4 w-4" />
 
           <h2 class="ml-1 font-bold">
-            {{ qhNumbers.formatNumber(job.applicants.length) }}
+            <!-- {{ qhNumbers.formatNumber(job.applicants.length) }} -->
           </h2>
           <h2 class="block">Applicants</h2>
         </h2>
       </div>
     </div>
-  </div>
+  </qh-card>
 </template>
 
 <script setup lang="ts">
