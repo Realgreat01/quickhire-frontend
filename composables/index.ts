@@ -6,8 +6,6 @@ interface ExtendedPinia extends Pinia {
   _s: Map<string, Store>;
 }
 
-// map through that list and use the **$reset** fn to reset the state
-
 export const qhToast = {
   success: (notification: Notification | string) => push.success(notification),
   error: (notification: Notification | string) => push.error(notification),
@@ -43,6 +41,7 @@ export const qhHelpers = {
     setTimeout(async () => {
       await navigateTo({ name: QH_ROUTES.HOME });
       $ResetPinia();
+      qhSecuredLS.clear()
       localStorage.clear();
     }, 200);
   },

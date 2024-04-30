@@ -73,7 +73,7 @@ import { useUserStore } from '~/store/user-store';
 definePageMeta({
   layout: 'users',
   middleware: ['auth', 'user'],
-   name: QH_ROUTES.USER.EDUCATION,
+  name: QH_ROUTES.USER.EDUCATION,
 });
 
 useHead({

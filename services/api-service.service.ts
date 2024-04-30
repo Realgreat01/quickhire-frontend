@@ -1,6 +1,6 @@
 import axios, { AxiosError, type AxiosRequestConfig } from 'axios';
 import QH_CONSTANTS from '~/constants';
-
+import { qhSecuredLS } from '~/utils/secure-ls';
 interface IResponse {
   status: number | null;
   message: string;
@@ -41,7 +41,7 @@ export default class ApiService {
   // Initialize interceptors statically
   static initializeInterceptors() {
     ApiService.http.interceptors.request.use((config) => {
-      const accessToken = localStorage.getItem(QH_CONSTANTS.AUTH_TOKEN);
+      const accessToken = qhSecuredLS.get(QH_CONSTANTS.AUTH_TOKEN);
       if (accessToken) {
         config.headers['Authorization'] = `Bearer ${accessToken}`;
       }
@@ -51,7 +51,14 @@ export default class ApiService {
 
   // Static token setter
   public static setToken(token: string) {
-    localStorage.setItem(QH_CONSTANTS.AUTH_TOKEN, token);
+    qhSecuredLS.set(QH_CONSTANTS.AUTH_TOKEN, token);
+  }
+
+  public static async pingServer() {
+    await ApiService.run({
+      method: ApiService.GET,
+      url: '/test',
+    });
   }
 
   static getErrorMessage(errors = []) {

@@ -26,8 +26,14 @@ import { useUserStore } from '~/store/user-store';
 import { useJobStore } from '~/store/job-store';
 import { QH_ROUTES } from '~/constants/routes';
 
-const { getBasicDetails, getProjects, getExperiences, getEducation } =
-  useUserStore();
+const {
+  getBasicDetails,
+  getProjects,
+  getExperiences,
+  getEducation,
+  getStacks,
+} = useUserStore();
+
 const { getAllJobs } = useJobStore();
 
 const route = useRoute();
@@ -53,6 +59,7 @@ onBeforeMount(() => {
   getExperiences();
   getEducation();
   getAllJobs();
+  getStacks();
 });
 </script>
 

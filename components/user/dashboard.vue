@@ -9,8 +9,13 @@
           {{ fullname }}
         </h1>
         <h1 class="qh-text-4 font-medium capitalize">
-          Frontend Developer | Software Engineer | Technical Writer
+          Frontend Developer | Technical Writer
         </h1>
+        <qh-button
+          class="qh-text-4 my-4 h-8 w-40 rounded-full md:mb-20 md:mt-10 md:h-12 md:w-80"
+          @click="generatePDFTemplate"
+          >Download Resume</qh-button
+        >
       </div>
       <div class="block">
         <img
@@ -93,6 +98,7 @@
 <script setup lang="ts">
 import { useUserStore } from '~/store/user-store';
 const { fullname } = storeToRefs(useUserStore());
+import { generatePDFTemplate } from '~/utils/pdf/generators/';
 
 const frameworks = ref([
   { name: 'Ember', icon: 'devicon-ember-original-wordmark' },
@@ -133,3 +139,4 @@ const programmingLanguages = ref([
 </script>
 
 <style scoped></style>
+~/composables/generators

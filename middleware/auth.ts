@@ -1,12 +1,14 @@
 import QH_CONSTANTS from '~/constants';
+import { QH_ROUTES } from '~/constants/routes';
+import { qhSecuredLS } from '~/utils/secure-ls';
 
 export default defineNuxtRouteMiddleware((to, from) => {
   if (process.client) {
-    let token = localStorage.getItem(QH_CONSTANTS.AUTH_TOKEN);
+    let token = qhSecuredLS.get(QH_CONSTANTS.AUTH_TOKEN);
     if (token) {
       return true;
     } else {
-      return navigateTo(QH_CONSTANTS.LOGIN);
+      return navigateTo(QH_ROUTES.USER.LOGIN);
     }
   }
 });

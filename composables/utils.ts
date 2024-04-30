@@ -222,6 +222,13 @@ export const qhDates = {
     return `${month} ${ordinalDay}, ${year}`;
   },
 
+  shortDate(date: string | Date | null) {
+    if (date === null || '') return 'Present';
+    const month = format(date, 'MMMM');
+    const year = format(date, 'yyyy');
+    return `${month}, ${year}`;
+  },
+
   getReadableDate(value: string | Date) {
     const date = new Date(value);
     const shortMonth = date.toLocaleDateString('en-US', { month: 'short' });

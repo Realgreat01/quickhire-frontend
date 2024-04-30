@@ -17,7 +17,7 @@ Do you really want to proceed with this action.
 <br>
 
  Action may be irreversible!`;
-const defaultTitle = 'Are you sure ?!';
+const defaultTitle = 'Are you sure ?';
 
 export const useModalStore = defineStore('modal', {
   state: (): State => ({
@@ -74,4 +74,5 @@ export const useModalStore = defineStore('modal', {
       this.showDropdown = !this.showDropdown;
     },
   },
+  persist: false,
 });

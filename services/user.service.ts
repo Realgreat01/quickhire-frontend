@@ -165,5 +165,19 @@ export const DELETE_USER_PROJECTS = async (id: string) => {
     url: 'forms/projects' + id,
   });
 };
+export const GET_USER_STACKS = async () => {
+  return await ApiService.run({
+    method: ApiService.GET,
+    url: 'forms/skills',
+  });
+};
+
+export const ADD_USER_STACKS = async (data: Stacks) => {
+  return await ApiService.run({
+    method: ApiService.POST,
+    url: 'forms/skills',
+    data,
+  });
+};
 
 export default {};

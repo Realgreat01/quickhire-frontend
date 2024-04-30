@@ -37,23 +37,8 @@
 
         <div class="">
           <RiFileListFill class="icon h-6 w-6" />
-          <h2 class="">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-            exercitationem quia quos id illo consectetur vero ducimus
-            distinctio, ipsum incidunt dicta vel nostrum tempore excepturi
-            impedit quo quod voluptates quaerat dolore beatae fuga, ab error!
-            Corporis autem distinctio, quidem repellat animi amet minima
-            dolorem, corrupti mollitia laudantium voluptatum at vel architecto
-            non, beatae porro neque perferendis ipsa rem minus sint. In
-            accusamus ex repellendus sit, distinctio repellat sequi sapiente vel
-            quam dicta sed voluptas voluptatibus autem maiores, recusandae
-            temporibus doloremque corporis minima reiciendis odio laboriosam,
-            commodi inventore? Error nesciunt recusandae dolores, numquam
-            veritatis fugit nisi eos magni, facere veniam dignissimos? Cum,
-            repellat? Pariatur, officiis nulla maiores repellat maxime alias cum
-            totam, dolorem ipsa, voluptatibus numquam iusto eum commodi ullam
-            aut!
-          </h2>
+
+          <h2 class="" v-html="experience.contributions"></h2>
           <!-- <span class="block" v-html="experience.contributions"></span> -->
         </div>
       </qh-card>

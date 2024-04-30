@@ -15,7 +15,7 @@ export class QH_ROUTES {
     // MODALS AND ROUTES
     INDEX: 'user',
     PROFILE: 'user-profile',
-    EDUCATION: 'user-education',
+    EDUCATION: 'education',
     PROJECTS: 'user-projects',
     DETAILS: 'user-profile',
     EXPERIENCE: 'user-experience',

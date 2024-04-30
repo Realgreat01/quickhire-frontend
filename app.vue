@@ -21,13 +21,19 @@ import 'notivue/notification-progress.css';
 import { Notivue, Notification, NotificationProgress } from 'notivue';
 import { useModalStore } from '~/store/modal-store';
 import { useJobStore } from '~/store/job-store';
+import ApiService from './services/api-service.service';
 
 const { showModal } = storeToRefs(useModalStore());
 const modalStore = useModalStore();
 const { getAllJobs } = useJobStore();
-onMounted(() => {
+
+onMounted(async () => {
   if (process.client) {
-    getAllJobs();
+    await getAllJobs();
   }
+
+  setInterval(async () => {
+    await ApiService.pingServer();
+  }, 60000);
 });
 </script>

@@ -9,6 +9,7 @@ import {
   GET_USER_EDUCATION,
   GET_USER_EXPERIENCE,
   GET_USER_PROJECTS,
+  GET_USER_STACKS,
 } from '~/services/user.service';
 
 import type {
@@ -24,7 +25,7 @@ interface UserType {
   Projects: Projects[] | null;
   Educations: Education[] | null;
   Experiences: Experience[] | null;
-  Stacks: Stacks[] | null;
+  Stacks: Stacks | null;
 }
 
 export const useUserStore = defineStore('user', {
@@ -54,9 +55,12 @@ export const useUserStore = defineStore('user', {
     educations(): Education[] | null {
       return this.Educations;
     },
+    stacks(): Stacks | null {
+      return this.Stacks;
+    },
 
     fullname(): string {
-      return `${this.BasicDetails?.firstname.toLowerCase()} ${this.BasicDetails?.lastname.toLowerCase()}`;
+      return `${this.BasicDetails?.firstname} ${this.BasicDetails?.lastname}`;
     },
   },
 
@@ -110,6 +114,12 @@ export const useUserStore = defineStore('user', {
       const response = await GET_USER_EDUCATION();
       if (response.success) {
         this.Educations = response.data;
+      }
+    },
+    async getStacks() {
+      const response = await GET_USER_STACKS();
+      if (response.success) {
+        this.Stacks = response.data;
       }
     },
   },
