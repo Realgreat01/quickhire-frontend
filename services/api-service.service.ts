@@ -1,6 +1,7 @@
 import axios, { AxiosError, type AxiosRequestConfig } from 'axios';
 import QH_CONSTANTS from '~/constants';
 import { qhSecuredLS } from '~/utils/secure-ls';
+
 interface IResponse {
   status: number | null;
   message: string;
@@ -32,7 +33,7 @@ export default class ApiService {
   public static DELETE = 'delete';
 
   private static http = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: ENV.API_URL,
     headers: {
       'Content-Type': 'application/json',
     },
