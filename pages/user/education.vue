@@ -14,7 +14,7 @@
 
         <div class="flex">
           <RiGraduationCapFill class="icon !h-6 !w-6" />
-          <h2 class="qh-text-4 font-semibold">Bachelors</h2>
+          <h2 class="qh-text-4 font-semibold">{{ education.type }}</h2>
         </div>
 
         <div class="flex">
@@ -24,26 +24,22 @@
 
         <div class="flex">
           <RiGlobalFill class="icon !h-6 !w-6" />
-          <h2 class="qh-text-4">www.uniben.edu</h2>
+          <h2 class="qh-text-4">{{ education.school_website }}</h2>
         </div>
 
         <div class="flex">
           <RiCalendarFill class="icon !h-6 !w-6" />
           <h2 class="text-brand-text text-sm font-thin">
-            <span class="">{{ formatDate(education.entryDate) }}</span>
+            <span class="">{{ formatDate(education.entry_date) }}</span>
             -
-            <span class="">{{ formatDate(education.graduationDate) }}</span>
+            <span class="">{{ formatDate(education.graduation_date) }}</span>
           </h2>
         </div>
 
         <div class="flex">
           <RiArticleFill class="icon !h-6 !w-6" />
           <h2 class="qh-text-4 w-fit">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-            ullam, totam mollitia iusto sed saepe quidem numquam labore, sint
-            dignissimos, distinctio esse laboriosam fugit repellat nam! Deserunt
-            reprehenderit earum tenetur numquam facere. Nemo quia debitis harum
-            maiores ex consectetur possimus.
+            {{ education.description }}
           </h2>
         </div>
       </qh-card>
@@ -77,7 +73,7 @@ definePageMeta({
 });
 
 useHead({
-  title: 'QuickHire - Projects',
+  title: 'QuickHire - Education',
 });
 
 const { formatDate, formatISODate } = useDate();

@@ -7,7 +7,7 @@
     >
       <img
         class="m-2 block h-32 w-32 rounded-full border border-brand"
-        src="~/assets/images/user-profile.jpg"
+        :src="basicDetails?.profile_picture"
         alt=""
       />
       <h1 class="qh-text-3 font-semibold capitalize">{{ fullname }}</h1>

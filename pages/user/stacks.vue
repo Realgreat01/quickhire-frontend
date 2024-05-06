@@ -8,15 +8,15 @@
       >
         <div class="flex flex-col gap-y-4 text-sm font-light text-dark">
           <h2 class="text-lg font-bold text-brand">
-            {{ project.projectName }}
+            {{ project.title }}
           </h2>
           <h2 class="">
             <p class="qh-test-3 font-semibold text-brand-800">Description</p>
-            {{ project.projectDescription }}
+            {{ project.description }}
           </h2>
           <h2 class="">
             <p class="qh-test-3 font-semibold text-brand-800">Lesson</p>
-            {{ project.projectLesson }}
+            {{ project.motivations }}
           </h2>
           <h2 class="">
             <p class="qh-test-3 font-semibold text-brand-800">Tools Used</p>
@@ -24,17 +24,17 @@
               <qh-button
                 :label="tool.name"
                 class="border !border-brand-600 !bg-transparent !text-brand-600"
-                v-for="tool in project.projectTools"
+                v-for="tool in project.tools_used"
                 :key="tool.name"
               />
             </div>
           </h2>
         </div>
         <div class="flex justify-between">
-          <a :href="project.githubRepo">
+          <a :href="project.preview_url">
             <RiGlobalLine class="h-7 w-7 fill-brand" />
           </a>
-          <a :href="project.previewLink">
+          <a :href="project.repository">
             <RiGithubFill class="h-7 w-7 fill-brand" />
           </a>
         </div>

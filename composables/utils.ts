@@ -150,6 +150,8 @@ export const useCurrency = () => {
   };
 
   function convertCurrencyToNumber(currencyString: string) {
+     console.log({ currencyString });
+    if (typeof currencyString === 'number') return currencyString;
     const numberString = currencyString.replace(/[^0-9.-]+/g, '');
     if (numberString === '') return 0;
     return parseFloat(numberString);

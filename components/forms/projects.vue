@@ -7,11 +7,64 @@
       >
         <div class="grid grid-cols-2 gap-4">
           <qh-input
-            v-for="(project, index) in projects"
-            :key="index"
+            label="Title"
+            name="title"
+            class="qh-full-width"
+            :required="true"
+            :rules="ValidationRules.project.title"
             :errors="errors"
-            v-bind="project"
-            v-model="projectDetails[project.name]"
+            v-model="project.title"
+          />
+
+          <qh-input
+            label="Preview URL"
+            name="preview_url"
+            :required="true"
+            :rules="ValidationRules.project.previewURL"
+            :errors="errors"
+            v-model="project.preview_url"
+          />
+
+          <qh-input
+            label="Repository URL"
+            name="repository"
+            :required="true"
+            :rules="ValidationRules.project.repositoryURL"
+            :errors="errors"
+            v-model="project.repository"
+          />
+
+          <qh-input
+            label="tools"
+            name="tools_used"
+            type="select"
+            class="qh-full-width"
+            :clearable="false"
+            :multiple="true"
+            labelName="name"
+            noDataMessage="No other skills"
+            hint="The stacks used in this project, use the support menu if a stack is not listed to suggest them to us."
+            :options="skillIcons"
+            :required="true"
+            v-model="project.tools_used"
+          />
+          <qh-input
+            label="Description"
+            name="description"
+            type="editor"
+            class="qh-full-width"
+            :required="true"
+            hint="Describe what your project does, the problem it solves."
+            v-model="project.description"
+          />
+          <qh-input
+            label="Motivations"
+            name="motivations"
+            type="editor"
+            class="qh-full-width"
+            :required="true"
+            hint="Describe challenges faced and how you overcome them. The lessons learnt and the motivations and other factors surrounding the project that you wish to share."
+            v-model="project.motivations"
           />
         </div>
 
@@ -29,9 +82,9 @@
 <script setup lang="ts">
 import { Form as VeeForm } from 'vee-validate';
 import { ValidationRules } from '~/constants/validation-rules';
-import { allTools } from '~/constants/skills';
+import { skillIcons } from '~/constants/skill';
 
-import type { Projects } from '~/types';
+import type { Projects } from '~/types/user';
 import { ADD_USER_PROJECTS } from '~/services/user.service';
 
 import { useUserStore } from '~/store/user-store';
@@ -39,71 +92,19 @@ import { useUserStore } from '~/store/user-store';
 const { getProjects } = useUserStore();
 const emit = defineEmits(['close']);
 
-const projectDetails: Projects | any = ref({
-  projectTools: [],
-  projectDescription: '',
-  projectLesson: '',
+const project: Projects | any = ref({
+  title: '',
+  tools_used: [],
+  description: '',
+  motivations: '',
 });
-
-const projects = ref([
-  {
-    label: 'Title',
-    name: 'projectName',
-    class: 'qh-full-width',
-    required: true,
-    rules: ValidationRules.project.title,
-    as: 'input',
-  },
-  {
-    label: 'Preview URL',
-    name: 'previewLink',
-    required: true,
-    rules: ValidationRules.project.previewURL,
-    as: 'input',
-  },
-  {
-    label: 'Repository URL',
-    name: 'githubRepo',
-    required: true,
-    rules: ValidationRules.project.repositoryURL,
-    as: 'input',
-  },
-  {
-    label: 'tools',
-    name: 'projectTools',
-    type: 'select',
-    class: 'qh-full-width',
-    required: true,
-    clearable: false,
-    multiple: true,
-    labelName: 'name',
-    noDataMessage: 'No other skills',
-    hint: 'The stacks used in this project, use the support menu if a stack is not listed to suggest them to us.',
-    options: allTools.value,
-  },
-  {
-    label: 'Description',
-    name: 'projectDescription',
-    type: 'editor',
-    required: true,
-    hint: 'Describe what your project does, the problem it solves.',
-    class: 'qh-full-width',
-  },
-  {
-    label: 'Motivations',
-    name: 'projectLesson',
-    type: 'editor',
-    hint: 'Describe challenges faced and how you overcome them. The lessons learnt and the motivations and other factors surrounding the project that you wish to share.',
-    class: 'qh-full-width',
-  },
-]);
 
 const submitProject = async (field: any) => {
   const response = await ADD_USER_PROJECTS({
     ...field,
-    projectTools: projectDetails.value.projectTools,
-    projectDescription: projectDetails.value.projectDescription,
-    projectLesson: projectDetails.value.projectLesson,
+    tools_used: project.value.tools_used,
+    description: project.value.description,
+    motivations: project.value.motivations,
   });
 
   if (response.success) {

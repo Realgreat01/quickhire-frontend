@@ -54,11 +54,11 @@
                 <h1
                   class="qh-text-3 hidden font-bold text-success-800 md:block"
                 >
-                  {{ qhNumbers.formatCurrency(job.salary) }}
+                  <!-- {{ qhNumbers.formatCurrency(job.salary) }} -->
                 </h1>
               </div>
               <h1 class="qh-text-3 font-bold text-success-800">
-                {{ qhNumbers.formatCurrency(job.salary) }}
+                <!-- {{ qhNumbers.formatCurrency(job.salary) }} -->
               </h1>
             </div>
 
@@ -67,9 +67,9 @@
             <div class="flex flex-col items-end">
               <h2 class="qh-text-4">
                 {{
-                  qhNumbers.formatNumber(
-                    qhNumbers.convertCurrencyToNumber(job.salary) * 0.0029,
-                  )
+                  // qhNumbers.formatNumber(
+                    // qhNumbers.convertCurrencyToNumber(job.salary) * 0.0029,
+                  // )
                 }}
                 Applicants
               </h2>

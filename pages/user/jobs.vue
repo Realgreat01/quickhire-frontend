@@ -34,7 +34,7 @@
         <qh-button
           class="qh-text-4 block h-8 w-fit rounded-full !bg-transparent font-semibold !text-success-600"
         >
-          {{ qhNumbers.formatCurrency(job.salary) }}
+          <!-- {{ qhNumbers.formatCurrency(job.salary) }} -->
         </qh-button>
         <qh-button
           v-if="index % 2 === 0"

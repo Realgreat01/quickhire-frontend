@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { ADD_USER_DETAILS } from '~/services/user.service';
+import { EDIT_USER_DETAILS } from '~/services/user.service';
 import { Form as VeeForm } from 'vee-validate';
 import type { BasicDetails } from '~/types';
 import { ValidationRules } from '~/constants/validation-rules';
@@ -87,7 +87,7 @@ const basicDetails = ref<BasicDetails | any>({
 });
 
 const submitBasicDetails = async (field: any) => {
-  const response = await ADD_USER_DETAILS({
+  const response = await EDIT_USER_DETAILS({
     ...field,
     gender: basicDetails.value.gender.value,
   });

@@ -3,12 +3,12 @@ import type {
   REGISTER_COMPANY_PAYLOAD,
 } from '~/types/auth';
 import ApiService from './api-service.service';
-import type { LOGIN_PAYlOAD } from '~/types';
+import type { LOGIN_PAYlOAD } from '~/types/auth';
 
 export const LOG_IN_USER = async (data: LOGIN_PAYlOAD) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: '/auth/users/login',
+    url: '/auth/login',
     data,
   });
 };
@@ -16,7 +16,7 @@ export const LOG_IN_USER = async (data: LOGIN_PAYlOAD) => {
 export const REGISTER_USER = async (data: LOGIN_PAYlOAD) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: '/auth/users/register',
+    url: '/auth/register',
     data,
   });
 };
@@ -40,7 +40,7 @@ export const FORGOT_PASSWORD_USER = async (data: LOGIN_PAYlOAD) => {
 export const LOG_IN_COMPANY = async (data: LOGIN_COMPANY_PAYLOAD) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: 'auth/company/login',
+    url: 'auth/login/company',
     data,
   });
 };
@@ -48,7 +48,7 @@ export const LOG_IN_COMPANY = async (data: LOGIN_COMPANY_PAYLOAD) => {
 export const REGISTER_COMPANY = async (data: REGISTER_COMPANY_PAYLOAD) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: 'auth/company/register',
+    url: 'auth/register/company',
     data,
   });
 };

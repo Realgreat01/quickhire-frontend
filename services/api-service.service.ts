@@ -58,7 +58,7 @@ export default class ApiService {
   public static async pingServer() {
     await ApiService.run({
       method: ApiService.GET,
-      url: '/test',
+      url: '/',
     });
   }
 
@@ -73,13 +73,12 @@ export default class ApiService {
     let response;
     try {
       const serverResponse = await ApiService.http(request);
-
       response = new ApiResponse({
-        status: serverResponse.status,
-        code: serverResponse.data.code,
+        status: serverResponse.data.meta.status,
+        code: serverResponse.data.meta.code,
         success: true,
-        message: serverResponse.data.message,
-        data: serverResponse.data.data || serverResponse.data,
+        message: serverResponse.data.meta.message,
+        data: serverResponse.data.data,
         meta: serverResponse.data.meta,
       });
     } catch (err: AxiosError | any) {

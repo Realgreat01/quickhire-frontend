@@ -1,5 +1,5 @@
 <template>
-  <qh-card class="w-full bg-white md:w-96" :class="Class" v-if="job._id">
+  <qh-card class="w-full bg-white md:w-96" :class="Class">
     <div class="flex justify-between gap-x-2">
       <div class="flex">
         <img
@@ -11,25 +11,43 @@
         <div class="ml-5 flex flex-col">
           <h1 class="qh-text-3 flex items-center font-bold text-brand">
             <span class=""> {{ job.posted_by?.company_name }}</span>
-            <RiVerifiedBadgeFill class="h-[14px] w-[14px] fill-success-500" />
+            <RiVerifiedBadgeFill
+              class="ml-1 h-[14px] w-[14px] fill-success-500"
+            />
           </h1>
           <h1 class="qh-text-4 ml-0">
-            {{ job.posted_by?.company_location }}
+            <span class="" v-if="job.posted_by?.address.state">
+              {{ job.posted_by?.address.state }},
+            </span>
+            {{ job.posted_by?.address.country }}
           </h1>
-          <h1 class="qh-text-4">Intership / {{ job.job_type }}</h1>
+          <h1 class="qh-text-4 capitalize">
+            {{ job.experience_level }} Level / {{ job.job_type }}
+          </h1>
         </div>
       </div>
       <div class="flex flex-col items-end">
         <div class="flex items-center gap-x-1 capitalize">
-          <RiBuildingLine class="h-4 w-4 fill-brand" />
-          <span class="text-sm text-dark-400">remote</span>
+          <RiBuildingLine
+            class="h-4 w-4 fill-brand"
+            v-if="job.job_location_type === 'onsite'"
+          />
+          <RiHomeOfficeLine
+            class="h-4 w-4 fill-brand"
+            v-if="job.job_location_type === 'hybrid'"
+          />
+          <RiHomeWifiLine
+            class="h-4 w-4 fill-brand"
+            v-if="job.job_location_type === 'remote'"
+          />
+          <span class="text-sm text-dark-400">{{ job.job_location_type }}</span>
         </div>
         <h1 class="qh-text-4 font-bold text-success">
-          {{
+          <!-- {{
             qhNumbers.formatCurrency(
               qhNumbers.convertCurrencyToNumber(job.salary) / 600.73,
             )
-          }}
+          }} -->
         </h1>
       </div>
     </div>
@@ -80,6 +98,8 @@ import {
   RiVerifiedBadgeFill,
   RiUserFill,
   RiBuildingLine,
+  RiHomeWifiLine,
+  RiHomeOfficeLine,
 } from 'vue-remix-icons';
 import { QH_ROUTES } from '~/constants/routes';
 import { useJobStore } from '~/store/job-store';

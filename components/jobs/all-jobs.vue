@@ -2,6 +2,7 @@
   <div class="mt-20 p-4">
     <h1 class="qh-text-1 my-4">Latest Jobs</h1>
     <div class="flex flex-wrap gap-4">
+      <!-- {{ allJobs }} -->
       <div class="" v-for="(job, index) in allJobs">
         <qh-job-card :job="job" class="w-full" v-if="job._id" />
       </div>

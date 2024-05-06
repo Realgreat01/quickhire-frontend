@@ -18,7 +18,7 @@ import type {
   Education,
   Experience,
   Stacks,
-} from '~/types';
+} from '~/types/user';
 
 interface UserType {
   BasicDetails: BasicDetails | null;

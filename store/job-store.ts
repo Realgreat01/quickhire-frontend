@@ -29,8 +29,10 @@ export const useJobStore = defineStore('job', {
       return this.Job;
     },
 
-    otherJobs(): Job[] {
-      return this.AllJobs.filter((job: any) => job._id != this.job._id);
+    otherJobs(): Job[] | null {
+      if (this.AllJobs) {
+        return this.AllJobs.filter((job: any) => job._id != this.job._id);
+      } else return [];
     },
   },
 

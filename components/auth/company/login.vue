@@ -10,15 +10,10 @@
         >
           <qh-input
             label="Email / Company ID"
-            name="emailOrCompanyID"
+            name="email_or_company_id"
             required
           />
-          <qh-input
-            label="Password"
-            name="company_password"
-            type="password"
-            required
-          />
+          <qh-input label="Password" name="password" type="password" required />
           <qh-button
             label="Login"
             type="submit"

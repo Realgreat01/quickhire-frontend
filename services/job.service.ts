@@ -66,6 +66,6 @@ export const APPLY_FOR_JOB = async (id: string) => {
 export const GET_JOB_STATUS = async (id: string) => {
   return await ApiService.run({
     method: ApiService.GET,
-    url: '/jobs/' + id,
+    url: '/job/' + id,
   });
 };

@@ -1,20 +1,43 @@
+import type { AddressInterface } from './utils';
+
+export interface Skills {
+  name: string;
+  icon: string;
+}
+
+export type JobLocationType = 'remote' | 'onsite' | 'hybrid';
+export type JobType =
+  | 'Full-Time'
+  | 'Part-Time'
+  | 'Contract'
+  | 'Internship'
+  | 'Voluntary';
+
 export interface Job {
   posted_by: {
     company_name: string;
-    company_location: string;
-    company_logo: string;
+    address: AddressInterface;
+    logo: string;
     company_id: string;
-  } | null;
+  };
   _id: string;
   job_title: string;
   isActive?: boolean;
   job_description: string;
-  job_type?: 'Fulltime' | 'Part-Time' | 'Contract' | 'Internship' | 'Voluntary';
-  job_type: string;
-  posted_on: Date | string;
-  application_ends: Date | string;
-  job_duration: Date | string;
-  salary: number;
-  required_skills: Skill[];
   applicants: any[];
+  application_ends: Date | null;
+  job_type: JobType;
+  posted_on: Date;
+  job_duration: {
+    date: 'week' | 'month' | 'year';
+    value: number;
+  };
+  job_location_type: JobLocationType;
+  salary: {
+    currency: string;
+    value: number;
+  };
+  job_status: 'open' | 'closed' | 'paused';
+  experience_level: 'entry' | 'mid' | 'senior';
+  required_skills: Skills[];
 }

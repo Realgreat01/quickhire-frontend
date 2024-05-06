@@ -11,11 +11,16 @@
               {{ job?.job_title }}
             </h1>
             <qh-button
-              v-if="!job?.isActive"
+              v-if="job.job_status === 'open'"
               label="Active"
               class="qh-text-4 h-4 rounded-full bg-green-500 px-4 font-medium"
             />
 
+            <qh-button
+              v-else-if="job.job_status === 'paused'"
+              label="Paused"
+              class="qh-text-4 h-4 rounded-full bg-secondary-600 px-4 font-medium !text-dark-100"
+            />
             <qh-button
               v-else
               label="Closed"
@@ -34,7 +39,7 @@
             />
           </div>
           <h1 class="qh-text-3 font-bold text-success-800">
-            {{ qhNumbers.formatCurrency(job.salary) }}
+            {{ qhNumbers.formatCurrency(job.salary.value) }}
           </h1>
         </div>
         <div class="flex h-full flex-col items-end justify-between">
@@ -48,7 +53,16 @@
             label="See Applicants"
           />
           <qh-button
-            v-else-if="job.applicants.includes(basicDetails?.id)"
+            v-else-if="job.job_status === 'paused'"
+            class="disabled h-8 w-fit rounded-full bg-secondary-800 px-8"
+            label="Paused"
+          />
+          <qh-button
+            v-else-if="
+              job.applicants.some(
+                (applicant: any) => applicant.user === basicDetails?._id,
+              )
+            "
             class="disabled h-8 w-fit rounded-full bg-brand-400 px-8"
             label="Appllied"
           />
@@ -80,7 +94,7 @@
         </div>
         <div class="">
           <h1 class="qh-text-4 font-bold">Application End</h1>
-          <p class="">{{ qhDates.formatDate(job?.application_ends) }}</p>
+          <!-- <p class="">{{ qhDates.formatDate(job?.application_ends) }}</p> -->
         </div>
       </div>
     </div>
@@ -88,7 +102,6 @@
 </template>
 
 <script setup lang="ts">
-import type { Job } from '~/types/job';
 import QH_CONSTANTS from '~/constants';
 import { useJobStore } from '~/store/job-store';
 import { useUserStore } from '~/store/user-store';

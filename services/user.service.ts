@@ -5,55 +5,19 @@ import type {
   Experience,
   Projects,
   Stacks,
-} from '~/types';
+} from '~/types/user';
 
 export const GET_USER_DETAILS = async () => {
   return await ApiService.run({
     method: ApiService.GET,
-    url: '/forms/basic-details',
-  });
-};
-export const ADD_USER_DETAILS = async (data: BasicDetails) => {
-  return await ApiService.run({
-    method: ApiService.POST,
-    url: '/forms/basic-details',
-    data,
+    url: '/user',
   });
 };
 
 export const EDIT_USER_DETAILS = async (data: BasicDetails) => {
   return await ApiService.run({
     method: ApiService.PUT,
-    url: '/forms/basic-details',
-    data,
-  });
-};
-
-export const DELETE_USER_DETAILS = async (data: BasicDetails) => {
-  return await ApiService.run({
-    method: ApiService.POST,
-    url: 'api/auth/users/login',
-    data,
-  });
-};
-export const ADD_BIO_DETAILS = async (data: BasicDetails) => {
-  return await ApiService.run({
-    method: ApiService.POST,
-    url: 'api/auth/users/login',
-    data,
-  });
-};
-export const EDIT_BIO_DETAILS = async (data: BasicDetails) => {
-  return await ApiService.run({
-    method: ApiService.POST,
-    url: 'api/auth/users/login',
-    data,
-  });
-};
-export const DELETE_BIO_DETAILS = async (data: BasicDetails) => {
-  return await ApiService.run({
-    method: ApiService.POST,
-    url: 'api/auth/users/login',
+    url: '/user',
     data,
   });
 };
@@ -61,28 +25,28 @@ export const DELETE_BIO_DETAILS = async (data: BasicDetails) => {
 export const GET_USER_EXPERIENCE = async () => {
   return await ApiService.run({
     method: ApiService.GET,
-    url: 'forms/experience',
+    url: '/user/experience',
   });
 };
 
 export const ADD_USER_EXPERIENCE = async (data: Experience) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: 'forms/experience',
+    url: '/user/experience',
     data,
   });
 };
 export const EDIT_USER_EXPERIENCE = async (data: Experience, id: string) => {
   return await ApiService.run({
     method: ApiService.PUT,
-    url: 'forms/experience/' + id,
+    url: '/user/experience/' + id,
     data,
   });
 };
 export const DELETE_USER_EXPERIENCE = async (data: Experience, id: string) => {
   return await ApiService.run({
     method: ApiService.DELETE,
-    url: 'forms/experience/' + id,
+    url: '/user/experience/' + id,
     data,
   });
 };
@@ -90,50 +54,28 @@ export const DELETE_USER_EXPERIENCE = async (data: Experience, id: string) => {
 export const GET_USER_EDUCATION = async () => {
   return await ApiService.run({
     method: ApiService.GET,
-    url: 'forms/education',
+    url: '/user/education',
   });
 };
 
 export const ADD_USER_EDUCATION = async (data: Education) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: 'forms/education',
+    url: '/user/education',
     data,
   });
 };
 export const EDIT_USER_EDUCATION = async (data: Education, id: string) => {
   return await ApiService.run({
     method: ApiService.PUT,
-    url: 'forms/education/' + id,
+    url: '/user/education/' + id,
     data,
   });
 };
 export const DELETE_USER_EDUCATION = async (data: Education, id: string) => {
   return await ApiService.run({
     method: ApiService.DELETE,
-    url: 'forms/education/' + id,
-    data,
-  });
-};
-
-export const ADD_USER_STACK = async (data: Stacks) => {
-  return await ApiService.run({
-    method: ApiService.POST,
-    url: 'api/auth/users/login',
-    data,
-  });
-};
-export const EDIT_USER_STACK = async (data: Stacks) => {
-  return await ApiService.run({
-    method: ApiService.POST,
-    url: 'api/auth/users/login',
-    data,
-  });
-};
-export const DELETE_USER_STACK = async (data: Stacks) => {
-  return await ApiService.run({
-    method: ApiService.POST,
-    url: 'api/auth/users/login',
+    url: '/user/education/' + id,
     data,
   });
 };
@@ -141,41 +83,41 @@ export const DELETE_USER_STACK = async (data: Stacks) => {
 export const GET_USER_PROJECTS = async () => {
   return await ApiService.run({
     method: ApiService.GET,
-    url: 'forms/projects',
+    url: '/user/project',
   });
 };
 
 export const ADD_USER_PROJECTS = async (data: Projects) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: 'forms/projects',
+    url: '/user/project',
     data,
   });
 };
 export const EDIT_USER_PROJECTS = async (data: Projects, id: string) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: 'forms/projects/' + id,
+    url: '/user/project/' + id,
     data,
   });
 };
 export const DELETE_USER_PROJECTS = async (id: string) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: 'forms/projects' + id,
+    url: '/user/project/' + id,
   });
 };
 export const GET_USER_STACKS = async () => {
   return await ApiService.run({
     method: ApiService.GET,
-    url: 'forms/skills',
+    url: '/user/skills',
   });
 };
 
-export const ADD_USER_STACKS = async (data: Stacks) => {
+export const EDIT_USER_STACKS = async (data: Stacks) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: 'forms/skills',
+    url: '/user/skills',
     data,
   });
 };
