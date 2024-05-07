@@ -66,11 +66,11 @@
 
             <div class="flex flex-col items-end">
               <h2 class="qh-text-4">
-                {{
-                  // qhNumbers.formatNumber(
-                    // qhNumbers.convertCurrencyToNumber(job.salary) * 0.0029,
-                  // )
-                }}
+                <!-- {{
+                  qhNumbers.formatNumber(
+                    qhNumbers.convertCurrencyToNumber(job.salary) * 0.0029,
+                  )
+                }} -->
                 Applicants
               </h2>
               <qh-button
