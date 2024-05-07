@@ -14,6 +14,13 @@ export const GET_USER_DETAILS = async () => {
   });
 };
 
+export const GET_USER_BY_USERNAME = async (username: string) => {
+  return await ApiService.run({
+    method: ApiService.GET,
+    url: '/public/user/' + username,
+  });
+};
+
 export const EDIT_USER_DETAILS = async (data: BasicDetails) => {
   return await ApiService.run({
     method: ApiService.PUT,

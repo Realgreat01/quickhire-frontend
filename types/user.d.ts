@@ -2,6 +2,7 @@ import type {
   AddressInterface,
   JobLocationType,
   JobType,
+  Reference,
   Skills,
   SocialLinks,
 } from './utils';
@@ -93,4 +94,35 @@ export interface Projects {
   project_type?: 'commercial' | 'academic' | 'personal' | 'open source';
   images_or_screenshots?: string[];
   status?: 'completed' | 'in progress' | 'on hold';
+}
+
+export interface PublicUser {
+  email: string;
+  username: string;
+  profile_picture: string;
+  password: string;
+  firstname: string;
+  lastname: string;
+  middlename: string;
+  phone_number: string;
+  gender: 'male' | 'female' | 'others';
+  about_me: string;
+  header_bio: string;
+  summary: string;
+  cover_letter: string;
+  hobbies?: string[];
+  interests?: string[];
+  address: AddressInterface;
+  reference: Reference[];
+  social_media: SocialLinks;
+  experience_level: 'entry' | 'mid' | 'senior';
+  rate: number;
+  highest_education_level: Education['type'];
+  interest_job: JobLocationType;
+  availability: string;
+  blogs: object[];
+  projects: Projects[];
+  experience: Experience[];
+  skills: Stacks;
+  education: Education[];
 }

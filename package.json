@@ -38,6 +38,7 @@
     "vue-remix-icons": "^3.10.0",
     "vue-router": "^4.3.2",
     "vue-select": "^4.0.0-beta.6",
+    "vue-use-active-scroll": "^1.1.1",
     "vue3-easy-data-table": "^1.5.47",
     "yup": "^1.4.0"
   },

@@ -3,8 +3,9 @@
     class="sticky bottom-0 top-0 flex h-screen flex-col items-center justify-center gap-2 bg-white px-1"
   >
     <qh-card
-      class="font-poppins my-10 flex h-60 w-full flex-col items-center justify-center border-2 !border-dark-50"
+      class="font-poppins relative my-10 flex h-60 w-full flex-col items-center justify-center border-2 !border-dark-50"
     >
+      <qh-edit-button class="text-dark" />
       <img
         class="m-2 block h-32 w-32 rounded-full border border-brand"
         :src="basicDetails?.profile_picture"
@@ -12,13 +13,13 @@
       />
       <h1 class="qh-text-3 font-semibold capitalize">{{ fullname }}</h1>
       <h1 class="text-xs text-brand">@{{ basicDetails?.username }}</h1>
-      <h1 class="qh-text-4 font-normal">Fullstack Developer</h1>
+      <h1 class="qh-text-4 font-normal">{{ stacks?.stack }}</h1>
     </qh-card>
 
     <RouterLink
       :to="{ name: item.route }"
       :class="item.class"
-      class="font-geologica flex w-60 cursor-pointer p-1 pl-4 font-semibold hover:scale-[1.025]"
+      class="font-geologica mt-2 flex w-60 cursor-pointer p-1 pl-4 font-semibold hover:scale-[1.025]"
       v-for="(item, index) in sidebar"
       :key="index"
     >
@@ -53,7 +54,7 @@ import {
 import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 
-const { fullname, basicDetails } = storeToRefs(useUserStore());
+const { fullname, basicDetails, stacks } = storeToRefs(useUserStore());
 
 const sidebar = markRaw([
   {

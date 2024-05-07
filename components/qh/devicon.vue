@@ -1,7 +1,7 @@
 <template>
   <div class="tooltip relative m-2">
     <img :src="`/dev-icon/${icon.icon}.svg`" alt="" class="h-6 w-6" />
-    <span class="tooltiptext qh-text-4 bg-brand text-white">{{
+    <span class="tooltiptext qh-text-4 z-[999] bg-brand text-white">{{
       icon.name
     }}</span>
   </div>

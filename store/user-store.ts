@@ -5,6 +5,7 @@ import {
   ADD_USER_PROJECTS,
   DELETE_USER_PROJECTS,
   EDIT_USER_PROJECTS,
+  GET_USER_BY_USERNAME,
   GET_USER_DETAILS,
   GET_USER_EDUCATION,
   GET_USER_EXPERIENCE,
@@ -18,6 +19,7 @@ import type {
   Education,
   Experience,
   Stacks,
+  PublicUser,
 } from '~/types/user';
 
 interface UserType {
@@ -26,6 +28,7 @@ interface UserType {
   Educations: Education[] | null;
   Experiences: Experience[] | null;
   Stacks: Stacks | null;
+  PublicUser: PublicUser | null;
 }
 
 export const useUserStore = defineStore('user', {
@@ -36,6 +39,7 @@ export const useUserStore = defineStore('user', {
       Educations: null,
       Experiences: null,
       Stacks: null,
+      PublicUser: null,
     };
   },
 
@@ -55,8 +59,12 @@ export const useUserStore = defineStore('user', {
     educations(): Education[] | null {
       return this.Educations;
     },
+
     stacks(): Stacks | null {
       return this.Stacks;
+    },
+    publicUser(): PublicUser | null {
+      return this.PublicUser;
     },
 
     fullname(): string {
@@ -65,6 +73,12 @@ export const useUserStore = defineStore('user', {
   },
 
   actions: {
+    async getPublicUser(username: string) {
+      const response = await GET_USER_BY_USERNAME(username);
+      if (response.success) {
+        this.PublicUser = response.data;
+      }
+    },
     async getBasicDetails() {
       const response = await GET_USER_DETAILS();
       if (response.success) {

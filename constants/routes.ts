@@ -22,6 +22,7 @@ export class QH_ROUTES {
     STACKS: 'user-stacks',
     CONTACT: 'user-contact',
     APPLIED_JOBS: 'user-jobs',
+    PREVIEW: 'user-preview',
   };
 
   static JOB = {

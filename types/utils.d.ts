@@ -32,3 +32,17 @@ export type JobType =
   | 'Contract'
   | 'Internship'
   | 'Voluntary';
+
+export interface Notification {
+  title: string;
+  body: string;
+  created_at: Date;
+  is_read: boolean;
+  notification_type: 'general' | 'updates' | 'security';
+}
+
+interface Reference {
+  name: string;
+  title: string;
+  relationship: string;
+}

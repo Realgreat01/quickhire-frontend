@@ -48,7 +48,7 @@
               <h1 class="qh-text-4 text-brand">
                 @{{ basicDetails?.username }}
               </h1>
-              <h1 class="font-normal">Fullstack Developer</h1>
+              <h1 class="font-normal">{{ stacks?.stack }}</h1>
             </div>
             <div class="my-5">
               <RouterLink
@@ -120,7 +120,7 @@ import { storeToRefs } from 'pinia';
 import { useUserStore } from '~/store/user-store';
 import { QH_ROUTES } from '~/constants/routes';
 const { closeDropdown } = useModalStore();
-const { fullname, basicDetails } = storeToRefs(useUserStore());
+const { fullname, basicDetails, stacks } = storeToRefs(useUserStore());
 
 const route = useRoute();
 const router = useRouter();
@@ -181,7 +181,11 @@ const navbar = markRaw([
   },
   {
     title: 'Preview',
-    action: () => router.replace({ query: { edit: route.meta.name } }),
+    action: () =>
+      router.replace({
+        name: QH_ROUTES.USER.PREVIEW,
+        params: { username: basicDetails.value?.username },
+      }),
     route: '',
     icon: RiProfileFill,
     class: 'fill-brand bg-brand-100 text-brand',
