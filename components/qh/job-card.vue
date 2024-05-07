@@ -9,19 +9,19 @@
         />
 
         <div class="ml-5 flex flex-col">
-          <h1 class="qh-text-3 flex items-center font-bold text-brand">
+          <h1 class="qh-text-4 flex items-center font-bold text-brand">
             <span class=""> {{ job.posted_by?.company_name }}</span>
             <RiVerifiedBadgeFill
               class="ml-1 h-[14px] w-[14px] fill-success-500"
             />
           </h1>
-          <h1 class="qh-text-4 ml-0">
+          <h1 class="qh-text-5 ml-0 text-dark-300">
             <span class="" v-if="job.posted_by?.address.state">
               {{ job.posted_by?.address.state }},
             </span>
             {{ job.posted_by?.address.country }}
           </h1>
-          <h1 class="qh-text-4 capitalize">
+          <h1 class="qh-text-5 capitalize">
             {{ job.experience_level }} Level / {{ job.job_type }}
           </h1>
         </div>
@@ -56,7 +56,7 @@
       {{ qhHelpers.sliceWords(job.job_title, 30) }}
     </h1>
     <h1
-      class="qh-text-4"
+      class="qh-text-5"
       v-html="qhHelpers.sliceWords(job.job_description, 200)"
     ></h1>
     <div class="mt-5 flex w-full items-end justify-between">
@@ -70,7 +70,7 @@
         >
           <qh-button
             @click="getSingleJob(job?._id)"
-            class="apply-button h-6 w-28 gap-x-4 self-end rounded-full border border-brand bg-transparent font-medium !text-brand"
+            class="apply-button qh-text-4 h-6 w-28 gap-x-4 self-end rounded-full border border-brand bg-transparent font-medium !text-brand"
           >
             <span class="">Apply</span>
             <ArrowRightCircleIcon

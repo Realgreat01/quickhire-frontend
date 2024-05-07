@@ -2,7 +2,7 @@
   <div class="h-screen">
     <div class="relative grid gap-4 md:grid-cols-[1fr,4fr]">
       <LayoutsSidebar
-        class="sticky bottom-0 top-0 hidden overflow-y-scroll md:block"
+        class="sticky bottom-0 top-0 hidden overflow-y-scroll border-r-2 border-dark-100 md:block"
       />
       <div class="sticky bottom-0 top-0">
         <LayoutsNavbar class="sticky top-0 z-10" />

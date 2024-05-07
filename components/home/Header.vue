@@ -1,27 +1,27 @@
 <template>
   <div
-    class="sticky top-0 z-[99] flex w-full items-center justify-between bg-dark-50"
+    class="sticky top-0 z-[99] flex w-full items-center justify-between bg-white"
   >
     <icons-logo class="text-brand" />
-    <div class="qh-flex-center hidden gap-x-2 md:flex">
+    <div class="qh-flex-center hidden md:flex">
       <a
         :href="nav.link"
-        class="flex rounded-full !bg-transparent px-3 py-1 !font-medium !text-brand duration-200 hover:!bg-brand-500 hover:!fill-brand-50 hover:!text-white"
+        class="qh-text-4 flex items-center rounded-full !bg-transparent px-4 py-1 !text-brand duration-200 hover:!bg-brand-500 hover:!fill-brand-50 hover:!text-white"
         v-for="(nav, index) in headerNavigations"
         :key="index"
       >
         <component :is="nav.icon" class="mr-2 h-6 w-6"></component>
-        <span class=""> {{ nav.title }}</span></a
+        <span class="qh-text-4"> {{ nav.title }}</span></a
       >
     </div>
     <div class="hidden gap-x-4 md:flex">
       <RouterLink :to="{ name: QH_ROUTES.USER.LOGIN }">
-        <qh-button class="h-10 w-36 rounded-full font-medium" label="Login" />
+        <qh-button class="h-10 w-40 rounded-full font-medium" label="Login" />
       </RouterLink>
       <RouterLink :to="{ name: QH_ROUTES.USER.REGISTER }">
         <qh-button
-          label="Create Account"
-          class="h-10 w-36 rounded-full border border-brand bg-transparent font-medium !text-brand"
+          label="Create&nbsp;Account"
+          class="h-10 w-40 rounded-full border border-brand bg-transparent font-medium !text-brand"
         />
       </RouterLink>
     </div>

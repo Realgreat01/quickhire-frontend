@@ -3,6 +3,8 @@ import QH_CONSTANTS from '~/constants';
 
 import {
   ADD_USER_PROJECTS,
+  DELETE_USER_EDUCATION,
+  DELETE_USER_EXPERIENCE,
   DELETE_USER_PROJECTS,
   EDIT_USER_PROJECTS,
   GET_USER_BY_USERNAME,
@@ -124,12 +126,29 @@ export const useUserStore = defineStore('user', {
       }
     },
 
+    async deleteExperience(id: string) {
+      const response = await DELETE_USER_EXPERIENCE(id);
+      if (response.success) {
+        qhToast.success('Experience deleted successfully');
+        await this.getExperiences();
+      }
+    },
+
     async getEducation() {
       const response = await GET_USER_EDUCATION();
       if (response.success) {
         this.Educations = response.data;
       }
     },
+
+    async deleteEducation(id: string) {
+      const response = await DELETE_USER_EDUCATION(id);
+      if (response.success) {
+        qhToast.success('Education deleted successfully');
+        this.getEducation();
+      }
+    },
+
     async getStacks() {
       const response = await GET_USER_STACKS();
       if (response.success) {

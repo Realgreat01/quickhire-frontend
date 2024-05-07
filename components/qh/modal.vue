@@ -1,6 +1,11 @@
 <template>
   <qh-container class="">
-    <div class="my-10">
+    <div class="mb-10">
+      <img
+        src="~/assets/svgs/question.svg"
+        alt=""
+        class="mx-auto h-48 text-center"
+      />
       <h2 class="qh-text-1 text-center font-bold">{{ modalStore.title }}</h2>
       <p
         class="qh-text-3 mx-auto my-6 w-2/3 text-center"

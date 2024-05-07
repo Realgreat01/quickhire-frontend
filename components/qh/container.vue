@@ -17,7 +17,7 @@
             :class="class"
           >
             <div
-              class="sticky top-0 z-50 flex w-full items-center justify-center border-b bg-white pb-2 pt-4"
+              class="sticky top-0 z-50 flex w-full items-center justify-center bg-white pb-2 pt-4"
             >
               <h2
                 class="qh-text-2 ml-4 mt-4 w-fit justify-self-center text-center font-black capitalize text-brand"

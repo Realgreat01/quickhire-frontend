@@ -170,12 +170,6 @@ const props = defineProps({
   hasCheckbox: Boolean,
   checkboxText: { type: String, default: 'This should be a chekbox content' },
 });
-const {
-  formatCurrency,
-  formatNumberWithSuffix,
-  convertCurrencyToNumber,
-  formatNumber,
-} = useCurrency();
 
 const modelValue = ref<string | number>('');
 
@@ -228,20 +222,20 @@ const hidePassword = () => {
 
 const handleCurrency = async (value: string) => {
   await nextTick();
-  const currency = formatCurrency(value) as string;
-  emit('update:modelValue', convertCurrencyToNumber(currency));
+  const currency = qhNumbers.formatCurrency(value) as string;
+  emit('update:modelValue', qhNumbers.convertCurrencyToNumber(currency));
   modelValue.value = currency;
 };
 
 const handleNumbers = async (value: string) => {
   await nextTick();
-  const number = formatNumber(value) as string;
-  emit('update:modelValue', convertCurrencyToNumber(number));
+  const number = qhNumbers.formatNumber(value) as string;
+  emit('update:modelValue', qhNumbers.convertCurrencyToNumber(number));
   modelValue.value = number;
 };
 
 const handleFocus = async (value: string) => {
-  modelValue.value = convertCurrencyToNumber(value);
+  modelValue.value = qhNumbers.convertCurrencyToNumber(value);
 };
 
 const errorAvailable = ref(false);

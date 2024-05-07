@@ -43,6 +43,7 @@ export interface BasicDetails {
 }
 
 export interface Stacks {
+  _id: string;
   stack: string;
   top_skills: Skills[];
   programming_languages: Skills[];
@@ -53,6 +54,7 @@ export interface Stacks {
 }
 
 export interface Education {
+  _id: string;
   institution: string;
   course: string;
   entry_date: Date;
@@ -73,6 +75,7 @@ export interface Education {
 }
 
 export interface Experience {
+  _id: string;
   company: string;
   contributions: string;
   company_location: string;
@@ -84,6 +87,7 @@ export interface Experience {
 }
 
 export interface Projects {
+  _id: string;
   description: string;
   title: string;
   motivations: string;
@@ -97,6 +101,7 @@ export interface Projects {
 }
 
 export interface PublicUser {
+  _id: string;
   email: string;
   username: string;
   profile_picture: string;

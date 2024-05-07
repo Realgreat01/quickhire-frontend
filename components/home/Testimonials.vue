@@ -10,7 +10,7 @@
       >
         <qh-card class="w-fit bg-white md:w-[380px]">
           <RiDoubleQuotesL class="h-6 w-6 fill-brand" />
-          <h1 class="">{{ user.message }}</h1>
+          <h1 class="qh-text-4">{{ user.message }}</h1>
           <!-- <RiDoubleQuotesR class="h-6 w-6 fill-brand" /> -->
           <div class="relative mt-6 flex items-center justify-end">
             <div class="justify-self-end text-end">

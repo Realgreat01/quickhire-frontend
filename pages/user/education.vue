@@ -7,10 +7,13 @@
       :key="index"
     >
       <qh-edit-button class="text-dark" />
-      <qh-delete-button class="top-12" />
+      <qh-delete-button
+        class="top-12"
+        @click="deleteUserEducation(education._id)"
+      />
       <div class="flex">
         <RiSchoolFill class="icon !h-6 !w-6" />
-        <h2 class="qh-text-3 font-semibold">{{ education.institution }}</h2>
+        <h2 class="qh-text-2 font-semibold">{{ education.institution }}</h2>
       </div>
 
       <div class="flex">
@@ -30,10 +33,12 @@
 
       <div class="flex">
         <RiCalendarFill class="icon !h-6 !w-6" />
-        <h2 class="text-brand-text text-sm font-thin">
-          <span class="">{{ formatDate(education.entry_date) }}</span>
+        <h2 class="qh-text-4">
+          <span class="">{{ qhDates.shortDate(education.entry_date) }}</span>
           -
-          <span class="">{{ formatDate(education.graduation_date) }}</span>
+          <span class="">{{
+            qhDates.shortDate(education.graduation_date)
+          }}</span>
         </h2>
       </div>
 
@@ -50,21 +55,17 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import {
-  RiWebhookFill,
-  RiGithubFill,
   RiArticleFill,
-  RiArticleLine,
   RiGlobalFill,
-  RiGlobalLine,
   RiSchoolFill,
   RiGraduationCapFill,
-  RiCalendarLine,
   RiCalendarFill,
   RiBookFill,
 } from 'vue-remix-icons';
 import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 import { useUserStore } from '~/store/user-store';
+import { useModalStore } from '~/store/modal-store';
 
 definePageMeta({
   layout: 'users',
@@ -76,9 +77,17 @@ useHead({
   title: 'QuickHire - Education',
 });
 
-const { formatDate, formatISODate } = useDate();
-
 const { educations } = storeToRefs(useUserStore());
+const { deleteEducation } = useUserStore();
+
+const modalStore = useModalStore();
+
+async function deleteUserEducation(id: string) {
+  const result = await modalStore.openModal();
+  if (result) {
+    await deleteEducation(id);
+  }
+}
 </script>
 
 <style scoped>

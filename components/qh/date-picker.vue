@@ -9,7 +9,7 @@
       auto-apply
       :enable-time-picker="false"
       month-name-format="long"
-      :format="formatDate"
+      :format="qhDates.formatDate"
       :clearable="false"
       no-today
       input-class-name="qh-calendar-input"
@@ -47,8 +47,6 @@ import {
   RiArrowRightFill,
 } from 'vue-remix-icons';
 
-const { formatDate, formatISODate } = useDate();
-
 defineProps({
   vModel: String,
   disabled: Boolean,
@@ -59,8 +57,8 @@ const emit = defineEmits(['update:modelValue', 'change']);
 const date = ref('');
 
 const handleChange = (value: string) => {
-  emit('update:modelValue', formatISODate(value));
-  emit('change', formatISODate(value));
+  emit('update:modelValue', qhDates.formatISODate(value));
+  emit('change', qhDates.formatISODate(value));
 };
 </script>
 

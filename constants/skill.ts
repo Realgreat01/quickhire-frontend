@@ -337,6 +337,7 @@ export const skillIcons: DevIcons[] = reactive([
   { name: 'Photoshop', icon: 'photoshop' },
   { name: 'PHP', icon: 'php' },
   { name: 'PhpStorm', icon: 'phpstorm' },
+  { name: 'Pinia', icon: 'pinia' },
   { name: 'Playwright', icon: 'playwright' },
   { name: 'Plotly', icon: 'plotly' },
   { name: 'Pnpm', icon: 'pnpm' },

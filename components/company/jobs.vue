@@ -118,7 +118,6 @@
 </template>
 
 <script setup lang="ts">
-import type { Job } from '~/types/company';
 import { useJobStore } from '~/store/job-store';
 
 const { allJobs } = storeToRefs(useJobStore());

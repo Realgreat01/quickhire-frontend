@@ -119,6 +119,7 @@ import { useModalStore } from '~/store/modal-store';
 import { storeToRefs } from 'pinia';
 import { useUserStore } from '~/store/user-store';
 import { QH_ROUTES } from '~/constants/routes';
+
 const { closeDropdown } = useModalStore();
 const { fullname, basicDetails, stacks } = storeToRefs(useUserStore());
 

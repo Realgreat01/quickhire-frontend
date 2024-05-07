@@ -1,6 +1,6 @@
 <template>
   <div class="mt-20">
-    <h1 class="qh-text-1">Latest Jobs</h1>
+    <h1 class="qh-text-1 mb-3 mt-10 md:mb-5">Latest Jobs</h1>
     <div class="flex flex-wrap gap-4 md:hidden">
       <qh-job-card
         v-for="(job, index) in allJobs.slice(0, 4)"

@@ -11,12 +11,7 @@ interface modalOptions {
   message?: string;
   title?: string;
 }
-const defaultMessage = `
-Do you really want to proceed with this action.
-
-<br>
-
- Action may be irreversible!`;
+const defaultMessage = 'Do you really want to proceed with this action.';
 const defaultTitle = 'Are you sure ?';
 
 export const useModalStore = defineStore('modal', {

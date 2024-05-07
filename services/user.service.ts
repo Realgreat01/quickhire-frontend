@@ -50,11 +50,10 @@ export const EDIT_USER_EXPERIENCE = async (data: Experience, id: string) => {
     data,
   });
 };
-export const DELETE_USER_EXPERIENCE = async (data: Experience, id: string) => {
+export const DELETE_USER_EXPERIENCE = async (id: string) => {
   return await ApiService.run({
     method: ApiService.DELETE,
     url: '/user/experience/' + id,
-    data,
   });
 };
 
@@ -79,11 +78,10 @@ export const EDIT_USER_EDUCATION = async (data: Education, id: string) => {
     data,
   });
 };
-export const DELETE_USER_EDUCATION = async (data: Education, id: string) => {
+export const DELETE_USER_EDUCATION = async (id: string) => {
   return await ApiService.run({
     method: ApiService.DELETE,
     url: '/user/education/' + id,
-    data,
   });
 };
 

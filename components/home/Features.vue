@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="qh-text-1 mb-4 mt-20 md:mb-10">Features</h1>
+    <h1 class="qh-text-1 mb-4 mt-20 md:mb-5">Features</h1>
 
     <div class="grid gap-4 md:grid-cols-3">
       <div

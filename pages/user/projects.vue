@@ -6,22 +6,27 @@
       class="relative flex w-full flex-col justify-between gap-y-4 rounded-2xl p-4 shadow-xl"
     >
       <qh-edit-button class="text-dark" />
-      <qh-delete-button class="top-12" />
+      <qh-delete-button
+        class="top-12"
+        @click="deleteUserProject(project._id)"
+      />
       <div class="my-4 font-light text-dark">
         <RiBox3Fill class="icon h-10 w-10 fill-brand" />
-        <h2 class="qh-text-2 font-bold text-brand">
+        <h2 class="qh-text-1 font-bold text-secondary-600">
           {{ project.title }}
         </h2>
       </div>
 
       <div class="flex">
         <RiBuilding2Fill class="icon h-6 w-6" />
-        <h1 class="font-bold capitalize text-brand">{{ project.status }}</h1>
+        <h1 class="font-semibold capitalize text-brand">
+          {{ project.status }}
+        </h1>
       </div>
 
       <div class="flex">
         <RiUser2Fill class="icon h-6 w-6" />
-        <h1 class="font-bold capitalize text-brand">{{ project.role }}</h1>
+        <h1 class="font-semibold capitalize text-brand">{{ project.role }}</h1>
       </div>
 
       <div class="flex w-fit justify-start gap-4 md:flex-row md:gap-x-10">
@@ -43,7 +48,7 @@
 
       <div class="md:w-3/5">
         <RiToolsFill class="icon h-6 w-6 fill-brand" />
-        <!-- <p class="qh-test-3 font-semibold text-brand-800">Tools Used</p> -->
+        <p class="qh-test-3 font-semibold text-brand">Tools Used</p>
         <div class="flex flex-wrap gap-2">
           <qh-devicon
             :icon="tool"
@@ -57,7 +62,7 @@
       <div class="">
         <RiArticleFill class="icon h-6 w-6 fill-brand" />
 
-        <p class="qh-test-3 font-semibold text-brand-800">Description</p>
+        <p class="qh-test-3 font-semibold text-brand">Description</p>
         <h2 class="" v-html="project.description"></h2>
 
         <!-- <span v-html="project.projectDescription"></span> -->
@@ -65,7 +70,7 @@
 
       <div class="">
         <RiLightbulbFlashFill class="icon h-6 w-6 fill-brand" />
-        <p class="qh-test-3 font-semibold text-brand-800">Motivations</p>
+        <p class="qh-test-3 font-semibold text-brand">Motivations</p>
         <h2 class="pr-6" v-html="project.motivations"></h2>
         <!-- <span v-html="project.projectLesson"></span> -->
       </div>
@@ -77,7 +82,6 @@
 import { storeToRefs } from 'pinia';
 import {
   RiBox3Fill,
-  RiWebhookFill,
   RiGithubFill,
   RiGlobalLine,
   RiToolsFill,
@@ -90,6 +94,7 @@ import { skillIcons } from '~/constants/skill';
 import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 import { useUserStore } from '~/store/user-store';
+import { useModalStore } from '~/store/modal-store';
 
 definePageMeta({
   layout: 'users',
@@ -102,6 +107,15 @@ useHead({
 });
 
 const { projects } = storeToRefs(useUserStore());
+const { deleteProject } = useUserStore();
+const modalStore = useModalStore();
+
+const deleteUserProject = async (id: string) => {
+  const result = await modalStore.openModal();
+  if (result) {
+    await deleteProject(id);
+  }
+};
 </script>
 
 <style scoped>
