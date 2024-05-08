@@ -9,6 +9,7 @@
           <qh-input
             label="Title"
             name="title"
+            placeholder="Calculator App"
             class="qh-full-width"
             :required="true"
             :rules="ValidationRules.project.title"
@@ -17,9 +18,39 @@
           />
 
           <qh-input
+            label="Role"
+            name="role"
+            class="qh-full-width"
+            :required="true"
+            :rules="ValidationRules.project.role"
+            :errors="errors"
+            placeholder="owner"
+            hint="Your role in the project e.g owner, participant, etc."
+            v-model="project.role"
+          />
+
+          <qh-input
+            label="Status"
+            name="status"
+            type="select"
+            class="capitalize"
+            :options="['completed', 'in progress', 'on hold']"
+            v-model="project.status"
+          />
+          <qh-input
+            label="Project Type"
+            name="status"
+            type="select"
+            class="capitalize"
+            :options="['commercial', 'academic', 'personal', 'open source']"
+            v-model="project.project_type"
+          />
+
+          <qh-input
             label="Preview URL"
             name="preview_url"
             :required="true"
+            hint="can be same as repository url"
             :rules="ValidationRules.project.previewURL"
             :errors="errors"
             v-model="project.preview_url"
@@ -29,6 +60,7 @@
             label="Repository URL"
             name="repository"
             :required="true"
+            hint="only public repository should be added."
             :rules="ValidationRules.project.repositoryURL"
             :errors="errors"
             v-model="project.repository"
@@ -81,12 +113,9 @@
 
 <script setup lang="ts">
 import { Form as VeeForm } from 'vee-validate';
-import { ValidationRules } from '~/constants/validation-rules';
 import { skillIcons } from '~/constants/skill';
-
 import type { Projects } from '~/types/user';
 import { ADD_USER_PROJECTS } from '~/services/user.service';
-
 import { useUserStore } from '~/store/user-store';
 
 const { getProjects } = useUserStore();
@@ -94,18 +123,16 @@ const emit = defineEmits(['close']);
 
 const project: Projects | any = ref({
   title: '',
-  tools_used: [],
+  role: '',
+  status: '',
+  project_type: '',
   description: '',
   motivations: '',
+  tools_used: [],
 });
 
 const submitProject = async (field: any) => {
-  const response = await ADD_USER_PROJECTS({
-    ...field,
-    tools_used: project.value.tools_used,
-    description: project.value.description,
-    motivations: project.value.motivations,
-  });
+  const response = await ADD_USER_PROJECTS(project.value);
 
   if (response.success) {
     qhToast.success('Project submitted successfully');

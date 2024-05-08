@@ -5,13 +5,79 @@
         class="mx-auto mt-4 w-full"
         @submit.prevent="handleSubmit($event, submitEducation)"
       >
-        <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
           <qh-input
-            v-for="(education, index) in educationList"
-            :key="index"
-            v-bind="education"
-            v-model="educationDetail[education.name]"
-            class="block w-full rounded bg-transparent p-2 text-white"
+            label="Institution Name"
+            type="text"
+            name="institution"
+            class="md:col-span-2"
+            v-model="education.institution"
+            :rules="ValidationRules.education.institutionName"
+            required
+          />
+
+          <qh-input
+            label="Course of Study"
+            type="text"
+            name="course"
+            class="md:col-span-2"
+            v-model="education.course"
+            :rules="ValidationRules.education.courseOfStudy"
+            required
+          />
+
+          <qh-input
+            label="Degree Type"
+            type="select"
+            name="type"
+            v-model="education.type"
+            required
+            :options="[
+              'Bachelors',
+              'Masters',
+              'Doctorate',
+              'Elementary',
+              'Diploma',
+              'High School',
+              'Certificate',
+              'Associate Degree',
+              'Professional Training',
+            ]"
+          />
+
+          <qh-input
+            label="School Website"
+            type="text"
+            name="school_website"
+            v-model="education.school_website"
+            :rules="ValidationRules.URL"
+          />
+
+          <qh-input
+            label="Entry Date"
+            type="date"
+            name="entryDate"
+            v-model="education.entry_date"
+            :rules="ValidationRules.education.entryDate"
+            required
+          />
+
+          <qh-input
+            label="Graduation Date"
+            type="date"
+            name="graduationDate"
+            v-model="education.graduation_date"
+            hint="Expected graduation date"
+            :rules="ValidationRules.education.graduationDate"
+            required
+          />
+
+          <qh-input
+            label="Description"
+            type="editor"
+            name="description"
+            class="md:col-span-2"
+            v-model="education.description"
           />
         </div>
         <qh-button
@@ -26,86 +92,31 @@
 </template>
 
 <script setup lang="ts">
-import {
-  ADD_USER_EDUCATION,
-  GET_USER_EDUCATION,
-} from '~/services/user.service';
+import { ADD_USER_EDUCATION } from '~/services/user.service';
 import { Form as VeeForm } from 'vee-validate';
-import { ValidationRules } from '~/constants/validation-rules';
-import type { Education } from '~/types';
+import type { Education } from '~/types/user';
+import { useUserStore } from '~/store/user-store';
+
+const { getEducation } = useUserStore();
 
 const emit = defineEmits(['close']);
 
-const educationList = ref([
-  {
-    label: 'Institution Name',
-    name: 'institution',
-    class: 'md:col-span-2',
-    required: true,
-    rules: ValidationRules.education.institutionName,
-  },
-  {
-    label: 'Course of Study',
-    name: 'course',
-    type: 'text',
-    class: 'md:col-span-2',
-    required: true,
-    rules: ValidationRules.education.courseOfStudy,
-  },
-  {
-    label: 'Degree Type',
-    name: 'E.g Bachelors',
-
-    type: 'text',
-    required: true,
-    rules: ValidationRules.education.courseOfStudy,
-  },
-  {
-    label: 'School Website',
-    name: 'E.g Bachelors',
-    type: 'text',
-    rules: ValidationRules.education.courseOfStudy,
-  },
-
-  {
-    label: 'Entry Date',
-    name: 'entryDate',
-    type: 'date',
-    required: true,
-    rules: ValidationRules.education.entryDate,
-  },
-  {
-    label: 'Graduation Date',
-    name: 'graduationDate',
-    type: 'date',
-    required: true,
-    hint: 'Expected graduation date',
-    rules: ValidationRules.education.graduationDate,
-  },
-
-  {
-    label: 'Description',
-    name: 'description',
-    type: 'editor',
-    class: 'md:col-span-2',
-    rules: ValidationRules.education.courseOfStudy,
-  },
-]);
-const educationDetail = ref<Education | any>({
-  entryDate: '',
-  graduationDate: '',
+const education = ref<Education | any>({
+  institution: '',
+  course: '',
+  type: '',
+  school_website: '',
+  description: '',
+  entry_date: '',
+  graduation_date: '',
 });
 
 const submitEducation = async (field: any) => {
   console.log(field);
-  const response = await ADD_USER_EDUCATION({
-    ...field,
-    entryDate: educationDetail.value.entryDate,
-    graduationDate: educationDetail.value.graduationDate,
-  });
+  const response = await ADD_USER_EDUCATION(education.value);
   if (response.success) {
     qhToast.success('Education added successfully');
-    await GET_USER_EDUCATION();
+    await getEducation();
     qhCloseModal();
   } else qhToast.error(response.message);
 };

@@ -20,7 +20,7 @@ export interface SocialLinks {
   github?: string;
 }
 
-export interface Skills {
+export interface Stacks {
   name: string;
   icon: string;
 }

@@ -88,7 +88,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Experience } from '~/types';
+import type { Experience } from '~/types/user';
 import { Form as VeeForm } from 'vee-validate';
 
 import { CREATE_NEW_JOB } from '~/services/job.service';

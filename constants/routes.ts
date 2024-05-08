@@ -19,10 +19,13 @@ export class QH_ROUTES {
     PROJECTS: 'user-projects',
     DETAILS: 'user-profile',
     EXPERIENCE: 'user-experience',
-    STACKS: 'user-stacks',
+    WORK_DETAILS: 'user-work-details',
+    SKILLS: 'user-skills',
+    ABOUT: 'user-about',
     CONTACT: 'user-contact',
     APPLIED_JOBS: 'user-jobs',
     PREVIEW: 'user-preview',
+    SETTINGS: 'user-settings',
   };
 
   static JOB = {

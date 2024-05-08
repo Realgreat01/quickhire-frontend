@@ -5,7 +5,7 @@
     <qh-card
       class="font-poppins relative my-10 flex h-60 w-full flex-col items-center justify-center border-2 !border-dark-50"
     >
-      <qh-edit-button class="text-dark" />
+      <qh-edit-button class="text-dark" @click="editProfile" />
       <img
         class="m-2 block h-32 w-32 rounded-full border border-brand"
         :src="basicDetails?.profile_picture"
@@ -13,13 +13,13 @@
       />
       <h1 class="qh-text-3 font-semibold capitalize">{{ fullname }}</h1>
       <h1 class="text-xs text-brand">@{{ basicDetails?.username }}</h1>
-      <h1 class="qh-text-4 font-normal">{{ stacks?.stack }}</h1>
+      <h1 class="qh-text-4 font-normal">{{ skills?.stack }}</h1>
     </qh-card>
 
     <RouterLink
       :to="{ name: item.route }"
       :class="item.class"
-      class="font-geologica mt-2 flex w-60 cursor-pointer p-1 pl-4 font-semibold hover:scale-[1.025]"
+      class="font-geologica flex w-60 cursor-pointer p-1 pl-4 font-semibold hover:scale-[1.025]"
       v-for="(item, index) in sidebar"
       :key="index"
     >
@@ -46,16 +46,19 @@ import {
   RiUser2Fill,
   RiBriefcase2Fill,
   RiBox3Fill,
-  RiCodeSSlashFill,
   RiGraduationCapFill,
-  RiContactsFill,
   RiSendPlaneFill,
+  RiSettings4Fill,
+  RiHomeOfficeFill,
+  RiContactsFill,
 } from 'vue-remix-icons';
 import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 
-const { fullname, basicDetails, stacks } = storeToRefs(useUserStore());
-
+const { fullname, basicDetails, skills } = storeToRefs(useUserStore());
+const editProfile = () => {
+  return router.replace({ query: { edit: QH_ROUTES.USER.PROFILE } });
+};
 const sidebar = markRaw([
   {
     title: 'Profile',
@@ -72,11 +75,19 @@ const sidebar = markRaw([
     class: 'fill-brand  text-brand',
   },
   {
+    title: 'Work Details',
+    action: '',
+    route: QH_ROUTES.USER.WORK_DETAILS,
+    icon: RiBriefcase2Fill,
+    class: 'fill-cyan-800  text-cyan-800',
+  },
+
+  {
     title: 'Experience',
     action: '',
     route: QH_ROUTES.USER.EXPERIENCE,
-    icon: RiBriefcase2Fill,
-    class: 'fill-pink-800  text-pink-800',
+    icon: RiHomeOfficeFill,
+    class: 'fill-blue-800  text-blue-800',
   },
   {
     title: 'Applied Jobs',
@@ -85,13 +96,7 @@ const sidebar = markRaw([
     icon: RiSendPlaneFill,
     class: 'fill-violet-800  text-violet-800',
   },
-  // {
-  //   title: 'Stacks',
-  //   action: '',
-  //   route: QH_CONSTANTS.STACKS,
-  //   icon: RiCodeSSlashFill,
-  //   class: 'fill-purple-600  text-purple-600',
-  // },
+
   {
     title: 'Projects',
     action: '',
@@ -99,14 +104,20 @@ const sidebar = markRaw([
     icon: RiBox3Fill,
     class: 'fill-indigo-800  text-indigo-800',
   },
-
-  // {
-  //   title: 'Contact',
-  //   action: '',
-  //   route: QH_CONSTANTS.CONTACT,
-  //   icon: RiContactsFill,
-  //   class: 'fill-cyan-800  text-cyan-800',
-  // },
+  {
+    title: 'Contact',
+    action: '',
+    route: QH_ROUTES.USER.CONTACT,
+    icon: RiContactsFill,
+    class: 'fill-cyan-800  text-cyan-800',
+  },
+  {
+    title: 'Settings',
+    action: '',
+    route: QH_ROUTES.USER.SETTINGS,
+    icon: RiSettings4Fill,
+    class: 'fill-dark-800  text-dark-800',
+  },
 ]);
 </script>
 

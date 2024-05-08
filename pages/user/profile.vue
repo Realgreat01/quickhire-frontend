@@ -32,10 +32,13 @@
 
       <div class="relative">
         <h2
-          class="font-geologica text-stroke qh-text-2 font-bold uppercase text-brand"
+          class="font-geologica text-stroke qh-text-2 relative flex items-center gap-x-12 font-bold uppercase text-brand"
         >
           ABOUT ME
-          <qh-edit-button class="text-dark" />
+          <qh-edit-button
+            class="relative !top-0 text-dark"
+            @click="editAbout"
+          />
         </h2>
         <p class="" v-html="basicDetails?.about_me"></p>
       </div>
@@ -43,19 +46,22 @@
       <!-- 2 -->
       <div class="mt-8 w-full">
         <h2
-          class="font-geologica text-stroke qh-text-2 mb-2 font-bold uppercase text-brand"
+          class="font-geologica text-stroke qh-text-2 relative mb-2 flex w-fit gap-x-12 font-bold uppercase text-brand"
         >
-          STACKS
+          <h2 class="">SKILLS</h2>
+          <qh-edit-button
+            class="relative !top-0 text-dark"
+            @click="editSkills"
+          />
         </h2>
 
         <div class="grid gap-x-10 gap-y-4 md:grid-cols-1">
           <div>
             <qh-card class="relative">
-              <qh-edit-button class="text-dark" />
               <h1 class="my-2 font-bold text-error-400">Top Skills</h1>
               <div class="flex flex-wrap">
                 <qh-devicon
-                  v-for="(skill, index) in stacks?.top_skills"
+                  v-for="(skill, index) in skills?.top_skills"
                   :key="index"
                   :icon="skill"
                   class="colored p-2 text-3xl"
@@ -63,13 +69,12 @@
               </div>
             </qh-card>
             <qh-card class="relative my-4 p-4">
-              <qh-edit-button class="text-dark" />
               <h1 class="my-2 font-bold text-error-400">
                 Programming Languages
               </h1>
               <div class="flex flex-wrap">
                 <qh-devicon
-                  v-for="(language, index) in stacks?.programming_languages"
+                  v-for="(language, index) in skills?.programming_languages"
                   :key="index"
                   :icon="language"
                   class="colored p-2 text-3xl"
@@ -79,12 +84,11 @@
 
             <qh-card class="relative p-4">
               <h1 class="my-2 font-bold text-error-400">
-                <qh-edit-button class="text-dark" />
                 Framworks and Technologies
               </h1>
               <div class="flex flex-wrap">
                 <qh-devicon
-                  v-for="(framework, index) in stacks?.frameworks"
+                  v-for="(framework, index) in skills?.frameworks"
                   :key="index"
                   :icon="framework"
                   class="colored p-2 text-3xl"
@@ -113,7 +117,17 @@ useHead({
   title: 'QuickHire - Profile',
 });
 
-const { fullname, stacks, basicDetails } = storeToRefs(useUserStore());
+const router = useRouter();
+
+const { fullname, skills, basicDetails } = storeToRefs(useUserStore());
+
+const editAbout = () => {
+  router.replace({ query: { edit: QH_ROUTES.USER.ABOUT } });
+};
+
+const editSkills = () => {
+  router.replace({ query: { edit: QH_ROUTES.USER.SKILLS } });
+};
 </script>
 
 <style scoped></style>

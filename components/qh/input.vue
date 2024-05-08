@@ -41,6 +41,18 @@
           @change="handleCurrency($event.target.value)"
         />
 
+        <input
+          :name="name"
+          :rules="rules"
+          v-else-if="type === 'tag'"
+          :class="errorAvailable ? 'error-box' : 'normal-box'"
+          class="relative w-full"
+          v-model="tagsModel"
+          :placeholder="placeholder"
+          @input="handleTag"
+          @keydown.enter.prevent="addTags"
+        />
+
         <qh-date-picker
           v-else-if="type === 'date'"
           v-model="modelValue"
@@ -119,10 +131,25 @@
         />
       </div>
 
-      <p
-        class="mx-4 max-w-[80%] text-sm font-medium text-brand-400"
-        v-if="hint"
-      >
+      <div class="mt-0" v-if="type === 'tag'">
+        <h2 class="qh-text-4 text-error">
+          Separate each item with a comma (,)
+        </h2>
+        <div class="flex flex-wrap gap-2">
+          <qh-button
+            v-for="(tag, index) in tags"
+            :key="index"
+            class="qh-text-4 relative flex gap-x-4 !bg-dark-100 !py-2 px-4 !text-dark"
+          >
+            <span class=""> {{ tag }}</span>
+            <XMarkIcon
+              class="h-6 w-6 stroke-dark stroke-1 text-dark-600"
+              @click="removeTag(index)"
+            />
+          </qh-button>
+        </div>
+      </div>
+      <p class="mr-4 max-w-[90%] text-sm text-brand-400" v-if="hint">
         {{ hint }}
       </p>
       <ErrorMessage :name="name" v-slot="{ message }">
@@ -146,6 +173,7 @@
 <script setup lang="ts">
 import { Field, ErrorMessage } from 'vee-validate';
 import { RiEyeOffLine, RiEyeLine } from 'vue-remix-icons';
+import { XMarkIcon } from '@heroicons/vue/24/solid';
 import type { PropType } from 'vue';
 
 const props = defineProps({
@@ -166,7 +194,7 @@ const props = defineProps({
   multiple: Boolean,
   noDataMessage: String,
   placeholder: String,
-
+  modelValue: [String, Number, Boolean, Array, Object],
   hasCheckbox: Boolean,
   checkboxText: { type: String, default: 'This should be a chekbox content' },
 });
@@ -176,6 +204,9 @@ const modelValue = ref<string | number>('');
 const selectedModel = ref([]);
 
 const checkBox = ref(false);
+
+const tags = ref<string[]>([]);
+const tagsModel = ref('');
 
 const emit = defineEmits([
   'update:modelValue',
@@ -199,9 +230,38 @@ const handleCheckbox = async (value: any) => {
   setTimeout(() => emit('update:checkbox', checkBox.value), 100);
 };
 
+const handleTag = () => {
+  const parts = tagsModel.value
+    .split(',')
+    .map((part: string) => part.trim())
+    .filter((part: string) => part);
+  if (parts.length > 1) {
+    tags.value.push(...parts.slice(0, -1));
+    tagsModel.value = parts.slice(-1)[0];
+    emit('update:modelValue', tags.value);
+  }
+};
+
+function addTags(value: any) {
+  if (tagsModel.value) {
+    tags.value.push(
+      ...tagsModel.value
+        .split(',')
+        .map((tag) => tag.trim())
+        .filter((tag) => tag),
+    );
+    tagsModel.value = '';
+  }
+}
+
+function removeTag(index: number) {
+  tags.value.splice(index, 1);
+}
+
 const handleChange = (value: any) => {
   emit('update:modelValue', value);
   emit('change', value);
+  emit('selected', value);
 };
 
 const actionButtonClick = () => {
@@ -241,11 +301,25 @@ const handleFocus = async (value: string) => {
 const errorAvailable = ref(false);
 
 watch(
+  () => props.modelValue,
+  (value: any) => {
+    if (props.type === 'tag') tagsModel.value = value;
+  },
+);
+
+watch(
   () => props.errors,
   (errors: any) => {
     if (errors[props.name]) errorAvailable.value = true;
     else errorAvailable.value = false;
   },
+);
+watch(
+  tags,
+  (newTags) => {
+    emit('selected', newTags);
+  },
+  { deep: true },
 );
 </script>
 

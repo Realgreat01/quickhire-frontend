@@ -4,7 +4,7 @@ import type {
   Education,
   Experience,
   Projects,
-  Stacks,
+  Skills,
 } from '~/types/user';
 
 export const GET_USER_DETAILS = async () => {
@@ -101,28 +101,28 @@ export const ADD_USER_PROJECTS = async (data: Projects) => {
 };
 export const EDIT_USER_PROJECTS = async (data: Projects, id: string) => {
   return await ApiService.run({
-    method: ApiService.POST,
+    method: ApiService.PUT,
     url: '/user/project/' + id,
     data,
   });
 };
 export const DELETE_USER_PROJECTS = async (id: string) => {
   return await ApiService.run({
-    method: ApiService.POST,
+    method: ApiService.DELETE,
     url: '/user/project/' + id,
   });
 };
-export const GET_USER_STACKS = async () => {
+export const GET_USER_SKILLS = async () => {
   return await ApiService.run({
     method: ApiService.GET,
-    url: '/user/skills',
+    url: '/user/skills/',
   });
 };
 
-export const EDIT_USER_STACKS = async (data: Stacks) => {
+export const UPDATE_USER_SKILLS = async (data: Skills) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: '/user/skills',
+    url: '/user/skills/',
     data,
   });
 };

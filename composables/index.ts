@@ -41,9 +41,24 @@ export const qhHelpers = {
     setTimeout(async () => {
       await navigateTo({ name: QH_ROUTES.HOME });
       $ResetPinia();
-      qhSecuredLS.clear()
+      qhSecuredLS.clear();
       localStorage.clear();
     }, 200);
+  },
+
+  filterEmptyValues(obj: any) {
+    const filtered: any = {};
+    Object.keys(obj).forEach((key: any) => {
+      if (
+        obj[key] !== null &&
+        obj[key] !== undefined &&
+        obj[key] !== '' &&
+        obj[key].length !== 0
+      ) {
+        filtered[key] = obj[key];
+      }
+    });
+    return filtered;
   },
 };
 export const qhDropdown = reactive({

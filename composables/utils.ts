@@ -34,9 +34,14 @@ export const qhDates = {
   },
 
   formatDate(date: string | Date | null) {
+    function getOrdinalNum(n: any) {
+      let s = ['th', 'st', 'nd', 'rd'],
+        v = n % 100;
+      return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    }
     if (date === null || '') return 'Present';
     const day = parseInt(format(date, 'd'), 10);
-    const ordinalDay = this.getOrdinalNum(day);
+    const ordinalDay = getOrdinalNum(day);
     const month = format(date, 'MMMM');
     const year = format(date, 'yyyy');
     return `${month} ${ordinalDay}, ${year}`;

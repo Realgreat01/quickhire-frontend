@@ -7,12 +7,51 @@
       >
         <div class="grid grid-cols-1 gap-4">
           <qh-input
-            v-for="({ name, ...detail }, index) in formDetails"
-            v-bind="detail"
-            :name="name"
-            :errors="errors"
-            v-model="basicDetails[name]"
-            :key="name"
+            label="First Name"
+            type="text"
+            name="firstname"
+            placeholder="Your firstname"
+            v-model="profile.firstname"
+            :rules="ValidationRules.basicDetails.firstname"
+          />
+
+          <qh-input
+            label="Last Name"
+            type="text"
+            name="lastname"
+            placeholder="Your lastname"
+            v-model="profile.lastname"
+            :rules="ValidationRules.basicDetails.lastname"
+          />
+
+          <qh-input
+            label="Middle Name"
+            type="text"
+            name="middlename"
+            placeholder="Your middlename"
+            v-model="profile.middlename"
+            :rules="ValidationRules.basicDetails.middlename"
+          />
+
+          <qh-input
+            type="select"
+            label="Gender"
+            name="gender"
+            v-model="profile.gender"
+            :options="[
+              { label: 'Male', value: 'male' },
+              { label: 'Female', value: 'female' },
+              { label: 'Others', value: 'others' },
+            ]"
+          />
+
+          <qh-input
+            label="Phone Number"
+            type="tel"
+            name="phone_number"
+            placeholder="Your phone number"
+            v-model="profile.phone_number"
+            :rules="ValidationRules.basicDetails.phone_number"
           />
         </div>
         <qh-button
@@ -31,65 +70,25 @@
 <script setup lang="ts">
 import { EDIT_USER_DETAILS } from '~/services/user.service';
 import { Form as VeeForm } from 'vee-validate';
-import type { BasicDetails } from '~/types';
-import { ValidationRules } from '~/constants/validation-rules';
+import type { BasicDetails } from '~/types/user';
 
 import { useUserStore } from '~/store/user-store';
 
 const { getBasicDetails } = useUserStore();
 
-const formDetails = reactive([
-  {
-    name: 'firstname',
-    label: 'first name',
-    type: 'text',
-    placeholder: 'Your firstname',
-    rules: ValidationRules.basicDetails.firstname,
-  },
-
-  {
-    name: 'lastname',
-    label: 'last name',
-    type: 'text',
-    placeholder: 'Your lastname',
-    rules: ValidationRules.basicDetails.lastname,
-  },
-  {
-    name: 'middlename',
-    label: 'middle name',
-    type: 'text',
-    placeholder: 'Your middlename',
-    rules: ValidationRules.basicDetails.middlename,
-  },
-
-  {
-    name: 'gender',
-    label: 'Gender',
-    type: 'select',
-    placeholder: 'Your gender',
-    options: [
-      { label: 'Male', value: 'male' },
-      { label: 'Female', value: 'female' },
-      { label: 'Others', value: 'others' },
-    ],
-  },
-  {
-    name: 'phone_number',
-    label: 'phone number',
-    type: 'tel',
-    placeholder: 'Your phone number',
-    // rules: ValidationRules.basicDetails.phone_number,
-  },
-]);
-
-const basicDetails = ref<BasicDetails | any>({
+const profile = ref<BasicDetails | any>({
   gender: '',
+  firstname: '',
+  lastname: '',
+  middlename: '',
+  phone_number: '',
 });
 
 const submitBasicDetails = async (field: any) => {
   const response = await EDIT_USER_DETAILS({
     ...field,
-    gender: basicDetails.value.gender.value,
+    ...profile.value,
+    gender: profile.value.gender.value,
   });
   if (response.success) {
     qhToast.success('Details submitted successfully');

@@ -13,6 +13,8 @@
       </div>
     </div>
     <forms-profile v-if="modalController.profile" @close="closeModal" />
+    <forms-about v-if="modalController.about" @close="closeModal" />
+    <forms-skills v-if="modalController.skills" @close="closeModal" />
     <forms-projects v-if="modalController.projects" @close="closeModal" />
     <forms-experience v-if="modalController.experience" @close="closeModal" />
     <forms-education v-if="modalController.education" @close="closeModal" />
@@ -31,7 +33,7 @@ const {
   getProjects,
   getExperiences,
   getEducation,
-  getStacks,
+  getSkills,
 } = useUserStore();
 
 const { getAllJobs } = useJobStore();
@@ -45,11 +47,27 @@ const closeModal = () => {
 
 const modalController = computed(() => {
   return {
-    profile: route.query.add === QH_ROUTES.USER.DETAILS,
-    projects: route.query.add === QH_ROUTES.USER.PROJECTS,
-    experience: route.query.add === QH_ROUTES.USER.EXPERIENCE,
-    education: route.query.add === QH_ROUTES.USER.EDUCATION,
-    contact: route.query.add === QH_ROUTES.USER.CONTACT,
+    profile:
+      route.query.add === QH_ROUTES.USER.DETAILS ||
+      route.query.edit === QH_ROUTES.USER.DETAILS,
+    about:
+      route.query.add === QH_ROUTES.USER.ABOUT ||
+      route.query.edit === QH_ROUTES.USER.ABOUT,
+    skills:
+      route.query.add === QH_ROUTES.USER.SKILLS ||
+      route.query.edit === QH_ROUTES.USER.SKILLS,
+    projects:
+      route.query.add === QH_ROUTES.USER.PROJECTS ||
+      route.query.edit === QH_ROUTES.USER.PROJECTS,
+    experience:
+      route.query.add === QH_ROUTES.USER.EXPERIENCE ||
+      route.query.edit === QH_ROUTES.USER.EXPERIENCE,
+    education:
+      route.query.add === QH_ROUTES.USER.EDUCATION ||
+      route.query.edit === QH_ROUTES.USER.EDUCATION,
+    contact:
+      route.query.add === QH_ROUTES.USER.CONTACT ||
+      route.query.edit === QH_ROUTES.USER.CONTACT,
   };
 });
 
@@ -59,7 +77,7 @@ onBeforeMount(() => {
   getExperiences();
   getEducation();
   getAllJobs();
-  getStacks();
+  getSkills();
 });
 </script>
 

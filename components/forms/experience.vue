@@ -11,7 +11,7 @@
             type="text"
             name="role"
             class="qh-full-width"
-            v-model="experienceDetail.role"
+            v-model="experience.role"
             :rules="ValidationRules.experience.role"
             placeholder="Frontend Developer"
             required
@@ -22,7 +22,7 @@
             name="company"
             class="qh-full-width"
             placeholder="Flutterwave"
-            v-model="experienceDetail.company"
+            v-model="experience.company"
             :rules="ValidationRules.experience.company"
             required
           />
@@ -32,8 +32,8 @@
             name="company_location"
             class="qh-full-width"
             placeholder="Lagos, Nigeria"
-            v-model="experienceDetail.company"
-            :rules="ValidationRules.experience.company"
+            v-model="experience.company_location"
+            :rules="ValidationRules.experience.company_location"
             required
           />
 
@@ -41,20 +41,26 @@
             label="Job Location Type"
             type="select"
             name="role"
-            class="qh-full-width"
+            class="capitalize"
             placeholder="Remote"
-            :options="locationTypes"
-            v-model="experienceDetail.role"
+            :options="['onsite', 'remote', 'hybrid']"
+            v-model="experience.location_type"
             required
           />
           <qh-input
             label="Job Type"
             type="select"
-            name="role"
-            class="qh-full-width"
-            :options="jobTypes"
+            name="job_type"
+            class="capitalize"
+            :options="[
+              'Full-Time',
+              'Part-Time',
+              'Temporary',
+              'Contract',
+              'Internship',
+            ]"
             placeholder="Full-Time"
-            v-model="experienceDetail.role"
+            v-model="experience.job_type"
             :rules="ValidationRules.experience.role"
             hint="e.g. Frontend Developer"
             required
@@ -63,9 +69,9 @@
           <qh-input
             label="Start Date"
             type="date"
-            name="startDate"
+            name="start_date"
             :placeholder="qhDates.formatDate(new Date('12 04 2020'))"
-            v-model="experienceDetail.startDate"
+            v-model="experience.start_date"
             required
           />
 
@@ -73,7 +79,7 @@
             label="End Date"
             type="date"
             name="endDate"
-            v-model="experienceDetail.endDate"
+            v-model="experience.end_date"
             v-model:checkbox="checkBox"
             checkboxText="Do you still work there ?"
             :disabled="checkBox"
@@ -86,8 +92,7 @@
             name="contributions"
             type="editor"
             hint="Your contributions to the team, kindly separate each with a paragraph"
-            v-model="experienceDetail.contributions"
-            :rules="ValidationRules.experience.contributions"
+            v-model="experience.contributions"
             class="qh-full-width"
             required
           />
@@ -105,40 +110,31 @@
 
 <script setup lang="ts">
 import { ADD_USER_EXPERIENCE } from '~/services/user.service';
-import type { Experience } from '~/types';
+import type { Experience } from '~/types/user';
 import { Form as VeeForm } from 'vee-validate';
-import { ValidationRules } from '~/constants/validation-rules';
 
 import { useUserStore } from '~/store/user-store';
+import Education from './education.vue';
 
 const { getExperiences } = useUserStore();
 
 const checkBox = ref();
 
-const experienceDetail = ref<Experience | any>({
-  startDate: '',
-  endDate: null,
+const experience = ref<Experience | any>({
+  company: '',
+  company_location: '',
+  contributions: '',
+  start_date: '',
+  end_date: null,
   role: '',
 });
-const buttonClick = () => console.log('button is clicked');
-const jobTypes = ref([
-  'Full-Time',
-  'Part-Time',
-  'Self Employed',
-  'Freelance',
-  'Contract',
-  'Internship',
-  'Voluntary',
-]);
-const locationTypes = ref(['Onsite', 'Remote', 'Hybrid']);
 
 const submitExperience = async (field: any) => {
-  const response = await ADD_USER_EXPERIENCE({
-    ...field,
-    startDate: experienceDetail.value.startDate,
-    endDate: experienceDetail.value.endDate,
-    contributions: experienceDetail.value.contributions,
-  });
+  const data = {
+    ...experience.value,
+    end_date: checkBox.value ? null : experience.value.end_date,
+  };
+  const response = await ADD_USER_EXPERIENCE(data);
   if (response.success) {
     qhToast.success('Education added successfully');
     await getExperiences();

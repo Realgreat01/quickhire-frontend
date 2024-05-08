@@ -48,7 +48,7 @@
               <h1 class="qh-text-4 text-brand">
                 @{{ basicDetails?.username }}
               </h1>
-              <h1 class="font-normal">{{ stacks?.stack }}</h1>
+              <h1 class="font-normal">{{ skills?.stack }}</h1>
             </div>
             <div class="my-5">
               <RouterLink
@@ -121,7 +121,7 @@ import { useUserStore } from '~/store/user-store';
 import { QH_ROUTES } from '~/constants/routes';
 
 const { closeDropdown } = useModalStore();
-const { fullname, basicDetails, stacks } = storeToRefs(useUserStore());
+const { fullname, basicDetails, skills } = storeToRefs(useUserStore());
 
 const route = useRoute();
 const router = useRouter();
@@ -222,13 +222,7 @@ const sidebar = markRaw([
     icon: RiSendPlaneFill,
     class: 'fill-violet-800  text-violet-800',
   },
-  // {
-  //   title: 'Stacks',
-  //   action: '',
-  //   route: QH_CONSTANTS.STACKS,
-  //   icon: RiCodeSSlashFill,
-  //   class: 'fill-purple-600  text-purple-600',
-  // },
+
   {
     title: 'Projects',
     action: closeDropdown,

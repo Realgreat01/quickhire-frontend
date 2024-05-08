@@ -12,7 +12,8 @@ import {
   GET_USER_EDUCATION,
   GET_USER_EXPERIENCE,
   GET_USER_PROJECTS,
-  GET_USER_STACKS,
+  GET_USER_SKILLS,
+  UPDATE_USER_SKILLS,
 } from '~/services/user.service';
 
 import type {
@@ -20,7 +21,7 @@ import type {
   Projects,
   Education,
   Experience,
-  Stacks,
+  Skills,
   PublicUser,
 } from '~/types/user';
 
@@ -29,7 +30,7 @@ interface UserType {
   Projects: Projects[] | null;
   Educations: Education[] | null;
   Experiences: Experience[] | null;
-  Stacks: Stacks | null;
+  Skills: Skills | null;
   PublicUser: PublicUser | null;
 }
 
@@ -40,7 +41,7 @@ export const useUserStore = defineStore('user', {
       Projects: null,
       Educations: null,
       Experiences: null,
-      Stacks: null,
+      Skills: null,
       PublicUser: null,
     };
   },
@@ -62,8 +63,8 @@ export const useUserStore = defineStore('user', {
       return this.Educations;
     },
 
-    stacks(): Stacks | null {
-      return this.Stacks;
+    skills(): Skills | null {
+      return this.Skills;
     },
     publicUser(): PublicUser | null {
       return this.PublicUser;
@@ -149,10 +150,18 @@ export const useUserStore = defineStore('user', {
       }
     },
 
-    async getStacks() {
-      const response = await GET_USER_STACKS();
+    async getSkills() {
+      const response = await GET_USER_SKILLS();
       if (response.success) {
-        this.Stacks = response.data;
+        this.Skills = response.data;
+      }
+    },
+
+    async updateSkills(data: Skills) {
+      const response = await UPDATE_USER_SKILLS(data);
+      if (response.success) {
+        qhToast.success('Skills added successfully');
+        await this.getSkills();
       }
     },
   },

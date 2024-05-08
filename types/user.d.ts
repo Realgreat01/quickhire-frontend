@@ -3,7 +3,7 @@ import type {
   JobLocationType,
   JobType,
   Reference,
-  Skills,
+  Stacks,
   SocialLinks,
 } from './utils';
 
@@ -11,6 +11,15 @@ export interface LOGIN_PAYlOAD {
   username?: string;
   email?: string;
   password: string;
+}
+
+export interface Settings {
+  allow_notifications: boolean;
+  portfolio_type: 'default';
+  cv_template: 'default';
+  show_summary: boolean;
+  show_education: boolean;
+  send_cover_letter: boolean;
 }
 
 export interface BasicDetails {
@@ -31,6 +40,7 @@ export interface BasicDetails {
   cover_letter: string;
   hobbies?: string[];
   interests?: string[];
+  settings: Settings;
   address: AddressInterface;
   reference: Reference[];
   social_media: SocialLinks;
@@ -42,13 +52,13 @@ export interface BasicDetails {
   blogs: object[];
 }
 
-export interface Stacks {
+export interface Skills {
   _id: string;
   stack: string;
-  top_skills: Skills[];
-  programming_languages: Skills[];
-  frameworks: Skills[];
-  technologies: Skills[];
+  top_skills: Stacks[];
+  programming_languages: Stacks[];
+  frameworks: Stacks[];
+  technologies: Stacks[];
   others: string[];
   soft_skills: string[];
 }
@@ -91,7 +101,7 @@ export interface Projects {
   description: string;
   title: string;
   motivations: string;
-  tools_used: Skills[];
+  tools_used: Stacks[];
   repository: string;
   preview_url: string;
   role?: string;
@@ -128,6 +138,6 @@ export interface PublicUser {
   blogs: object[];
   projects: Projects[];
   experience: Experience[];
-  skills: Stacks;
+  skills: Skills;
   education: Education[];
 }
