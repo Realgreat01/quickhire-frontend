@@ -1,6 +1,5 @@
 <template>
-  <div class="mt-20 p-4">
-    <h1 class="qh-text-1 my-4">Latest Jobs</h1>
+  <div class="p-4">
     <div class="flex flex-wrap gap-4">
       <!-- {{ allJobs }} -->
       <div class="" v-for="(job, index) in allJobs">

@@ -1,0 +1,41 @@
+/* Slide-in from right animation */
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Apply the animation to the entering page */
+.page-enter-active {
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+/* Optional: Slide-out to left animation for the leaving page */
+@keyframes slideOutToLeft {
+  0% {
+    // transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    // transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.page-leave-active {
+  animation: slideOutToLeft 0.4s ease-out;
+}
+
+.page-left-leave-active,
+.page-right-leave-active,
+.page-left-enter-active,
+.page-right-enter-active {
+  animation: slideOutToLeft 0.4s ease;
+}

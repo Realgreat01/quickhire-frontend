@@ -1,27 +1,39 @@
 <template>
   <div>
-    <div class="">
-      <div class="flex">
-        <h2 class="">Allow Notifications</h2>
+    <qh-card class="flex flex-col gap-y-6">
+      <div class="flex gap-x-20">
+        <h2 class="w-60 font-medium">Allow Notifications</h2>
+        <qh-toggle v-model="settings.allow_notifications" />
+      </div>
+      <div class="flex gap-x-20">
+        <h2 class="w-60 font-medium">Portfolio Template</h2>
+        <qh-button
+          class="disabled w-fit cursor-not-allowed rounded-lg !bg-dark-200 !py-2 capitalize !text-dark"
+          :label="settings.portfolio_template"
+        />
+      </div>
+      <div class="flex gap-x-20">
+        <h2 class="w-60 font-medium">CV Template</h2>
+        <qh-button
+          class="disabled w-fit cursor-not-allowed rounded-lg !bg-dark-200 !py-2 capitalize !text-dark"
+          :label="settings.cv_template"
+        />
+      </div>
+      <div class="flex gap-x-20">
+        <h2 class="w-60 font-medium">Show Education on Portfolio</h2>
+        <qh-toggle v-model="settings.show_education" />
+      </div>
+      <div class="flex gap-x-20">
+        <h2 class="w-60 font-medium">Show Summary on CV</h2>
+        <qh-toggle v-model="settings.show_summary" />
+      </div>
+      <div class="flex gap-x-20">
+        <h2 class="w-60 font-medium">Send Cover Letter</h2>
         <qh-toggle v-model="checked" />
       </div>
-      <div class="flex">
-        <h2 class="">CV Template</h2>
-        <qh-toggle v-model="checked" />
-      </div>
-      <div class="flex">
-        <h2 class="">Show Education</h2>
-        <qh-toggle v-model="checked" />
-      </div>
-      <div class="flex">
-        <h2 class="">Show Summary</h2>
-        <qh-toggle v-model="checked" />
-      </div>
-      <div class="flex">
-        <h2 class="">Send Cover Letter</h2>
-        <qh-toggle v-model="checked" />
-      </div>
-    </div>
+
+      <qh-button class="w-60 rounded-full">Save Changes</qh-button>
+    </qh-card>
   </div>
 </template>
 
@@ -45,8 +57,16 @@ useHead({
   title: 'QuickHire - Settings',
 });
 const checked = ref(true);
+const mate = ref(false);
 const { basicDetails: user } = storeToRefs(useUserStore());
-const modalStore = useModalStore();
+
+const settings = ref({
+  allow_notifications: true,
+  portfolio_template: 'default',
+  cv_template: 'default',
+  show_education: true,
+  show_summary: true,
+});
 </script>
 
 <style scoped></style>

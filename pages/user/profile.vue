@@ -1,11 +1,12 @@
 <template>
   <div class="bg-white">
     <div class="mx-auto bg-white p-5 md:w-[90%]">
+      <!-- <qh-dropzone /> -->
       <!--  -->
       <div class="flex items-start justify-between">
         <div class="">
           <h1
-            class="qh-text-2 text-stroke font-geologica font-bold capitalize text-brand"
+            class="qh-text-1 text-stroke font-geologica font-bold capitalize text-brand"
           >
             {{ fullname }}
           </h1>

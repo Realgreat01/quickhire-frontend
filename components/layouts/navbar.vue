@@ -1,7 +1,7 @@
 <template>
-  <div class="mb-4 flex flex-col gap-4 bg-white">
+  <div class="mb-4 flex flex-col gap-1 bg-white">
     <div class="flex items-center justify-between">
-      <h1 class="qh-text-1 m-4 flex items-center capitalize text-brand-500">
+      <h1 class="qh-text-1 mx-4 flex items-center capitalize text-brand-500">
         <icons-logo />
       </h1>
 
@@ -77,25 +77,34 @@
       </div>
     </div>
 
-    <div
-      class="grid w-full grid-cols-2 justify-end gap-x-4 p-4 md:flex"
-      v-if="actionButtonPages.includes(route.name as string)"
-    >
-      <div
-        :class="item.class"
-        @click="item.action"
-        class="flex w-full rounded p-2 shadow first-line:cursor-pointer hover:scale-[1.025] md:w-60"
-        v-for="(item, index) in navbar"
-        :key="index"
-      >
-        <component
-          :is="item.icon"
-          :class="item.class"
-          class="mr-3 h-6 w-6 rounded"
-        />
-        <h1 class="qh-text-3 font-semi">
-          {{ item.title }}
-        </h1>
+    <div class="mx-6 flex items-center justify-between">
+      <h1 class="qh-text-2 my-4 w-fit font-bold text-brand-800">
+        {{ routeNames }}
+      </h1>
+      <div class="grid grid-cols-2 justify-end gap-x-4 p-4 md:flex">
+        <!--  -->
+        <div
+          v-show="actionButtonPages.includes(route.name as string)"
+          @click="() => router.replace({ query: { add: route.meta.name } })"
+          class="flex !w-40 cursor-pointer rounded bg-brand p-2 text-brand-100 shadow duration-500 first-line:cursor-pointer hover:scale-[1.025] md:w-60"
+        >
+          <RiAddCircleFill class="mr-3 h-6 w-6 rounded fill-brand-100" />
+          <h1 class="qh-text-3 font-semi">Add</h1>
+        </div>
+
+        <!--  -->
+        <div
+          @click="
+            router.replace({
+              name: QH_ROUTES.USER.PREVIEW,
+              params: { username: basicDetails?.username },
+            })
+          "
+          class="flex !w-40 cursor-pointer rounded bg-brand-100 p-2 text-brand shadow first-line:cursor-pointer hover:scale-[1.025] md:w-60"
+        >
+          <RiProfileFill class="mr-3 h-6 w-6 rounded fill-brand" />
+          <h1 class="qh-text-3 font-semi">Preview</h1>
+        </div>
       </div>
     </div>
   </div>
@@ -111,6 +120,9 @@ import {
   RiGraduationCapFill,
   RiSendPlaneFill,
   RiProfileFill,
+  RiHomeOfficeFill,
+  RiSettings4Fill,
+  RiContactsFill,
 } from 'vue-remix-icons';
 import { ArrowRightStartOnRectangleIcon } from '@heroicons/vue/24/outline';
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/vue/24/solid';
@@ -172,26 +184,32 @@ async function openLogoutModal() {
   } catch (error) {}
 }
 
-const navbar = markRaw([
-  {
-    title: 'Add',
-    action: () => router.replace({ query: { add: route.meta.name } }),
-    route: '',
-    icon: RiAddCircleFill,
-    class: 'fill-success bg-success-100 text-success',
-  },
-  {
-    title: 'Preview',
-    action: () =>
-      router.replace({
-        name: QH_ROUTES.USER.PREVIEW,
-        params: { username: basicDetails.value?.username },
-      }),
-    route: '',
-    icon: RiProfileFill,
-    class: 'fill-brand bg-brand-100 text-brand',
-  },
-]);
+const routeNames = computed(() => {
+  switch (route.name) {
+    case QH_ROUTES.USER.DETAILS:
+      return 'Profile';
+    case QH_ROUTES.USER.EDUCATION:
+      return 'Education';
+    case QH_ROUTES.USER.WORK_DETAILS:
+      return 'Work Details';
+    case QH_ROUTES.USER.CONTACT:
+      return 'Contact Details';
+    case QH_ROUTES.USER.SETTINGS:
+      return 'Settings';
+    case QH_ROUTES.USER.PROJECTS:
+      return 'Projects';
+    case QH_ROUTES.USER.EXPERIENCE:
+      return 'Experience';
+    case QH_ROUTES.USER.APPLIED_JOBS:
+      return 'Current Applications';
+    case QH_ROUTES.JOB.ALL:
+      return 'Latest Jobs';
+    case QH_ROUTES.JOB.SINGLE:
+      return 'Job Board';
+    default:
+      return null;
+  }
+});
 
 const sidebar = markRaw([
   {
@@ -209,11 +227,19 @@ const sidebar = markRaw([
     class: 'fill-brand  text-brand',
   },
   {
+    title: 'Work Details',
+    action: closeDropdown,
+    route: QH_ROUTES.USER.WORK_DETAILS,
+    icon: RiBriefcase2Fill,
+    class: 'fill-cyan-800  text-cyan-800',
+  },
+
+  {
     title: 'Experience',
     action: closeDropdown,
     route: QH_ROUTES.USER.EXPERIENCE,
-    icon: RiBriefcase2Fill,
-    class: 'fill-pink-800  text-pink-800',
+    icon: RiHomeOfficeFill,
+    class: 'fill-blue-800  text-blue-800',
   },
   {
     title: 'Applied Jobs',
@@ -229,6 +255,20 @@ const sidebar = markRaw([
     route: QH_ROUTES.USER.PROJECTS,
     icon: RiBox3Fill,
     class: 'fill-indigo-800  text-indigo-800',
+  },
+  {
+    title: 'Contact',
+    action: closeDropdown,
+    route: QH_ROUTES.USER.CONTACT,
+    icon: RiContactsFill,
+    class: 'fill-cyan-800  text-cyan-800',
+  },
+  {
+    title: 'Settings',
+    action: closeDropdown,
+    route: QH_ROUTES.USER.SETTINGS,
+    icon: RiSettings4Fill,
+    class: 'fill-dark-400  text-dark-400',
   },
 
   {

@@ -44,9 +44,7 @@
 
       <div class="flex">
         <RiArticleFill class="icon !h-6 !w-6" />
-        <h2 class="qh-text-4 w-fit">
-          {{ education.description }}
-        </h2>
+        <h2 class="qh-text-4 w-fit" v-html="education.description"></h2>
       </div>
     </qh-card>
   </div>

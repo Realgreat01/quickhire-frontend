@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 class="qh-text-2 my-6 font-bold">Current Applications</h1>
     <div
       class="items-startjustify-between flex border-b border-dashed border-brand p-2 py-4"
       v-for="(job, index) in allJobs"

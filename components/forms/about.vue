@@ -27,7 +27,7 @@
           />
           <qh-input
             label="About"
-            type="text"
+            type="editor"
             name="about_me"
             placeholder="Hi, I am Samson Ikuomenisan a proficient VueJS developer with over 4 years experience"
             v-model="about.about_me"

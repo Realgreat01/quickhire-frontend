@@ -1,80 +1,84 @@
 <template>
-  <div class="flex flex-wrap gap-6 rounded">
-    <qh-card
-      v-for="(project, index) in projects"
-      :key="index"
-      class="relative flex w-full flex-col justify-between gap-y-4 rounded-2xl p-4 shadow-xl"
-    >
-      <qh-edit-button class="text-dark" />
-      <qh-delete-button
-        class="top-12"
-        @click="deleteUserProject(project._id)"
-      />
-      <div class="my-4 font-light text-dark">
-        <RiBox3Fill class="icon h-10 w-10 fill-brand" />
-        <h2 class="qh-text-1 font-bold text-secondary-600">
-          {{ project.title }}
-        </h2>
-      </div>
-
-      <div class="flex">
-        <RiBuilding2Fill class="icon h-6 w-6" />
-        <h1 class="font-semibold capitalize text-brand">
-          {{ project.status }}
-        </h1>
-      </div>
-
-      <div class="flex">
-        <RiUser2Fill class="icon h-6 w-6" />
-        <h1 class="font-semibold capitalize text-brand">{{ project.role }}</h1>
-      </div>
-
-      <div class="flex w-fit justify-start gap-4 md:flex-row md:gap-x-10">
-        <a
-          :href="project.preview_url"
-          class="flex h-8 w-fit items-center justify-start gap-x-2 rounded-full bg-brand-50 px-5 !text-brand"
-        >
-          <RiGlobalLine class="h-7 w-7 fill-brand" />
-          <span class="">Preview</span>
-        </a>
-        <a
-          :href="project.repository"
-          class="flex h-8 w-fit items-center justify-start gap-x-2 rounded-full bg-brand-50 px-5 !text-brand"
-        >
-          <RiGithubFill class="h-7 w-7 fill-brand" />
-          <span class="">Repository</span>
-        </a>
-      </div>
-
-      <div class="md:w-3/5">
-        <RiToolsFill class="icon h-6 w-6 fill-brand" />
-        <p class="qh-test-3 font-semibold text-brand">Tools Used</p>
-        <div class="flex flex-wrap gap-2">
-          <qh-devicon
-            :icon="tool"
-            v-for="(tool, index) in project.tools_used"
-            :key="index"
-            class="colored text-2xl"
-          ></qh-devicon>
+  <div class="">
+    <div class="flex w-[80%] flex-wrap gap-6 rounded">
+      <qh-card
+        v-for="(project, index) in projects"
+        :key="index"
+        class="relative flex w-full flex-col justify-between gap-y-4 rounded-2xl p-4 shadow-xl"
+      >
+        <qh-edit-button class="text-dark" />
+        <qh-delete-button
+          class="top-12"
+          @click="deleteUserProject(project._id)"
+        />
+        <div class="my-4 font-light text-dark">
+          <RiBox3Fill class="icon h-10 w-10 fill-brand" />
+          <h2 class="qh-text-1 font-bold text-secondary-600">
+            {{ project.title }}
+          </h2>
         </div>
-      </div>
 
-      <div class="">
-        <RiArticleFill class="icon h-6 w-6 fill-brand" />
+        <div class="flex">
+          <RiBuilding2Fill class="icon h-6 w-6" />
+          <h1 class="font-semibold capitalize text-brand">
+            {{ project.status }}
+          </h1>
+        </div>
 
-        <p class="qh-test-3 font-semibold text-brand">Description</p>
-        <h2 class="" v-html="project.description"></h2>
+        <div class="flex">
+          <RiUser2Fill class="icon h-6 w-6" />
+          <h1 class="font-semibold capitalize text-brand">
+            {{ project.role }}
+          </h1>
+        </div>
 
-        <!-- <span v-html="project.projectDescription"></span> -->
-      </div>
+        <div class="flex w-fit justify-start gap-4 md:flex-row md:gap-x-10">
+          <a
+            :href="project.preview_url"
+            class="flex h-8 w-fit items-center justify-start gap-x-2 rounded-full bg-brand-50 px-5 !text-brand"
+          >
+            <RiGlobalLine class="h-7 w-7 fill-brand" />
+            <span class="">Preview</span>
+          </a>
+          <a
+            :href="project.repository"
+            class="flex h-8 w-fit items-center justify-start gap-x-2 rounded-full bg-brand-50 px-5 !text-brand"
+          >
+            <RiGithubFill class="h-7 w-7 fill-brand" />
+            <span class="">Repository</span>
+          </a>
+        </div>
 
-      <div class="">
-        <RiLightbulbFlashFill class="icon h-6 w-6 fill-brand" />
-        <p class="qh-test-3 font-semibold text-brand">Motivations</p>
-        <h2 class="pr-6" v-html="project.motivations"></h2>
-        <!-- <span v-html="project.projectLesson"></span> -->
-      </div>
-    </qh-card>
+        <div class="md:w-3/5">
+          <RiToolsFill class="icon h-6 w-6 fill-brand" />
+          <p class="qh-test-3 font-semibold text-brand">Tools Used</p>
+          <div class="flex flex-wrap gap-2">
+            <qh-devicon
+              :icon="tool"
+              v-for="(tool, index) in project.tools_used"
+              :key="index"
+              class="colored text-2xl"
+            ></qh-devicon>
+          </div>
+        </div>
+
+        <div class="">
+          <RiArticleFill class="icon h-6 w-6 fill-brand" />
+
+          <p class="qh-test-3 font-semibold text-brand">Description</p>
+          <h2 class="" v-html="project.description"></h2>
+
+          <!-- <span v-html="project.projectDescription"></span> -->
+        </div>
+
+        <div class="">
+          <RiLightbulbFlashFill class="icon h-6 w-6 fill-brand" />
+          <p class="qh-test-3 font-semibold text-brand">Motivations</p>
+          <h2 class="pr-6" v-html="project.motivations"></h2>
+          <!-- <span v-html="project.projectLesson"></span> -->
+        </div>
+      </qh-card>
+    </div>
   </div>
 </template>
 

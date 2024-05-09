@@ -8,8 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
-
 const props = defineProps({
   modelValue: Boolean,
 });
@@ -26,7 +24,7 @@ function toggleCheckbox(event: Event) {
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
+  width: 80px;
   height: 34px;
 }
 
@@ -41,7 +39,7 @@ function toggleCheckbox(event: Event) {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #171717;
   transition: 0.4s;
 }
 
@@ -50,26 +48,26 @@ function toggleCheckbox(event: Event) {
   content: '';
   height: 20px;
   width: 20px;
-  left: 2px;
+  left: 6px;
   bottom: 6px;
-  background-color: white;
+  background-color: rgb(251, 171, 0);
   transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: #0202ec;
+  background-color: #023696;
 }
 
-input:focus + .slider {
+/* input:focus + .slider {
   box-shadow: 0 0 1px #f9027e;
-}
+} */
 
 input:checked + .slider:before {
-  transform: translateX(26px);
+  transform: translateX(50px);
 }
 
 .slider.round {
-  border-radius: 34px;
+  border-radius: 50px;
 }
 
 .slider.round:before {

@@ -3,7 +3,7 @@
     class="sticky bottom-0 top-0 flex h-screen flex-col items-center justify-center gap-2 bg-white px-1"
   >
     <qh-card
-      class="font-poppins relative my-10 flex h-60 w-full flex-col items-center justify-center border-2 !border-dark-50"
+      class="font-poppins relative my-4 flex h-60 w-full flex-col items-center justify-center border-2 !border-dark-50"
     >
       <qh-edit-button class="text-dark" @click="editProfile" />
       <img
@@ -19,7 +19,7 @@
     <RouterLink
       :to="{ name: item.route }"
       :class="item.class"
-      class="font-geologica flex w-60 cursor-pointer p-1 pl-4 font-semibold hover:scale-[1.025]"
+      class="flex w-60 cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
       v-for="(item, index) in sidebar"
       :key="index"
     >
@@ -28,7 +28,7 @@
         :class="item.class"
         class="mr-3 h-7 w-7 rounded"
       />
-      <h1 class="qh-text-3 font-semi">
+      <h1 class="qh-text-3 font-semibold">
         {{ item.title }}
       </h1>
     </RouterLink>
@@ -116,9 +116,16 @@ const sidebar = markRaw([
     action: '',
     route: QH_ROUTES.USER.SETTINGS,
     icon: RiSettings4Fill,
-    class: 'fill-dark-800  text-dark-800',
+    class: 'fill-dark-500  text-dark-500',
   },
 ]);
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.router-link-exact-active {
+  @apply w-[90%] rounded-lg bg-brand-600 text-brand-100;
+  svg {
+    @apply fill-brand-100;
+  }
+}
+</style>

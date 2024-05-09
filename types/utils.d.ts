@@ -10,6 +10,7 @@ export interface AddressInterface {
 }
 
 export interface SocialLinks {
+  github?: string;
   facebook?: string;
   twitter?: string;
   linkedin?: string;
@@ -17,7 +18,6 @@ export interface SocialLinks {
   youtube?: string;
   hashnode?: string;
   twitch?: string;
-  github?: string;
 }
 
 export interface Stacks {

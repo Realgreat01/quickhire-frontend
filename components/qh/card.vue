@@ -12,7 +12,6 @@ defineProps({ Class: String });
 .card {
   border: 1px solid #edeaea;
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: 0 2px 8px #e8e8e8;
   transition: box-shadow 0.3s ease;
   &:hover {
