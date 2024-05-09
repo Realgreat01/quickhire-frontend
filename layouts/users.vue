@@ -7,9 +7,7 @@
       <div class="sticky bottom-0 top-0">
         <LayoutsNavbar class="sticky top-0 z-10" />
 
-        <NuxtPage
-          class="scroll overflow-y-scroll bg-dark-50 md:bg-white md:p-4"
-        />
+        <NuxtPage class="scroll overflow-y-scroll bg-white p-3 md:p-4" />
       </div>
     </div>
     <forms-profile v-if="modalController.profile" @close="closeModal" />
@@ -28,13 +26,8 @@ import { useUserStore } from '~/store/user-store';
 import { useJobStore } from '~/store/job-store';
 import { QH_ROUTES } from '~/constants/routes';
 
-const {
-  getBasicDetails,
-  getProjects,
-  getExperiences,
-  getEducation,
-  getSkills,
-} = useUserStore();
+const { getCurrentUser, getProjects, getExperiences, getEducation, getSkills } =
+  useUserStore();
 
 const { getAllJobs } = useJobStore();
 
@@ -72,7 +65,7 @@ const modalController = computed(() => {
 });
 
 onBeforeMount(() => {
-  getBasicDetails();
+  getCurrentUser();
   getProjects();
   getExperiences();
   getEducation();

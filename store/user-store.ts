@@ -17,7 +17,7 @@ import {
 } from '~/services/user.service';
 
 import type {
-  BasicDetails,
+  User,
   Projects,
   Education,
   Experience,
@@ -26,7 +26,7 @@ import type {
 } from '~/types/user';
 
 interface UserType {
-  BasicDetails: BasicDetails | null;
+  User: User | null;
   Projects: Projects[] | null;
   Educations: Education[] | null;
   Experiences: Experience[] | null;
@@ -37,7 +37,7 @@ interface UserType {
 export const useUserStore = defineStore('user', {
   state: (): UserType => {
     return {
-      BasicDetails: null,
+      User: null,
       Projects: null,
       Educations: null,
       Experiences: null,
@@ -47,8 +47,8 @@ export const useUserStore = defineStore('user', {
   },
 
   getters: {
-    basicDetails(): BasicDetails | null {
-      return this.BasicDetails;
+    user(): User | null {
+      return this.User;
     },
 
     projects(): Projects[] | null {
@@ -71,7 +71,7 @@ export const useUserStore = defineStore('user', {
     },
 
     fullname(): string {
-      return `${this.BasicDetails?.firstname} ${this.BasicDetails?.lastname}`;
+      return `${this.user?.firstname} ${this.user?.lastname}`;
     },
   },
 
@@ -82,12 +82,11 @@ export const useUserStore = defineStore('user', {
         this.PublicUser = response.data;
       }
     },
-    async getBasicDetails() {
+    async getCurrentUser() {
       const response = await GET_USER_DETAILS();
       if (response.success) {
-        this.BasicDetails = response.data;
-        if (this.basicDetails?.username)
-          QH_CONSTANTS.USERNAME = this.basicDetails?.username;
+        this.User = response.data;
+        if (this.User?.username) QH_CONSTANTS.USERNAME = this.User?.username;
       }
     },
 

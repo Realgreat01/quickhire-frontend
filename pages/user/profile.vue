@@ -1,8 +1,6 @@
 <template>
   <div class="bg-white">
     <div class="mx-auto bg-white p-5 md:w-[90%]">
-      <!-- <qh-dropzone /> -->
-      <!--  -->
       <div class="flex items-start justify-between">
         <div class="">
           <h1
@@ -11,17 +9,20 @@
             {{ fullname }}
           </h1>
           <h1 class="qh-text-4 font-medium capitalize">
-            {{ basicDetails?.header_bio }}
+            {{ user?.header_bio }}
           </h1>
-          <qh-button
+          <!-- <qh-button
             class="qh-text-4 my-4 h-8 w-40 rounded-full md:h-12 md:w-80"
             @click="generatePDFTemplate"
             label="Download Resume"
+          /> -->
+          <qh-resume-button
+            class="qh-text-4 my-4 h-8 w-40 rounded-full md:h-12 md:w-80"
           />
         </div>
         <div class="relative block">
           <img
-            :src="basicDetails?.profile_picture"
+            :src="user?.profile_picture"
             alt=""
             class="block w-36 rounded-[50%] border-4 border-brand"
           />
@@ -41,7 +42,7 @@
             @click="editAbout"
           />
         </h2>
-        <p class="" v-html="basicDetails?.about_me"></p>
+        <p class="" v-html="user?.about_me"></p>
       </div>
 
       <!-- 2 -->
@@ -120,7 +121,7 @@ useHead({
 
 const router = useRouter();
 
-const { fullname, skills, basicDetails } = storeToRefs(useUserStore());
+const { fullname, skills, user } = storeToRefs(useUserStore());
 
 const editAbout = () => {
   router.replace({ query: { edit: QH_ROUTES.USER.ABOUT } });

@@ -60,7 +60,7 @@
           <qh-button
             v-else-if="
               job.applicants.some(
-                (applicant: any) => applicant.user === basicDetails?._id,
+                (applicant: any) => applicant.user === user?._id,
               )
             "
             class="disabled h-8 w-fit rounded-full bg-brand-400 px-8"
@@ -108,7 +108,7 @@ import { useUserStore } from '~/store/user-store';
 
 const { getApplyForJob } = useJobStore();
 const { job } = storeToRefs(useJobStore());
-const { basicDetails } = storeToRefs(useUserStore());
+const { user } = storeToRefs(useUserStore());
 </script>
 
 <style scoped></style>

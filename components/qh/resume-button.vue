@@ -1,7 +1,5 @@
 <template>
-  <div class="">
-    <qh-button @click="generatePDFTemplate()">Download Resume</qh-button>
-  </div>
+  <qh-button @click="generatePDFTemplate()">Download Resume</qh-button>
 </template>
 
 <script setup lang="ts">
@@ -21,7 +19,7 @@ const qhHtmlToPDFMake = (html: string) =>
   });
 
 const DefaultContent = () => {
-  const { projects, basicDetails, fullname, experiences, educations, stacks } =
+  const { projects, user, fullname, experiences, educations, skills } =
     storeToRefs(useUserStore());
 
   const headerColumn = {
@@ -37,18 +35,33 @@ const DefaultContent = () => {
             style: 'brand',
             fontSize: 20,
           },
-          'Frontend Developer | Technical Writer',
+          user.value?.header_bio,
         ],
       },
       {
         alignment: 'right',
         type: 'none',
         ol: [
-          basicDetails.value?.email,
-          '+234 706 221 5229',
-          'Ugbowo Campus, UNIBEN, Benin - City',
+          user.value?.email,
+          user.value?.phone_number ?? '',
+          `${user.value?.address?.street ?? ''} ${user.value?.address?.state}, ${user.value?.address.country}`,
         ],
       },
+    ],
+  };
+  const SummaryColumn = {
+    alignment: 'justify',
+    width: 200,
+    type: 'none',
+    margin: [0, 10, 0, 12],
+    ol: [
+      {
+        alignment: 'left',
+        style: 'brand',
+        text: 'PROFILE SUMMARY',
+        fontSize: 16,
+      },
+      user.value?.summary,
     ],
   };
 
@@ -59,8 +72,8 @@ const DefaultContent = () => {
       { text: experience.role, bold: true, fontSize: 10 },
       {
         columns: [
-          qhDates.shortDate(experience.startDate),
-          qhDates.shortDate(experience.endDate),
+          qhDates.shortDate(experience.start_date),
+          qhDates.shortDate(experience.end_date),
         ],
         color: 'gray',
       },
@@ -86,16 +99,16 @@ const DefaultContent = () => {
 
   // Projects
   const project = projects.value?.map((project) => {
-    const tools = project.projectTools.slice(0, 5).map((tool) => ({
+    const tools = project.tools_used.slice(0, 5).map((tool) => ({
       width: 'auto',
       text: tool.name,
       style: 'button',
     }));
     const list = [
-      { text: project.projectName, bold: true },
+      { text: project.title, bold: true },
       { columns: tools },
       {
-        ul: [qhHtmlToPDFMake(project.projectDescription)],
+        ul: [qhHtmlToPDFMake(project.description)],
         type: 'none',
         margin: [0, 0, 0, 12],
       },
@@ -122,8 +135,8 @@ const DefaultContent = () => {
       { text: 'Bachelors', italics: true, color: 'gray' },
       {
         columns: [
-          qhDates.shortDate(school.entryDate),
-          qhDates.shortDate(school.graduationDate),
+          qhDates.shortDate(school.entry_date),
+          qhDates.shortDate(school.graduation_date),
         ],
         margin: [0, 0, 0, 12],
       },
@@ -143,75 +156,58 @@ const DefaultContent = () => {
   };
 
   // EDUCATION
-  const programmingLanguages = stacks.value?.programmingLanguages.map(
+  const programmingLanguages = skills.value?.programming_languages.map(
     (language) => {
-      const button = `<button style="margin:2px;">${language}</button>`;
+      const button = `<button style="margin:2px;">${language.name}</button>`;
       // return button;
       return qhHtmlToPDFMake(button);
     },
   );
 
-  const frameworks = stacks.value?.frameworks.map((framework) => {
-    const button = `<button style="margin:2px; color: #023696; ">${framework}</button>`;
-    // console.log(button);
+  const frameworks = skills.value?.frameworks.map((framework) => {
+    const button = `<button style="margin:2px; color: #023696; ">${framework.name}</button>`;
     // return button;
     return qhHtmlToPDFMake(button);
   });
-  const PL = `<p>${programmingLanguages?.join('')} </p>`;
-  const stack = {};
-  const list = [
-    // { text: school.institution, bold: true, fontSize: 12 },
-    // { text: school.course },
-    // { text: 'Bachelors', italics: true, color: 'gray' },
-    // {
-    //   columns: [
-    //     qhDates.shortDate(school.entryDate),
-    //     qhDates.shortDate(school.graduationDate),
-    //   ],
-    //   margin: [0, 0, 0, 12],
-    // },
-  ];
-  // return list;
-  // });
 
-  console.log({ PL });
   const stackList = {
     width: 200,
     type: 'none',
     margin: [0, 10, 0, 12],
     ol: [
       { alignment: 'left', style: 'brand', text: 'SKILLS', fontSize: 16 },
+
       {
-        columns: [
-          [
-            { text: 'Programming Languages', bold: true },
-            {
-              ul: [programmingLanguages],
-              type: 'none',
-              color: '#023696',
-              margin: [0, 0, 0, 12],
-            },
-          ],
-          [
-            { text: 'Frameworks', bold: true },
-            {
-              ul: [frameworks],
-              type: 'none',
-              color: '#023696',
-              margin: [0, 0, 0, 12],
-            },
-          ],
+        ol: [
+          {
+            type: 'none',
+            ol: [
+              { text: 'Programming Languages', bold: true, type: 'none' },
+              {
+                ul: [programmingLanguages],
+                type: 'none',
+                color: '#023696',
+                margin: [0, 0, 0, 12],
+              },
+            ],
+            ul: [
+              { text: 'Frameworks', bold: true, type: 'none' },
+              {
+                ul: [frameworks],
+                type: 'none',
+                color: '#023696',
+                margin: [0, 0, 0, 12],
+              },
+            ],
+          },
         ],
       },
-
-      // ],
-
-      education,
     ],
   };
 
   return {
     headerColumn,
+    SummaryColumn,
     experienceList,
     projectList,
     educationList,
@@ -227,6 +223,7 @@ const generatePDFTemplate = async () => {
     {
       content: [
         definitions.headerColumn,
+        definitions.SummaryColumn,
         {
           columns: [
             [definitions.experienceList, definitions.projectList],

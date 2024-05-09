@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="md:w-4/5">
     <qh-card class="flex flex-col gap-6">
       <qh-card class="relative">
         <h2 class="qh-text-2 my-10 font-bold">Address</h2>
@@ -100,7 +100,7 @@ useHead({
   title: 'QuickHire - Contact',
 });
 
-const { basicDetails: user } = storeToRefs(useUserStore());
+const { user } = storeToRefs(useUserStore());
 </script>
 
 <style scoped></style>

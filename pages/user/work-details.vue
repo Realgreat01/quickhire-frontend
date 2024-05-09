@@ -1,43 +1,49 @@
 <template>
   <div>
     <qh-card class="flex flex-col gap-4">
-      <div class="flex items-center gap-x-20">
-        <h2 class="qh-text-3 w-60 font-medium">Experience Level</h2>
+      <div class="flex items-center justify-between gap-x-20">
+        <h2 class="qh-text-3 font-medium">Experience Level</h2>
         <qh-input
           name="experience_level"
           type="select"
-          class="w-64"
+          class="w-40 md:w-64"
           label-name="label"
           :options="experienceLevels"
         />
       </div>
-      <div class="flex items-center gap-x-20">
-        <h2 class="qh-text-3 w-60 font-medium">Rate per Hour</h2>
-        <qh-input name="experience_level" class="w-64" type="currency" />
+      <div class="flex items-center justify-between gap-x-20">
+        <h2 class="qh-text-3 font-medium">Rate per Hour</h2>
+        <qh-input
+          name="experience_level"
+          class="w-40 md:w-64"
+          type="currency"
+        />
       </div>
 
-      <div class="flex items-center gap-x-20">
-        <h2 class="qh-text-3 w-60 font-medium">Highest Education Level</h2>
+      <div class="flex items-center justify-between gap-x-20">
+        <h2 class="qh-text-3 font-medium">Highest Education Level</h2>
         <qh-input
           name="experience_level"
           type="select"
-          class="w-64"
+          class="w-40 md:w-64"
           :options="educationLevels"
         />
       </div>
 
-      <div class="flex items-center gap-x-20">
-        <h2 class="qh-text-3 w-60 font-medium">Job Interests</h2>
+      <div class="flex items-center justify-between gap-x-20">
+        <h2 class="qh-text-3 font-medium">Job Interests</h2>
         <qh-input
           name="experience_level"
           type="select"
-          class="w-64 capitalize"
+          class="w-40 capitalize md:w-64"
           placeholder="Remote"
           :options="['onsite', 'remote', 'hybrid']"
         />
       </div>
 
-      <qh-button class="my-4 w-60 rounded-full !py-3">Save Changes</qh-button>
+      <qh-button class="my-4 rounded-full !py-3 md:w-60"
+        >Save Changes</qh-button
+      >
     </qh-card>
   </div>
 </template>
@@ -61,7 +67,7 @@ definePageMeta({
 useHead({
   title: 'QuickHire - Work Details',
 });
-const { basicDetails: user } = storeToRefs(useUserStore());
+const { user } = storeToRefs(useUserStore());
 const modalStore = useModalStore();
 
 const experienceLevels = ref([

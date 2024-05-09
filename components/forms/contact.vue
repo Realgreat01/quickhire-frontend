@@ -58,7 +58,7 @@ const formDetails = ref([
   },
 ]);
 
-const basicDetails = ref({
+const userDetails = ref({
   firstname: '',
   lastname: '',
   middlename: '',

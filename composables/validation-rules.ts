@@ -4,7 +4,7 @@ import RegexExpression from '~/constants/regex';
 export class ValidationRules {
   static URL = Yup.string().url('Please enter a valid URL');
 
-  static basicDetails = {
+  static userDetails = {
     firstname: Yup.string().required('firstname is required'),
     lastname: Yup.string().required('lastname is required'),
     middlename: Yup.string().required('middlename is required'),

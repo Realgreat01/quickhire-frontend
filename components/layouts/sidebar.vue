@@ -8,11 +8,11 @@
       <qh-edit-button class="text-dark" @click="editProfile" />
       <img
         class="m-2 block h-32 w-32 rounded-full border border-brand"
-        :src="basicDetails?.profile_picture"
+        :src="user?.profile_picture"
         alt=""
       />
       <h1 class="qh-text-3 font-semibold capitalize">{{ fullname }}</h1>
-      <h1 class="text-xs text-brand">@{{ basicDetails?.username }}</h1>
+      <h1 class="text-xs text-brand">@{{ user?.username }}</h1>
       <h1 class="qh-text-4 font-normal">{{ skills?.stack }}</h1>
     </qh-card>
 
@@ -55,7 +55,7 @@ import {
 import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 
-const { fullname, basicDetails, skills } = storeToRefs(useUserStore());
+const { fullname, user, skills } = storeToRefs(useUserStore());
 const editProfile = () => {
   return router.replace({ query: { edit: QH_ROUTES.USER.PROFILE } });
 };

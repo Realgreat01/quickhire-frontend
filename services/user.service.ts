@@ -1,6 +1,6 @@
 import ApiService from './api-service.service';
 import type {
-  BasicDetails,
+  User,
   Education,
   Experience,
   Projects,
@@ -21,7 +21,7 @@ export const GET_USER_BY_USERNAME = async (username: string) => {
   });
 };
 
-export const EDIT_USER_DETAILS = async (data: BasicDetails) => {
+export const EDIT_USER_DETAILS = async (data: User) => {
   return await ApiService.run({
     method: ApiService.PUT,
     url: '/user',

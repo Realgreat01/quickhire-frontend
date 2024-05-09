@@ -43,8 +43,6 @@ import {
 import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 
-const { fullname, basicDetails } = storeToRefs(useUserStore());
-
 const sidebar = markRaw([
   {
     title: 'Profile',

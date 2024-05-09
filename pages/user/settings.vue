@@ -1,38 +1,38 @@
 <template>
-  <div>
+  <div class="md:w-4/5">
     <qh-card class="flex flex-col gap-y-6">
-      <div class="flex gap-x-20">
-        <h2 class="w-60 font-medium">Allow Notifications</h2>
+      <div class="flex items-center justify-between gap-x-20">
+        <h2 class="w-40 font-medium md:w-60">Allow Notifications</h2>
         <qh-toggle v-model="settings.allow_notifications" />
       </div>
-      <div class="flex gap-x-20">
-        <h2 class="w-60 font-medium">Portfolio Template</h2>
+      <div class="flex items-center justify-between gap-x-20">
+        <h2 class="w-40 font-medium md:w-60">Portfolio Template</h2>
         <qh-button
-          class="disabled w-fit cursor-not-allowed rounded-lg !bg-dark-200 !py-2 capitalize !text-dark"
+          class="disabled w-fit cursor-not-allowed rounded-lg !bg-dark-50 !py-1 capitalize !text-dark"
           :label="settings.portfolio_template"
         />
       </div>
-      <div class="flex gap-x-20">
-        <h2 class="w-60 font-medium">CV Template</h2>
+      <div class="flex items-center justify-between gap-x-20">
+        <h2 class="w-40 font-medium md:w-60">CV Template</h2>
         <qh-button
-          class="disabled w-fit cursor-not-allowed rounded-lg !bg-dark-200 !py-2 capitalize !text-dark"
+          class="disabled w-fit cursor-not-allowed rounded-lg !bg-dark-50 !py-1 capitalize !text-dark"
           :label="settings.cv_template"
         />
       </div>
-      <div class="flex gap-x-20">
-        <h2 class="w-60 font-medium">Show Education on Portfolio</h2>
+      <div class="flex items-center justify-between gap-x-20">
+        <h2 class="w-40 font-medium md:w-60">Show Education on Portfolio</h2>
         <qh-toggle v-model="settings.show_education" />
       </div>
-      <div class="flex gap-x-20">
-        <h2 class="w-60 font-medium">Show Summary on CV</h2>
+      <div class="flex items-center justify-between gap-x-20">
+        <h2 class="w-40 font-medium md:w-60">Show Summary on CV</h2>
         <qh-toggle v-model="settings.show_summary" />
       </div>
-      <div class="flex gap-x-20">
-        <h2 class="w-60 font-medium">Send Cover Letter</h2>
+      <div class="flex items-center justify-between gap-x-20">
+        <h2 class="w-40 font-medium md:w-60">Send Cover Letter</h2>
         <qh-toggle v-model="checked" />
       </div>
 
-      <qh-button class="w-60 rounded-full">Save Changes</qh-button>
+      <qh-button class="rounded-full md:w-60">Save Changes</qh-button>
     </qh-card>
   </div>
 </template>
@@ -58,13 +58,13 @@ useHead({
 });
 const checked = ref(true);
 const mate = ref(false);
-const { basicDetails: user } = storeToRefs(useUserStore());
+const { user } = storeToRefs(useUserStore());
 
 const settings = ref({
   allow_notifications: true,
   portfolio_template: 'default',
   cv_template: 'default',
-  show_education: true,
+  show_education: false,
   show_summary: true,
 });
 </script>

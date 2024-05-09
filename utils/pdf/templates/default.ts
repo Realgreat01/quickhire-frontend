@@ -13,7 +13,7 @@ const qhHtmlToPDFMake = (html: string) =>
   });
 
 export const DefaultContent = () => {
-  const { projects, basicDetails, fullname, experiences, educations, stacks } =
+  const { projects, user, fullname, experiences, educations, stacks } =
     storeToRefs(useUserStore());
 
   const headerColumn = {
@@ -36,7 +36,7 @@ export const DefaultContent = () => {
         alignment: 'right',
         type: 'none',
         ol: [
-          basicDetails.value?.email,
+          user.value?.email,
           '+234 706 221 5229',
           'Ugbowo Campus, UNIBEN, Benin - City',
         ],

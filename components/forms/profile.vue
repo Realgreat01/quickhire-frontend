@@ -3,7 +3,7 @@
     <VeeForm v-slot="{ handleSubmit, isSubmitting, errors }">
       <form
         class="mx-auto mt-10 w-full gap-4 p-2"
-        @submit.prevent="handleSubmit($event, submitBasicDetails)"
+        @submit.prevent="handleSubmit($event, submitUserDetails)"
       >
         <div class="grid grid-cols-1 gap-4">
           <qh-input
@@ -12,7 +12,7 @@
             name="firstname"
             placeholder="Your firstname"
             v-model="profile.firstname"
-            :rules="ValidationRules.basicDetails.firstname"
+            :rules="ValidationRules.userDetails.firstname"
           />
 
           <qh-input
@@ -21,7 +21,7 @@
             name="lastname"
             placeholder="Your lastname"
             v-model="profile.lastname"
-            :rules="ValidationRules.basicDetails.lastname"
+            :rules="ValidationRules.userDetails.lastname"
           />
 
           <qh-input
@@ -30,7 +30,7 @@
             name="middlename"
             placeholder="Your middlename"
             v-model="profile.middlename"
-            :rules="ValidationRules.basicDetails.middlename"
+            :rules="ValidationRules.userDetails.middlename"
           />
 
           <qh-input
@@ -51,7 +51,7 @@
             name="phone_number"
             placeholder="Your phone number"
             v-model="profile.phone_number"
-            :rules="ValidationRules.basicDetails.phone_number"
+            :rules="ValidationRules.userDetails.phone_number"
           />
         </div>
         <qh-button
@@ -70,13 +70,13 @@
 <script setup lang="ts">
 import { EDIT_USER_DETAILS } from '~/services/user.service';
 import { Form as VeeForm } from 'vee-validate';
-import type { BasicDetails } from '~/types/user';
+import type { User } from '~/types/user';
 
 import { useUserStore } from '~/store/user-store';
 
-const { getBasicDetails } = useUserStore();
+const { getCurrentUser } = useUserStore();
 
-const profile = ref<BasicDetails | any>({
+const profile = ref<User | any>({
   gender: '',
   firstname: '',
   lastname: '',
@@ -84,7 +84,7 @@ const profile = ref<BasicDetails | any>({
   phone_number: '',
 });
 
-const submitBasicDetails = async (field: any) => {
+const submitUserDetails = async (field: any) => {
   const response = await EDIT_USER_DETAILS({
     ...field,
     ...profile.value,
@@ -93,7 +93,7 @@ const submitBasicDetails = async (field: any) => {
   if (response.success) {
     qhToast.success('Details submitted successfully');
     qhCloseModal();
-    getBasicDetails();
+    getCurrentUser();
   } else qhToast.error(response.message);
 };
 </script>

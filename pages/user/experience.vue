@@ -12,7 +12,7 @@
       />
       <div class="">
         <RiBuildingFill class="icon h-6 w-6" />
-        <h1 class="qh-text-2 font-bold text-secondary-600">
+        <h1 class="qh-text-2 font-bold text-success-500">
           {{ experience.company }}
         </h1>
       </div>

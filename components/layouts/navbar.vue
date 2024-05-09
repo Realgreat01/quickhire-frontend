@@ -45,9 +45,7 @@
                 alt=""
               />
               <h1 class="font-semibold capitalize">{{ fullname }}</h1>
-              <h1 class="qh-text-4 text-brand">
-                @{{ basicDetails?.username }}
-              </h1>
+              <h1 class="qh-text-4 text-brand">@{{ user?.username }}</h1>
               <h1 class="font-normal">{{ skills?.stack }}</h1>
             </div>
             <div class="my-5">
@@ -77,19 +75,19 @@
       </div>
     </div>
 
-    <div class="mx-6 flex items-center justify-between">
+    <div class="mx-2 flex items-center justify-between md:mx-6">
       <h1 class="qh-text-2 my-4 w-fit font-bold text-brand-800">
         {{ routeNames }}
       </h1>
-      <div class="grid grid-cols-2 justify-end gap-x-4 p-4 md:flex">
+      <div class="flex justify-end gap-2 md:flex md:gap-x-4 md:p-4">
         <!--  -->
         <div
           v-show="actionButtonPages.includes(route.name as string)"
           @click="() => router.replace({ query: { add: route.meta.name } })"
-          class="flex !w-40 cursor-pointer rounded bg-brand p-2 text-brand-100 shadow duration-500 first-line:cursor-pointer hover:scale-[1.025] md:w-60"
+          class="flex cursor-pointer rounded bg-brand p-2 pr-4 text-brand-100 shadow duration-500 first-line:cursor-pointer hover:scale-[1.025] md:!w-40"
         >
           <RiAddCircleFill class="mr-3 h-6 w-6 rounded fill-brand-100" />
-          <h1 class="qh-text-3 font-semi">Add</h1>
+          <h1 class="qh-text-3 font-semibold">Add</h1>
         </div>
 
         <!--  -->
@@ -97,13 +95,13 @@
           @click="
             router.replace({
               name: QH_ROUTES.USER.PREVIEW,
-              params: { username: basicDetails?.username },
+              params: { username: user?.username },
             })
           "
-          class="flex !w-40 cursor-pointer rounded bg-brand-100 p-2 text-brand shadow first-line:cursor-pointer hover:scale-[1.025] md:w-60"
+          class="flex cursor-pointer rounded bg-brand-100 p-2 pr-4 text-brand shadow first-line:cursor-pointer hover:scale-[1.025] md:!w-40"
         >
           <RiProfileFill class="mr-3 h-6 w-6 rounded fill-brand" />
-          <h1 class="qh-text-3 font-semi">Preview</h1>
+          <h1 class="qh-text-3 font-semibold">Preview</h1>
         </div>
       </div>
     </div>
@@ -133,7 +131,7 @@ import { useUserStore } from '~/store/user-store';
 import { QH_ROUTES } from '~/constants/routes';
 
 const { closeDropdown } = useModalStore();
-const { fullname, basicDetails, skills } = storeToRefs(useUserStore());
+const { fullname, user, skills } = storeToRefs(useUserStore());
 
 const route = useRoute();
 const router = useRouter();

@@ -22,7 +22,7 @@ export interface Settings {
   send_cover_letter: boolean;
 }
 
-export interface BasicDetails {
+export interface User {
   _id: string;
   email: string;
   username: string;
@@ -110,34 +110,4 @@ export interface Projects {
   status?: 'completed' | 'in progress' | 'on hold';
 }
 
-export interface PublicUser {
-  _id: string;
-  email: string;
-  username: string;
-  profile_picture: string;
-  password: string;
-  firstname: string;
-  lastname: string;
-  middlename: string;
-  phone_number: string;
-  gender: 'male' | 'female' | 'others';
-  about_me: string;
-  header_bio: string;
-  summary: string;
-  cover_letter: string;
-  hobbies?: string[];
-  interests?: string[];
-  address: AddressInterface;
-  reference: Reference[];
-  social_media: SocialLinks;
-  experience_level: 'entry' | 'mid' | 'senior';
-  rate: number;
-  highest_education_level: Education['type'];
-  job_interest: JobLocationType;
-  availability: string;
-  blogs: object[];
-  projects: Projects[];
-  experience: Experience[];
-  skills: Skills;
-  education: Education[];
-}
+export interface PublicUser extends User {}

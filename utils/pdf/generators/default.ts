@@ -2,7 +2,7 @@ import { DefaultContent } from '../templates/default';
 import { useUserStore } from '~/store/user-store';
 
 export const generatePDFTemplate = async () => {
-  const { basicDetails, fullname } = storeToRefs(useUserStore());
+  const { user, fullname } = storeToRefs(useUserStore());
   const PDFMake = usePDFMake();
   const definitions = DefaultContent();
 

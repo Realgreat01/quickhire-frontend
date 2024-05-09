@@ -1,10 +1,10 @@
 <template>
   <div class="">
-    <div class="flex w-[80%] flex-wrap gap-6 rounded">
+    <div class="flex flex-wrap gap-6 rounded">
       <qh-card
         v-for="(project, index) in projects"
         :key="index"
-        class="relative flex w-full flex-col justify-between gap-y-4 rounded-2xl p-4 shadow-xl"
+        class="relative flex w-full flex-col justify-between gap-y-4 rounded-2xl p-4 shadow-xl md:w-4/5"
       >
         <qh-edit-button class="text-dark" />
         <qh-delete-button
@@ -13,9 +13,9 @@
         />
         <div class="my-4 font-light text-dark">
           <RiBox3Fill class="icon h-10 w-10 fill-brand" />
-          <h2 class="qh-text-1 font-bold text-secondary-600">
+          <h1 class="qh-text-2 font-bold text-success-500">
             {{ project.title }}
-          </h2>
+          </h1>
         </div>
 
         <div class="flex">

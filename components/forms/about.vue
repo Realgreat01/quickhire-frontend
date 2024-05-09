@@ -67,13 +67,13 @@
 <script setup lang="ts">
 import { EDIT_USER_DETAILS } from '~/services/user.service';
 import { Form as VeeForm } from 'vee-validate';
-import type { BasicDetails } from '~/types/user';
+import type { User } from '~/types/user';
 
 import { useUserStore } from '~/store/user-store';
 
-const { getBasicDetails } = useUserStore();
+const { getCurrentUser } = useUserStore();
 
-const about = ref<BasicDetails | any>({
+const about = ref<User | any>({
   about_me: '',
   header_bio: '',
   summary: '',
@@ -88,7 +88,7 @@ const submitAboutDetails = async (field: any) => {
   if (response.success) {
     qhToast.success('Details submitted successfully');
     qhCloseModal();
-    getBasicDetails();
+    getCurrentUser();
   } else qhToast.error(response.message);
 };
 </script>
