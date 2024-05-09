@@ -14,9 +14,10 @@
     </p>
 
     <div class="qh-text-3 grid grid-cols-2 gap-x-4 md:w-2/3">
-      <qh-button
+      <qh-resume-button
+        :user="user"
         class="border-[1.5px] duration-500 hover:bg-brand-400 hover:font-medium"
-        >Resume</qh-button
+        >Resume</qh-resume-button
       >
       <qh-button
         class="border-[1.5px] border-brand-400 !bg-transparent !text-brand duration-500 hover:!bg-brand-400 hover:font-medium hover:!text-brand-50"

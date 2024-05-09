@@ -5,6 +5,7 @@
         <h2 class="qh-text-3 font-medium">Experience Level</h2>
         <qh-input
           name="experience_level"
+          placeholder="Mid Level"
           type="select"
           class="w-40 md:w-64"
           label-name="label"
@@ -12,9 +13,20 @@
         />
       </div>
       <div class="flex items-center justify-between gap-x-20">
+        <h2 class="qh-text-3 font-medium">Availability</h2>
+        <qh-input
+          name="availability"
+          placeholder="Immediately"
+          type="select"
+          class="w-40 capitalize md:w-64"
+          :options="availability"
+        />
+      </div>
+      <div class="flex items-center justify-between gap-x-20">
         <h2 class="qh-text-3 font-medium">Rate per Hour</h2>
         <qh-input
           name="experience_level"
+          placeholder="$50"
           class="w-40 md:w-64"
           type="currency"
         />
@@ -23,7 +35,8 @@
       <div class="flex items-center justify-between gap-x-20">
         <h2 class="qh-text-3 font-medium">Highest Education Level</h2>
         <qh-input
-          name="experience_level"
+          name="education_level"
+          placeholder="Bachelors"
           type="select"
           class="w-40 md:w-64"
           :options="educationLevels"
@@ -35,13 +48,13 @@
         <qh-input
           name="experience_level"
           type="select"
-          class="w-40 capitalize md:w-64"
           placeholder="Remote"
+          class="w-40 capitalize md:w-64"
           :options="['onsite', 'remote', 'hybrid']"
         />
       </div>
 
-      <qh-button class="my-4 rounded-full !py-3 md:w-60"
+      <qh-button class="my-4 rounded-full !py-3 md:w-60" disabled
         >Save Changes</qh-button
       >
     </qh-card>
@@ -75,6 +88,13 @@ const experienceLevels = ref([
   { label: 'Mid Level', value: 'mid' },
   { label: 'Senior Level', value: 'senior' },
 ]);
+const availability = [
+  'immediately',
+  '1 Week',
+  '2 Weeks',
+  '1 Month',
+  'Not Available',
+];
 const educationLevels = ref([
   'Bachelors',
   'Masters',
@@ -90,6 +110,7 @@ const educationLevels = ref([
 const workDetails = ref({
   experience_level: experienceLevels.value[0],
   rate: 10,
+  availability: 'immediately',
   highest_education_level: educationLevels.value[0],
   job_interest: 'mid',
 });

@@ -1,11 +1,21 @@
 <template>
-  <qh-button @click="generatePDFTemplate()">Download Resume</qh-button>
+  <qh-button @click="generatePDFTemplate()" v-bind="$attrs"
+    ><slot>Download Resume</slot></qh-button
+  >
 </template>
 
 <script setup lang="ts">
 import { useUserStore } from '~/store/user-store';
 import htmlToPDFMake from 'html-to-pdfmake';
 import { qhDates } from '~/composables/utils';
+import type { User } from '~/types/user';
+
+const props = defineProps({
+  user: {
+    type: Object as PropType<User | null>,
+    required: true,
+  },
+});
 
 const qhHtmlToPDFMake = (html: string) =>
   htmlToPDFMake(html, {
@@ -19,8 +29,7 @@ const qhHtmlToPDFMake = (html: string) =>
   });
 
 const DefaultContent = () => {
-  const { projects, user, fullname, experiences, educations, skills } =
-    storeToRefs(useUserStore());
+  const user = unref(props.user);
 
   const headerColumn = {
     alignment: 'justify',
@@ -30,21 +39,21 @@ const DefaultContent = () => {
         type: 'none',
         ol: [
           {
-            text: fullname.value,
+            text: `${user?.firstname} ${user?.lastname} `,
             alignment: 'left',
             style: 'brand',
             fontSize: 20,
           },
-          user.value?.header_bio,
+          user?.header_bio,
         ],
       },
       {
         alignment: 'right',
         type: 'none',
         ol: [
-          user.value?.email,
-          user.value?.phone_number ?? '',
-          `${user.value?.address?.street ?? ''} ${user.value?.address?.state}, ${user.value?.address.country}`,
+          user?.email,
+          user?.phone_number ?? '',
+          `${user?.address?.street ?? ''} ${user?.address?.state}, ${user?.address.country}`,
         ],
       },
     ],
@@ -61,12 +70,12 @@ const DefaultContent = () => {
         text: 'PROFILE SUMMARY',
         fontSize: 16,
       },
-      user.value?.summary,
+      user?.summary,
     ],
   };
 
   // Experience
-  const experience = experiences.value?.map((experience) => {
+  const experience = user?.experience.map((experience) => {
     const list = [
       { text: experience.company, bold: true, fontSize: 12 },
       { text: experience.role, bold: true, fontSize: 10 },
@@ -98,7 +107,7 @@ const DefaultContent = () => {
   };
 
   // Projects
-  const project = projects.value?.map((project) => {
+  const project = user?.projects.map((project) => {
     const tools = project.tools_used.slice(0, 5).map((tool) => ({
       width: 'auto',
       text: tool.name,
@@ -128,7 +137,7 @@ const DefaultContent = () => {
   };
 
   // EDUCATION
-  const education = educations.value?.map((school) => {
+  const education = user?.education.map((school) => {
     const list = [
       { text: school.institution, bold: true, fontSize: 12 },
       { text: school.course },
@@ -156,7 +165,7 @@ const DefaultContent = () => {
   };
 
   // EDUCATION
-  const programmingLanguages = skills.value?.programming_languages.map(
+  const programmingLanguages = user?.skills?.programming_languages.map(
     (language) => {
       const button = `<button style="margin:2px;">${language.name}</button>`;
       // return button;
@@ -164,7 +173,7 @@ const DefaultContent = () => {
     },
   );
 
-  const frameworks = skills.value?.frameworks.map((framework) => {
+  const frameworks = user?.skills?.frameworks.map((framework) => {
     const button = `<button style="margin:2px; color: #023696; ">${framework.name}</button>`;
     // return button;
     return qhHtmlToPDFMake(button);

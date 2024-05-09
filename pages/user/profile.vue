@@ -17,6 +17,7 @@
             label="Download Resume"
           /> -->
           <qh-resume-button
+            :user="user"
             class="qh-text-4 my-4 h-8 w-40 rounded-full md:h-12 md:w-80"
           />
         </div>

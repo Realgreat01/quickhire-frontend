@@ -28,11 +28,17 @@
         <qh-toggle v-model="settings.show_summary" />
       </div>
       <div class="flex items-center justify-between gap-x-20">
+        <h2 class="w-40 font-medium md:w-60">Show References on CV</h2>
+        <qh-toggle v-model="settings.show_references" />
+      </div>
+      <div class="flex items-center justify-between gap-x-20">
         <h2 class="w-40 font-medium md:w-60">Send Cover Letter</h2>
         <qh-toggle v-model="checked" />
       </div>
 
-      <qh-button class="rounded-full md:w-60">Save Changes</qh-button>
+      <qh-button class="my-4 rounded-full !py-3 md:w-60" disabled
+        >Save Changes</qh-button
+      >
     </qh-card>
   </div>
 </template>
@@ -65,6 +71,7 @@ const settings = ref({
   portfolio_template: 'default',
   cv_template: 'default',
   show_education: false,
+  show_references: false,
   show_summary: true,
 });
 </script>

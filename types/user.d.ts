@@ -50,6 +50,10 @@ export interface User {
   interest_job: JobLocationType;
   availability: string;
   blogs: object[];
+  projects: Projects[];
+  education: Education[];
+  skills: Skills;
+  experience: Experience[];
 }
 
 export interface Skills {
@@ -110,4 +114,9 @@ export interface Projects {
   status?: 'completed' | 'in progress' | 'on hold';
 }
 
-export interface PublicUser extends User {}
+export interface PublicUser extends User {
+  projects: Projects[];
+  education: Education[];
+  skills: Skills;
+  experience: Experience[];
+}

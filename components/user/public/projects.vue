@@ -1,7 +1,7 @@
 <template>
   <div class="mt-[10rem] flex flex-col" id="projects">
     <qh-section-title>Projects</qh-section-title>
-    <div class="gap-small grid flex-wrap md:grid-cols-3">
+    <div class="gap-small grid flex-wrap gap-4 md:grid-cols-3">
       <qh-card
         class="flex min-h-[24rem] w-full cursor-pointer flex-col rounded-lg bg-white p-6 shadow-sm hover:bg-slate-50"
         v-for="(project, index) in user?.projects"
