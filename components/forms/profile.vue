@@ -37,12 +37,9 @@
             type="select"
             label="Gender"
             name="gender"
+            class="capitalize"
             v-model="profile.gender"
-            :options="[
-              { label: 'Male', value: 'male' },
-              { label: 'Female', value: 'female' },
-              { label: 'Others', value: 'others' },
-            ]"
+            :options="['male', 'female', 'others']"
           />
 
           <qh-input
@@ -86,11 +83,7 @@ const profile = ref<User | any>({
 });
 
 const submitUserDetails = async (field: any) => {
-  const response = await EDIT_USER_DETAILS({
-    ...field,
-    ...profile.value,
-    gender: profile.value.gender.value,
-  });
+  const response = await EDIT_USER_DETAILS(profile.value);
   if (response.success) {
     qhToast.success('Details submitted successfully');
     qhCloseModal();
