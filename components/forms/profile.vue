@@ -75,13 +75,14 @@ import type { User } from '~/types/user';
 import { useUserStore } from '~/store/user-store';
 
 const { getCurrentUser } = useUserStore();
+const { user } = storeToRefs(useUserStore());
 
 const profile = ref<User | any>({
-  gender: '',
-  firstname: '',
-  lastname: '',
-  middlename: '',
-  phone_number: '',
+  firstname: user.value?.firstname,
+  lastname: user.value?.lastname,
+  middlename: user.value?.lastname,
+  phone_number: user.value?.phone_number,
+  gender: user.value?.gender,
 });
 
 const submitUserDetails = async (field: any) => {
