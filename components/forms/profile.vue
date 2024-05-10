@@ -77,7 +77,7 @@ const { user } = storeToRefs(useUserStore());
 const profile = ref<User | any>({
   firstname: user.value?.firstname,
   lastname: user.value?.lastname,
-  middlename: user.value?.lastname,
+  middlename: user.value?.middlename,
   phone_number: user.value?.phone_number,
   gender: user.value?.gender,
 });
