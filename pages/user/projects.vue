@@ -6,7 +6,7 @@
         :key="index"
         class="relative flex w-full flex-col justify-between gap-y-4 rounded-2xl p-4 shadow-xl md:w-4/5"
       >
-        <qh-edit-button class="text-dark" />
+        <qh-edit-button class="text-dark" @click="editProject(project._id)" />
         <qh-delete-button
           class="top-12"
           @click="deleteUserProject(project._id)"
@@ -110,9 +110,14 @@ useHead({
   title: 'QuickHire - Projects',
 });
 
+const router = useRouter();
 const { projects } = storeToRefs(useUserStore());
 const { deleteProject } = useUserStore();
 const modalStore = useModalStore();
+
+const editProject = (id: string) => {
+  router.replace({ query: { edit: QH_ROUTES.USER.PROJECTS, id } });
+};
 
 const deleteUserProject = async (id: string) => {
   const result = await modalStore.openModal();

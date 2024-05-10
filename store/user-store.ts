@@ -71,7 +71,9 @@ export const useUserStore = defineStore('user', {
     },
 
     fullname(): string {
-      return `${this.user?.firstname} ${this.user?.lastname}`;
+      if (this.user) {
+        return `${this.user?.firstname} ${this.user?.lastname}`;
+      } else return '';
     },
   },
 

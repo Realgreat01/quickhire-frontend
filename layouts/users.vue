@@ -10,6 +10,7 @@
         <NuxtPage class="scroll overflow-y-scroll bg-white p-3 md:p-4" />
       </div>
     </div>
+
     <forms-profile v-if="modalController.profile" @close="closeModal" />
     <forms-about v-if="modalController.about" @close="closeModal" />
     <forms-skills v-if="modalController.skills" @close="closeModal" />
@@ -24,6 +25,7 @@
 import { useRoute, useRouter } from 'vue-router';
 import { useUserStore } from '~/store/user-store';
 import { useJobStore } from '~/store/job-store';
+import { useModalStore } from '~/store/modal-store';
 import { QH_ROUTES } from '~/constants/routes';
 
 const { getCurrentUser, getProjects, getExperiences, getEducation, getSkills } =

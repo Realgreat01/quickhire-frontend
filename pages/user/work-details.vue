@@ -1,56 +1,63 @@
 <template>
   <div>
-    <qh-card class="flex flex-col gap-4">
-      <div class="flex items-center justify-between gap-x-20">
-        <h2 class="qh-text-3 font-medium">Experience Level</h2>
+    <qh-card class="flex flex-col gap-4 md:w-4/5">
+      <div class="flex items-center justify-between gap-x-10">
+        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Experience Level</h2>
         <qh-input
           name="experience_level"
           placeholder="Mid Level"
           type="select"
-          class="w-40 md:w-64"
+          class="!w-40 md:!w-64"
           label-name="label"
           :options="experienceLevels"
+          v-model="workDetails.experience_level"
         />
       </div>
-      <div class="flex items-center justify-between gap-x-20">
-        <h2 class="qh-text-3 font-medium">Availability</h2>
+      <div class="flex items-center justify-between gap-x-10">
+        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Availability</h2>
         <qh-input
           name="availability"
           placeholder="Immediately"
           type="select"
-          class="w-40 capitalize md:w-64"
+          class="w-30 capitalize md:w-64"
           :options="availability"
+          v-model="workDetails.availability"
         />
       </div>
-      <div class="flex items-center justify-between gap-x-20">
-        <h2 class="qh-text-3 font-medium">Rate per Hour</h2>
+      <div class="flex items-center justify-between gap-x-10">
+        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Rate per Hour</h2>
         <qh-input
           name="experience_level"
           placeholder="$50"
-          class="w-40 md:w-64"
+          class="!w-40 md:!w-64"
           type="currency"
+          v-model="workDetails.rate"
         />
       </div>
 
-      <div class="flex items-center justify-between gap-x-20">
-        <h2 class="qh-text-3 font-medium">Highest Education Level</h2>
+      <div class="flex items-center justify-between gap-x-10">
+        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">
+          Highest Education Level
+        </h2>
         <qh-input
-          name="education_level"
+          name="highest_education_level"
           placeholder="Bachelors"
           type="select"
-          class="w-40 md:w-64"
+          class="!w-40 md:!w-64"
           :options="educationLevels"
+          v-model="workDetails.highest_education_level"
         />
       </div>
 
-      <div class="flex items-center justify-between gap-x-20">
-        <h2 class="qh-text-3 font-medium">Job Interests</h2>
+      <div class="flex items-center justify-between gap-x-10">
+        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Job Interests</h2>
         <qh-input
           name="experience_level"
           type="select"
           placeholder="Remote"
-          class="w-40 capitalize md:w-64"
+          class="w-30 capitalize md:w-64"
           :options="['onsite', 'remote', 'hybrid']"
+          v-model="workDetails.job_interest"
         />
       </div>
 

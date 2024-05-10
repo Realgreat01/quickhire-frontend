@@ -1,6 +1,8 @@
 <template>
-  <div class="absolute right-4 top-12 cursor-pointer">
-    <PencilSquareIcon class="h-6 w-6" />
+  <div
+    class="absolute right-4 top-12 cursor-pointer rounded-lg bg-brand fill-white p-1 text-white"
+  >
+    <PencilSquareIcon class="h-5 w-5" />
   </div>
 </template>
 

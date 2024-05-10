@@ -92,13 +92,17 @@
 </template>
 
 <script setup lang="ts">
-import { ADD_USER_EDUCATION } from '~/services/user.service';
+import {
+  ADD_USER_EDUCATION,
+  EDIT_USER_EDUCATION,
+} from '~/services/user.service';
 import { Form as VeeForm } from 'vee-validate';
 import type { Education } from '~/types/user';
 import { useUserStore } from '~/store/user-store';
 
 const { getEducation } = useUserStore();
-
+const { educations } = storeToRefs(useUserStore());
+const route = useRoute();
 const emit = defineEmits(['close']);
 
 const education = ref<Education | any>({
@@ -112,12 +116,31 @@ const education = ref<Education | any>({
 });
 
 const submitEducation = async (field: any) => {
-  console.log(field);
-  const response = await ADD_USER_EDUCATION(education.value);
-  if (response.success) {
-    qhToast.success('Education added successfully');
-    await getEducation();
-    qhCloseModal();
-  } else qhToast.error(response.message);
+  if (route.query.id && route.query.edit) {
+    // Edit Experience
+    const response = await EDIT_USER_EDUCATION(
+      education.value,
+      route.query.id as string,
+    );
+    if (response.success) {
+      qhToast.success('Experience updated successfully');
+    } else qhToast.error(response.message);
+  } else {
+    // Add New Experience
+    const response = await ADD_USER_EDUCATION(education.value);
+    if (response.success) {
+      qhToast.success('Experience added successfully');
+    } else qhToast.error(response.message);
+  }
+  await getEducation();
+  qhCloseModal();
 };
+
+onMounted(() => {
+  if (route.query.edit && route.query.id) {
+    education.value = educations.value?.find(
+      (education) => education._id === route.query.id,
+    );
+  }
+});
 </script>

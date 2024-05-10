@@ -1,52 +1,49 @@
 <template>
-  <qh-container>
+  <qh-container @close="emits('cancel', 'close')">
     <div
       ref="dropZone"
+      @click.self.stop.prevent="open()"
+      :class="{ 'bg-brand-200 bg-opacity-50': isOverDropZone }"
       class="qh-flex-center relative mt-8 min-h-80 w-full flex-col border-2 border-dotted border-brand p-6"
     >
       <RiUploadCloud2Fill class="mx-auto mt-5 h-20 w-60 fill-brand" />
       <div class="qh-flex-center z-10 flex-col gap-5 text-center">
-        <div class="flex flex-wrap items-center justify-center">
-          <div
-            v-for="(file, index) in filesData"
-            :key="index"
-            class="w-200px bg-black-200/10 ma-2 pa-6"
-          >
-            <p>Name: {{ file.name }}</p>
-            <p>Size: {{ file.size }}</p>
-            <p>Type: {{ file.type }}</p>
-            <p>Last modified: {{ file.lastModified }}</p>
+        <div
+          class="qh-text-3 font-lora my-5 justify-self-end font-medium text-brand"
+        >
+          <h1 v-if="isOverDropZone" class="">Drag File Here</h1>
+          <h2 v-else class="">Drag 'n' drop some files here</h2>
+        </div>
+        <div class="qh-text-4 font-bold text-brand">
+          <div class="flex flex-wrap gap-2">
+            <h2 class="my-1" v-for="file in files">
+              <img
+                v-if="file.type.startsWith('image')"
+                :src="getImageURL(file)"
+                alt=""
+                class="mx-auto block h-16 rounded-lg bg-brand-100 object-cover"
+              />
+            </h2>
           </div>
         </div>
-        <div>
-          <h1
-            v-if="isOverDropZone"
-            class="qh-text-3 font-lora justify-self-end font-medium text-brand"
-          >
-            Drag File Here
-          </h1>
 
-          <h2
-            v-else
-            class="qh-text-3 font-lora justify-self-end font-medium text-brand"
-          >
-            Drag 'n' drop some files here
-          </h2>
+        <h2 class="text-error" v-if="maxFileExceeded">
+          You can only upload a maximum of 1MB file
+        </h2>
+        <div class="flex gap-6">
+          <qh-button
+            @click="open"
+            class="qh-text-4 my-4 h-10 w-32 rounded-full !bg-brand-100 !py-3 font-semibold !text-brand md:w-60"
+            >Choose Files
+          </qh-button>
+          <qh-button
+            :loading="uploading"
+            :disabled="files.length < 1 || maxFileExceeded"
+            class="qh-text-4 my-4 h-10 w-32 rounded-full !py-3 font-semibold md:my-4 md:w-60"
+            @click="emits('upload')"
+            >Upload
+          </qh-button>
         </div>
-        <template v-if="files">
-          <p>
-            You have selected:
-            <b>{{
-              `${files.length} ${files.length === 1 ? 'file' : 'files'}`
-            }}</b>
-          </p>
-          <li v-for="file of files" :key="file.name">
-            {{ file.name }}
-          </li>
-        </template>
-        <qh-button @click="open" class="w-60 rounded-full"
-          >Choose Files</qh-button
-        >
       </div>
     </div>
   </qh-container>
@@ -54,27 +51,47 @@
 
 <script setup lang="ts">
 import { RiUploadCloud2Fill } from 'vue-remix-icons';
-import { useDropZone, useEventListener, useFileDialog } from '@vueuse/core';
+import { useDropZone, useFileDialog } from '@vueuse/core';
+import { useUploadStore } from '~/store/upload-store';
+
+const emits = defineEmits(['upload', 'close', 'cancel']);
+
+const { files, uploading } = storeToRefs(useUploadStore());
 
 const dropZone = ref<HTMLElement>();
+const maxFileExceeded = ref(false);
+const { open, reset, onChange } = useFileDialog({
+  accept: 'image/*',
+});
 
-const filesData = ref<
-  { name: string; size: number; type: string; lastModified: number }[]
->([]);
+const maxFileSize = 1024 * 1024;
 
-const { files, open, reset, onChange } = useFileDialog({ accept: 'image/*' });
+const getImageURL = (image: File) => URL.createObjectURL(image);
 
-function onDrop(files: File[] | null) {
-  filesData.value = [];
-  if (files) {
-    filesData.value = files.map((file) => ({
-      name: file.name,
-      size: file.size,
-      type: file.type,
-      lastModified: file.lastModified,
-    }));
+function onDrop(filesData: File[] | null) {
+  maxFileExceeded.value = false;
+  files.value = [];
+
+  if (filesData) {
+    const validFiles = filesData.every((file) => file.size <= maxFileSize);
+    if (validFiles) {
+      files.value = filesData.map((file) => file);
+    } else maxFileExceeded.value = true;
   }
 }
 
-const { isOverDropZone } = useDropZone(dropZone, onDrop);
+onChange((filesData) => {
+  maxFileExceeded.value = false;
+  if (filesData) {
+    const validFiles = [...filesData].every((file) => file.size <= maxFileSize);
+    if (validFiles) {
+      files.value = [...filesData].map((file) => file);
+    } else maxFileExceeded.value = true;
+  }
+});
+
+const { isOverDropZone } = useDropZone(dropZone, {
+  onDrop,
+  dataTypes: ['image/jpeg', 'image/jpg', 'image/png'],
+});
 </script>

@@ -6,8 +6,8 @@
       :multiple="true"
       :is-clearable="false"
       :label="labelName"
-      :options="getSelectOptions"
-      v-model="modelValueMultiple"
+      :options="options"
+      v-model="modelValue"
       :placeholder="placeholder"
       class=""
     >
@@ -62,15 +62,9 @@ const props = defineProps({
 
 const emits = defineEmits(['update:modelValue', 'change']);
 
-const modelValue = ref(null);
-const modelValueMultiple = ref<any[]>([]);
+const modelValue = defineModel();
 
 watch(modelValue, (value) => {
-  emits('update:modelValue', value);
-  emits('change', value);
-});
-
-watch(modelValueMultiple, (value) => {
   emits('update:modelValue', value);
   emits('change', value);
 });
@@ -83,7 +77,7 @@ VueSelect.props.components.default = () => ({
 const getOptions = computed(() =>
   props.options.filter((option) => modelValue.value !== option),
 );
-const getSelectOptions = computed(() =>
-  props.options.filter((option) => !modelValueMultiple.value.includes(option)),
-);
+// const getSelectOptions = computed(() =>
+//   props.options.filter((option) => !modelValueMultiple.value.includes(option)),
+// );
 </script>

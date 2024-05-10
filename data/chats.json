@@ -1,0 +1,177 @@
+[
+  {
+    "username": "emmajohnson",
+    "firstname": "Emma",
+    "lastname": "Johnson",
+    "gender": "male",
+    "last_message": "Can you help me understand this report?"
+  },
+  {
+    "username": "oliviawilliams",
+    "firstname": "Olivia",
+    "lastname": "Williams",
+    "gender": "male",
+    "last_message": "Hey, just finished reading the draft, great work on that!"
+  },
+  {
+    "username": "avabrown",
+    "firstname": "Ava",
+    "lastname": "Brown",
+    "gender": "female",
+    "last_message": "I'm at the office, can you send the files?"
+  },
+  {
+    "username": "sophiajones",
+    "firstname": "Sophia",
+    "lastname": "Jones",
+    "gender": "male",
+    "last_message": "I found an error in the report, can we fix it?"
+  },
+  {
+    "username": "isabellagarcia",
+    "firstname": "Isabella",
+    "lastname": "Garcia",
+    "gender": "female",
+    "last_message": "Let's schedule a meeting for next week."
+  },
+  {
+    "username": "miamiller",
+    "firstname": "Mia",
+    "lastname": "Miller",
+    "gender": "female",
+    "last_message": "Do you have any updates on the client feedback?"
+  },
+  {
+    "username": "ameliadavis",
+    "firstname": "Amelia",
+    "lastname": "Davis",
+    "gender": "female",
+    "last_message": "I think we need a different approach to the marketing strategy."
+  },
+  {
+    "username": "harperrodriguez",
+    "firstname": "Harper",
+    "lastname": "Rodriguez",
+    "gender": "female",
+    "last_message": "Thank you for your input, it really helped clarify things."
+  },
+  {
+    "username": "evelynmartinez",
+    "firstname": "Evelyn",
+    "lastname": "Martinez",
+    "gender": "female",
+    "last_message": "Just a reminder about our deadline next week."
+  },
+  {
+    "username": "abigailhernandez",
+    "firstname": "Abigail",
+    "lastname": "Hernandez",
+    "gender": "female",
+    "last_message": "I think we need a different approach to the marketing strategy."
+  },
+  {
+    "username": "emilylopez",
+    "firstname": "Emily",
+    "lastname": "Lopez",
+    "gender": "female",
+    "last_message": "Hey, just finished reading the draft, great work on that!"
+  },
+  {
+    "username": "ellagonzalez",
+    "firstname": "Ella",
+    "lastname": "Gonzalez",
+    "gender": "female",
+    "last_message": "We need to adjust the timeline for better results."
+  },
+  {
+    "username": "madisonwilson",
+    "firstname": "Madison",
+    "lastname": "Wilson",
+    "gender": "male",
+    "last_message": "Looking forward to our collaboration."
+  },
+  {
+    "username": "scarlettanderson",
+    "firstname": "Scarlett",
+    "lastname": "Anderson",
+    "gender": "female",
+    "last_message": "Do you have any updates on the client feedback?"
+  },
+  {
+    "username": "victoriathomas",
+    "firstname": "Victoria",
+    "lastname": "Thomas",
+    "gender": "female",
+    "last_message": "Let's schedule a meeting for next week."
+  },
+  {
+    "username": "ariataylor",
+    "firstname": "Aria",
+    "lastname": "Taylor",
+    "gender": "female",
+    "last_message": "I appreciate your efforts on this, great job!"
+  },
+  {
+    "username": "gracemoore",
+    "firstname": "Grace",
+    "lastname": "Moore",
+    "gender": "male",
+    "last_message": "I found an error in the report, can we fix it?"
+  },
+  {
+    "username": "chloejackson",
+    "firstname": "Chloe",
+    "lastname": "Jackson",
+    "gender": "female",
+    "last_message": "Can you help me understand this report?"
+  },
+  {
+    "username": "camilamartin",
+    "firstname": "Camila",
+    "lastname": "Martin",
+    "gender": "male",
+    "last_message": "Can we increase the scope of the project?"
+  },
+  {
+    "username": "penelopelee",
+    "firstname": "Penelope",
+    "lastname": "Lee",
+    "gender": "male",
+    "last_message": "Hey, just finished reading the draft, great work on that!"
+  },
+  {
+    "username": "lilyperez",
+    "firstname": "Lily",
+    "lastname": "Perez",
+    "gender": "female",
+    "last_message": "Could we discuss the project updates tomorrow?"
+  },
+  {
+    "username": "eleanorthompson",
+    "firstname": "Eleanor",
+    "lastname": "Thompson",
+    "gender": "male",
+    "last_message": "I have some new ideas for the project, let's talk."
+  },
+  {
+    "username": "elenawhite",
+    "firstname": "Elena",
+    "lastname": "White",
+    "gender": "female",
+    "last_message": "We need to adjust the timeline for better results."
+  },
+  {
+    "username": "noraharris",
+    "firstname": "Nora",
+    "lastname": "Harris",
+    "gender": "male",
+    "last_message": "I found an error in the report, can we fix it?"
+  },
+  {
+    "username": "zoesanchez",
+    "firstname": "Zoe",
+    "lastname": "Sanchez",
+    "gender": "female",
+    "last_message": "I have some new ideas for the project, let's talk."
+  }
+]

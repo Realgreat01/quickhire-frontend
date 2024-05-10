@@ -11,6 +11,7 @@
       leave-active-class="animate__animated animate__fadeOutRight"
     >
       <qh-card
+        :class="Class"
         class="absolute right-2 top-10 max-w-[80vw] bg-white"
         v-if="showDropdown"
       >
@@ -27,9 +28,18 @@ import { vOnClickOutside } from '@vueuse/components';
 import { useModalStore } from '~/store/modal-store';
 import { storeToRefs } from 'pinia';
 
-const { showDropdown } = storeToRefs(useModalStore());
+defineProps({ Class: String });
+const showDropdown = ref(false);
 
-const { closeDropdown, toggleDropdown } = useModalStore();
+const closeDropdown = () => {
+  showDropdown.value = false;
+};
+
+const toggleDropdown = () => {
+  showDropdown.value = !showDropdown.value;
+};
+
+// const { closeDropdown, toggleDropdown } = useModalStore();
 
 const dropdown = ref();
 

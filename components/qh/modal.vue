@@ -23,7 +23,7 @@
 
         <div
           class="flex w-48 items-center justify-center gap-x-1 rounded-lg border bg-brand-100 px-4 py-2"
-          @click="$emit('continue')"
+          @click="emits('continue')"
         >
           <RiCheckboxCircleFill class="h-8 w-8 fill-brand" />
           <qh-button

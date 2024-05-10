@@ -23,9 +23,8 @@
             hint="Select your top 3 skills, useful in your job search!"
             no-data-message="Kindly suggest such skill to us!"
             multiple
-            :selectable="() => skills.top_skills.length < 3"
             :options="skillIcons"
-            @selected="(val) => (skills.top_skills = val)"
+            v-model="skills.top_skills"
           />
           <qh-input
             label="Programming Languages"
@@ -66,17 +65,19 @@
             hint="only used in your resume"
             type="tag"
             placeholder="Microsoft Word"
-            @selected="(val) => (skills.others = val)"
+            v-model="skills.others"
           />
+
           <qh-input
             label="Soft Skills"
             name="soft_skills"
             type="tag"
             placeholder="Team Work"
             hint="only used in your resume"
-            @selected="(val) => (skills.soft_skills = val)"
+            v-model="skills.soft_skills"
           />
         </div>
+
         <qh-button
           type="submit"
           class="my-4 w-full"
@@ -99,24 +100,21 @@ import type { Skills } from '~/types/user';
 const { getSkills } = useUserStore();
 const { skills: userSkills } = storeToRefs(useUserStore());
 const skills = ref<Skills | any>({
-  stack: '',
-  top_skills: [],
-  programming_languages: [],
-  frameworks: [],
-  technologies: [],
-  others: [],
-  soft_skills: [],
+  stack: userSkills.value?.stack,
+  top_skills: userSkills.value?.top_skills,
+  programming_languages: userSkills.value?.programming_languages,
+  frameworks: userSkills.value?.frameworks,
+  technologies: userSkills.value?.technologies,
+  others: userSkills.value?.others,
+  soft_skills: userSkills.value?.soft_skills,
 });
 
 const updateUserDetails = async (field: any) => {
-  const data = qhHelpers.filterEmptyValues(skills.value);
-  const response = await UPDATE_USER_SKILLS(data);
+  const response = await UPDATE_USER_SKILLS(skills.value);
   if (response.success) {
-    qhToast.success('Project submitted successfully');
+    qhToast.success('Skills updated successfully');
     await getSkills();
     qhCloseModal();
   } else qhToast.error(response.message);
 };
-
-// onMounted(() => (skills.value = userSkills.value));
 </script>

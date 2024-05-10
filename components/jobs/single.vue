@@ -19,7 +19,7 @@
             <qh-button
               v-else-if="job.job_status === 'paused'"
               label="Paused"
-              class="qh-text-4 h-4 rounded-full bg-secondary-600 px-4 font-medium !text-dark-100"
+              class="qh-text-4 h-4 rounded-full bg-orange-600 px-4 font-medium !text-dark-100"
             />
             <qh-button
               v-else
@@ -49,12 +49,12 @@
           </h2>
           <qh-button
             v-if="QH_CONSTANTS.GET_USER_TYPE() === 'company'"
-            class="h-8 w-fit rounded-full bg-secondary px-5"
+            class="h-8 w-fit rounded-full bg-orange-500 px-5"
             label="See Applicants"
           />
           <qh-button
             v-else-if="job.job_status === 'paused'"
-            class="disabled h-8 w-fit rounded-full bg-secondary-800 px-8"
+            class="disabled h-8 w-fit rounded-full bg-dark-400 px-8"
             label="Paused"
           />
           <qh-button

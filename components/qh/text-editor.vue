@@ -3,22 +3,14 @@
     content-type="html"
     v-model:content="modelValue"
     v-bind="$attrs"
-    class="min-h-[200px] bg-white"
+    class="min-h-[200px] border border-dark-100 bg-white !text-base"
   />
 </template>
 
 <script setup lang="ts">
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
-
-const emits = defineEmits(['update:modelValue', 'input', 'change']);
-
-const modelValue = ref('');
-
-watch(modelValue, (value) => {
-  emits('update:modelValue', value);
-  emits('change', value);
-});
+const modelValue = defineModel({ default: '' });
 </script>
 
 <style scoped></style>

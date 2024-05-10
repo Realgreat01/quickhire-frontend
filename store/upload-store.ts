@@ -2,8 +2,10 @@ import { defineStore } from 'pinia';
 
 interface State {
   showModal: boolean;
-  showDropdown: boolean;
   files: File[];
+  uploading: boolean;
+  upload_progress: number;
+  uploadFunction: Function;
   resolve: any;
   reject: any;
 }
@@ -11,57 +13,54 @@ interface State {
 export const useUploadStore = defineStore('upload', {
   state: (): State => ({
     showModal: false,
-    showDropdown: false,
+    uploading: false,
+    upload_progress: 1,
+    uploadFunction: () => {},
     files: [],
     resolve: null,
     reject: null,
   }),
 
+  getters: {},
+
   actions: {
-    openModal() {
+    async openModal() {
       this.showModal = true;
-      return new Promise<boolean>((resolve, reject) => {
+      return new Promise<File[]>((resolve, reject) => {
         this.resolve = resolve;
         this.reject = reject;
       });
     },
 
-    closeModal() {
-      this.uploadFiles(); // Trigger file upload when modal is closed
-      this.showModal = false;
-    },
-
-    setFiles(files: File[]) {
-      this.files = files;
-    },
-
-    async uploadFiles() {
-      if (this.files.length > 0) {
-        try {
-          // Placeholder for your upload logic
-          // const responses = await uploadToCloudinary(this.files);
-          // this.files = []; // Clear files after upload
-          // this.resolve(true);
-          console.log('Uploading files...', this.files);
-        } catch (error) {
-          console.error('Error uploading files:', error);
-          this.reject(error);
-        }
+    upload() {
+      this.uploading = true;
+      if (this.resolve) {
+        this.resolve(this.files);
       }
-      this.closeModal();
+    },
+
+    closeModal() {
+      this.showModal = false;
+      this.$reset();
     },
 
     cancel() {
       if (this.reject) {
-        this.reject('Upload cancelled');
+        this.reject(false);
       }
       this.$reset();
       this.closeModal();
     },
 
-    closeDropdown() {
-      this.showDropdown = false;
-      this.$reset();
+    uploadComplete() {
+      this.uploading = false;
+      this.closeModal();
+    },
+
+    uploadFailed() {
+      this.uploading = false;
+      this.resolve = null;
+      this.reject = null;
     },
   },
 

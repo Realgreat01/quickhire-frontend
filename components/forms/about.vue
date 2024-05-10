@@ -72,13 +72,14 @@ import type { User } from '~/types/user';
 import { useUserStore } from '~/store/user-store';
 
 const { getCurrentUser } = useUserStore();
+const { user } = storeToRefs(useUserStore());
 
 const about = ref<User | any>({
-  about_me: '',
-  header_bio: '',
-  summary: '',
-  hobbies: [],
-  interests: [],
+  about_me: user.value?.about_me,
+  header_bio: user.value?.header_bio,
+  summary: user.value?.summary,
+  hobbies: user.value?.hobbies,
+  interests: user.value?.interests,
 });
 
 const submitAboutDetails = async (field: any) => {

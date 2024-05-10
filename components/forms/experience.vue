@@ -109,14 +109,17 @@
 </template>
 
 <script setup lang="ts">
-import { ADD_USER_EXPERIENCE } from '~/services/user.service';
+import {
+  ADD_USER_EXPERIENCE,
+  EDIT_USER_EXPERIENCE,
+} from '~/services/user.service';
 import type { Experience } from '~/types/user';
 import { Form as VeeForm } from 'vee-validate';
-
 import { useUserStore } from '~/store/user-store';
-import Education from './education.vue';
 
+const route = useRoute();
 const { getExperiences } = useUserStore();
+const { experiences } = storeToRefs(useUserStore());
 
 const checkBox = ref();
 
@@ -134,11 +137,28 @@ const submitExperience = async (field: any) => {
     ...experience.value,
     end_date: checkBox.value ? null : experience.value.end_date,
   };
-  const response = await ADD_USER_EXPERIENCE(data);
-  if (response.success) {
-    qhToast.success('Education added successfully');
-    await getExperiences();
-    qhCloseModal();
-  } else qhToast.error(response.message);
+  if (route.query.id && route.query.edit) {
+    // Edit Experience
+    const response = await EDIT_USER_EXPERIENCE(data, route.query.id as string);
+    if (response.success) {
+      qhToast.success('Experience updated successfully');
+    } else qhToast.error(response.message);
+  } else {
+    // Add New Experience
+    const response = await ADD_USER_EXPERIENCE(data);
+    if (response.success) {
+      qhToast.success('Experience added successfully');
+    } else qhToast.error(response.message);
+  }
+  await getExperiences();
+  qhCloseModal();
 };
+
+onMounted(() => {
+  if (route.query.edit && route.query.id) {
+    experience.value = experiences.value?.find(
+      (experience) => experience._id === route.query.id,
+    );
+  }
+});
 </script>

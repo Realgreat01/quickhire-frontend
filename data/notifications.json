@@ -1,0 +1,107 @@
+[
+  {
+    "title": "Interview with Facebook",
+    "message": "Don't forget your interview with Mark Zuckerberg at 1:00 PM today.",
+    "type": "Reminder",
+    "is_read": true,
+    "created_at": "2024-05-10T00:00:00Z"
+  },
+  {
+    "title": "Updates on Job at Spotify",
+    "message": "Your application to Spotify is now being processed.",
+    "type": "Update",
+    "is_read": false,
+    "created_at": "2024-05-10T01:00:00Z"
+  },
+  {
+    "title": "Reminder for Team Meeting",
+    "message": "Team meeting scheduled for 3:00 PM today in the main conference room.",
+    "type": "Reminder",
+    "is_read": false,
+    "created_at": "2024-05-10T02:00:00Z"
+  },
+  {
+    "title": "System Update Notification",
+    "message": "A system update will occur tonight at midnight. Please save all work.",
+    "type": "Alert",
+    "is_read": true,
+    "created_at": "2024-05-10T03:00:00Z"
+  },
+  {
+    "title": "Deadline Reminder",
+    "message": "Remember, the submission deadline for the project is tomorrow at noon.",
+    "type": "Reminder",
+    "is_read": true,
+    "created_at": "2024-05-10T04:00:00Z"
+  },
+  {
+    "title": "Security Alert",
+    "message": "A new security policy is now in effect. Please review it by end of day.",
+    "type": "Alert",
+    "is_read": false,
+    "created_at": "2024-05-10T05:00:00Z"
+  },
+  {
+    "title": "Welcome to the Team",
+    "message": "We're glad you're here! Join us for a welcome lunch this Friday.",
+    "type": "Update",
+    "is_read": true,
+    "created_at": "2024-05-10T06:00:00Z"
+  },
+  {
+    "title": "Budget Approval Needed",
+    "message": "Your approval is required for the latest budget proposal. Please check your dashboard.",
+    "type": "Alert",
+    "is_read": false,
+    "created_at": "2024-05-10T07:00:00Z"
+  },
+  {
+    "title": "IT Maintenance",
+    "message": "IT maintenance is scheduled for this weekend. Expect limited network access.",
+    "type": "Reminder",
+    "is_read": true,
+    "created_at": "2024-05-10T08:00:00Z"
+  },
+  {
+    "title": "Performance Reviews",
+    "message": "Performance review invitations have been sent. Please confirm your availability.",
+    "type": "Update",
+    "is_read": false,
+    "created_at": "2024-05-10T09:00:00Z"
+  },
+  {
+    "title": "New Office Guidelines",
+    "message": "Please review the new office guidelines regarding COVID-19 safety measures.",
+    "type": "Alert",
+    "is_read": true,
+    "created_at": "2024-05-10T10:00:00Z"
+  },
+  {
+    "title": "Client Meeting Rescheduled",
+    "message": "The client meeting has been rescheduled to next Wednesday at 2:00 PM.",
+    "type": "Reminder",
+    "is_read": true,
+    "created_at": "2024-05-10T11:00:00Z"
+  },
+  {
+    "title": "Software Upgrade",
+    "message": "A major software upgrade is scheduled for next month. Training sessions will be available.",
+    "type": "Update",
+    "is_read": false,
+    "created_at": "2024-05-10T12:00:00Z"
+  },
+  {
+    "title": "Holiday Schedule",
+    "message": "The office holiday schedule has been posted. Please check your emails.",
+    "type": "Reminder",
+    "is_read": true,
+    "created_at": "2024-05-10T13:00:00Z"
+  },
+  {
+    "title": "New Project Kickoff",
+    "message": "Join us for the kickoff of our new project next Monday at 10:00 AM.",
+    "type": "Reminder",
+    "is_read": false,
+    "created_at": "2024-05-10T14:00:00Z"
+  }
+]

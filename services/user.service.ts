@@ -13,6 +13,16 @@ export const GET_USER_DETAILS = async () => {
     url: '/user',
   });
 };
+export const UPDATE_USER_PROFILE_PICTURE = async (data: FormData) => {
+  return await ApiService.run({
+    method: ApiService.POST,
+    url: '/user/update/profile-picture',
+    data,
+    headers: {
+      'Content-type': 'multipart/form-data',
+    },
+  });
+};
 
 export const GET_USER_BY_USERNAME = async (username: string) => {
   return await ApiService.run({

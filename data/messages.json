@@ -1,0 +1,38 @@
+[
+  {
+    "sender": "Alice",
+    "receiver": "Bob",
+    "message": "Hey Bob, how's the project going?",
+    "timestamp": "2024-05-10T10:00:00Z"
+  },
+  {
+    "sender": "Bob",
+    "receiver": "Alice",
+    "message": "Hi Alice, it's going well. We're on track with the timeline.",
+    "timestamp": "2024-05-10T10:01:00Z"
+  },
+  {
+    "sender": "Alice",
+    "receiver": "Bob",
+    "message": "Great to hear! Did you integrate the latest changes?",
+    "timestamp": "2024-05-10T10:02:00Z"
+  },
+  {
+    "sender": "Bob",
+    "receiver": "Alice",
+    "message": "Yes, I added the changes last night, and everything seems stable now.",
+    "timestamp": "2024-05-10T10:03:00Z"
+  },
+  {
+    "sender": "Alice",
+    "receiver": "Bob",
+    "message": "Perfect! Let's review it together tomorrow.",
+    "timestamp": "2024-05-10T10:04:00Z"
+  },
+  {
+    "sender": "Bob",
+    "receiver": "Alice",
+    "message": "Sounds good. See you then!",
+    "timestamp": "2024-05-10T10:05:00Z"
+  }
+]

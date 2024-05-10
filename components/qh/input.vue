@@ -21,7 +21,7 @@
           v-if="type === 'number'"
           :class="errorAvailable ? 'error-box' : 'normal-box'"
           class="relative w-full"
-          v-model="modelValue"
+          v-model="model"
           v-bind="$attrs"
           :placeholder="placeholder"
           @focus="handleFocus($event.target.value)"
@@ -34,28 +34,16 @@
           v-else-if="type === 'currency'"
           :class="errorAvailable ? 'error-box' : 'normal-box'"
           class="relative w-full"
-          v-model="modelValue"
+          v-model="model"
           v-bind="$attrs"
           :placeholder="placeholder"
           @focus="handleFocus($event.target.value)"
           @change="handleCurrency($event.target.value)"
         />
 
-        <input
-          :name="name"
-          :rules="rules"
-          v-else-if="type === 'tag'"
-          :class="errorAvailable ? 'error-box' : 'normal-box'"
-          class="relative w-full"
-          v-model="tagsModel"
-          :placeholder="placeholder"
-          @input="handleTag"
-          @keydown.enter.prevent="addTags"
-        />
-
         <qh-date-picker
           v-else-if="type === 'date'"
-          v-model="modelValue"
+          v-model="model"
           :required="required"
           v-bind="$attrs"
           :placeholder="placeholder"
@@ -64,7 +52,7 @@
 
         <qh-select
           :noDataMessage="noDataMessage"
-          v-model="selectedModel"
+          v-model="model"
           v-else-if="type === 'select'"
           :options="options"
           :required="required"
@@ -76,12 +64,11 @@
         />
 
         <qh-text-editor
-          v-model="modelValue"
+          v-model="model"
           :required="required"
           v-bind="$attrs"
           :placeholder="placeholder"
           v-else-if="type === 'editor'"
-          @change="handleChange"
         />
 
         <Field
@@ -96,6 +83,19 @@
           class="relative w-full"
           @input="handleInput($event.target.value)"
         />
+
+        <input
+          :name="name"
+          :rules="rules"
+          v-else-if="type === 'tag'"
+          :class="errorAvailable ? 'error-box' : 'normal-box'"
+          class="relative w-full"
+          v-model="tagsModel"
+          :placeholder="placeholder"
+          @input="handleTag"
+          @keydown.enter.prevent="addTags"
+        />
+
         <Field
           v-else
           :name="name"
@@ -104,7 +104,7 @@
           :type="type"
           :class="errorAvailable ? 'error-box' : 'normal-box'"
           v-bind="$attrs"
-          v-model="modelValue"
+          v-model="model"
           :placeholder="placeholder"
           class="relative w-full"
           @input="handleInput($event.target.value)"
@@ -115,7 +115,7 @@
           :label="buttonText"
           v-if="buttonText"
           @click="actionButtonClick"
-          class="center-box transform border border-gray-300 bg-gray-300 !text-black shadow-lg shadow-gray-300"
+          class="center-box !right-0 h-10 transform border border-brand-500 bg-brand-500 shadow-lg shadow-gray-300"
         />
 
         <RiEyeOffLine
@@ -149,7 +149,7 @@
           </qh-button>
         </div>
       </div>
-      <p class="mr-4 max-w-[90%] text-sm text-brand-400" v-if="hint">
+      <p class="mr-4 max-w-[96%] text-sm text-dark-300" v-if="hint">
         {{ hint }}
       </p>
       <ErrorMessage :name="name" v-slot="{ message }">
@@ -194,18 +194,16 @@ const props = defineProps({
   multiple: Boolean,
   noDataMessage: String,
   placeholder: String,
-  modelValue: [String, Number, Boolean, Array, Object],
   hasCheckbox: Boolean,
   checkboxText: { type: String, default: 'This should be a chekbox content' },
 });
 
-const modelValue = ref<string | number>('');
-
-const selectedModel = ref([]);
+const model = defineModel({ default: null });
+const modelValue = ref<any>(model.value);
 
 const checkBox = ref(false);
 
-const tags = ref<string[]>([]);
+const tags = ref<any>(model.value);
 const tagsModel = ref('');
 
 const emit = defineEmits([
@@ -238,7 +236,6 @@ const handleTag = () => {
   if (parts.length > 1) {
     tags.value.push(...parts.slice(0, -1));
     tagsModel.value = parts.slice(-1)[0];
-    emit('update:modelValue', tags.value);
   }
 };
 
@@ -247,8 +244,8 @@ function addTags(value: any) {
     tags.value.push(
       ...tagsModel.value
         .split(',')
-        .map((tag) => tag.trim())
-        .filter((tag) => tag),
+        .map((tag: any) => tag.trim())
+        .filter((tag: any) => tag),
     );
     tagsModel.value = '';
   }
@@ -301,19 +298,13 @@ const handleFocus = async (value: string) => {
 const errorAvailable = ref(false);
 
 watch(
-  () => props.modelValue,
-  (value: any) => {
-    if (props.type === 'tag') tagsModel.value = value;
-  },
-);
-
-watch(
   () => props.errors,
   (errors: any) => {
     if (errors[props.name]) errorAvailable.value = true;
     else errorAvailable.value = false;
   },
 );
+
 watch(
   tags,
   (newTags) => {

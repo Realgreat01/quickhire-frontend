@@ -115,11 +115,13 @@
 import { Form as VeeForm } from 'vee-validate';
 import { skillIcons } from '~/constants/skill';
 import type { Projects } from '~/types/user';
-import { ADD_USER_PROJECTS } from '~/services/user.service';
+import { ADD_USER_PROJECTS, EDIT_USER_PROJECTS } from '~/services/user.service';
 import { useUserStore } from '~/store/user-store';
 
-const { getProjects } = useUserStore();
 const emit = defineEmits(['close']);
+const { getProjects } = useUserStore();
+const { projects } = storeToRefs(useUserStore());
+const route = useRoute();
 
 const project: Projects | any = ref({
   title: '',
@@ -131,13 +133,42 @@ const project: Projects | any = ref({
   tools_used: [],
 });
 
-const submitProject = async (field: any) => {
-  const response = await ADD_USER_PROJECTS(project.value);
+// const submitProject = async (field: any) => {
+//   const response = await ADD_USER_PROJECTS(project.value);
 
-  if (response.success) {
-    qhToast.success('Project submitted successfully');
-    await getProjects();
-    qhCloseModal();
-  } else qhToast.error(response.message);
+//   if (response.success) {
+//     qhToast.success('Project submitted successfully');
+//     await getProjects();
+//     qhCloseModal();
+//   } else qhToast.error(response.message);
+// };
+
+const submitProject = async (field: any) => {
+  if (route.query.id && route.query.edit) {
+    // Edit Project
+    const response = await EDIT_USER_PROJECTS(
+      project.value,
+      route.query.id as string,
+    );
+    if (response.success) {
+      qhToast.success('Project updated successfully');
+    } else qhToast.error(response.message);
+  } else {
+    // Add New Project
+    const response = await ADD_USER_PROJECTS(project.value);
+    if (response.success) {
+      qhToast.success('Project added successfully');
+    } else qhToast.error(response.message);
+  }
+  await getProjects();
+  qhCloseModal();
 };
+
+onMounted(() => {
+  if (route.query.edit && route.query.id) {
+    project.value = projects.value?.find(
+      (project) => project._id === route.query.id,
+    );
+  }
+});
 </script>

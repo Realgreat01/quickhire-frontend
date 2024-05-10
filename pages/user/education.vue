@@ -6,7 +6,7 @@
       v-for="(education, index) in educations"
       :key="index"
     >
-      <qh-edit-button class="text-dark" />
+      <qh-edit-button class="text-dark" @click="editEducation(education._id)" />
       <qh-delete-button
         class="top-12"
         @click="deleteUserEducation(education._id)"
@@ -79,7 +79,11 @@ const { educations } = storeToRefs(useUserStore());
 const { deleteEducation } = useUserStore();
 
 const modalStore = useModalStore();
+const router = useRouter();
 
+const editEducation = (id: string) => {
+  router.replace({ query: { edit: QH_ROUTES.USER.EDUCATION, id } });
+};
 async function deleteUserEducation(id: string) {
   const result = await modalStore.openModal();
   if (result) {

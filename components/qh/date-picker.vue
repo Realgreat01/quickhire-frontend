@@ -54,7 +54,7 @@ defineProps({
 });
 const emit = defineEmits(['update:modelValue', 'change']);
 
-const date = ref('');
+const date = defineModel<Date | null>();
 
 const handleChange = (value: string) => {
   emit('update:modelValue', qhDates.formatISODate(value));

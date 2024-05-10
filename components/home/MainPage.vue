@@ -1,13 +1,14 @@
 <template>
   <div
-    class="my-20 grid w-full items-start justify-between gap-x-10 md:grid-cols-2"
+    class="my-20 grid w-full items-start justify-between gap-x-10 md:grid-cols-1"
   >
-    <div class="flex h-[60%] flex-col justify-around gap-y-4">
+    <div class="flex flex-col justify-around gap-y-8">
       <h1 class="ml-1">
-        <h1 class="my-4 block text-5xl font-semibold text-brand md:text-7xl">
+        <h1 class="my-4 block text-4xl font-bold text-brand md:text-8xl">
           The World Best
-          <span class="text-secondary-600">Developers</span> Centered Hiring
-          <span class="text-secondary-600">Platform</span>!
+          <span class="text-secondary-500">Developers</span>
+          Centered Hiring
+          <span class="text-secondary-500">Platform </span> !
         </h1>
         <h2 class="qh-text-2 font-semibold">
           Connect with Top Developers or
@@ -34,10 +35,10 @@
       </div>
     </div>
     <div
-      class="order-1 mx-auto mb-4 flex w-full items-center justify-center md:order-2"
+      class="order-1 mx-auto mb-4 hidden w-full items-center justify-center md:order-2"
     >
-      <icons-landing-page-2 class="" />
-      <!-- <img src="~~/assets/images/office-image.jpg" alt="" class="" /> -->
+      <!-- <icons-landing-page-2 class="" /> -->
+      <img src="~/assets/images/home.png" alt="" class="h-[400px]" />
     </div>
   </div>
 </template>

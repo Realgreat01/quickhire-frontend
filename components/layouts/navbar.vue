@@ -6,26 +6,31 @@
       </h1>
 
       <div class="flex gap-x-3 p-4">
-        <div class="relative h-10 w-10">
-          <ChatBubbleBottomCenterTextIcon
-            class="h-8 w-8 fill-brand"
-            @click="openModalAndHandleResponse"
-          />
-          <span
-            class="qh-flex-center absolute bottom-6 right-0 h-5 w-5 rounded-full border border-white bg-error text-center text-[10px] text-white"
-            >10</span
-          >
-        </div>
-        <div class="relative h-10 w-10">
-          <RiNotification3Fill
-            class="h-8 w-8 fill-brand"
-            @click="openNotificationModal"
-          />
-          <span
-            class="qh-flex-center absolute bottom-6 right-0 h-5 w-5 rounded-full border border-white bg-error text-center text-[10px] text-white"
-            >10</span
-          >
-        </div>
+        <qh-dropdown class="mx-3">
+          <template #icon>
+            <div class="relative h-10 w-10">
+              <ChatBubbleBottomCenterTextIcon class="h-8 w-8 fill-brand" />
+              <span
+                class="qh-flex-center absolute bottom-6 right-0 h-5 w-5 rounded-full border border-white bg-error text-center text-[10px] text-white"
+                >{{ chatHistory.length }}</span
+              >
+            </div>
+          </template>
+          <qh-messages class="!w-96" />
+        </qh-dropdown>
+
+        <qh-dropdown class="mx-3">
+          <template #icon
+            ><div class="relative h-10 w-10">
+              <RiNotification3Fill class="h-8 w-8 fill-brand" />
+              <span
+                class="qh-flex-center absolute bottom-6 right-0 h-5 w-5 rounded-full border border-white bg-error text-center text-[10px] text-white"
+                >10</span
+              >
+            </div>
+          </template>
+          <qh-notifications class="!w-96" />
+        </qh-dropdown>
         <div class="relative hidden h-10 w-12 md:block">
           <ArrowRightStartOnRectangleIcon
             class="h-8 w-8 fill-error text-error"
@@ -76,7 +81,9 @@
     </div>
 
     <div class="mx-2 flex items-center justify-between md:mx-6">
-      <h1 class="qh-text-2 my-4 w-fit font-bold text-brand-800">
+      <h1
+        class="qh-text-1 bg-secondary-1000 my-4 w-fit rounded p-4 font-bold text-success-600"
+      >
         {{ routeNames }}
       </h1>
       <div class="flex justify-end gap-2 md:flex md:gap-x-4 md:p-4">
@@ -129,6 +136,7 @@ import { useModalStore } from '~/store/modal-store';
 import { storeToRefs } from 'pinia';
 import { useUserStore } from '~/store/user-store';
 import { QH_ROUTES } from '~/constants/routes';
+import chatHistory from '~/data/chats.json';
 
 const { closeDropdown } = useModalStore();
 const { fullname, user, skills } = storeToRefs(useUserStore());

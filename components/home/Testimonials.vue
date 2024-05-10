@@ -19,7 +19,7 @@
               </h1>
               <h1 class="mt-0 text-sm font-normal text-dark">
                 <span class="text-xs font-light"> {{ user.job_title }}, </span>
-                <span class="font-medium text-brand-400">{{
+                <span class="font-medium text-secondary">{{
                   user.current_workplace
                 }}</span>
               </h1>

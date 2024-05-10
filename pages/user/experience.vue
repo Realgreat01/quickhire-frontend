@@ -5,7 +5,10 @@
       :key="index"
       class="relative flex w-full flex-col justify-between gap-2 rounded-2xl p-4 shadow-xl md:w-4/5"
     >
-      <qh-edit-button class="text-dark" />
+      <qh-edit-button
+        class="text-dark"
+        @click="editExperience(experience._id)"
+      />
       <qh-delete-button
         class="top-12"
         @click="deleteUserExperience(experience._id)"
@@ -75,10 +78,10 @@ import {
 import QH_CONSTANTS from '~/constants';
 import { useUserStore } from '~/store/user-store';
 import { useModalStore } from '~/store/modal-store';
-
 import { storeToRefs } from 'pinia';
 import { QH_ROUTES } from '~/constants/routes';
 import { RiBriefcaseFill } from 'vue-remix-icons';
+
 definePageMeta({
   layout: 'users',
   middleware: ['auth', 'user'],
@@ -89,9 +92,14 @@ useHead({
   title: 'QuickHire - Experience',
 });
 
+const router = useRouter();
 const { experiences } = storeToRefs(useUserStore());
 const { deleteExperience } = useUserStore();
 const modalStore = useModalStore();
+
+const editExperience = (id: string) => {
+  router.replace({ query: { edit: QH_ROUTES.USER.EXPERIENCE, id } });
+};
 
 const deleteUserExperience = async (id: string) => {
   const result = await modalStore.openModal();
