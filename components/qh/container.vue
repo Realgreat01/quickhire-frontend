@@ -60,8 +60,10 @@ onUnmounted(() => {
 <style scoped>
 .modal-content {
   max-height: 96%;
+  min-height: 60%;
   width: 50vw;
   overflow-y: auto;
+  padding-bottom: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 

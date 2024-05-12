@@ -157,6 +157,11 @@
           message
         }}</span>
       </ErrorMessage>
+      <p v-if="serverErrors && serverErrors[name]">
+        <span class="qh-text-4 ml-1 text-error first-letter:!capitalize">{{
+          serverErrors[name]
+        }}</span>
+      </p>
       <div class="ml-2 mt-1 flex items-center gap-x-2" v-if="hasCheckbox">
         <input
           type="checkbox"
@@ -185,6 +190,7 @@ const props = defineProps({
   as: { type: String, default: 'input' },
   type: { type: String, default: 'text' },
   errors: Object,
+  serverErrors: Object,
   hint: String,
   buttonText: String,
   labelClass: String,
@@ -302,6 +308,21 @@ watch(
   (errors: any) => {
     if (errors[props.name]) errorAvailable.value = true;
     else errorAvailable.value = false;
+  },
+);
+watch(
+  () => props.serverErrors,
+  (errors: any) => {
+    if (errors[props.name]) errorAvailable.value = true;
+    else errorAvailable.value = false;
+  },
+);
+watch(
+  () => model.value,
+  (errors: any) => {
+    errorAvailable.value = false;
+    if (props.serverErrors) props.serverErrors[props.name] = null;
+    if (props.errors) props.errors[props.name] = null;
   },
 );
 

@@ -5,7 +5,7 @@
         class="mx-auto mt-10 w-full gap-4 p-2"
         @submit.prevent="handleSubmit($event, submitAboutDetails)"
       >
-        <div class="grid grid-cols-1 gap-4">
+        <div class="grid gap-4">
           <qh-input
             label="Short Bio"
             type="text"
@@ -83,9 +83,7 @@ const about = ref<User | any>({
 });
 
 const submitAboutDetails = async (field: any) => {
-  const data = qhHelpers.filterEmptyValues(about.value);
-  console.log({ data });
-  const response = await EDIT_USER_DETAILS(data);
+  const response = await EDIT_USER_DETAILS(about.value);
   if (response.success) {
     qhToast.success('Details submitted successfully');
     qhCloseModal();

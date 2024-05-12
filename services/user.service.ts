@@ -31,7 +31,7 @@ export const GET_USER_BY_USERNAME = async (username: string) => {
   });
 };
 
-export const EDIT_USER_DETAILS = async (data: User) => {
+export const EDIT_USER_DETAILS = async (data: User | any) => {
   return await ApiService.run({
     method: ApiService.PUT,
     url: '/user',

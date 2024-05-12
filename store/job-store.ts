@@ -2,13 +2,25 @@ import {
   APPLY_FOR_JOB,
   GET_ALL_JOBS,
   GET_SINGLE_JOB,
+  GET_APPLIED_JOB,
 } from '~/services/job.service';
 import type { Job } from '~/types/job';
+import type { User } from '~/types/user';
+
+interface AppliedJob extends Job {
+  applicant_count: number;
+  candidate: {
+    user: string;
+    status: 'submitted' | 'received' | 'processing' | 'accepted' | 'rejected';
+    interview_dates: Date[];
+    interview_feedback: any[];
+  };
+}
 interface JobType {
   Job: Job | null;
   AllJobs: Job[] | null;
   Jobs: Job[] | null;
-  Applied_Jobs: Job | null;
+  Applied_Jobs: AppliedJob[] | null;
 }
 
 export const useJobStore = defineStore('job', {
@@ -17,7 +29,7 @@ export const useJobStore = defineStore('job', {
       Job: null,
       AllJobs: [],
       Jobs: [],
-      Applied_Jobs: null,
+      Applied_Jobs: [],
     };
   },
 
@@ -33,6 +45,10 @@ export const useJobStore = defineStore('job', {
       if (this.AllJobs) {
         return this.AllJobs.filter((job: any) => job._id != this.job._id);
       } else return [];
+    },
+
+    appliedJobs(): AppliedJob[] | null {
+      return this.Applied_Jobs;
     },
   },
 
@@ -58,7 +74,15 @@ export const useJobStore = defineStore('job', {
         qhToast.success('Successfully applied for job');
         await this.getAllJobs();
         await this.getSingleJob(id);
+        await this.getAppliedJobs();
       } else qhToast.error('Error applying for job');
+    },
+
+    async getAppliedJobs() {
+      const res = await GET_APPLIED_JOB();
+      if (res.success) {
+        this.Applied_Jobs = res.data;
+      }
     },
   },
   persist: true,

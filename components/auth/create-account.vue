@@ -10,12 +10,58 @@
         >
           <div class="grid gap-4">
             <qh-input
-              v-for="(detail, index) in registrationForm"
-              :key="index"
+              name="email"
               :errors="errors"
-              v-bind="detail"
-              v-model="registrationDetails[detail.name]"
-              :required="true"
+              label="Email Address"
+              v-model.trim="registration.email"
+              :rules="ValidationRules.userDetails.email"
+              :serverErrors="serverErrors"
+              required
+            />
+            <qh-input
+              name="username"
+              :errors="errors"
+              label="Preferred Username"
+              v-model.trim="registration.username"
+              :serverErrors="serverErrors"
+              :rules="ValidationRules.userDetails.username"
+              required
+            />
+            <qh-input
+              name="firstname"
+              :errors="errors"
+              label="Firstname"
+              :serverErrors="serverErrors"
+              v-model.trim="registration.firstname"
+              :rules="ValidationRules.userDetails.firstname"
+              required
+            />
+            <qh-input
+              name="lastname"
+              :errors="errors"
+              label="Lastname"
+              :serverErrors="serverErrors"
+              v-model.trim="registration.lastname"
+              :rules="ValidationRules.userDetails.lastname"
+              required
+            />
+            <qh-input
+              name="password"
+              :errors="errors"
+              label="Password"
+              type="password"
+              :rules="rules.password"
+              v-model.trim="registration.password"
+              required
+            />
+            <qh-input
+              name="confirm_password"
+              :errors="errors"
+              label="Confirm Password"
+              type="password"
+              :rules="rules.confirmPassword"
+              v-model="registration.confirm_password"
+              required
             />
           </div>
           <qh-button
@@ -53,67 +99,54 @@ import { REGISTER_USER } from '~/services/auth.service';
 import { useRouter } from 'vue-router';
 import ApiService from '~/services/api-service.service';
 
-const registrationDetails = ref<any>({ password: '', confirmPassword: '' });
+const registration = ref<any>({
+  email: 'samsonrealgreat@gmail.com',
+  username: 'realgreat',
+  firstname: 'samson',
+  lastname: 'ikuomenisan',
+  password: '#Real4great',
+  confirm_password: '#Real4great',
+});
+const serverErrors = ref({});
 const router = useRouter();
 
 const rules = ref({
   password: Yup.string()
-    .required('Password is required')
-    .min(6, 'Password must be at least 6 characters long')
+    .required('password is required')
+    .min(6, 'password must be at least 6 characters long')
     .matches(
       /(?=.*[a-z])/,
-      'Password must contain at least one lowercase letter',
+      'password must contain at least one lowercase letter',
     )
     .matches(
       /(?=.*[A-Z])/,
-      'Password must contain at least one uppercase letter',
+      'password must contain at least one uppercase letter',
     )
-    .matches(/(?=.*[0-9])/, 'Password must contain at least one number')
+    .matches(/(?=.*[0-9])/, 'password must contain at least one number')
 
     .matches(
       /(?=.*[!@#$%^&*])/,
-      'Password must contain at least one special character',
+      'password must contain at least one special character',
     ),
 
   confirmPassword: Yup.string()
-    .required('Please confirm your password')
-    .test('passwords-match', 'Passwords does not match', function (value) {
-      return registrationDetails.value.password === value;
+    .required('please confirm your password')
+    .test('passwords-match', 'passwords does not match', function (value) {
+      return registration.value.password === value;
     }),
 });
 
-const registrationForm = ref([
-  {
-    label: 'Email Address',
-    name: 'email',
-    type: 'text',
-  },
-  {
-    label: 'Preferred Username',
-    name: 'username',
-    type: 'text',
-  },
-  {
-    label: 'Password',
-    name: 'password',
-    type: 'password',
-    rules: rules.value.password,
-  },
-  {
-    label: 'Confirm Password',
-    name: 'confirmPassword',
-    type: 'password',
-    rules: rules.value.confirmPassword,
-  },
-]);
-
 const createAccount = async (field: any) => {
-  const res = await REGISTER_USER(field);
+  const res = await REGISTER_USER(registration.value);
   if (res.success) {
     ApiService.setToken(res.data.token);
     QH_CONSTANTS.SET_USER_TYPE('user');
     router.replace({ name: QH_ROUTES.USER.PROFILE });
-  } else qhToast.error(res.message);
+  } else {
+    console.log(res);
+    qhToast.error(res.message);
+    if (res.errors) serverErrors.value = res.errors;
+  }
 };
 </script>
 

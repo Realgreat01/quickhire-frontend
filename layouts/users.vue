@@ -12,12 +12,16 @@
     </div>
 
     <forms-profile v-if="modalController.profile" @close="closeModal" />
+    <forms-address v-if="modalController.address" @close="closeModal" />
     <forms-about v-if="modalController.about" @close="closeModal" />
     <forms-skills v-if="modalController.skills" @close="closeModal" />
     <forms-projects v-if="modalController.projects" @close="closeModal" />
     <forms-experience v-if="modalController.experience" @close="closeModal" />
     <forms-education v-if="modalController.education" @close="closeModal" />
-    <forms-contact v-if="modalController.contact" @close="closeModal" />
+    <forms-social-links
+      v-if="modalController.socialLinks"
+      @close="closeModal"
+    />
   </div>
 </template>
 
@@ -31,7 +35,7 @@ import { QH_ROUTES } from '~/constants/routes';
 const { getCurrentUser, getProjects, getExperiences, getEducation, getSkills } =
   useUserStore();
 
-const { getAllJobs } = useJobStore();
+const { getAllJobs, getAppliedJobs } = useJobStore();
 
 const route = useRoute();
 const router = useRouter();
@@ -45,6 +49,9 @@ const modalController = computed(() => {
     profile:
       route.query.add === QH_ROUTES.USER.DETAILS ||
       route.query.edit === QH_ROUTES.USER.DETAILS,
+    address:
+      route.query.add === QH_ROUTES.USER.ADDRESS ||
+      route.query.edit === QH_ROUTES.USER.ADDRESS,
     about:
       route.query.add === QH_ROUTES.USER.ABOUT ||
       route.query.edit === QH_ROUTES.USER.ABOUT,
@@ -60,9 +67,9 @@ const modalController = computed(() => {
     education:
       route.query.add === QH_ROUTES.USER.EDUCATION ||
       route.query.edit === QH_ROUTES.USER.EDUCATION,
-    contact:
-      route.query.add === QH_ROUTES.USER.CONTACT ||
-      route.query.edit === QH_ROUTES.USER.CONTACT,
+    socialLinks:
+      route.query.add === QH_ROUTES.USER.SOCIAL_LINKS ||
+      route.query.edit === QH_ROUTES.USER.SOCIAL_LINKS,
   };
 });
 
@@ -73,6 +80,7 @@ onBeforeMount(() => {
   getEducation();
   getAllJobs();
   getSkills();
+  getAppliedJobs();
 });
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="sticky bottom-0 top-0 flex h-screen flex-col items-center justify-center gap-2 bg-white px-1"
+    class="sticky bottom-0 top-0 flex h-screen flex-col items-center justify-center gap-2 bg-white px-2"
   >
     <qh-card
       class="font-poppins relative my-4 flex h-60 w-full flex-col items-center justify-center border-2 !border-dark-50"
@@ -19,7 +19,7 @@
     <RouterLink
       :to="{ name: item.route }"
       :class="item.class"
-      class="flex w-60 cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
+      class="flex w-52 cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
       v-for="(item, index) in sidebar"
       :key="index"
     >
@@ -123,7 +123,7 @@ const sidebar = markRaw([
 
 <style scoped lang="scss">
 .router-link-exact-active {
-  @apply w-[90%] rounded-lg bg-brand-600 text-brand-100;
+  @apply rounded-lg bg-brand-600 text-brand-100;
   svg {
     @apply fill-brand-100;
   }

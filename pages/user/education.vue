@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-wrap gap-6 rounded">
+  <div
+    class="flex flex-wrap gap-6 rounded"
+    v-if="educations && educations.length >= 1"
+  >
     <qh-card
       class="relative flex h-fit w-full flex-col items-start justify-between rounded px-4 py-6 md:w-2/3 md:px-12 md:py-8"
       :class="index % 2 === 0 ? '' : 'justify-self-end'"
@@ -48,6 +51,10 @@
       </div>
     </qh-card>
   </div>
+  <qh-empty-content
+    message="You have not added your education History"
+    v-else
+  />
 </template>
 
 <script setup lang="ts">

@@ -44,7 +44,13 @@
               @click="editAbout"
             />
           </h2>
-          <qh-card> <p class="qh-text-4" v-html="user?.about_me"></p></qh-card>
+          <qh-card class="qh-text-4">
+            <p v-html="user?.about_me" v-if="user?.about_me"></p>
+            <qh-empty-content
+              v-else
+              message="You have not added your about information"
+            />
+          </qh-card>
         </div>
 
         <!-- 2 -->

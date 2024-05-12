@@ -7,6 +7,7 @@ interface IResponse {
   message: string;
   code: number | null;
   data: object;
+  errors: object;
   meta?: any;
 }
 
@@ -16,6 +17,7 @@ class ApiResponse implements IResponse {
   message = '';
   code = null;
   data: any = {};
+  errors: any = {};
   meta = null;
 
   constructor(data: any) {
@@ -78,7 +80,7 @@ export default class ApiService {
         code: serverResponse.data.meta.code,
         success: true,
         message: serverResponse.data.meta.message,
-        data: serverResponse.data.data,
+        data: serverResponse.data.data ?? serverResponse.data,
         meta: serverResponse.data.meta,
       });
     } catch (err: AxiosError | any) {
@@ -95,12 +97,12 @@ export default class ApiService {
         // Valid server error or others
       } else if (err.response.data) {
         response = new ApiResponse({
-          code: err.response.data.code,
+          code: err.response.data.data.code || err.response.data.code,
           message:
-            ApiService.getErrorMessage(err.response.data?.data) ||
             err.response.data.message ||
             'Oops! An unknown error ocurred. Please try again.',
           status: err.response.status,
+          errors: err.response.data.data.errors,
         });
 
         // No internet

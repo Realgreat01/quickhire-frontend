@@ -5,9 +5,25 @@ export class ValidationRules {
   static URL = Yup.string().url('Please enter a valid URL');
 
   static userDetails = {
-    firstname: Yup.string().required('firstname is required'),
-    lastname: Yup.string().required('lastname is required'),
-    middlename: Yup.string().required('middlename is required'),
+    email: Yup.string()
+      .required('email is required')
+      .email('enter a valid email'),
+
+    username: Yup.string()
+      .required('username is required')
+      .matches(
+        /^[a-zA-Z0-9_]+$/,
+        'username can only contain letters, numbers and underscores',
+      ),
+    firstname: Yup.string()
+      .required('firstname is required')
+      .matches(/^[a-zA-Z]+$/, 'firstname can only contain letters'),
+    lastname: Yup.string()
+      .required('lastname is required')
+      .matches(/^[a-zA-Z]+$/, 'lastname can only contain letters'),
+    middlename: Yup.string()
+      .required('middlename is required')
+      .matches(/^[a-zA-Z]+$/, 'middlename can only contain letters'),
     phone_number: Yup.string()
       .required('phone is required')
       .matches(
@@ -43,14 +59,14 @@ export class ValidationRules {
   };
   static about = {
     header_bio: Yup.string()
-      .min(10, 'Short bio should be at least  10 characters  ')
-      .max(100, 'Short bio cannot be more than 1000 characters '),
+      .min(10, 'short bio should be at least  10 characters  ')
+      .max(100, 'short bio cannot be more than 1000 characters '),
     summary: Yup.string()
-      .min(24, 'Summary should be at least  24 characters  ')
-      .max(300, 'Summary cannot be more than 300 characters '),
+      .min(24, 'summary should be at least  24 characters  ')
+      .max(300, 'summary cannot be more than 300 characters '),
     about_me: Yup.string()
-      .min(100, 'About should be at least  100 characters  ')
-      .max(1200, 'About cannot be more than 1200 characters '),
+      .min(100, 'about should be at least  100 characters  ')
+      .max(1200, 'about cannot be more than 1200 characters '),
   };
 
   static project = {

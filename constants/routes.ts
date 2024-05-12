@@ -26,6 +26,8 @@ export class QH_ROUTES {
     APPLIED_JOBS: 'user-jobs',
     PREVIEW: 'user-preview',
     SETTINGS: 'user-settings',
+    ADDRESS: 'user-address',
+    SOCIAL_LINKS: 'user-socials',
   };
 
   static JOB = {

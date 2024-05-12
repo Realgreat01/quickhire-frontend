@@ -13,9 +13,9 @@
         <div
           v-for="notification in notifications"
           @click="notification.is_read = true"
-          class="qh-text-5 flex w-full cursor-pointer items-start gap-4 !p-2"
+          class="notification qh-text-5 flex w-full cursor-pointer items-start gap-4 rounded-lg p-2 duration-500"
         >
-          <div class="mx-4h m-2">
+          <div class="m-2 mx-4 w-full">
             <div class="flex gap-x-1">
               <h2
                 class="qh-text-4 font-bold text-brand"
@@ -24,8 +24,9 @@
                 {{ notification.title }}
               </h2>
             </div>
-            <p class="text-dark-400">
-              {{ qhHelpers.sliceWords(notification.message, 50) }}
+            <p class="w-[90%] truncate text-dark-400 duration-500">
+              {{ notification.message }}
+              <!-- {{ qhHelpers.sliceWords(notification.message, 50) }} -->
             </p>
           </div>
         </div>
@@ -54,4 +55,20 @@ import { useModalStore } from '~/store/modal-store';
 const notifications = ref(Notifications);
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notification {
+  &:hover {
+    @apply bg-brand-100;
+    .truncate {
+      white-space: wrap;
+      text-overflow: none;
+    }
+  }
+}
+</style>

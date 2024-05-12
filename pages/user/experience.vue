@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-wrap gap-6 rounded">
+  <div
+    class="flex flex-wrap gap-6 rounded"
+    v-if="experiences && experiences.length >= 1"
+  >
     <qh-card
       v-for="(experience, index) in experiences"
       :key="index"
@@ -61,6 +64,7 @@
       </div>
     </qh-card>
   </div>
+  <qh-empty-content v-else message="You have not added your work experience" />
 </template>
 
 <script setup lang="ts">

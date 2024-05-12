@@ -5,7 +5,7 @@
     >
       <qh-card class="relative border border-dark-50">
         <h2 class="qh-text-2 my-10 font-bold">Address</h2>
-        <qh-edit-button />
+        <qh-edit-button @click="editAddress" />
         <div class="flex flex-col gap-4">
           <div class="flex gap-x-20">
             <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Country</h2>
@@ -31,57 +31,41 @@
       </qh-card>
       <qh-card class="relative">
         <h2 class="qh-text-2 my-10 font-bold">Social Links</h2>
-        <qh-edit-button />
+        <qh-edit-button @click="editSocialLinks" />
         <div class="flex flex-col gap-4">
           <div class="flex gap-x-20">
             <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Github</h2>
-            <h2 class="text-brand">
-              {{ user?.social_media?.github ?? 'N/A' }}
-            </h2>
+            <qh-checked :value="Boolean(user?.social_media?.github)" />
           </div>
           <div class="flex gap-x-20">
             <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Hashnode</h2>
-            <h2 class="text-brand">
-              {{ user?.social_media?.hashnode ?? 'N/A' }}
-            </h2>
+            <qh-checked :value="Boolean(user?.social_media?.hashnode)" />
           </div>
           <div class="flex gap-x-20">
             <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Linkedin</h2>
-            <h2 class="text-brand">
-              {{ user?.social_media?.linkedin ?? 'N/A' }}
-            </h2>
+            <qh-checked :value="Boolean(user?.social_media?.linkedin)" />
           </div>
           <div class="flex gap-x-20">
             <h2 class="qh-text-4 max-w-40 font-medium md:w-60">
               X (Formerly Twitter)
             </h2>
-            <h2 class="text-brand">
-              {{ user?.social_media?.twitter ?? 'N/A' }}
-            </h2>
+            <qh-checked :value="Boolean(user?.social_media?.twitter)" />
           </div>
           <div class="flex gap-x-20">
             <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Facebook</h2>
-            <h2 class="text-brand">
-              {{ user?.social_media?.facebook ?? 'N/A' }}
-            </h2>
+            <qh-checked :value="Boolean(user?.social_media?.facebook)" />
           </div>
           <div class="flex gap-x-20">
             <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Twitch</h2>
-            <h2 class="text-brand">
-              {{ user?.social_media?.twitch ?? 'N/A' }}
-            </h2>
+            <qh-checked :value="Boolean(user?.social_media?.twitch)" />
           </div>
           <div class="flex gap-x-20">
             <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Instagram</h2>
-            <h2 class="text-brand">
-              {{ user?.social_media?.instagram ?? 'N/A' }}
-            </h2>
+            <qh-checked :value="Boolean(user?.social_media?.instagram)" />
           </div>
           <div class="flex gap-x-20">
             <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Youtube</h2>
-            <h2 class="text-brand">
-              {{ user?.social_media?.youtube ?? 'N/A' }}
-            </h2>
+            <qh-checked :value="Boolean(user?.social_media?.youtube)" />
           </div>
         </div>
       </qh-card>
@@ -103,8 +87,15 @@ definePageMeta({
 useHead({
   title: 'QuickHire - Contact',
 });
-
+const router = useRouter();
 const { user } = storeToRefs(useUserStore());
+
+const editAddress = (id: string) => {
+  router.replace({ query: { edit: QH_ROUTES.USER.ADDRESS } });
+};
+const editSocialLinks = (id: string) => {
+  router.replace({ query: { edit: QH_ROUTES.USER.SOCIAL_LINKS } });
+};
 </script>
 
 <style scoped></style>

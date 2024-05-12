@@ -24,6 +24,7 @@
       :is-clearable="false"
       :options="getOptions"
       v-model="modelValue"
+      :label="labelName"
       :clearable="clearable"
       :placeholder="placeholder"
     >

@@ -24,8 +24,8 @@
               </h1>
               <div class="mt-2 flex gap-x-1">
                 <qh-button
-                  label="Remote"
-                  class="h-4 rounded-full bg-dark-100 px-4 text-xs !text-brand-700"
+                  :label="job?.job_location_type"
+                  class="h-4 rounded-full bg-dark-100 px-4 text-xs capitalize !text-brand-700"
                 />
                 <qh-button
                   :label="job?.job_type"
