@@ -7,6 +7,7 @@ import {
   DELETE_USER_EXPERIENCE,
   DELETE_USER_PROJECTS,
   EDIT_USER_PROJECTS,
+  GET_ALL_USERS,
   GET_USER_BY_USERNAME,
   GET_USER_DETAILS,
   GET_USER_EDUCATION,
@@ -32,6 +33,7 @@ interface UserType {
   Experiences: Experience[] | null;
   Skills: Skills | null;
   PublicUser: PublicUser | null;
+  AllUsers: User[] | null;
 }
 
 export const useUserStore = defineStore('user', {
@@ -43,12 +45,16 @@ export const useUserStore = defineStore('user', {
       Experiences: null,
       Skills: null,
       PublicUser: null,
+      AllUsers: null,
     };
   },
 
   getters: {
     user(): User | null {
       return this.User;
+    },
+    allUsers(): User[] | null {
+      return this.AllUsers;
     },
 
     projects(): Projects[] | null {
@@ -66,6 +72,7 @@ export const useUserStore = defineStore('user', {
     skills(): Skills | null {
       return this.Skills;
     },
+
     publicUser(): PublicUser | null {
       return this.PublicUser;
     },
@@ -82,6 +89,12 @@ export const useUserStore = defineStore('user', {
       const response = await GET_USER_BY_USERNAME(username);
       if (response.success) {
         this.PublicUser = response.data;
+      }
+    },
+    async getAllUsers() {
+      const response = await GET_ALL_USERS();
+      if (response.success) {
+        this.AllUsers = response.data;
       }
     },
     async getCurrentUser() {

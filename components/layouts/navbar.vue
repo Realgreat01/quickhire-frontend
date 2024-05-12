@@ -81,9 +81,7 @@
     </div>
 
     <div class="mx-2 flex items-center justify-between md:mx-6">
-      <h1
-        class="qh-text-1 bg-secondary-1000 my-4 w-fit rounded p-4 font-bold text-success-600"
-      >
+      <h1 class="qh-text-1 my-4 w-fit p-4 font-bold text-success-600">
         {{ routeNames }}
       </h1>
       <div class="flex justify-end gap-2 md:flex md:gap-x-4 md:p-4">

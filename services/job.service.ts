@@ -5,16 +5,18 @@ import ApiService from './api-service.service';
 export const GET_ALL_JOBS = async () => {
   return await ApiService.run({
     method: ApiService.GET,
-    url: '/job',
+    url: '/job/jobs/',
   });
 };
 
 export const GET_SINGLE_JOB = async (id: string) => {
   return await ApiService.run({
     method: ApiService.GET,
-    url: '/job/' + id,
+    url: '/job/jobs/' + id,
   });
 };
+
+// COMPANY JOB ACTIONS
 
 export const CREATE_NEW_JOB = async (data: any) => {
   return await ApiService.run({
@@ -24,18 +26,16 @@ export const CREATE_NEW_JOB = async (data: any) => {
   });
 };
 
-// COMPANY JOB ACTIONS
-export const GET_COMPANY_JOBS = async (data: any) => {
+export const GET_COMPANY_JOBS = async () => {
   return await ApiService.run({
-    method: ApiService.POST,
+    method: ApiService.GET,
     url: '/job/company',
-    data,
   });
 };
 
-export const GET_COMPANY_SINGLE_JOB = async (data: any) => {
+export const UPDATE_JOB_APPLICANTS_STATUS = async (data: any) => {
   return await ApiService.run({
-    method: ApiService.POST,
+    method: ApiService.PUT,
     url: '/job/company',
     data,
   });
@@ -43,7 +43,7 @@ export const GET_COMPANY_SINGLE_JOB = async (data: any) => {
 
 export const UPDATE_JOB = async (data: any) => {
   return await ApiService.run({
-    method: ApiService.POST,
+    method: ApiService.PUT,
     url: '/job/company',
     data,
   });

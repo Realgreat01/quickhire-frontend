@@ -6,7 +6,7 @@
       />
       <div class="sticky bottom-0 top-0">
         <layouts-company-navbar class="sticky top-0 z-10" />
-        <NuxtPage class="scroll overflow-y-scroll p-4" />
+        <NuxtPage class="scroll relative overflow-y-scroll pb-4" />
       </div>
     </div>
     <forms-create-job v-if="modalController.createJob" @close="closeModal" />
@@ -15,8 +15,9 @@
 
 <script setup lang="ts">
 import { useCompanyStore } from '~/store/company-store';
+import { useJobStore } from '~/store/job-store';
 const { getCurrentCompany } = useCompanyStore();
-
+const { getCompanyJobs } = useJobStore();
 import { useRoute, useRouter } from 'vue-router';
 
 import { QH_ROUTES } from '~/constants/routes';
@@ -35,6 +36,7 @@ const modalController = computed(() => {
 });
 onMounted(() => {
   getCurrentCompany();
+  getCompanyJobs();
 });
 </script>
 

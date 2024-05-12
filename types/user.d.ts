@@ -47,7 +47,7 @@ export interface User {
   experience_level: 'entry' | 'mid' | 'senior';
   rate: number;
   highest_education_level: Education['type'];
-  interest_job: JobLocationType;
+  job_interest: JobLocationType;
   availability: string;
   blogs: object[];
   projects: Projects[];

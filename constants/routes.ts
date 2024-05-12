@@ -4,8 +4,14 @@ export class QH_ROUTES {
   static COMPANY = {
     REGISTER: 'company-register',
     LOGIN: 'company-login',
-    DASHBOARD: 'company',
+    INDEX: 'company',
+    DASHBOARD: 'company-dashboard',
     JOBS: 'company-jobs',
+    TALENTS: 'company-talents',
+    APPLICANTS: 'company-applicants',
+    MESSAGES: 'company-messages',
+    NOTIFICATIONS: 'company-notifications',
+    CONTACT: 'company-contact',
   };
 
   static USER = {

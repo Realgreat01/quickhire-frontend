@@ -1,36 +1,19 @@
 export interface Company {
-  company_email: string;
-  status: string;
-  company_id: string;
   company_name: string;
-  company_location: string;
-  company_logo: string;
-  company_category: string;
-  company_cover_image: string;
-  company_description: string;
-  company_employee_count: number;
-  company_website: string;
-}
-export interface Skill {
-  name: string;
-  icon: string;
-}
-export interface Job {
-  posted_by: {
-    company_name: string;
-    company_location: string;
-    company_logo: string;
-    company_id: string;
-  } | null;
-  job_title: string;
-  // isActive: boolean;
-  job_description: string;
-  // job_type: 'Fulltime' | 'Part-Time' | 'Contract' | 'Internship' | 'Voluntary';
-  job_type: string;
-  posted_on: Date | string;
-  application_ends: Date | string;
-  job_duration: Date | string;
-  salary: number;
-  required_skills: Skill[];
-  // applicants: string[];
+  email: string;
+  status: 'company';
+  company_id: string;
+  password: string;
+  website?: string;
+  address: AddressInterface;
+  description?: string;
+  logo?: string;
+  cover_image?: string;
+  category: string;
+  parent_company?: string;
+  incorporation_date: Date;
+  employee_count: number;
+  contact_phone: string;
+  operational_status: 'active' | 'inactive' | 'restructuring' | 'bankruptcy';
+  social_media: SocialLinks;
 }

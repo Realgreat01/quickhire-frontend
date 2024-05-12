@@ -33,15 +33,23 @@ import {
   RiUser2Fill,
   RiBriefcase2Fill,
   RiBox3Fill,
-  RiGraduationCapFill,
+  RiNotification3Fill,
   RiContactsFill,
   RiSendPlaneFill,
   RiDiscussFill,
   RiSearchFill,
   RiSearchLine,
 } from 'vue-remix-icons';
+import { useCompanyStore } from '~/store/company-store';
+import { ChatBubbleBottomCenterTextIcon } from '@heroicons/vue/24/solid';
+
 import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
+import { useModalStore } from '~/store/modal-store';
+import { ArrowRightStartOnRectangleIcon } from '@heroicons/vue/24/outline';
+const { company } = storeToRefs(useCompanyStore());
+
+const modalStore = useModalStore();
 
 const sidebar = markRaw([
   {
@@ -61,26 +69,54 @@ const sidebar = markRaw([
   {
     title: 'Messages',
     action: '',
-    route: QH_ROUTES.COMPANY.DASHBOARD,
+    route: QH_ROUTES.COMPANY.MESSAGES,
     icon: RiDiscussFill,
     class: 'fill-violet-800  text-violet-800',
   },
   {
     title: 'Find Talents',
     action: '',
-    route: QH_ROUTES.JOB.ALL,
+    route: QH_ROUTES.COMPANY.TALENTS,
     icon: RiSearchLine,
     class: 'fill-secondary-600  text-secondary-600',
   },
 
   {
+    title: 'Notifications',
+    action: '',
+    route: QH_ROUTES.COMPANY.NOTIFICATIONS,
+    icon: RiNotification3Fill,
+    class: 'fill-error-800 text-error-800',
+  },
+
+  {
     title: 'Contact',
     action: '',
-    route: QH_ROUTES.COMPANY.JOBS,
+    route: QH_ROUTES.COMPANY.CONTACT,
     icon: RiContactsFill,
     class: 'fill-cyan-800 text-cyan-800',
   },
 ]);
+
+async function openLogoutModal() {
+  try {
+    const result = await modalStore.openModal({
+      title: 'Logout ?',
+      message: 'Do you really want to logout',
+    });
+    if (result) {
+      qhHelpers.logout();
+      qhToast.success('logout successfully');
+    }
+  } catch (error) {}
+}
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.router-link-exact-active {
+  @apply rounded-lg bg-brand-600 text-brand-100;
+  svg {
+    @apply fill-brand-100;
+  }
+}
+</style>

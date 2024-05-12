@@ -13,6 +13,21 @@ export const GET_USER_DETAILS = async () => {
     url: '/user',
   });
 };
+
+export const GET_ALL_USERS = async () => {
+  return await ApiService.run({
+    method: ApiService.GET,
+    url: '/public/users',
+  });
+};
+
+export const GET_USER_BY_USERNAME = async (username: string) => {
+  return await ApiService.run({
+    method: ApiService.GET,
+    url: '/public/users/' + username,
+  });
+};
+
 export const UPDATE_USER_PROFILE_PICTURE = async (data: FormData) => {
   return await ApiService.run({
     method: ApiService.POST,
@@ -21,13 +36,6 @@ export const UPDATE_USER_PROFILE_PICTURE = async (data: FormData) => {
     headers: {
       'Content-type': 'multipart/form-data',
     },
-  });
-};
-
-export const GET_USER_BY_USERNAME = async (username: string) => {
-  return await ApiService.run({
-    method: ApiService.GET,
-    url: '/public/user/' + username,
   });
 };
 

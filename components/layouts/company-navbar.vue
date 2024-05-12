@@ -1,37 +1,21 @@
 <template>
-  <div class="relative">
+  <div class="relative bg-white">
     <div
-      class="flex h-36 w-full items-start justify-between bg-[url('~/assets/images/office-image.jpg')] bg-cover bg-right md:justify-end"
+      :style="style"
+      class="relative flex h-36 w-full items-start justify-between bg-cover bg-right md:justify-end"
     >
+      <qh-edit-button class="!top-28" />
       <h1
         class="qh-text-1 flex items-center capitalize text-brand-500 md:hidden"
       >
         <icons-logo />
       </h1>
       <div class="flex gap-x-3 p-4">
-        <div class="relative h-10 w-10">
-          <ChatBubbleBottomCenterTextIcon
-            class="h-8 w-8 fill-brand"
-            @click=""
-          />
-          <span
-            class="qh-flex-center absolute bottom-6 right-0 h-5 w-5 rounded-full border border-white bg-error text-center text-[10px] text-white"
-            >10</span
-          >
-        </div>
-        <div class="relative h-10 w-10">
-          <RiNotification3Fill class="h-8 w-8 fill-brand" @click="" />
-          <span
-            class="qh-flex-center absolute bottom-6 right-0 h-5 w-5 rounded-full border border-white bg-error text-center text-[10px] text-white"
-            >10</span
-          >
-        </div>
         <div class="relative hidden h-10 w-12 md:block">
           <ArrowRightStartOnRectangleIcon
             class="h-8 w-8 fill-error text-error"
             @click="openLogoutModal"
           />
-          <p class="">Logout</p>
         </div>
         <qh-dropdown class="z-50 md:hidden">
           <div class="">
@@ -61,35 +45,47 @@
         </qh-dropdown>
       </div>
     </div>
-    <div class="relative flex h-24 bg-brand-50">
-      <img
-        src="~/assets/images/company-logo.jpg"
-        alt=""
-        class="relative bottom-10 z-50 ml-4 h-20 w-20 rounded border border-dark-200 bg-white md:bottom-20 md:h-40 md:w-40"
-      />
-      <div
-        class="my-4 flex h-fit w-full items-center justify-between px-4 md:px-8"
-      >
-        <div class="">
-          <h1 class="qh-text-2 font-bold text-brand">
-            {{ currentCompany?.company_name }}
-          </h1>
-          <h1 class="qh-text-4 font-medium text-dark">
-            {{ currentCompany?.company_location }}
-          </h1>
+    <div class="bg-brand-50 pb-4">
+      <div class="relative flex h-24">
+        <div class="relative">
+          <img
+            :src="company?.logo ?? defaultLogo"
+            alt=""
+            class="relative bottom-10 z-40 ml-4 h-20 w-20 rounded border border-dark-200 bg-white md:bottom-20 md:h-40 md:w-40"
+          />
+          <qh-edit-button class="!-right-2 !-top-[4.5rem] z-50" />
         </div>
-        <qh-button
-          class="qh-text-4 h-8 rounded-full md:h-12 md:!px-16"
-          @click="createJob"
-          >Post&nbsp;New&nbsp;Job</qh-button
+        <div
+          class="my-4 flex h-fit w-full items-center justify-between px-4 md:px-8"
         >
+          <div class="">
+            <h1 class="qh-text-2 font-bold text-brand">
+              {{ company?.company_name }}
+            </h1>
+            <h1 class="qh-text-4 font-medium text-dark">
+              Company ID: {{ company?.company_id }}
+            </h1>
+            <h1 class="qh-text-4 font-medium text-dark">
+              {{ company?.address.country }}
+            </h1>
+          </div>
+          <qh-button
+            class="qh-text-4 h-8 rounded-full md:h-12 md:!px-16"
+            @click="createJob"
+            >Post&nbsp;New&nbsp;Job</qh-button
+          >
+        </div>
       </div>
+      <h1
+        class="qh-text-2 bg-secondary-1000 mx-4 hidden font-bold text-brand-600"
+      >
+        {{ routeNames }}
+      </h1>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useCompanyStore } from '~/store/company-store';
 import { storeToRefs } from 'pinia';
 import { QH_ROUTES } from '~/constants/routes';
 import { ArrowRightStartOnRectangleIcon } from '@heroicons/vue/24/outline';
@@ -107,11 +103,20 @@ import {
   RiSearchLine,
 } from 'vue-remix-icons';
 import { useModalStore } from '~/store/modal-store';
-const { currentCompany } = storeToRefs(useCompanyStore());
+import defaultLogo from '@/assets/images/company-logo.jpg';
+import { useCompanyStore } from '~/store/company-store';
+const { company } = storeToRefs(useCompanyStore());
 
 const modalStore = useModalStore();
 
 const router = useRouter();
+const route = useRoute();
+
+const style = computed(() => {
+  return {
+    backgroundImage: company.value?.cover_image ?? `url(/office-image.jpg)`,
+  };
+});
 
 const createJob = () => {
   return router.replace({ query: { action: QH_ROUTES.JOB.CREATE_JOB } });
@@ -175,6 +180,25 @@ async function openLogoutModal() {
     }
   } catch (error) {}
 }
+
+const routeNames = computed(() => {
+  switch (route.name) {
+    case QH_ROUTES.COMPANY.DASHBOARD:
+      return '';
+    case QH_ROUTES.COMPANY.CONTACT:
+      return 'Contact';
+    case QH_ROUTES.COMPANY.MESSAGES:
+      return 'Messages';
+    case QH_ROUTES.COMPANY.TALENTS:
+      return 'Talents';
+    case QH_ROUTES.COMPANY.JOBS:
+      return 'Applications';
+    case QH_ROUTES.COMPANY.NOTIFICATIONS:
+      return 'Notifications';
+    default:
+      return null;
+  }
+});
 </script>
 
 <style scoped></style>

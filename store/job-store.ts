@@ -3,6 +3,7 @@ import {
   GET_ALL_JOBS,
   GET_SINGLE_JOB,
   GET_APPLIED_JOB,
+  GET_COMPANY_JOBS,
 } from '~/services/job.service';
 import type { Job } from '~/types/job';
 import type { User } from '~/types/user';
@@ -21,6 +22,7 @@ interface JobType {
   AllJobs: Job[] | null;
   Jobs: Job[] | null;
   Applied_Jobs: AppliedJob[] | null;
+  CompanyJobs: Job[];
 }
 
 export const useJobStore = defineStore('job', {
@@ -30,6 +32,7 @@ export const useJobStore = defineStore('job', {
       AllJobs: [],
       Jobs: [],
       Applied_Jobs: [],
+      CompanyJobs: [],
     };
   },
 
@@ -37,6 +40,10 @@ export const useJobStore = defineStore('job', {
     allJobs(): Job[] | any {
       return this.AllJobs;
     },
+    companyJobs(): Job[] | any {
+      return this.CompanyJobs;
+    },
+
     job(): Job | any {
       return this.Job;
     },
@@ -82,6 +89,12 @@ export const useJobStore = defineStore('job', {
       const res = await GET_APPLIED_JOB();
       if (res.success) {
         this.Applied_Jobs = res.data;
+      }
+    },
+    async getCompanyJobs() {
+      const res = await GET_COMPANY_JOBS();
+      if (res.success) {
+        this.CompanyJobs = res.data;
       }
     },
   },
