@@ -33,6 +33,20 @@ export const GET_COMPANY_JOBS = async () => {
   });
 };
 
+export const GET_JOB_APPLICANT = async (jobId: string, applicantId: string) => {
+  return await ApiService.run({
+    method: ApiService.GET,
+    url: `/job/company/${jobId}/applicants/${applicantId}`,
+  });
+};
+
+export const GET_JOB_APPLICANTS = async (jobId: string) => {
+  return await ApiService.run({
+    method: ApiService.GET,
+    url: `/job/company/${jobId}/applicants`,
+  });
+};
+
 export const UPDATE_JOB_APPLICANTS_STATUS = async (data: any) => {
   return await ApiService.run({
     method: ApiService.PUT,

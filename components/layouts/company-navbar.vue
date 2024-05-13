@@ -133,7 +133,7 @@ const sidebar = markRaw([
   {
     title: 'Open Applications',
     action: '',
-    route: QH_ROUTES.COMPANY.JOBS,
+    route: QH_ROUTES.COMPANY.ALL_JOBS,
     icon: RiBriefcase2Fill,
     class: 'fill-brand  text-brand',
   },
@@ -155,7 +155,7 @@ const sidebar = markRaw([
   {
     title: 'Contact',
     action: '',
-    route: QH_ROUTES.COMPANY.JOBS,
+    route: QH_ROUTES.COMPANY.ALL_JOBS,
     icon: RiContactsFill,
     class: 'fill-cyan-800 text-cyan-800',
   },
@@ -191,7 +191,7 @@ const routeNames = computed(() => {
       return 'Messages';
     case QH_ROUTES.COMPANY.TALENTS:
       return 'Talents';
-    case QH_ROUTES.COMPANY.JOBS:
+    case QH_ROUTES.COMPANY.ALL_JOBS:
       return 'Applications';
     case QH_ROUTES.COMPANY.NOTIFICATIONS:
       return 'Notifications';

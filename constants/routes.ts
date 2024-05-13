@@ -6,12 +6,15 @@ export class QH_ROUTES {
     LOGIN: 'company-login',
     INDEX: 'company',
     DASHBOARD: 'company-dashboard',
-    JOBS: 'company-jobs',
-    TALENTS: 'company-talents',
+    ALL_JOBS: 'company-jobs',
+    JOB: 'company-job',
     APPLICANTS: 'company-applicants',
+    APPLICANT: 'company-applicant',
+    TALENTS: 'company-talents',
     MESSAGES: 'company-messages',
     NOTIFICATIONS: 'company-notifications',
     CONTACT: 'company-contact',
+    PUBLIC: 'company-public',
   };
 
   static USER = {

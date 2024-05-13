@@ -4,6 +4,8 @@ import {
   GET_SINGLE_JOB,
   GET_APPLIED_JOB,
   GET_COMPANY_JOBS,
+  GET_JOB_APPLICANTS,
+  GET_JOB_APPLICANT,
 } from '~/services/job.service';
 import type { Job } from '~/types/job';
 import type { User } from '~/types/user';
@@ -23,6 +25,8 @@ interface JobType {
   Jobs: Job[] | null;
   Applied_Jobs: AppliedJob[] | null;
   CompanyJobs: Job[];
+  JobApplicants: { user: User[] } | null;
+  JobApplicant: User | null;
 }
 
 export const useJobStore = defineStore('job', {
@@ -33,6 +37,8 @@ export const useJobStore = defineStore('job', {
       Jobs: [],
       Applied_Jobs: [],
       CompanyJobs: [],
+      JobApplicants: null,
+      JobApplicant: null,
     };
   },
 
@@ -46,6 +52,14 @@ export const useJobStore = defineStore('job', {
 
     job(): Job | any {
       return this.Job;
+    },
+
+    jobApplicants(): User[] | any {
+      return this.JobApplicants;
+    },
+
+    jobApplicant(): User | any {
+      return this.JobApplicant;
     },
 
     otherJobs(): Job[] | null {
@@ -73,6 +87,19 @@ export const useJobStore = defineStore('job', {
       if (res.success) {
         this.Job = res.data;
       } else qhToast.error('Unable to get Job');
+    },
+
+    async getJobApplicant(jobId: string, applicantId: string) {
+      const res = await GET_JOB_APPLICANT(jobId, applicantId);
+      if (res.success) {
+        this.JobApplicant = res.data;
+      } else qhToast.error('Unable to get Job applicants');
+    },
+    async getJobApplicants(id: string) {
+      const res = await GET_JOB_APPLICANTS(id);
+      if (res.success) {
+        this.JobApplicants = res.data;
+      } else qhToast.error('Unable to get Job applicants');
     },
 
     async getApplyForJob(id: string) {

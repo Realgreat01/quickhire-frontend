@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <div
-      @click="
-        router.push({
-          name: QH_ROUTES.COMPANY.APPLICANTS,
-          params: { id: job._id },
-        })
-      "
+  <div class="pb-5">
+    <RouterLink
+      :to="{
+        name: QH_ROUTES.COMPANY.JOB,
+        params: { id: job._id },
+      }"
+      @click="getSingleJob(job?._id)"
       class="flex items-start justify-between border-b border-dashed border-brand p-2 py-4 hover:bg-brand-50"
       v-for="(job, index) in companyJobs"
       :class="{ 'border-t': index === 0 }"
@@ -80,19 +79,7 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="p-6">
-      <RouterLink :to="{ name: QH_ROUTES.JOB.ALL }" class="p-6">
-        <qh-button
-          class="apply-button w-full gap-x-6 rounded-full border border-brand bg-transparent font-medium !text-brand md:w-96"
-        >
-          <span class="">See all Jobs</span>
-          <ArrowRightCircleIcon
-            class="apply-icon h-5 w-5 text-brand duration-500"
-          />
-        </qh-button>
-      </RouterLink>
-    </div>
+    </RouterLink>
   </div>
 </template>
 
@@ -118,7 +105,7 @@ import { useJobStore } from '~/store/job-store';
 definePageMeta({
   layout: 'company',
   middleware: ['auth', 'company'],
-  name: QH_ROUTES.COMPANY.JOBS,
+  name: QH_ROUTES.COMPANY.ALL_JOBS,
 });
 
 useHead({

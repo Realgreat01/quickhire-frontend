@@ -62,7 +62,7 @@ const sidebar = markRaw([
   {
     title: 'Open Applications',
     action: '',
-    route: QH_ROUTES.COMPANY.JOBS,
+    route: QH_ROUTES.COMPANY.ALL_JOBS,
     icon: RiBriefcase2Fill,
     class: 'fill-brand  text-brand',
   },
@@ -113,7 +113,7 @@ async function openLogoutModal() {
 </script>
 
 <style scoped lang="scss">
-.router-link-exact-active {
+.router-link-active {
   @apply rounded-lg bg-brand-600 text-brand-100;
   svg {
     @apply fill-brand-100;
