@@ -116,7 +116,9 @@
           v-if="buttonText"
           @click="actionButtonClick"
           class="center-box !right-0 h-10 transform border border-brand-500 bg-brand-500 shadow-lg shadow-gray-300"
-        />
+        >
+          <slot name="buttonText">{{ buttonText }}</slot>
+        </qh-button>
 
         <RiEyeOffLine
           v-if="type === 'password' && passwordType === 'password'"

@@ -143,7 +143,6 @@ const createAccount = async (field: any) => {
     QH_CONSTANTS.SET_USER_TYPE('user');
     router.replace({ name: QH_ROUTES.USER.PROFILE });
   } else {
-    console.log(res);
     qhToast.error(res.message);
     if (res.errors) serverErrors.value = res.errors;
   }

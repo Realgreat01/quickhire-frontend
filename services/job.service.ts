@@ -5,14 +5,14 @@ import ApiService from './api-service.service';
 export const GET_ALL_JOBS = async () => {
   return await ApiService.run({
     method: ApiService.GET,
-    url: '/job/jobs/',
+    url: '/public/jobs/',
   });
 };
 
 export const GET_SINGLE_JOB = async (id: string) => {
   return await ApiService.run({
     method: ApiService.GET,
-    url: '/job/jobs/' + id,
+    url: '/public/jobs/' + id,
   });
 };
 

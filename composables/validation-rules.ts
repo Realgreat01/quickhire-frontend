@@ -3,6 +3,34 @@ import RegexExpression from '~/constants/regex';
 
 export class ValidationRules {
   static URL = Yup.string().url('Please enter a valid URL');
+  static REQUIRED = Yup.string().required('Please fill this field');
+
+  static company = {
+    category: Yup.string().required('category is required'),
+    website: Yup.string()
+      .required('company website is required')
+      .url('please enter a valid URL'),
+    contact_phone: Yup.string()
+      .required('company phone number is required')
+      .matches(
+        RegexExpression.mobileNumber,
+        'please enter a valid phone number',
+      )
+      .matches(
+        RegexExpression.phoneNumber,
+        'phone number must include country code',
+      ),
+  };
+
+  static job = {
+    title: Yup.string().required('title is required'),
+    salaryValue: Yup.number()
+      .typeError('please enter a valid number')
+      .required('salary is required'),
+    durationValue: Yup.number()
+      .typeError('please enter a valid number')
+      .required('duration is required'),
+  };
 
   static userDetails = {
     email: Yup.string()
@@ -21,11 +49,11 @@ export class ValidationRules {
     lastname: Yup.string()
       .required('lastname is required')
       .matches(/^[a-zA-Z]+$/, 'lastname can only contain letters'),
-    middlename: Yup.string()
-      .required('middlename is required')
-      .matches(/^[a-zA-Z]+$/, 'middlename can only contain letters'),
+    middlename: Yup.string().matches(
+      /^[a-zA-Z]+$/,
+      'middlename can only contain letters',
+    ),
     phone_number: Yup.string()
-      .required('phone is required')
       .matches(
         RegexExpression.mobileNumber,
         'Please enter a valid phone number',

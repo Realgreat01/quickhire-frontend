@@ -6,6 +6,7 @@ import {
   DELETE_USER_EDUCATION,
   DELETE_USER_EXPERIENCE,
   DELETE_USER_PROJECTS,
+  EDIT_USER_DETAILS,
   EDIT_USER_PROJECTS,
   GET_ALL_USERS,
   GET_USER_BY_USERNAME,
@@ -34,6 +35,7 @@ interface UserType {
   Skills: Skills | null;
   PublicUser: PublicUser | null;
   AllUsers: User[] | null;
+  updating: boolean;
 }
 
 export const useUserStore = defineStore('user', {
@@ -46,6 +48,7 @@ export const useUserStore = defineStore('user', {
       Skills: null,
       PublicUser: null,
       AllUsers: null,
+      updating: false,
     };
   },
 
@@ -97,11 +100,26 @@ export const useUserStore = defineStore('user', {
         this.AllUsers = response.data;
       }
     },
+
     async getCurrentUser() {
       const response = await GET_USER_DETAILS();
       if (response.success) {
         this.User = response.data;
         if (this.User?.username) QH_CONSTANTS.USERNAME = this.User?.username;
+      }
+    },
+
+    async updateUserDetails(data: User | any) {
+      this.updating = true;
+      const response = await EDIT_USER_DETAILS(data);
+      try {
+        if (response.success) {
+          qhToast.success('user details updated successfully');
+          this.getCurrentUser();
+        }
+      } catch (error) {
+      } finally {
+        this.updating = false;
       }
     },
 

@@ -2,17 +2,11 @@
   <div class="bg-white">
     <div class="grid gap-y-6 md:grid-cols-[4fr,1fr]">
       <div class="relative h-fit border p-8 shadow">
-        <qh-edit-button class="!top-2" />
+        <qh-edit-button class="!top-2" @click="editCompany" />
         <div class="relative">
           <h1 class="qh-text-2 font-bold">About</h1>
           <hr class="border border-dark-400" />
-          <p class="">
-            {{ company?.description }} Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Voluptate, dolores error cum dolorem molestiae,
-            fugit a doloribus, eum mollitia expedita sapiente possimus ratione
-            quae ipsam dignissimos! Dolor amet ex magnam explicabo vel a rerum,
-            sapiente ducimus quia rem nostrum dolore!
-          </p>
+          <p class="" v-html="company?.description"></p>
         </div>
 
         <div class="qh-company-info" v-for="info in companyInfo">
@@ -53,6 +47,11 @@ useHead({
 });
 
 const { company } = storeToRefs(useCompanyStore());
+const router = useRouter();
+
+const editCompany = () => {
+  router.replace({ query: { edit: QH_ROUTES.COMPANY.INFO } });
+};
 
 const companyInfo = computed(() => {
   return [

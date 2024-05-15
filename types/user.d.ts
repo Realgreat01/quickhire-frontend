@@ -14,12 +14,13 @@ export interface LOGIN_PAYlOAD {
 }
 
 export interface Settings {
-  allow_notifications: boolean;
-  portfolio_type: 'default';
-  cv_template: 'default';
-  show_summary: boolean;
-  show_education: boolean;
-  send_cover_letter: boolean;
+  allow_notifications?: boolean;
+  portfolio_type?: string;
+  cv_template?: string;
+  show_references?: boolean;
+  show_summary?: boolean;
+  show_education?: boolean;
+  send_cover_letter?: boolean;
 }
 
 export interface User {

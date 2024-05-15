@@ -2,9 +2,10 @@
   <div
     v-if="projects && projects.length >= 1"
     class="flex flex-wrap gap-6 rounded"
+    ref="draggable"
   >
     <qh-card
-      v-for="(project, index) in projects"
+      v-for="(project, index) in projectList"
       :key="index"
       class="relative flex w-full flex-col justify-between gap-y-4 rounded-2xl p-4 shadow-xl md:w-4/5"
     >
@@ -81,7 +82,13 @@
       </div>
     </qh-card>
   </div>
-
+  <qh-button
+    class="my-4 rounded-full !py-3 md:w-60"
+    @click="updateUserProject"
+    v-if="projectList.length > 0"
+    :loading="updating"
+    >Save Changes</qh-button
+  >
   <qh-empty-content v-else message="You have not added your projects" />
 </template>
 
@@ -114,9 +121,13 @@ useHead({
 });
 
 const router = useRouter();
-const { projects } = storeToRefs(useUserStore());
-const { deleteProject } = useUserStore();
+const { projects, updating } = storeToRefs(useUserStore());
+
+const { deleteProject, updateUserDetails } = useUserStore();
 const modalStore = useModalStore();
+const draggable = ref();
+const projectList = ref<any>(projects.value);
+qhDraggable(draggable, projectList.value);
 
 const editProject = (id: string) => {
   router.replace({ query: { edit: QH_ROUTES.USER.PROJECTS, id } });
@@ -128,6 +139,11 @@ const deleteUserProject = async (id: string) => {
     await deleteProject(id);
   }
 };
+const updateUserProject = async (id: string) => {
+  await updateUserDetails({ projects: projectList.value });
+};
+
+watch(projects, (project) => (projectList.value = project));
 </script>
 
 <style scoped>

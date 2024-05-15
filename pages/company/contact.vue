@@ -91,10 +91,10 @@ const router = useRouter();
 const { company } = storeToRefs(useCompanyStore());
 
 const editAddress = (id: string) => {
-  router.replace({ query: { edit: null } });
+  router.replace({ query: { edit: QH_ROUTES.COMPANY.ADDRESS } });
 };
 const editSocialLinks = (id: string) => {
-  router.replace({ query: { edit: null } });
+  router.replace({ query: { edit: QH_ROUTES.COMPANY.SOCIAL_LINKS } });
 };
 </script>
 

@@ -7,7 +7,7 @@
           name="experience_level"
           placeholder="Mid Level"
           type="select"
-          class="!w-40 md:!w-64"
+          class="!w-40 capitalize md:!w-64"
           label-name="label"
           :options="experienceLevels"
           v-model="workDetails.experience_level"
@@ -115,11 +115,13 @@ const educationLevels = ref([
 ]);
 
 const workDetails = ref({
-  experience_level: experienceLevels.value[0],
-  rate: 10,
-  availability: 'immediately',
-  highest_education_level: educationLevels.value[0],
-  job_interest: 'mid',
+  experience_level: experienceLevels.value.find(
+    (exp) => exp.value === user.value?.experience_level,
+  ),
+  rate: user.value?.rate,
+  availability: user.value?.availability,
+  highest_education_level: user.value?.highest_education_level,
+  job_interest: user.value?.job_interest,
 });
 </script>
 

@@ -1,6 +1,6 @@
 <template>
-  <div class="mt-[10rem] flex flex-col" id="experience">
-    <qh-section-title>My &nbsp; Experience</qh-section-title>
+  <div class="flex flex-col p-10" id="experience">
+    <qh-section-title>Experience</qh-section-title>
     <div
       class="grid grid-cols-[1px,9fr] items-center gap-x-4 md:gap-x-6"
       v-for="(experience, index) in user?.experience"

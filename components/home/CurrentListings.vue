@@ -13,7 +13,7 @@
     </div>
     <RouterLink :to="{ name: QH_ROUTES.JOB.ALL }">
       <qh-button
-        class="apply-button my-6 min-w-[40%] max-w-96 gap-x-6 rounded-full border border-brand bg-transparent font-medium !text-brand"
+        class="apply-button mx-auto my-6 min-w-[40%] max-w-96 gap-x-6 rounded-full border border-brand bg-transparent font-medium !text-brand"
       >
         <span class="">See all Jobs</span>
         <ArrowRightCircleIcon

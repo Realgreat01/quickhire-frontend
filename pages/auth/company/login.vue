@@ -47,6 +47,7 @@ definePageMeta({
   layout: 'auth',
   name: QH_ROUTES.COMPANY.LOGIN,
   title: 'Sign In',
+  middleware: 'logged-in-user',
 });
 
 const loginCompany = async (field: any) => {

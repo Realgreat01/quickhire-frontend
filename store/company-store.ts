@@ -1,4 +1,7 @@
-import { GET_CURRENT_COMPANY } from '~/services/company.service';
+import {
+  GET_CURRENT_COMPANY,
+  UPDATE_COMPANY_DETAILS,
+} from '~/services/company.service';
 
 import type { Company } from '~/types/company';
 interface CompanyType {

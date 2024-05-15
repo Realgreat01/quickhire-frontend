@@ -13,7 +13,7 @@
         </h2>
         <qh-button
           class="disabled w-fit cursor-not-allowed rounded-lg !bg-dark-50 !py-1 capitalize !text-dark"
-          :label="settings.portfolio_template"
+          :label="settings.portfolio_type"
         />
       </div>
       <div class="flex items-center justify-between gap-x-20">
@@ -45,10 +45,12 @@
         <h2 class="qh-text-4 max-w-40 font-medium md:w-60">
           Send Cover Letter
         </h2>
-        <qh-toggle v-model="checked" />
+        <qh-toggle v-model="settings.send_cover_letter" />
       </div>
 
-      <qh-button class="my-4 rounded-full !py-3 md:w-60" disabled
+      <qh-button
+        class="my-4 rounded-full !py-3 md:w-60"
+        @click="updateUserSettings"
         >Save Changes</qh-button
       >
     </qh-card>
@@ -64,7 +66,7 @@ import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 import { useUserStore } from '~/store/user-store';
 import { useModalStore } from '~/store/modal-store';
-
+import type { Settings } from '~/types/user';
 definePageMeta({
   layout: 'users',
   middleware: ['auth', 'user'],
@@ -75,17 +77,21 @@ useHead({
   title: 'QuickHire - Settings',
 });
 const checked = ref(true);
-const mate = ref(false);
 const { user } = storeToRefs(useUserStore());
-
-const settings = ref({
-  allow_notifications: true,
-  portfolio_template: 'default',
-  cv_template: 'default',
-  show_education: false,
-  show_references: false,
-  show_summary: true,
+const { updateUserDetails } = useUserStore();
+const settings = ref<Settings>({
+  allow_notifications: user.value?.settings.allow_notifications,
+  portfolio_type: user.value?.settings.portfolio_type,
+  cv_template: user.value?.settings.cv_template,
+  show_education: user.value?.settings.show_education,
+  send_cover_letter: user.value?.settings.send_cover_letter,
+  show_references: user.value?.settings.show_references,
+  show_summary: user.value?.settings.show_summary,
 });
+
+const updateUserSettings = async () => {
+  await updateUserDetails({ settings: settings.value });
+};
 </script>
 
 <style scoped></style>

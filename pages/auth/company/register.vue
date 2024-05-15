@@ -61,6 +61,7 @@ definePageMeta({
   layout: 'auth',
   name: QH_ROUTES.COMPANY.REGISTER,
   title: 'Create Account',
+  middleware: 'logged-in-user',
 });
 
 const router = useRouter();

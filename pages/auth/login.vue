@@ -42,6 +42,7 @@ definePageMeta({
   layout: 'auth',
   name: QH_ROUTES.USER.LOGIN,
   title: 'Sign In',
+   middleware: 'logged-in-user',
 });
 
 const router = useRouter();

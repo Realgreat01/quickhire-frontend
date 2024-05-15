@@ -97,6 +97,7 @@ definePageMeta({
   layout: 'auth',
   name: QH_ROUTES.USER.REGISTER,
   title: 'Create Account',
+  middleware: 'logged-in-user',
 });
 
 const registration = ref<any>({

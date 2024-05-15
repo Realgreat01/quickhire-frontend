@@ -15,7 +15,7 @@ export const qhToast = {
 };
 
 export const qhCloseModal = async () => {
-  setTimeout(async () => await navigateTo({}), 1500);
+  setTimeout(async () => await navigateTo({}), 500);
 };
 
 export const qhReturnToHomepage = async () => {
@@ -27,6 +27,26 @@ export const qhHelpers = {
     if (words.length > slice) return words.slice(0, slice) + ' ...';
     else return words.slice(0, slice);
   },
+  removeDuplicates(arr?: any[]) {
+    const seen = new Map();
+
+    if (arr)
+      return arr.filter((item) => {
+        const { _id, ...rest } = item; // Destructure to separate _id from the rest of the properties
+        const key = JSON.stringify(rest); // Create a unique key based on the properties other than _id
+
+        if (!seen.has(key)) {
+          seen.set(key, true);
+          return true;
+        }
+        return false;
+      });
+  },
+
+  formatWebsiteName(url: string) {
+    return url.replace(/^(https?:\/\/)/, '');
+  },
+
   logout() {
     const $ResetPinia = (): Record<string | 'all', () => void> => {
       const pinia = getActivePinia() as ExtendedPinia;
@@ -61,6 +81,7 @@ export const qhHelpers = {
     return filtered;
   },
 };
+
 export const qhDropdown = reactive({
   show: false,
   close() {

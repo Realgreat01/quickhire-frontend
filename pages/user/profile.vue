@@ -132,6 +132,7 @@ const router = useRouter();
 const uploadStore = useUploadStore();
 const { fullname, skills, user } = storeToRefs(useUserStore());
 const { getCurrentUser } = useUserStore();
+
 const editAbout = () => {
   router.replace({ query: { edit: QH_ROUTES.USER.ABOUT } });
 };

@@ -23,6 +23,7 @@
             hint="Select your top 3 skills, useful in your job search!"
             no-data-message="Kindly suggest such skill to us!"
             multiple
+            :selectable="() => skills.top_skills.length < 3"
             :options="skillIcons"
             v-model="skills.top_skills"
           />

@@ -2,9 +2,14 @@ export class QH_ROUTES {
   static HOME = 'home';
 
   static COMPANY = {
+    INDEX: 'company',
     REGISTER: 'company-register',
     LOGIN: 'company-login',
-    INDEX: 'company',
+
+    INFO: 'company-info',
+    ADDRESS: 'company-address',
+    SOCIAL_LINKS: 'company-socials',
+
     DASHBOARD: 'company-dashboard',
     ALL_JOBS: 'company-jobs',
     JOB: 'company-job',

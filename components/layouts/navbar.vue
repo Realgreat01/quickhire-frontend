@@ -97,12 +97,7 @@
 
         <!--  -->
         <div
-          @click="
-            router.replace({
-              name: QH_ROUTES.USER.PREVIEW,
-              params: { username: user?.username },
-            })
-          "
+          @click="previewprofile"
           class="flex cursor-pointer rounded bg-brand-100 p-2 pr-4 text-brand shadow first-line:cursor-pointer hover:scale-[1.025] md:!w-40"
         >
           <RiProfileFill class="mr-3 h-6 w-6 rounded fill-brand" />
@@ -149,6 +144,13 @@ const actionButtonPages = ref([
   QH_ROUTES.USER.EXPERIENCE,
   QH_ROUTES.USER.PROJECTS,
 ]);
+
+const previewprofile = () => {
+  router.replace({
+    name: QH_ROUTES.USER.PREVIEW,
+    params: { username: user.value?.username },
+  });
+};
 
 async function openModalAndHandleResponse() {
   try {

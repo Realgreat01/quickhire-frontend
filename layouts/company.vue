@@ -10,18 +10,20 @@
       </div>
     </div>
     <forms-create-job v-if="modalController.createJob" @close="closeModal" />
+    <forms-update-company v-if="modalController.info" @close="closeModal" />
+    <forms-company-address v-if="modalController.address" @close="closeModal" />
+    <forms-company-socials v-if="modalController.socials" @close="closeModal" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useCompanyStore } from '~/store/company-store';
 import { useJobStore } from '~/store/job-store';
-const { getCurrentCompany } = useCompanyStore();
-const { getCompanyJobs } = useJobStore();
 import { useRoute, useRouter } from 'vue-router';
-
 import { QH_ROUTES } from '~/constants/routes';
 
+const { getCurrentCompany } = useCompanyStore();
+const { getCompanyJobs } = useJobStore();
 const route = useRoute();
 const router = useRouter();
 
@@ -32,6 +34,9 @@ const closeModal = () => {
 const modalController = computed(() => {
   return {
     createJob: route.query.action === QH_ROUTES.JOB.CREATE_JOB,
+    info: route.query.edit === QH_ROUTES.COMPANY.INFO,
+    address: route.query.edit === QH_ROUTES.COMPANY.ADDRESS,
+    socials: route.query.edit === QH_ROUTES.COMPANY.SOCIAL_LINKS,
   };
 });
 onMounted(() => {

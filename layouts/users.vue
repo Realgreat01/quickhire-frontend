@@ -32,6 +32,8 @@ import { useJobStore } from '~/store/job-store';
 import { useModalStore } from '~/store/modal-store';
 import { QH_ROUTES } from '~/constants/routes';
 
+
+
 const { getCurrentUser, getProjects, getExperiences, getEducation, getSkills } =
   useUserStore();
 

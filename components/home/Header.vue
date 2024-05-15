@@ -3,7 +3,7 @@
     class="sticky top-0 z-[99] flex w-full items-center justify-between bg-white"
   >
     <icons-logo class="text-brand" />
-    <div class="qh-flex-center hidden md:flex">
+    <div class="qh-flex-center hidden">
       <a
         :href="nav.link"
         class="qh-text-4 flex items-center rounded-full !bg-transparent px-4 py-1 !text-brand duration-200 hover:!bg-brand-500 hover:!fill-brand-50 hover:!text-white"
@@ -14,14 +14,25 @@
         <span class="qh-text-4"> {{ nav.title }}</span></a
       >
     </div>
-    <div class="hidden gap-x-4 md:flex">
+    <div
+      class="hidden gap-x-4 md:flex"
+      v-if="qhSecuredLS.get(QH_CONSTANTS.AUTH_TOKEN)"
+    >
+      <RouterLink :to="{ name: QH_ROUTES.USER.PROFILE }">
+        <qh-button
+          class="h-10 w-60 rounded-full font-medium"
+          label="Dashboard"
+        />
+      </RouterLink>
+    </div>
+    <div class="hidden gap-x-4 md:flex" v-else>
       <RouterLink :to="{ name: QH_ROUTES.USER.LOGIN }">
-        <qh-button class="h-10 w-40 rounded-full font-medium" label="Login" />
+        <qh-button class="h-10 w-60 rounded-full font-medium" label="Login" />
       </RouterLink>
       <RouterLink :to="{ name: QH_ROUTES.USER.REGISTER }">
         <qh-button
           label="Create&nbsp;Account"
-          class="h-10 w-40 rounded-full border border-brand bg-transparent font-medium !text-brand"
+          class="h-10 w-60 rounded-full border border-brand bg-transparent font-medium !text-brand"
         />
       </RouterLink>
     </div>
@@ -74,6 +85,7 @@ import {
   QuestionMarkCircleIcon,
   ChartBarIcon,
 } from '@heroicons/vue/24/outline';
+import QH_CONSTANTS from '~/constants';
 
 const headerNavigations = ref([
   { link: '#features', title: 'Features', icon: StarIcon },
