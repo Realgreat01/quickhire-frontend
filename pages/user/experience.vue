@@ -22,6 +22,11 @@
         </div>
 
         <div class="flex">
+          <RiToolsFill class="icon h-6 w-6" />
+          <h1 class="font-medium text-brand">{{ experience.role }}</h1>
+        </div>
+
+        <div class="flex">
           <RiMapPinFill class="icon h-6 w-6" />
           <h1 class="font-medium text-brand">
             {{ experience.company_location }}
@@ -33,11 +38,6 @@
           <h1 class="font-medium capitalize text-brand">
             {{ experience.location_type }}
           </h1>
-        </div>
-
-        <div class="flex">
-          <RiToolsFill class="icon h-6 w-6" />
-          <h1 class="font-medium text-brand">{{ experience.role }}</h1>
         </div>
 
         <div class="flex">
@@ -80,13 +80,10 @@
 import {
   RiBuildingFill,
   RiToolsFill,
-  RiWebhookFill,
   RiMapPinFill,
   RiGlobeFill,
-  RiGithubFill,
   RiCalendar2Fill,
   RiFileListFill,
-  RiGlobalLine,
 } from 'vue-remix-icons';
 import QH_CONSTANTS from '~/constants';
 import { useUserStore } from '~/store/user-store';

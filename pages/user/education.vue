@@ -32,7 +32,9 @@
 
         <div class="flex" v-if="education.school_website">
           <RiGlobalFill class="icon !h-6 !w-6" />
-          <h2 class="qh-text-4">{{ education.school_website }}</h2>
+          <h2 class="qh-text-4">
+            {{ qhHelpers.formatWebsiteName(education.school_website) }}
+          </h2>
         </div>
 
         <div class="flex">
@@ -117,10 +119,6 @@ async function deleteUserEducation(id: string) {
 const updateUserEducation = async () => {
   await updateUserDetails({ education: educationList.value });
 };
-
-watch(educations, (education) => (educationList.value = education), {
-  deep: true,
-});
 </script>
 
 <style scoped>

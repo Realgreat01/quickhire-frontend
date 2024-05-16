@@ -32,6 +32,7 @@
           placeholder="$50"
           class="!w-40 md:!w-64"
           type="currency"
+          button-text="USD"
           v-model="workDetails.rate"
         />
       </div>
