@@ -38,7 +38,7 @@
       </div>
       <div class="flex w-fit flex-col gap-4">
         <qh-resume-button
-          :user="user"
+          :username="user?.username ?? ''"
           class="qh-text-4 !h-10 !rounded-full !px-6 !py-2 !text-sm !font-medium"
         />
         <div class="flex">

@@ -45,7 +45,7 @@
 
       <div class="flex gap-4">
         <qh-resume-button
-          :user="applicant"
+          :username="applicant.username ?? ''"
           class="qh-text-4 !h-10 w-full !rounded-full !bg-brand-100 !px-2 !py-2 !text-brand"
         />
         <qh-button

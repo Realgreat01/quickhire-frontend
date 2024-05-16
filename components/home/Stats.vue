@@ -11,31 +11,30 @@
         :class="stat?.class"
       >
         <h1 class="qh-text-4">{{ stat.title }}</h1>
-        <h1 class="qh-text-2 font-bold">
-          {{ qhNumbers.formatNumber(stat.count) }}+
-        </h1>
+        <h1 class="qh-text-2 font-bold">{{ stat?.count }}+</h1>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useUtilsStore } from '~/store/utils-store';
 defineProps({ Class: String });
-
-const stats = ref([
+const { insights } = storeToRefs(useUtilsStore());
+const stats = computed(() => [
   {
     title: 'Developers',
-    count: 8452,
+    count: insights.value?.users,
     class: 'bg-brand-100',
   },
   {
     title: 'Jobs',
-    count: 451,
+    count: insights.value?.jobs,
     class: 'bg-purple-100',
   },
   {
     title: 'Companies',
-    count: 106,
+    count: insights.value?.companies,
     class: 'bg-error-100',
   },
   // {
@@ -44,7 +43,7 @@ const stats = ref([
   // },
   {
     title: 'Active Applications',
-    count: 3200,
+    count: insights.value?.active_applications,
     class: 'bg-success-100',
   },
   // {

@@ -15,7 +15,7 @@
           </h1>
 
           <qh-resume-button
-            :user="user"
+            :username="user?.username ?? ''"
             class="qh-text-4 my-4 mt-10 h-8 w-40 rounded-full md:h-12 md:w-80"
           />
         </div>

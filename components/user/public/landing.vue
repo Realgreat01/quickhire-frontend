@@ -18,7 +18,7 @@
 
       <div class="qh-text-3 grid grid-cols-2 gap-x-4 md:w-2/3">
         <qh-resume-button
-          :user="user"
+          :username="user?.username ?? ''"
           class="border-[1.5px] duration-500 hover:bg-brand-400 hover:font-medium"
           >Resume</qh-resume-button
         >

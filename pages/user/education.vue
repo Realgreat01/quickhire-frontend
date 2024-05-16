@@ -5,7 +5,7 @@
         class="relative flex h-fit w-full cursor-pointer flex-col items-start justify-between rounded px-4 py-6 md:w-2/3 md:px-12 md:py-8"
         :class="index % 2 === 0 ? '' : 'justify-self-end'"
         v-for="(education, index) in educationList"
-        :key="index"
+        :key="education._id"
       >
         <qh-edit-button
           class="text-dark"
@@ -60,7 +60,7 @@
     <qh-button
       class="my-4 rounded-full !py-3 md:w-60"
       @click="updateUserEducation"
-      v-if="educationList == educations"
+      v-if="educationList"
       :loading="updating"
       >Save Changes</qh-button
     >
@@ -118,7 +118,9 @@ const updateUserEducation = async () => {
   await updateUserDetails({ education: educationList.value });
 };
 
-watch(educations, (education) => (educationList.value = education));
+watch(educations, (education) => (educationList.value = education), {
+  deep: true,
+});
 </script>
 
 <style scoped>

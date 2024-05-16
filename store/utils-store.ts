@@ -1,9 +1,17 @@
 import {
+  CONVERT_IMAGE_TO_BASE64,
   GET_ALL_COUNTRIES,
   GET_CITIES_BY_STATE_AND_COUNTRY,
+  GET_OPERATIONAL_INSIGHTS,
   GET_STATES_BY_COUNTRY,
 } from '~/services/utils.service';
 
+interface Insights {
+  users: number;
+  companies: number;
+  jobs: number;
+  active_applications: number;
+}
 interface UtilsType {
   Countries: any[];
   loadingCountries: boolean;
@@ -13,6 +21,7 @@ interface UtilsType {
 
   Cities: any[];
   loadingCities: boolean;
+  Insights: Insights | null;
 }
 
 export const useUtilsStore = defineStore('utils', {
@@ -26,6 +35,8 @@ export const useUtilsStore = defineStore('utils', {
 
       Cities: [],
       loadingCities: false,
+
+      Insights: { users: 0, companies: 0, jobs: 0, active_applications: 0 },
     };
   },
 
@@ -38,6 +49,9 @@ export const useUtilsStore = defineStore('utils', {
     },
     cities(): any[] {
       return this.Cities;
+    },
+    insights(): UtilsType['Insights'] {
+      return this.Insights;
     },
   },
 
@@ -60,6 +74,20 @@ export const useUtilsStore = defineStore('utils', {
       if (res.data) this.Cities = res.data;
       this.loadingCities = false;
     },
+
+    async getBase64Image(url: string) {
+      const res = await CONVERT_IMAGE_TO_BASE64({ image_url: url });
+      if (res.success) return res.data;
+      else return null;
+    },
+
+    async getOperationalInsights() {
+      const res = await GET_OPERATIONAL_INSIGHTS();
+      if (res.success) this.Insights = res.data;
+    },
   },
-  persist: false,
+  persist: {
+    paths: ['insights'],
+    storage: persistedState.localStorage,
+  },
 });

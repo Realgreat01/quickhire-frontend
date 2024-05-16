@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { QH_ROUTES } from '~/constants/routes';
+import { useUtilsStore } from '~/store/utils-store';
 
 definePageMeta({
   name: QH_ROUTES.HOME,
@@ -20,6 +21,12 @@ definePageMeta({
 
 useHead({
   title: 'QuickHire - Home',
+});
+
+const { getOperationalInsights } = useUtilsStore();
+
+onMounted(async () => {
+  await getOperationalInsights();
 });
 </script>
 

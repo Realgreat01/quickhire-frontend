@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-if="projects && projects.length >= 1"
-    class="flex flex-wrap gap-6 rounded"
-    ref="draggable"
-  >
+  <div class="flex flex-wrap gap-6 rounded" ref="draggable">
     <qh-card
       v-for="(project, index) in projectList"
       :key="index"
@@ -89,7 +85,10 @@
     :loading="updating"
     >Save Changes</qh-button
   >
-  <qh-empty-content v-else message="You have not added your projects" />
+  <qh-empty-content
+    v-if="!projects || projects.length <= 0"
+    message="You have not added your projects"
+  />
 </template>
 
 <script setup lang="ts">
@@ -104,6 +103,7 @@ import {
   RiUser2Fill,
   RiBuilding2Fill,
 } from 'vue-remix-icons';
+
 import { skillIcons } from '~/constants/skill';
 import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';

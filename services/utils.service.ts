@@ -1,11 +1,18 @@
 import ApiService from './api-service.service';
 import axios from 'axios';
 
-export const GET_ALL_JOBS = async (data: any) => {
+export const CONVERT_IMAGE_TO_BASE64 = async (data: { image_url: string }) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: '',
+    url: '/utils/base64-image',
     data,
+  });
+};
+
+export const GET_OPERATIONAL_INSIGHTS = async () => {
+  return await ApiService.run({
+    method: ApiService.GET,
+    url: '/utils/insights',
   });
 };
 

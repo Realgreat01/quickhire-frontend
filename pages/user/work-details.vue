@@ -9,6 +9,7 @@
           type="select"
           class="!w-40 capitalize md:!w-64"
           label-name="label"
+          :reduce="(val: any) => val.value"
           :options="experienceLevels"
           v-model="workDetails.experience_level"
         />
@@ -61,7 +62,9 @@
         />
       </div>
 
-      <qh-button class="my-4 rounded-full !py-3 md:w-60" disabled
+      <qh-button
+        class="my-4 rounded-full !py-3 md:w-60"
+        @click="updateUserWorkDetails"
         >Save Changes</qh-button
       >
     </qh-card>
@@ -88,6 +91,7 @@ useHead({
   title: 'QuickHire - Work Details',
 });
 const { user } = storeToRefs(useUserStore());
+const { updateUserDetails } = useUserStore();
 const modalStore = useModalStore();
 
 const experienceLevels = ref([
@@ -123,6 +127,13 @@ const workDetails = ref({
   highest_education_level: user.value?.highest_education_level,
   job_interest: user.value?.job_interest,
 });
+
+const updateUserWorkDetails = async () => {
+  await updateUserDetails({
+    ...workDetails.value,
+    experience_level: workDetails.value.experience_level?.value,
+  });
+};
 </script>
 
 <style scoped></style>

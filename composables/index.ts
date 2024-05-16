@@ -1,7 +1,9 @@
+import axios from 'axios';
 import { push } from 'notivue';
 import { QH_ROUTES } from '~/constants/routes';
 import { getActivePinia } from 'pinia';
 import type { Pinia, Store } from 'pinia';
+import ApiService from '~/services/api-service.service';
 interface ExtendedPinia extends Pinia {
   _s: Map<string, Store>;
 }
@@ -45,6 +47,11 @@ export const qhHelpers = {
 
   formatWebsiteName(url: string) {
     return url.replace(/^(https?:\/\/)/, '');
+  },
+
+  async getImageBase64(url: string) {
+    const response = await axios.get(url, { responseType: 'arraybuffer' });
+    return `data:${response.headers['content-type'].toLowerCase()};base64,${Buffer.from(response.data).toString('base64')}`;
   },
 
   logout() {
