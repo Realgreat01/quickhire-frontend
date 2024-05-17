@@ -62,7 +62,7 @@
     <qh-button
       class="my-4 rounded-full !py-3 md:w-60"
       @click="updateUserEducation"
-      v-if="educationList"
+      v-if="educationList.length > 0"
       :loading="updating"
       >Save Changes</qh-button
     >

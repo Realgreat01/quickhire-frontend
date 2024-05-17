@@ -70,7 +70,7 @@
       >Save Changes</qh-button
     >
     <qh-empty-content
-      v-if="!experienceList && experienceList.length <= 0"
+      v-if="experienceList.length <= 0"
       message="You have not added your work experience"
     />
   </div>

@@ -92,6 +92,10 @@
         />
       </div>
     </div>
+    <qh-empty-content
+      v-if="!appliedJobs"
+      message="You have not applied for any job yet!"
+    />
     <div class="p-6">
       <RouterLink :to="{ name: QH_ROUTES.JOB.ALL }" class="p-6">
         <qh-button

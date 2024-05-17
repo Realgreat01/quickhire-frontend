@@ -14,10 +14,7 @@
         <span class="qh-text-4"> {{ nav.title }}</span></a
       >
     </div>
-    <div
-      class="hidden gap-x-4 md:flex"
-      v-if="qhSecuredLS.get(QH_CONSTANTS.AUTH_TOKEN)"
-    >
+    <div class="hidden gap-x-4 md:flex" v-if="isLoggedIn">
       <RouterLink :to="{ name: QH_ROUTES.USER.PROFILE }">
         <qh-button
           class="h-10 w-60 rounded-full font-medium"
@@ -94,6 +91,8 @@ const headerNavigations = ref([
   { link: '#testimonials', title: 'Testimonials', icon: ChatBubbleLeftIcon },
   { link: '#faqs', title: 'Faqs', icon: QuestionMarkCircleIcon },
 ]);
+
+const isLoggedIn = computed(() => qhSecuredLS.get(QH_CONSTANTS.AUTH_TOKEN));
 </script>
 
 <style scoped></style>

@@ -98,6 +98,7 @@ import { Form as VeeForm } from 'vee-validate';
 import { useUserStore } from '~/store/user-store';
 import { skillIcons } from '~/constants/skill';
 import type { Skills } from '~/types/user';
+
 const { getSkills } = useUserStore();
 const { skills: userSkills } = storeToRefs(useUserStore());
 const skills = ref<Skills | any>({
