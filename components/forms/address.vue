@@ -21,6 +21,7 @@
           type="select"
           :options="states"
           v-model="state"
+          noDataMessage="please select a country"
           required
           :loading="loadingStates"
           labelName="name"
@@ -33,6 +34,7 @@
           :reduce="(option: any) => option.name"
           :options="cities"
           v-model="address.city"
+          noDataMessage="please select a state"
           required
           :loading="loadingCities"
           labelName="name"
@@ -100,6 +102,7 @@ const submitAddress = async (field: any) => {
 watch(country, async (newCountry) => {
   address.value.country = newCountry.name;
   await getCountriesStates(newCountry.iso2);
+  address.value.state = states.value[0].name;
 });
 
 watch(state, async (newState) => {
