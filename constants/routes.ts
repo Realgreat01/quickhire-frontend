@@ -37,7 +37,7 @@ export class QH_ROUTES {
     SKILLS: 'user-skills',
     ABOUT: 'user-about',
     CONTACT: 'user-contact',
-    APPLIED_JOBS: 'user-jobs',
+    APPLIED_JOBS: 'jobs',
     PREVIEW: 'user-preview',
     SETTINGS: 'user-settings',
     ADDRESS: 'user-address',
@@ -45,8 +45,8 @@ export class QH_ROUTES {
   };
 
   static JOB = {
-    ALL: 'jobs',
+    ALL: 'all-jobs',
     SINGLE: 'jobs-id',
-    CREATE_JOB: 'create-job',
+    CREATE_JOB: 'create-jobs',
   };
 }

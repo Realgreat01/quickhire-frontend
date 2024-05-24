@@ -4,7 +4,7 @@
       <qh-card
         class="relative flex h-fit w-full cursor-pointer flex-col items-start justify-between rounded px-4 py-6 md:w-2/3 md:px-12 md:py-8"
         :class="index % 2 === 0 ? '' : 'justify-self-end'"
-        v-for="(education, index) in educationList"
+        v-for="(education, index) in educations"
         :key="education._id"
       >
         <qh-edit-button
@@ -103,7 +103,7 @@ const draggable = ref<HTMLElement | undefined>();
 const modalStore = useModalStore();
 const router = useRouter();
 
-qhDraggable(draggable, educationList.value);
+// qhDraggable(draggable, educationList.value);
 
 const editEducation = (id: string) => {
   router.replace({ query: { edit: QH_ROUTES.USER.EDUCATION, id } });

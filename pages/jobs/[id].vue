@@ -12,9 +12,9 @@
             class="flex w-full gap-x-2 border-b border-dashed border-brand pb-2"
           >
             <img
-              src="~~/assets/images/company-logo.jpg"
+              :src="job.posted_by?.logo"
               alt=""
-              class="block h-12"
+              class="block max-h-12 max-w-12"
             />
             <!-- 2 -->
             <div class="">
@@ -25,11 +25,11 @@
               <div class="mt-2 flex gap-x-1">
                 <qh-button
                   :label="job?.job_location_type"
-                  class="h-4 rounded-full bg-dark-100 px-4 text-xs capitalize !text-brand-700"
+                  class="h-4 rounded-full bg-dark-100 px-4 py-1 text-xs capitalize !text-brand-700"
                 />
                 <qh-button
                   :label="job?.job_type"
-                  class="h-4 rounded-full bg-dark-100 px-4 text-xs !text-brand-700"
+                  class="h-4 rounded-full bg-dark-100 px-4 py-1 text-xs !text-brand-700"
                 />
               </div>
             </div>

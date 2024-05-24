@@ -4,7 +4,7 @@
       :style="style"
       class="relative flex h-36 w-full items-start justify-between bg-cover bg-right md:justify-end"
     >
-      <qh-edit-button class="!top-28" />
+      <qh-edit-button class="!top-28" @click="updateCoverImage" />
       <h1
         class="qh-text-1 flex items-center capitalize text-brand-500 md:hidden"
       >
@@ -49,11 +49,14 @@
       <div class="relative flex h-24">
         <div class="relative">
           <img
-            :src="company?.logo ?? defaultLogo"
+            :src="company?.logo"
             alt=""
-            class="relative bottom-10 z-40 ml-4 h-20 w-20 rounded border border-dark-200 bg-white md:bottom-20 md:h-40 md:w-40"
+            class="relative bottom-10 z-40 ml-4 h-20 w-20 rounded border border-dark-200 bg-white object-cover md:bottom-20 md:h-40 md:w-40"
           />
-          <qh-edit-button class="!-right-2 !-top-[4.5rem] z-50" />
+          <qh-edit-button
+            class="!-right-2 !-top-[4.5rem] z-50"
+            @click="updateLogo"
+          />
         </div>
         <div
           class="my-4 flex h-fit w-full items-center justify-between px-4 md:px-8"
@@ -91,35 +94,75 @@ import { QH_ROUTES } from '~/constants/routes';
 import { ArrowRightStartOnRectangleIcon } from '@heroicons/vue/24/outline';
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/vue/24/solid';
 import {
-  RiNotification3Fill,
   RiUser2Fill,
   RiBriefcase2Fill,
-  RiBox3Fill,
-  RiGraduationCapFill,
-  RiContactsFill,
-  RiSendPlaneFill,
-  RiDiscussFill,
-  RiSearchFill,
   RiSearchLine,
+  RiContactsFill,
+  RiDiscussFill,
 } from 'vue-remix-icons';
+
 import { useModalStore } from '~/store/modal-store';
-import defaultLogo from '@/assets/images/company-logo.jpg';
 import { useCompanyStore } from '~/store/company-store';
+import { useUploadStore } from '~/store/upload-store';
+import { UPDATE_COVER_IMAGE, UPDATE_LOGO } from '~/services/company.service';
 const { company } = storeToRefs(useCompanyStore());
 
 const modalStore = useModalStore();
+const uploadStore = useUploadStore();
+const { getCurrentCompany } = useCompanyStore();
 
 const router = useRouter();
 const route = useRoute();
 
 const style = computed(() => {
   return {
-    backgroundImage: company.value?.cover_image ?? `url(/office-image.jpg)`,
+    backgroundImage: `url(${company.value?.cover_image})`,
   };
 });
 
 const createJob = () => {
   return router.replace({ query: { action: QH_ROUTES.JOB.CREATE_JOB } });
+};
+
+const updateCoverImage = async () => {
+  try {
+    const result = await uploadStore.openModal();
+    if (result) {
+      const formData = new FormData();
+      formData.append('cover-image', result[0]);
+      const res = await UPDATE_COVER_IMAGE(formData);
+      if (res.success) {
+        getCurrentCompany();
+        qhToast.success('update successful');
+        uploadStore.uploadComplete();
+      } else {
+        qhToast.error('cover image update failed');
+        uploadStore.uploadFailed();
+        updateCoverImage();
+      }
+    }
+  } catch (error) {}
+};
+
+const updateLogo = async () => {
+  try {
+    const result = await uploadStore.openModal();
+    if (result) {
+      const formData = new FormData();
+      formData.append('logo', result[0]);
+
+      const res = await UPDATE_LOGO(formData);
+      if (res.success) {
+        getCurrentCompany();
+        qhToast.success('update successful');
+        uploadStore.uploadComplete();
+      } else {
+        qhToast.error('logo update failed');
+        uploadStore.uploadFailed();
+        updateLogo();
+      }
+    }
+  } catch (error) {}
 };
 
 const sidebar = markRaw([

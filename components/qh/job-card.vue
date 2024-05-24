@@ -3,11 +3,12 @@
     <div class="flex justify-between gap-x-2">
       <div class="flex">
         <img
-          src="~~/assets/images/company-logo.jpg"
+          :src="job.posted_by?.logo"
           alt=""
-          class="block h-12"
+          class="block h-12 w-12 object-cover"
         />
 
+        <!-- logo {{ job?.posted_by }} -->
         <div class="ml-5 flex flex-col">
           <h1 class="qh-text-4 flex items-center font-bold text-brand">
             <span class=""> {{ job.posted_by?.company_name }}</span>
@@ -43,11 +44,11 @@
           <span class="text-sm text-dark-400">{{ job.job_location_type }}</span>
         </div>
         <h1 class="qh-text-4 font-bold text-success">
-          <!-- {{
+          {{
             qhNumbers.formatCurrency(
-              qhNumbers.convertCurrencyToNumber(job.salary) / 600.73,
+              qhNumbers.convertCurrencyToNumber(job.salary.value),
             )
-          }} -->
+          }}
         </h1>
       </div>
     </div>
@@ -57,7 +58,7 @@
     </h1>
     <h1
       class="qh-text-5"
-      v-html="qhHelpers.sliceWords(job.job_description, 200)"
+      v-html="qhHelpers.sliceWords(job.job_description, 250)"
     ></h1>
     <div class="mt-5 flex w-full items-end justify-between">
       <h1 class="qh-text-4 flex items-center gap-x-2 text-dark-400">

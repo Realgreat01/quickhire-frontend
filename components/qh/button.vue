@@ -6,7 +6,7 @@
     :class="class"
     v-bind="$attrs"
   >
-    <icons-loading class="z-10" />
+    <icons-loading class="" />
   </button>
   <button
     v-else-if="disabled"

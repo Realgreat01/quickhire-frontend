@@ -6,13 +6,14 @@
       "
       class="flex items-start justify-between border-b border-dashed border-brand p-2 py-4 hover:bg-brand-50"
       v-for="(job, index) in appliedJobs"
+      :key="job._id"
       :class="{ 'border-t': index === 0 }"
     >
       <div class="flex w-full gap-x-2">
         <img
-          src="~~/assets/images/company-logo.jpg"
+          :src="job.posted_by?.logo"
           alt=""
-          class="block h-12"
+          class="block max-h-12 max-w-12"
         />
         <!-- 2 -->
         <div class="flex flex-col gap-2">

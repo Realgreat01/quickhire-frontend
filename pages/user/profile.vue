@@ -143,8 +143,6 @@ const editSkills = () => {
 
 const uploadProfilePicture = async () => {
   try {
-    console.log('attempt');
-    uploadStore.uploadFunction = uploadProfilePicture;
     const result = await uploadStore.openModal();
     if (result) {
       const formData = new FormData();

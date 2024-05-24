@@ -26,3 +26,24 @@ export const UPDATE_COMPANY_DETAILS = async (data: Company | any) => {
     data,
   });
 };
+
+export const UPDATE_COVER_IMAGE = async (data: FormData) => {
+  return await ApiService.run({
+    method: ApiService.PUT,
+    url: '/company/cover-image',
+    data,
+    headers: {
+      'Content-type': 'multipart/form-data',
+    },
+  });
+};
+export const UPDATE_LOGO = async (data: FormData) => {
+  return await ApiService.run({
+    method: ApiService.PUT,
+    url: '/company/logo',
+    data,
+    headers: {
+      'Content-type': 'multipart/form-data',
+    },
+  });
+};

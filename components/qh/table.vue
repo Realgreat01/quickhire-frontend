@@ -11,7 +11,6 @@
       :headers="headers"
       v-bind="$attrs"
       :items="items"
-      theme-color="#023696"
       :search-field="searchField"
       :search-value="searchValue"
       :sort-by="sortBy"
@@ -56,7 +55,7 @@
         </div>
       </template>
 
-      <template v-slot:item-job_type="job">
+      <template #item-job_type="job">
         <div class="qh-flex-center min-w-20 flex-col">
           <h4 class="qh-text-4 font-semibold text-brand">
             {{ job.job_type }}
@@ -132,7 +131,7 @@
 <script setup lang="ts">
 import EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
-import type { Header, Item, SortType } from 'vue3-easy-data-table';
+import type { Header, Item, type SortType } from 'vue3-easy-data-table';
 import {
   RiCheckboxCircleFill,
   RiCloseCircleFill,

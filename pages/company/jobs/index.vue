@@ -11,11 +11,7 @@
       :class="{ 'border-t': index === 0 }"
     >
       <div class="flex w-full gap-x-2">
-        <img
-          src="~~/assets/images/company-logo.jpg"
-          alt=""
-          class="block h-12"
-        />
+        <img :src="company?.logo" alt="" class="block h-12" />
         <!-- 2 -->
         <div class="flex flex-col gap-2">
           <div class="flex gap-4">
@@ -101,6 +97,7 @@ import {
 import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 import { useJobStore } from '~/store/job-store';
+import { useCompanyStore } from '~/store/company-store';
 
 definePageMeta({
   layout: 'company',
@@ -115,6 +112,7 @@ useHead({
 const router = useRouter();
 const { getSingleJob } = useJobStore();
 const { companyJobs } = storeToRefs(useJobStore());
+const { company } = storeToRefs(useCompanyStore());
 </script>
 
 <style scoped></style>

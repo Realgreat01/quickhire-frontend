@@ -81,7 +81,9 @@
     </div>
 
     <div class="mx-2 flex items-center justify-between md:mx-6">
-      <h1 class="qh-text-1 my-4 w-fit p-4 font-bold text-success-600">
+      <h1
+        class="qh-text-1 font-bebas my-4 w-fit p-4 font-bold text-success-600"
+      >
         {{ routeNames }}
       </h1>
       <div class="flex justify-end gap-2 md:flex md:gap-x-4 md:p-4">
@@ -89,19 +91,19 @@
         <div
           v-show="actionButtonPages.includes(route.name as string)"
           @click="() => router.replace({ query: { add: route.meta.name } })"
-          class="flex cursor-pointer rounded bg-brand p-2 pr-4 text-brand-100 shadow duration-500 first-line:cursor-pointer hover:scale-[1.025] md:!w-40"
+          class="flex cursor-pointer rounded border-[1px] border-brand p-2 pr-4 text-brand shadow duration-500 first-line:cursor-pointer hover:scale-[1.025] md:!w-40"
         >
-          <RiAddCircleFill class="mr-3 h-6 w-6 rounded fill-brand-100" />
-          <h1 class="qh-text-3 font-semibold">Add</h1>
+          <RiAddCircleLine class="mr-3 h-6 w-6 rounded fill-brand" />
+          <h1 class="qh-text-3 font-normal">Add</h1>
         </div>
 
         <!--  -->
         <div
           @click="previewprofile"
-          class="flex cursor-pointer rounded bg-brand-100 p-2 pr-4 text-brand shadow first-line:cursor-pointer hover:scale-[1.025] md:!w-40"
+          class="flex cursor-pointer rounded bg-brand-50 p-2 pr-4 text-brand shadow first-line:cursor-pointer hover:scale-[1.025] md:!w-40"
         >
-          <RiProfileFill class="mr-3 h-6 w-6 rounded fill-brand" />
-          <h1 class="qh-text-3 font-semibold">Preview</h1>
+          <RiProfileLine class="mr-3 h-6 w-6 rounded fill-brand" />
+          <h1 class="qh-text-3 font-medium">Preview</h1>
         </div>
       </div>
     </div>
@@ -111,13 +113,15 @@
 <script setup lang="ts">
 import {
   RiAddCircleFill,
+  RiProfileFill,
+  RiAddCircleLine,
+  RiProfileLine,
   RiNotification3Fill,
   RiUser2Fill,
   RiBriefcase2Fill,
   RiBox3Fill,
   RiGraduationCapFill,
   RiSendPlaneFill,
-  RiProfileFill,
   RiHomeOfficeFill,
   RiSettings4Fill,
   RiContactsFill,

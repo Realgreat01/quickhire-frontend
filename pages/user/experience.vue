@@ -2,8 +2,8 @@
   <div class="">
     <div class="flex flex-wrap gap-6 rounded" ref="draggable">
       <qh-card
-        v-for="(experience, index) in experiences"
-        :key="index"
+        v-for="experience in experiences"
+        :key="experience._id"
         class="relative flex w-full flex-col justify-between gap-2 rounded-2xl p-4 shadow-xl md:w-4/5"
       >
         <qh-edit-button
@@ -110,7 +110,7 @@ const modalStore = useModalStore();
 const draggable = ref();
 const experienceList = ref<any>(experiences.value);
 
-qhDraggable(draggable, experienceList.value);
+// qhDraggable(draggable, experienceList.value);
 
 const editExperience = (id: string) => {
   router.replace({ query: { edit: QH_ROUTES.USER.EXPERIENCE, id } });

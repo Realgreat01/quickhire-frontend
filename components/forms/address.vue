@@ -102,12 +102,13 @@ const submitAddress = async (field: any) => {
 watch(country, async (newCountry) => {
   address.value.country = newCountry.name;
   await getCountriesStates(newCountry.iso2);
-  address.value.state = states.value[0].name;
+  address.value.state = null;
 });
 
 watch(state, async (newState) => {
   address.value.state = newState.name;
   await getCitiesByStatesAndCountries(country.value.iso2, newState.iso2);
+  address.value.city = null;
 });
 
 onBeforeMount(async () => {

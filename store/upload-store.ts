@@ -5,7 +5,6 @@ interface State {
   files: File[];
   uploading: boolean;
   upload_progress: number;
-  uploadFunction: Function;
   resolve: any;
   reject: any;
 }
@@ -15,7 +14,6 @@ export const useUploadStore = defineStore('upload', {
     showModal: false,
     uploading: false,
     upload_progress: 1,
-    uploadFunction: () => {},
     files: [],
     resolve: null,
     reject: null,

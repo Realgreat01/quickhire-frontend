@@ -11,25 +11,29 @@
         :src="user?.profile_picture"
         alt=""
       />
-      <h1 class="qh-text-3 font-semibold capitalize">{{ fullname }}</h1>
-      <h1 class="text-xs text-brand">@{{ user?.username }}</h1>
-      <h1 class="qh-text-4 font-normal">{{ skills?.stack }}</h1>
+      <h1 class="qh-text-4 w-full text-center font-semibold capitalize">
+        {{ fullname }}
+      </h1>
+      <h1 class="text-center text-xs text-brand">@{{ user?.username }}</h1>
+      <h1 class="qh-text-5 text-center font-medium">
+        {{ skills?.stack }}
+      </h1>
     </qh-card>
 
     <RouterLink
-      :to="{ name: item.route }"
-      :class="item.class"
-      class="flex w-52 cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
-      v-for="(item, index) in sidebar"
-      :key="index"
+      :to="{ name: routeName }"
+      class="router flex w-52 cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
+      v-for="{ class: className, icon, route: routeName, title } in sidebar"
+      :class="
+        route.name === routeName || route.path.includes(routeName)
+          ? className
+          : 'text-dark-400'
+      "
+      :key="routeName"
     >
-      <component
-        :is="item.icon"
-        :class="item.class"
-        class="mr-3 h-7 w-7 rounded"
-      />
-      <h1 class="qh-text-3 font-semibold">
-        {{ item.title }}
+      <component :is="icon" class="mr-3 h-5 w-5 rounded" />
+      <h1 class="qh-text-4 font-normal">
+        {{ title }}
       </h1>
     </RouterLink>
   </div>
@@ -43,14 +47,23 @@ import { RouterLink, useRouter } from 'vue-router';
 const router = useRouter();
 
 import {
-  RiUser2Fill,
-  RiBriefcase2Fill,
-  RiBox3Fill,
-  RiGraduationCapFill,
-  RiSendPlaneFill,
-  RiSettings4Fill,
-  RiHomeOfficeFill,
-  RiContactsFill,
+  RiUser2Line,
+  RiBriefcase2Line,
+  RiBox3Line,
+  RiGraduationCapLine,
+  RiSendPlaneLine,
+  RiSettings4Line,
+  RiHomeOfficeLine,
+  RiContactsLine,
+
+  // RiUser2Fill,
+  // RiBriefcase2Fill,
+  // RiBox3Fill,
+  // RiGraduationCapFill,
+  // RiSendPlaneFill,
+  // RiSettings4Fill,
+  // RiHomeOfficeFill,
+  // RiContactsFill,
 } from 'vue-remix-icons';
 import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
@@ -59,73 +72,82 @@ const { fullname, user, skills } = storeToRefs(useUserStore());
 const editProfile = () => {
   return router.replace({ query: { edit: QH_ROUTES.USER.PROFILE } });
 };
+const route = useRoute();
 const sidebar = markRaw([
   {
     title: 'Profile',
     action: '',
     route: QH_ROUTES.USER.DETAILS,
-    icon: RiUser2Fill,
-    class: 'fill-teal-600  text-teal-600',
+    icon: RiUser2Line,
+    class: 'bg-teal-100  text-teal-600',
   },
   {
     title: 'Education',
     action: '',
     route: QH_ROUTES.USER.EDUCATION,
-    icon: RiGraduationCapFill,
-    class: 'fill-brand  text-brand',
+    icon: RiGraduationCapLine,
+    class: '!bg-brand-100  text-brand-600',
   },
   {
     title: 'Work Details',
     action: '',
     route: QH_ROUTES.USER.WORK_DETAILS,
-    icon: RiBriefcase2Fill,
-    class: 'fill-cyan-800  text-cyan-800',
+    icon: RiBriefcase2Line,
+    class: 'bg-cyan-100  text-cyan-800',
   },
 
   {
     title: 'Experience',
     action: '',
     route: QH_ROUTES.USER.EXPERIENCE,
-    icon: RiHomeOfficeFill,
-    class: 'fill-blue-800  text-blue-800',
+    icon: RiHomeOfficeLine,
+    class: 'bg-blue-100  text-blue-800',
   },
   {
     title: 'Applied Jobs',
     action: '',
     route: QH_ROUTES.USER.APPLIED_JOBS,
-    icon: RiSendPlaneFill,
-    class: 'fill-violet-800  text-violet-800',
+    icon: RiSendPlaneLine,
+    // active: route?.name.includes(QH_ROUTES.USER.APPLIED_JOBS),
+    class: 'bg-violet-100  text-violet-800',
   },
 
   {
     title: 'Projects',
     action: '',
     route: QH_ROUTES.USER.PROJECTS,
-    icon: RiBox3Fill,
-    class: 'fill-indigo-800  text-indigo-800',
+    icon: RiBox3Line,
+    class: 'bg-indigo-100  text-indigo-800',
   },
   {
     title: 'Contact',
     action: '',
     route: QH_ROUTES.USER.CONTACT,
-    icon: RiContactsFill,
-    class: 'fill-cyan-800  text-cyan-800',
+    icon: RiContactsLine,
+    class: 'bg-cyan-100  text-cyan-800',
   },
   {
     title: 'Settings',
     action: '',
     route: QH_ROUTES.USER.SETTINGS,
-    icon: RiSettings4Fill,
-    class: 'fill-dark-500  text-dark-500',
+    icon: RiSettings4Line,
+    class: 'bg-dark-100  text-dark-500',
   },
 ]);
 </script>
 
 <style scoped lang="scss">
-.router-link-exact-active {
-  @apply rounded-lg bg-brand-600 text-brand-100;
-  svg {
-    @apply fill-brand-100;
-  }
-}
+// .router {
+//   @apply text-dark-400;
+//   svg {
+//     @apply bg-dark-100;
+//   }
+// }
+
+// .router-link-exact-active {
+//   @apply rounded-lg border text-brand-600;
+//   svg {
+//     @apply bg-brand-100;
+//   }
+// }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div class="md:w-4/5">
-    
     <qh-card
       class="flex flex-col gap-6 !bg-transparent !p-0 !px-0 !py-0 !shadow-none md:p-2"
     >
@@ -14,7 +13,7 @@
           </div>
           <div class="flex gap-x-20">
             <h2 class="qh-text-4 max-w-40 font-medium md:w-60">State</h2>
-            <h2 class="text-brand">{{ user?.address.state }}</h2>
+            <h2 class="text-brand">{{ user?.address.state ?? 'N/A' }}</h2>
           </div>
           <div class="flex gap-x-20">
             <h2 class="qh-text-4 max-w-40 font-medium md:w-60">City</h2>
