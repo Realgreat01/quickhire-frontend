@@ -1,17 +1,18 @@
 <template>
-  <div class="flex flex-col p-10" id="about">
+  <div class="flex flex-col p-4 md:p-10" id="about">
     <qh-section-title>About</qh-section-title>
 
-    <div class="grid items-start justify-start pt-10 md:grid-cols-2">
+    <div class="grid items-start justify-start md:grid-cols-2">
       <p class="qh-text-4 w-full md:w-11/12" v-html="user?.about_me"></p>
-      <div class="my-4 grid w-full grid-cols-4 flex-wrap gap-4 md:flex">
+      <div
+        class="my-4 grid w-full grid-cols-4 flex-wrap items-start justify-start gap-1 overflow-x-hidden md:flex md:gap-4"
+      >
         <button
           v-for="(skill, index) in skills"
           :key="index"
-          class="flex] w-28 flex-col items-center justify-center gap-4 rounded-lg bg-white p-2"
+          class="qh-flex-center max-w-28 flex-col rounded-lg bg-dark-50 p-1 md:w-28 md:p-3"
         >
-          <qh-devicon ref="skillIcons" :icon="skill" />
-          <p class="qh-text-4">{{ skill.name }}</p>
+          <qh-devicon :icon="skill" hide-tooltip show-icon-name />
         </button>
       </div>
     </div>

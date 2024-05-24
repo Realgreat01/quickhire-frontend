@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col p-4 md:p-10" id="experience">
+  <div class="flex flex-col pl-4 md:p-10" id="experience">
     <qh-section-title>Experience</qh-section-title>
     <div
       class="grid grid-cols-[1px,9fr] items-center gap-x-4 md:gap-x-6"
@@ -10,17 +10,17 @@
         class="relative flex h-full w-[1px] items-center justify-center bg-brand-400"
       >
         <h1
-          class="side-index absolute flex h-8 w-8 items-center justify-center rounded-full bg-brand text-white"
+          class="side-index absolute flex h-6 w-6 items-center justify-center rounded-full bg-brand p-1 text-xs text-white"
         >
-          0{{ index + 1 }}
+          {{ qhNumbers.formatIncrements(index + 1) }}
         </h1>
       </div>
-      <qh-card class="m-4 min-h-40 flex-1 p-6">
+      <qh-card class="min-h-40 flex-1 md:m-4 md:p-6">
         <div class="flex w-full flex-col justify-between md:flex-row">
           <h1 class="qh-text-3 font-bold uppercase text-brand">
             {{ experience.role }}
           </h1>
-          <div class="flex gap-x-1">
+          <div class="hidden gap-x-1 md:flex">
             <h1 class="text-brand">
               {{ qhDates.shortDate(experience.start_date) }}
             </h1>
@@ -32,16 +32,30 @@
         </div>
 
         <div class="flex flex-col gap-x-4 md:flex-row">
-          <h2 class="text-base text-brand">{{ experience.company }}</h2>
+          <h2 class="mb-2 text-base font-medium text-secondary">
+            {{ experience.company }}
+          </h2>
+          <div class="flex gap-x-1 text-sm font-medium text-dark-400 md:hidden">
+            <h1 class="">
+              {{ qhDates.shortDate(experience.start_date) }}
+            </h1>
+            -
+            <h1 class="">
+              {{ qhDates.shortDate(experience.end_date) }}
+            </h1>
+          </div>
           <div
-            class="flex w-full justify-between capitalize md:ml-auto md:w-fit md:justify-start md:gap-x-4"
+            class="qh-text-4 flex w-full justify-between text-sm capitalize md:ml-auto md:w-fit md:justify-start md:gap-x-4"
           >
             <p class="">{{ experience.job_type }}</p>
             <p class="">{{ experience.location_type }}</p>
           </div>
         </div>
 
-        <p class="md:w-4/5" v-html="experience.contributions"></p>
+        <p
+          class="qh-text-4 mt-2 md:w-4/5"
+          v-html="experience.contributions"
+        ></p>
       </qh-card>
     </div>
   </div>

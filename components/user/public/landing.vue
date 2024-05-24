@@ -1,29 +1,29 @@
 <template>
   <div
-    class="grid h-screen grid-cols-[5fr,3fr] items-center justify-end bg-white px-10 text-dark"
+    class="mt-16 flex min-h-screen flex-col-reverse items-center justify-end bg-white p-4 text-dark md:mt-0 md:grid md:grid-cols-[5fr,3fr] md:px-10"
   >
     <div class="flex flex-col justify-center text-dark" id="home">
       <h1 class="">
-        <p class="my-5 text-4xl">Hi, I'm</p>
-        <p class="block text-5xl font-bold text-brand md:text-6xl">
-          {{ user?.firstname ?? 'Lorem' }} {{ user?.lastname ?? 'Ipsum' }}
+        <p class="my-5 text-2xl md:text-3xl">Hi, I'm</p>
+        <p class="mb-4 text-3xl font-bold text-brand md:text-6xl">
+          {{ user?.firstname }} {{ user?.lastname }}
         </p>
       </h1>
-      <h2 class="text-2xl font-semibold text-brand-800">
+      <h2 class="text-xl font-semibold text-brand-800">
         {{ user?.skills?.stack }}
       </h2>
-      <p class="my-10 font-light md:w-4/5">
+      <p class="font-light md:w-4/5">
         {{ user?.header_bio }}
       </p>
 
-      <div class="qh-text-3 grid grid-cols-2 gap-x-4 md:w-2/3">
+      <div class="qh-text-3 mt-10 grid grid-cols-2 gap-x-4 md:w-2/3">
         <qh-resume-button
           :username="user?.username ?? ''"
-          class="border-[1.5px] duration-500 hover:bg-brand-400 hover:font-medium"
+          class="h-10 border-[1.5px] duration-500 hover:bg-brand-400 hover:font-medium md:h-12"
           >Resume</qh-resume-button
         >
         <qh-button
-          class="border-[1.5px] border-brand-400 !bg-transparent !text-brand duration-500 hover:!bg-brand-400 hover:font-medium hover:!text-brand-50"
+          class="h-10 border-[1.5px] border-brand-400 !bg-transparent !text-brand duration-500 hover:!bg-brand-400 hover:font-medium hover:!text-brand-50 md:h-12"
           >Hire&nbsp;Me</qh-button
         >
       </div>

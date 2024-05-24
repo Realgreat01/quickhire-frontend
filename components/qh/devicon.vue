@@ -1,9 +1,12 @@
 <template>
-  <div class="tooltip relative m-2">
-    <img :src="`/dev-icon/${icon.icon}.svg`" alt="" class="h-6 w-6" />
-    <span class="tooltiptext qh-text-4 z-[999] bg-brand text-white">{{
-      icon.name
-    }}</span>
+  <div class="tooltip qh-flex-center relative flex-col gap-1">
+    <img :src="`/dev-icon/${icon.icon}.svg`" alt="" class="block h-6 w-6" />
+    <span
+      v-if="!hideTooltip"
+      class="tooltiptext qh-text-4 z-[999] bg-brand text-white"
+      >{{ icon.name }}</span
+    >
+    <p v-if="showIconName" class="qh-text-5">{{ icon.name }}</p>
   </div>
 </template>
 
@@ -20,12 +23,14 @@ defineProps({
     type: Object as PropType<DevIcon>,
     required: true,
   },
+  hideTooltip: Boolean,
+  showIconName: Boolean,
 });
 </script>
 
 <style scoped>
 .tooltip .tooltiptext {
-  visibility: hidden;
+  display: none;
   width: 120px;
   text-align: center;
   border-radius: 6px;
@@ -37,7 +42,7 @@ defineProps({
 }
 
 .tooltip:hover .tooltiptext {
-  visibility: visible;
+  display: block;
 }
 
 .tooltip .tooltiptext {

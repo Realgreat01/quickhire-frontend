@@ -11,9 +11,7 @@
       <!-- <user-layout-left-sidebar
         class="sticky bottom-0 top-0 hidden h-screen w-[10%] md:block"
       /> -->
-      <div
-        class="h-fit w-full flex-1 border border-x-dark-500 border-y-transparent"
-      >
+      <div class="h-fit w-full flex-1 border-y-transparent">
         <user-public-landing />
         <user-public-about />
         <user-public-experience />

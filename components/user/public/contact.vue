@@ -11,7 +11,7 @@
     </p>
 
     <qh-button
-      class="my-5 w-80 border border-brand !bg-transparent !text-brand hover:bg-brand-400"
+      class="my-5 h-10 w-80 border border-brand !bg-transparent !text-brand hover:bg-brand-400"
       @click="SendMail"
       label="Say Hello !"
     />
@@ -31,7 +31,10 @@
     <h2 class="my-5 mt-20 font-bold">
       <icons-logo />
     </h2>
-    <qh-button class="w-96" @click="$router.push({ name: QH_ROUTES.HOME })">
+    <qh-button
+      class="w-[90%] !px-6 !py-2 md:w-96"
+      @click="$router.push({ name: QH_ROUTES.HOME })"
+    >
       Join QuickHire</qh-button
     >
   </div>

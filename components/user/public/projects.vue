@@ -43,6 +43,7 @@
               v-for="tool in project.tools_used"
               :key="tool.icon"
               :icon="tool"
+              hide-tooltip
             >
             </qh-devicon>
           </div>

@@ -2,13 +2,10 @@
   <div class="fixed top-0 z-[100] h-fit w-full bg-white">
     <div
       v-if="!showModal"
-      class="px-thin py-small z-50 flex h-[9.6rem] w-full items-center justify-between overflow-hidden duration-[1500ms]"
+      class="px-thin py-small z-50 flex h-12 w-full items-center justify-between overflow-hidden duration-[1500ms]"
     >
-      <icons-logo />
-      <RiMenu3Fill
-        class="h-12 w-12 text-brand"
-        @click="showModal = !showModal"
-      />
+      <icons-logo class="text-brand" />
+      <RiMenu3Fill class="h-8 w-8 text-brand" @click="showModal = !showModal" />
     </div>
 
     <div
@@ -16,12 +13,10 @@
       v-else
     >
       <div class="w-full overflow-x-hidden duration-500">
-        <div
-          class="mb-[4rem] flex h-[9.6rem] w-full items-center justify-between"
-        >
-          <icons-logo />
+        <div class="mb-4 flex h-20 w-full items-center justify-between">
+          <icons-logo class="text-brand" />
           <RiCloseFill
-            class="h-12 w-12 text-brand duration-500"
+            class="h-10 w-10 text-brand duration-500"
             @click="showModal = false"
           />
         </div>
@@ -36,15 +31,19 @@
             {{ route.title }}
           </a>
         </div>
-        <div class="flex items-center justify-center gap-6 md:flex-col">
+        <div class="mt-10 flex items-center justify-center gap-6 md:flex-col">
           <a
             :href="link.link"
-            class="flex h-12 w-12 items-center justify-center rounded-full text-brand hover:bg-brand-50 hover:text-brand-900"
+            class="rounded-full text-brand hover:bg-brand-50 hover:text-brand-900"
             v-for="(link, index) in socialMediaLinks"
             :key="index"
             target="_blank"
           >
-            <component :is="link.icon" class="h-12 w-12 fill-brand"></component>
+            <component
+              :is="link.icon"
+              class="h-10 w-10"
+              :class="link.class"
+            ></component>
           </a>
         </div>
       </div>
@@ -54,8 +53,16 @@
 
 <script setup lang="ts">
 import { shallowRef, ref, watchEffect } from 'vue';
-import { RiGithubFill } from 'vue-remix-icons';
-import { RiMenu3Fill, RiCloseFill } from 'vue-remix-icons';
+import {
+  RiGithubFill,
+  RiLinkedinFill,
+  RiLinkedinBoxFill,
+  RiMenu3Fill,
+  RiTwitterXFill,
+  RiTwitterXLine,
+  RiCloseFill,
+  RiInstagramFill,
+} from 'vue-remix-icons';
 
 const showModal = ref(false);
 const NavActions = ref([
@@ -68,18 +75,22 @@ const socialMediaLinks = shallowRef([
   {
     icon: RiGithubFill,
     link: 'https://github.com/Realgreat01',
+    class: 'text-dark-800',
   },
   {
-    icon: RiGithubFill,
+    icon: RiTwitterXLine,
     link: 'https://x.com/SRealgreat',
+    class: 'text-dark-800',
   },
   {
-    icon: RiGithubFill,
+    icon: RiLinkedinBoxFill,
     link: 'https://www.linkedin.com/in/samsonrealgreat/',
+    class: 'text-brand-400',
   },
   {
-    icon: RiGithubFill,
+    icon: RiInstagramFill,
     link: 'https://www.instagram.com/srealgreat/',
+    class: '',
   },
 ]);
 watchEffect(() => {
