@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col p-10" id="projects">
+  <div class="flex flex-col p-4 md:p-10" id="projects">
     <qh-section-title>Projects</qh-section-title>
     <div class="gap-small grid flex-wrap gap-4 md:grid-cols-3">
       <qh-card

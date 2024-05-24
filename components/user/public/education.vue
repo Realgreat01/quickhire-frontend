@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col p-10" id="education">
+  <div class="flex flex-col p-4 md:p-10" id="education">
     <qh-section-title>Education</qh-section-title>
     <div
       class="grid grid-cols-[1px,9fr] items-center gap-x-4 md:gap-x-6"
