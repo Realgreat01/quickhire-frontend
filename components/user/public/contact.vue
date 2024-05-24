@@ -50,7 +50,7 @@ const { publicUser: user } = storeToRefs(useUserStore());
 
 const SendMail = () => (window.location.href = 'mailto:' + user.value?.email);
 
-const contactInformation = ref([
+const contactInformation = computed(() => [
   {
     icon: EnvelopeIcon,
     contact: user.value?.email,
