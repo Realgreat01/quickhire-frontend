@@ -8,7 +8,7 @@
         :key="index"
       >
         <img
-          src="~/assets/images/office-image.jpg"
+          :src="project?.screenshot"
           alt=""
           class="mb-4 h-40 w-full object-cover"
         />
