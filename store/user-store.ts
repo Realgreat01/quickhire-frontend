@@ -93,6 +93,7 @@ export const useUserStore = defineStore('user', {
       if (response.success) {
         this.PublicUser = response.data;
       }
+      return response;
     },
     async getAllUsers() {
       const response = await GET_ALL_USERS();

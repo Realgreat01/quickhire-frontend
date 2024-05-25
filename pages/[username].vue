@@ -40,9 +40,12 @@ const { user } = storeToRefs(useUserStore());
 definePageMeta({
   name: QH_ROUTES.USER.PREVIEW,
 });
+
 useHead({
-  title: `QuickHire - ${capitalizeFirstLetter(route.params.username)}`,
+  title: `QuickHire - ${qhHelpers.capitalizeWords(route.params.username as string)}`,
 });
+
+const userExists = ref(true);
 
 const editProfile = () => {
   router.replace({
@@ -50,15 +53,11 @@ const editProfile = () => {
   });
 };
 
-function capitalizeFirstLetter(text: string | string[]) {
-  if (text.length === 0) return ''; // Return an empty string if text is empty
-  if (typeof text === 'string')
-    return text.charAt(0).toUpperCase() + text.slice(1);
-}
-
 onBeforeMount(async () => {
-  if (typeof route.params.username === 'string')
-    await getPublicUser(route.params.username);
+  if (typeof route.params.username === 'string') {
+    const res = await getPublicUser(route.params.username);
+    console.log({ res });
+  }
 });
 
 const currentUser = computed(

@@ -11,13 +11,13 @@
     <qh-modal
       v-if="showModal"
       @continue="modalStore.continue"
-      @cancel="modalStore.cancel"
+      @cancelled="modalStore.cancel"
       @close="showModal = false"
     />
     <qh-dropzone
       v-if="uploadStore.showModal"
       @upload="uploadStore.upload()"
-      @cancel="uploadStore.cancel"
+      @cancelled="uploadStore.cancel"
       @close="uploadStore.showModal = false"
     />
   </div>

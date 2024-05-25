@@ -1,5 +1,5 @@
 <template>
-  <qh-container @close="emits('cancel', 'close')">
+  <qh-container @close="emits('cancelled', 'close')">
     <div
       ref="dropZone"
       @click.self.stop.prevent="open()"
@@ -54,7 +54,7 @@ import { RiUploadCloud2Fill } from 'vue-remix-icons';
 import { useDropZone, useFileDialog } from '@vueuse/core';
 import { useUploadStore } from '~/store/upload-store';
 
-const emits = defineEmits(['upload', 'close', 'cancel']);
+const emits = defineEmits(['upload', 'close', 'cancelled']);
 
 const { files, uploading } = storeToRefs(useUploadStore());
 

@@ -6,9 +6,9 @@
       class="relative flex w-full flex-col justify-between gap-y-4 overflow-hidden rounded-2xl p-0 shadow-xl md:w-4/5"
     >
       <img
-        src="~/assets/images/project.jpg"
+        :src="project.screenshot"
         alt=""
-        class="h-40 w-full bg-cover object-cover"
+        class="h-60 bg-cover object-cover object-top"
       />
       <qh-edit-button class="text-dark" @click="editProject(project._id)" />
       <div class="relative p-4">

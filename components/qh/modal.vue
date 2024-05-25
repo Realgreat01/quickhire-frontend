@@ -15,7 +15,7 @@
       <div class="qh-flex-center mt-4 w-full gap-8">
         <div
           class="flex w-48 items-center justify-center rounded-lg border bg-error-100 px-4 py-2"
-          @click="$emit('cancel')"
+          @click="$emit('cancelled')"
         >
           <RiCloseCircleFill class="h-8 w-8 fill-error" />
           <qh-button class="!bg-transparent !px-2 !text-error" label="Cancel" />
@@ -38,8 +38,9 @@
 
 <script setup lang="ts">
 import { RiCheckboxCircleFill, RiCloseCircleFill } from 'vue-remix-icons';
-const emits = defineEmits(['continue', 'cancel']);
 import { useModalStore } from '~/store/modal-store';
+
+const emits = defineEmits(['continue', 'cancelled']);
 
 const modalStore = useModalStore();
 </script>

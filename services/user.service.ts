@@ -117,6 +117,18 @@ export const ADD_USER_PROJECTS = async (data: Projects) => {
     data,
   });
 };
+
+export const UPDATE_PROJECT_SCREENSHOT = async (id: string, data: FormData) => {
+  return await ApiService.run({
+    method: ApiService.PUT,
+    url: `/user/project/${id}/screenshot`,
+    data,
+    headers: {
+      'Content-type': 'multipart/form-data',
+    },
+  });
+};
+
 export const EDIT_USER_PROJECTS = async (data: Projects, id: string) => {
   return await ApiService.run({
     method: ApiService.PUT,
@@ -124,6 +136,7 @@ export const EDIT_USER_PROJECTS = async (data: Projects, id: string) => {
     data,
   });
 };
+
 export const DELETE_USER_PROJECTS = async (id: string) => {
   return await ApiService.run({
     method: ApiService.DELETE,

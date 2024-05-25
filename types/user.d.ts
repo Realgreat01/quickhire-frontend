@@ -111,7 +111,7 @@ export interface Projects {
   preview_url: string;
   role?: string;
   project_type?: 'commercial' | 'academic' | 'personal' | 'open source';
-  images_or_screenshots?: string[];
+  screenshot?: string;
   status?: 'completed' | 'in progress' | 'on hold';
 }
 
