@@ -6,7 +6,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
   if (process.client) {
     let token = qhSecuredLS.get(QH_CONSTANTS.AUTH_TOKEN);
     if (token) {
-      return navigateTo({ name: QH_ROUTES.USER.LOGIN });
+      return navigateTo({ name: QH_ROUTES.USER.PROFILE });
     } else {
       return true;
     }

@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
     'notivue/nuxt',
     'nuxt-pdfmake',
+    'nuxt-aos',
   ],
 
   runtimeConfig: {
@@ -41,7 +42,7 @@ export default defineNuxtConfig({
   },
 
   notivue: {
-    position: 'top-right',
+    position: 'bottom-right',
     limit: 4,
     enqueue: true,
     avoidDuplicates: true,

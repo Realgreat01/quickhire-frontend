@@ -12,27 +12,31 @@
           Centered Hiring
           <span class="text-secondary-500">Platform </span> !
         </h1>
-        <h2 class="qh-text-2 font-semibold">
+        <h2 class="qh-text-2 mx-2 text-center font-semibold">
           Connect with Top Developers or
           <span class="block-text-brand">Land Your Dream Job</span>
         </h2>
       </h1>
 
-      <p class="qh-text-normal w-[90%] text-center md:w-full">
+      <p class="qh-text-normal w-[96%] text-center md:w-full">
         Escape the hurdles of job search and hiring challenges, lets make the
         process seamless for you!
       </p>
 
-      <div class="flex justify-between md:justify-start md:gap-x-8">
-        <qh-button class="h-10 w-48 rounded-full font-medium md:h-12 md:w-72">
+      <div
+        class="flex flex-col justify-between gap-x-8 gap-y-4 md:flex-row md:justify-start"
+      >
+        <qh-button class="h-10 w-80 rounded-full font-medium md:h-12 md:w-72">
           <router-link :to="{ name: QH_ROUTES.USER.REGISTER }">
             Get Started
           </router-link>
         </qh-button>
         <qh-button
-          class="h-10 w-48 rounded-full border border-brand bg-transparent font-medium !text-brand md:h-12 md:w-72"
+          class="h-10 w-80 rounded-full border border-brand bg-transparent font-medium !text-brand md:h-12 md:w-72"
         >
-          <router-link to="#latest-jobs"> Latest Jobs</router-link>
+          <router-link :to="{ name: QH_ROUTES.COMPANY.LOGIN }">
+            For Business</router-link
+          >
         </qh-button>
       </div>
     </div>

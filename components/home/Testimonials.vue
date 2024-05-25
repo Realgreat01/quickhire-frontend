@@ -4,7 +4,7 @@
     <div class="flex w-full flex-wrap justify-around gap-x-2 gap-y-6">
       <div
         class=""
-        v-for="(user, index) in testimonials"
+        v-for="(user, index) in testimonials.slice(0, 3)"
         :key="index"
         :class="index % 3 === 0 ? 'md:mt-10' : 'md:mb-10'"
       >

@@ -10,7 +10,10 @@
         alt=""
         class="h-60 bg-cover object-cover object-top"
       />
-      <qh-edit-button class="text-dark" @click="editProject(project._id)" />
+      <qh-edit-button
+        class="text-dark"
+        @click="updateProjectScreenshot(project._id)"
+      />
       <div class="relative p-4">
         <qh-edit-button class="text-dark" @click="editProject(project._id)" />
         <qh-delete-button
@@ -117,6 +120,8 @@ import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 import { useUserStore } from '~/store/user-store';
 import { useModalStore } from '~/store/modal-store';
+import { UPDATE_PROJECT_SCREENSHOT } from '~/services/user.service';
+import { useUploadStore } from '~/store/upload-store';
 
 definePageMeta({
   layout: 'users',
@@ -130,8 +135,8 @@ useHead({
 
 const router = useRouter();
 const { projects, updating } = storeToRefs(useUserStore());
-
-const { deleteProject, updateUserDetails } = useUserStore();
+const uploadStore = useUploadStore();
+const { deleteProject, updateUserDetails, getProjects } = useUserStore();
 const modalStore = useModalStore();
 const draggable = ref();
 const projectList = ref<any>(projects.value);
@@ -149,6 +154,28 @@ const deleteUserProject = async (id: string) => {
 };
 const updateUserProject = async (id: string) => {
   await updateUserDetails({ projects: projectList.value });
+};
+
+const updateProjectScreenshot = async (id: string) => {
+  try {
+    const result = await uploadStore.openModal();
+    if (result) {
+      const formData = new FormData();
+      formData.append('screenshot', result[0]);
+      const res = await UPDATE_PROJECT_SCREENSHOT(id, formData);
+      if (res.success) {
+        getProjects();
+        qhToast.success('update successful');
+        uploadStore.uploadComplete();
+      } else {
+        qhToast.error('picture update failed');
+        uploadStore.uploadFailed();
+        updateProjectScreenshot(id);
+      }
+    }
+  } catch (error) {
+    console.log('user upload cancelled');
+  }
 };
 
 watch(projects, (project) => (projectList.value = project));

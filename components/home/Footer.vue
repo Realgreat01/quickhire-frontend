@@ -123,7 +123,6 @@ const othersLinks = ref([
   { title: 'Latest Tech News', id: '#about-us' },
   { title: 'Social Media', id: '#how-it-works' },
   { title: 'Academy', id: '#testimonials' },
-  { title: 'Internation transactions', id: '#faqs' },
   { title: 'AI integration', id: '#contact' },
 ]);
 

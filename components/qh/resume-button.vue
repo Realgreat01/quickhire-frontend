@@ -82,14 +82,20 @@ const DefaultContent = async () => {
             columnGap: 10,
             columns: [
               {
-                text: 'Github',
-                link: user?.social_media.github,
+                text: 'Portfolio',
+                link: window.location.origin + '/' + user?.username,
                 style: 'linkStyle',
                 width: 45,
               },
               {
-                text: 'Portfolio',
-                link: window.location.origin + '/' + user?.username,
+                text: 'Github',
+                link: user?.social_media?.github,
+                style: 'linkStyle',
+                width: 45,
+              },
+              {
+                text: 'LinkedIn',
+                link: user?.social_media?.linkedin,
                 style: 'linkStyle',
                 width: 45,
               },
@@ -109,7 +115,7 @@ const DefaultContent = async () => {
           // },
           user?.email,
           user?.phone_number ?? '',
-          `${user?.address?.state}, ${user?.address.country}`,
+          `${user?.address?.state + ',' ?? ''} ${user?.address?.country}`,
         ],
       },
     ],

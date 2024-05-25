@@ -32,7 +32,7 @@
 
         <div class="flex" v-if="education.school_website">
           <RiGlobalFill class="icon !h-6 !w-6" />
-          <h2 class="qh-text-4">
+          <h2 class="qh-text-4 text-brand">
             {{ qhHelpers.formatWebsiteName(education.school_website) }}
           </h2>
         </div>
