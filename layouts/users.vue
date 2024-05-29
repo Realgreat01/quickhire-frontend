@@ -7,7 +7,7 @@
       <div class="sticky bottom-0 top-0">
         <LayoutsNavbar class="sticky top-0 z-10" />
 
-        <NuxtPage class="scroll overflow-y-scroll bg-white p-3 md:p-4" />
+        <NuxtPage class="scroll overflow-y-scroll bg-white pb-4 pl-2 md:p-4" />
       </div>
     </div>
 
@@ -31,8 +31,6 @@ import { useUserStore } from '~/store/user-store';
 import { useJobStore } from '~/store/job-store';
 import { useModalStore } from '~/store/modal-store';
 import { QH_ROUTES } from '~/constants/routes';
-
-
 
 const { getCurrentUser, getProjects, getExperiences, getEducation, getSkills } =
   useUserStore();

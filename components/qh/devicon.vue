@@ -1,5 +1,5 @@
 <template>
-  <div class="tooltip qh-flex-center relative flex-col gap-1">
+  <div class="tooltip qh-flex-center relative flex-col gap-1 p-2">
     <img :src="`/dev-icon/${icon.icon}.svg`" alt="" class="block h-6 w-6" />
     <span
       v-if="!hideTooltip"

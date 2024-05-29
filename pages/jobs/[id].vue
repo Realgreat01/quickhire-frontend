@@ -62,8 +62,8 @@ const { getSingleJob } = useJobStore();
 const route = useRoute();
 
 definePageMeta({
-  layout: 'users',
-  middleware: ['auth', 'user'],
+  // layout: 'users',
+  // middleware: ['auth', 'user'],
   name: QH_ROUTES.JOB.SINGLE,
 });
 

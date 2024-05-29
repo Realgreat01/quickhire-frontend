@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <div class="flex flex-wrap gap-6 rounded" ref="draggable">
+    <div class="flex flex-col gap-6 rounded" ref="draggable">
       <qh-card
         v-for="experience in experiences"
         :key="experience._id"
@@ -63,7 +63,7 @@
       </qh-card>
     </div>
     <qh-button
-      class="my-4 rounded-full !py-3 md:w-60"
+      class="my-4 hidden rounded-full !py-3 md:w-60"
       @click="updateExperience"
       v-if="experienceList.length > 0"
       :loading="updating"

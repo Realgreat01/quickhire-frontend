@@ -9,6 +9,18 @@ export const CONVERT_IMAGE_TO_BASE64 = async (data: { image_url: string }) => {
   });
 };
 
+export const SUBSCRIBE_TO_EMAIL = async (data: {
+  firstname: string;
+  lastname: string;
+  email: string;
+}) => {
+  return await ApiService.run({
+    method: ApiService.POST,
+    url: '/utils/email-subscriber',
+    data,
+  });
+};
+
 export const GET_OPERATIONAL_INSIGHTS = async () => {
   return await ApiService.run({
     method: ApiService.GET,

@@ -3,7 +3,7 @@
     <qh-card
       v-for="project in projects"
       :key="project._id"
-      class="relative flex w-full flex-col justify-between gap-y-4 overflow-hidden rounded-2xl p-0 shadow-xl md:w-4/5"
+      class="relative flex w-full flex-col justify-between gap-y-4 overflow-hidden rounded-2xl !p-0 shadow-xl md:w-4/5"
     >
       <img
         :src="project.screenshot"
@@ -14,7 +14,7 @@
         class="text-dark"
         @click="updateProjectScreenshot(project._id)"
       />
-      <div class="relative p-4">
+      <div class="relative flex flex-col gap-y-4 p-4">
         <qh-edit-button class="text-dark" @click="editProject(project._id)" />
         <qh-delete-button
           class="top-12"
@@ -90,7 +90,7 @@
     </qh-card>
   </div>
   <qh-button
-    class="my-4 rounded-full !py-3 md:w-60"
+    class="my-4 hidden rounded-full !py-3 md:w-60"
     @click="updateUserProject"
     v-if="projectList.length > 0"
     :loading="updating"

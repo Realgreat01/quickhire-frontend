@@ -5,7 +5,7 @@
         class="mx-auto mt-4 w-full"
         @submit.prevent="handleSubmit($event, submitExperience)"
       >
-        <div class="grid grid-cols-2 gap-4">
+        <div class="flex grid-cols-2 flex-col gap-4 md:grid">
           <qh-input
             label="Role / Position"
             type="text"

@@ -2,17 +2,72 @@
   <div class="mt-20 bg-brand-950 py-20 text-slate-400">
     <div>
       <h1 class="qh-text-1 mb-4 font-bold text-white">Join Our NewsLetter</h1>
-      <div
-        class="mb-10 flex h-12 items-center overflow-hidden rounded-xl bg-white md:w-[90%]"
-      >
-        <qh-input
-          v-model="user_email"
-          label=""
-          name="email"
-          class="w-full flex-1 rounded-none border-none"
-        />
-        <qh-button label="Subscribe" class="h-14 md:!w-48" />
-      </div>
+
+      <VeeForm v-slot="{ handleSubmit, isSubmitting, errors }">
+        <form
+          class="mt-10 grid w-full gap-4 p-2 md:w-[90%]"
+          @submit.prevent="handleSubmit($event, subscribeToEmail)"
+        >
+          <Transition
+            name="slideIn"
+            appear
+            mode="out-in"
+            v-show="showOtherFields === true"
+            enter-active-class="animate__animated animate__zoomIn"
+            leave-active-class="animate__animated animate__zoomOut"
+          >
+            <div class="grid gap-4 duration-500 md:grid-cols-2">
+              <qh-input
+                name="firstname"
+                label-class="!text-brand-200"
+                :errors="errors"
+                label="Firstname"
+                v-model.trim="subscriber.firstname"
+                :rules="ValidationRules.userDetails.firstname"
+                required
+              />
+              <qh-input
+                name="lastname"
+                label-class="!text-brand-200"
+                :errors="errors"
+                label="Lastname"
+                v-model.trim="subscriber.lastname"
+                :rules="ValidationRules.userDetails.lastname"
+                required
+              />
+            </div>
+          </Transition>
+          <div class="flex flex-col gap-1">
+            <label
+              for="email"
+              class="font-medium text-brand-200"
+              v-if="showOtherFields"
+            >
+              Email Address
+              <span class="!font-normal text-error">*</span></label
+            >
+            <div
+              class="mb-10 mt-0 flex h-12 items-center overflow-hidden rounded-xl bg-white"
+            >
+              <qh-input
+                v-model="subscriber.email"
+                label-class="!text-brand-200"
+                name="email"
+                :rules="ValidationRules.userDetails.email"
+                @input="showOtherFields = true"
+                class="w-full flex-1 rounded-none border-none"
+              />
+              <qh-button
+                label="Subscribe"
+                class="h-14 md:!w-48"
+                type="submit"
+                :loading="isSubmitting"
+                :disabled="Object.keys(errors).length !== 0 || isSubmitting"
+              />
+            </div>
+          </div>
+        </form>
+      </VeeForm>
     </div>
 
     <icons-logo class="text-white" />
@@ -88,7 +143,7 @@
 </template>
 
 <script setup lang="ts">
-const user_email = ref('');
+import { Form as VeeForm } from 'vee-validate';
 import {
   RiFacebookCircleFill,
   RiInstagramFill,
@@ -100,7 +155,29 @@ import {
   RiWhatsappLine,
 } from 'vue-remix-icons';
 
+import { SUBSCRIBE_TO_EMAIL } from '~/services/utils.service';
+
 defineProps({ Class: String });
+
+const showOtherFields = ref(false);
+const subscriber = ref<any>({
+  email: '',
+  firstname: '',
+  lastname: '',
+});
+
+const subscribeToEmail = async (field: any) => {
+  const res = await SUBSCRIBE_TO_EMAIL(subscriber.value);
+  if (res) {
+    qhToast.success('email subscription successful');
+    showOtherFields.value = false;
+    subscriber.value = {
+      email: '',
+      firstname: '',
+      lastname: '',
+    };
+  }
+};
 
 const quickLinks = ref([
   { title: 'About Us', id: '#about-us' },
@@ -110,20 +187,20 @@ const quickLinks = ref([
   { title: 'Contact', id: '#contact' },
 ]);
 const othersLinks = ref([
-  { title: 'Latest Jobs', id: '#about-us' },
-  { title: 'Blog', id: '#how-it-works' },
-  { title: 'Academy', id: '#testimonials' },
-  { title: 'Resume Tips', id: '#faqs' },
-  { title: 'Hiring', id: '#contact' },
-  { title: 'Info', id: '#about-us' },
-  { title: 'Libraries', id: '#how-it-works' },
-  { title: 'Videos', id: '#testimonials' },
-  { title: 'Support', id: '#faqs' },
-  { title: 'Hiring Tips', id: '#contact' },
-  { title: 'Latest Tech News', id: '#about-us' },
-  { title: 'Social Media', id: '#how-it-works' },
-  { title: 'Academy', id: '#testimonials' },
-  { title: 'AI integration', id: '#contact' },
+  { title: 'Latest Jobs', id: '' },
+  { title: 'Blog', id: '' },
+  { title: 'Academy', id: '' },
+  { title: 'Resume Tips', id: '' },
+  { title: 'Hiring', id: '' },
+  { title: 'Info', id: '' },
+  { title: 'Libraries', id: '' },
+  { title: 'Videos', id: '' },
+  { title: 'Support', id: '' },
+  { title: 'Hiring Tips', id: '' },
+  { title: 'Latest Tech News', id: '' },
+  { title: 'Social Media', id: '' },
+  { title: 'Academy', id: '' },
+  { title: 'AI integration', id: '' },
 ]);
 
 const socialLinks = shallowRef([
@@ -157,12 +234,12 @@ const contactInformation = shallowRef([
   },
   {
     icon: RiMapPinLine,
-    contact: '17, Ugbowo Benin City, Edo State, Nigeria',
+    contact: 'Ugbowo Benin City, Edo State, Nigeria',
     class: 'fill-white',
     action: (): void => {
       window.location.href =
         'https://www.google.com/maps/search/' +
-        encodeURIComponent('6391 Elgin St. Celina, Delaware 10299');
+        encodeURIComponent('Ugbowo Benin City, Edo State, Nigeria');
     },
   },
 ]);

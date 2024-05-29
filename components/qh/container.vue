@@ -13,7 +13,7 @@
           leave-active-class="animate__animated animate__zoomOut"
         >
           <div
-            class="scroll modal-content relative rounded-lg bg-white px-4 pb-4"
+            class="scroll modal-content relative max-h-screen bg-white px-2 pb-4 md:rounded-lg md:px-4"
             :class="class"
           >
             <div
@@ -69,8 +69,10 @@ onUnmounted(() => {
 
 @media (max-width: 700px) {
   .modal-content {
-    width: 95% !important;
+    width: 100% !important;
     max-width: none;
+    max-height: 100%;
+    min-height: 100%;
   }
 }
 </style>

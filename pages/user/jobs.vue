@@ -13,7 +13,7 @@
         <img
           :src="job.posted_by?.logo"
           alt=""
-          class="block max-h-12 max-w-12"
+          class="block max-h-10 max-w-10 md:max-h-12 md:max-w-12"
         />
         <!-- 2 -->
         <div class="flex flex-col gap-2">
@@ -34,7 +34,25 @@
               :label="job?.job_status === 'open' ? 'Active' : job.job_status"
             />
           </div>
-          <div class="flex gap-x-1 !capitalize">
+
+          <div class="px-2 md:hidden">
+            <qh-button
+              class="qh-text-5 block !h-4 w-fit rounded-full bg-success p-0 px-10 capitalize"
+              :class="{
+                '!bg-dark-100 !text-brand':
+                  job.candidate.status === 'submitted',
+                '!bg-dark-100 !text-success-600':
+                  job.candidate.status === 'received',
+                '!bg-brand': job.candidate.status === 'processing',
+                'bg-success-500': job.candidate.status === 'accepted',
+                '!bg-error': job.candidate.status === 'rejected',
+              }"
+              :label="job.candidate.status"
+            />
+          </div>
+
+          <!-- Long Line -->
+          <div class="hidden gap-x-1 !capitalize md:flex">
             <qh-button
               class="flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs capitalize !text-brand-700"
             >
@@ -62,7 +80,8 @@
               }}
             </qh-button>
           </div>
-          <div class="flex items-center gap-x-5">
+
+          <div class="hidden items-center gap-x-5 md:flex">
             <qh-button
               class="qh-text-4 flex h-4 items-center gap-x-2 rounded-full !bg-success-100 px-4 text-xs font-semibold !text-success-500"
             >
@@ -78,7 +97,7 @@
           </div>
         </div>
       </div>
-      <div class="flex flex-col items-end px-2">
+      <div class="hidden flex-col items-end px-2 md:flex">
         <qh-button
           class="qh-text-5 block h-6 w-fit rounded-full bg-success px-4 capitalize"
           :class="{

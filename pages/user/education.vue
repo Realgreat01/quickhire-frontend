@@ -60,7 +60,7 @@
     />
 
     <qh-button
-      class="my-4 rounded-full !py-3 md:w-60"
+      class="my-4 hidden rounded-full !py-3 md:w-60"
       @click="updateUserEducation"
       v-if="educationList.length > 0"
       :loading="updating"

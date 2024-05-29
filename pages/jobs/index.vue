@@ -11,8 +11,8 @@ import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 
 definePageMeta({
-  layout: 'users',
-  middleware: ['auth', 'user'],
+  // layout: 'users',
+  // middleware: ['auth', 'user'],
   name: QH_ROUTES.JOB.ALL,
 });
 

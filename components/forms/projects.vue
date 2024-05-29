@@ -5,7 +5,7 @@
         class="mx-auto mt-4 w-full p-2"
         @submit.prevent="handleSubmit($event, submitProject)"
       >
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grids flex grid-cols-2 flex-col gap-4">
           <qh-input
             label="Title"
             name="title"

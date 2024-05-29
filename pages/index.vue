@@ -6,7 +6,7 @@
     <home-stats class="px-3 md:px-10" id="insights" />
     <home-current-listings class="px-3 md:px-10" id="latest-jobs" />
     <home-testimonials class="px-3 md:px-10" id="testimonials" />
-    <!-- <home-campaign class="px-3 md:px-10" id="about" /> -->
+    <!-- <home-campaign class="px-3 md:px-10" id="about" />  -->
     <home-footer class="px-3 md:px-10" id="footer" />
   </div>
 </template>

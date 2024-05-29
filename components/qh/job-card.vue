@@ -5,7 +5,7 @@
         <img
           :src="job.posted_by?.logo"
           alt=""
-          class="block h-12 w-12 object-cover"
+          class="block h-12 w-12 object-contain p-1"
         />
 
         <!-- logo {{ job?.posted_by }} -->
@@ -46,7 +46,9 @@
         <h1 class="qh-text-4 font-bold text-success">
           {{
             qhNumbers.formatCurrency(
-              qhNumbers.convertCurrencyToNumber(job.salary.value),
+              qhNumbers.convertCurrencyToNumber(
+                job.salary.value as number,
+              ) as number,
             )
           }}
         </h1>

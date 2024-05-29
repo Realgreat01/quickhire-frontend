@@ -13,6 +13,7 @@ export const GET_COMPANY = async (id: string) => {
     url: '/company',
   });
 };
+
 export const GET_ALL_COMPANY = async () => {
   return await ApiService.run({
     method: ApiService.GET,

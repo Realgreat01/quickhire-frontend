@@ -6,7 +6,7 @@
       </h1>
 
       <div class="flex gap-x-3 p-4">
-        <qh-dropdown class="mx-3">
+        <qh-dropdown class="mx-3 hidden">
           <template #icon>
             <div class="relative h-10 w-10">
               <ChatBubbleBottomCenterTextIcon class="h-8 w-8 fill-brand" />
@@ -19,7 +19,7 @@
           <qh-messages class="!w-96" />
         </qh-dropdown>
 
-        <qh-dropdown class="mx-3">
+        <qh-dropdown class="mx-3 hidden">
           <template #icon
             ><div class="relative h-10 w-10">
               <RiNotification3Fill class="h-8 w-8 fill-brand" />
@@ -40,39 +40,45 @@
         </div>
 
         <qh-dropdown class="md:hidden">
-          <div class="">
+          <div class="min-w-60">
             <div
-              class="font-poppins flex h-60 w-max flex-col items-center justify-center rounded-2xl border-2 border-dark-50 bg-dark-50 p-8 shadow-md"
+              class="font-poppins flex h-60 w-full flex-col items-center justify-center rounded-lg bg-brand p-8 text-dark-100 shadow-md"
             >
+              <qh-edit-button class="text-dark" @click="editProfile" />
               <img
-                class="block h-32 w-32 rounded-full border border-brand"
-                src="~/assets/images/user-profile.jpg"
+                class="block h-32 w-32 rounded-full border border-brand object-cover"
+                :src="user?.profile_picture"
                 alt=""
               />
-              <h1 class="font-semibold capitalize">{{ fullname }}</h1>
-              <h1 class="qh-text-4 text-brand">@{{ user?.username }}</h1>
-              <h1 class="font-normal">{{ skills?.stack }}</h1>
+              <h1 class="text-center text-sm font-semibold capitalize">
+                {{ fullname }}
+              </h1>
+              <h1 class="qh-text-4 text-error-300">@{{ user?.username }}</h1>
+              <h1 class="qh-text-4 font-medium">{{ skills?.stack }}</h1>
             </div>
             <div class="my-5">
               <RouterLink
-                :to="{ name: item.route }"
-                v-for="(item, index) in sidebar"
-                :key="index"
+                v-for="{
+                  class: className,
+                  route: routeName,
+                  icon,
+                  title,
+                  action,
+                } in navbar"
+                :to="{ name: routeName }"
+                class="router flex w-full cursor-pointer p-1 pl-4 font-bold hover:scale-[1.025]"
+                :class="
+                  route.name === routeName || route.path.includes(routeName)
+                    ? className
+                    : 'text-dark-400'
+                "
+                :key="routeName"
+                @click="action"
               >
-                <div
-                  @click="item.action"
-                  :class="item.class"
-                  class="font-geologica flex w-60 cursor-pointer p-1 pl-4 font-semibold hover:scale-[1.025]"
-                >
-                  <component
-                    :is="item.icon"
-                    :class="item.class"
-                    class="mr-3 h-7 w-7 rounded"
-                  />
-                  <h1 class="qh-text-3 font-semi">
-                    {{ item.title }}
-                  </h1>
-                </div>
+                <component :is="icon" class="mr-3 h-5 w-5 rounded" />
+                <h1 class="qh-text-4 font-normal">
+                  {{ title }}
+                </h1>
               </RouterLink>
             </div>
           </div>
@@ -88,23 +94,23 @@
       </h1>
       <div class="flex justify-end gap-2 md:flex md:gap-x-4 md:p-4">
         <!--  -->
-        <div
+        <qh-button
+          class="h-8 md:w-28"
           v-show="actionButtonPages.includes(route.name as string)"
           @click="() => router.replace({ query: { add: route.meta.name } })"
-          class="flex cursor-pointer rounded border-[1px] border-brand p-2 pr-4 text-brand shadow duration-500 first-line:cursor-pointer hover:scale-[1.025] md:!w-40"
         >
-          <RiAddCircleLine class="mr-3 h-6 w-6 rounded fill-brand" />
-          <h1 class="qh-text-3 font-normal">Add</h1>
-        </div>
+          <RiAddCircleLine class="mr-3 h-4 w-4 rounded fill-white" />
+          <h1 class="qh-text-4 font-normal">Add</h1>
+        </qh-button>
 
         <!--  -->
-        <div
+        <qh-button
           @click="previewprofile"
-          class="flex cursor-pointer rounded bg-brand-50 p-2 pr-4 text-brand shadow first-line:cursor-pointer hover:scale-[1.025] md:!w-40"
+          class="h-8 border border-brand !bg-transparent !text-brand"
         >
-          <RiProfileLine class="mr-3 h-6 w-6 rounded fill-brand" />
-          <h1 class="qh-text-3 font-medium">Preview</h1>
-        </div>
+          <RiProfileLine class="mr-3 h-4 w-4 rounded fill-brand" />
+          <h1 class="qh-text-4 font-medium">Preview</h1>
+        </qh-button>
       </div>
     </div>
   </div>
@@ -117,6 +123,14 @@ import {
   RiAddCircleLine,
   RiProfileLine,
   RiNotification3Fill,
+  RiUser2Line,
+  RiBriefcase2Line,
+  RiBox3Line,
+  RiGraduationCapLine,
+  RiSendPlaneLine,
+  RiSettings4Line,
+  RiHomeOfficeLine,
+  RiContactsLine,
   RiUser2Fill,
   RiBriefcase2Fill,
   RiBox3Fill,
@@ -141,6 +155,10 @@ const { fullname, user, skills } = storeToRefs(useUserStore());
 const route = useRoute();
 const router = useRouter();
 const modalStore = useModalStore();
+
+const editProfile = () => {
+  return router.replace({ query: { edit: QH_ROUTES.USER.PROFILE } });
+};
 
 const emit = defineEmits(['close-modal']);
 const actionButtonPages = ref([
@@ -221,66 +239,66 @@ const routeNames = computed(() => {
   }
 });
 
-const sidebar = markRaw([
+const navbar = markRaw([
   {
     title: 'Profile',
-    action: closeDropdown,
+    action: '',
     route: QH_ROUTES.USER.DETAILS,
-    icon: RiUser2Fill,
-    class: 'fill-teal-600  text-teal-600',
+    icon: RiUser2Line,
+    class: 'bg-teal-100  text-teal-600',
   },
   {
     title: 'Education',
-    action: closeDropdown,
+    action: '',
     route: QH_ROUTES.USER.EDUCATION,
-    icon: RiGraduationCapFill,
-    class: 'fill-brand  text-brand',
+    icon: RiGraduationCapLine,
+    class: '!bg-brand-100  text-brand-600',
   },
   {
     title: 'Work Details',
-    action: closeDropdown,
+    action: '',
     route: QH_ROUTES.USER.WORK_DETAILS,
-    icon: RiBriefcase2Fill,
-    class: 'fill-cyan-800  text-cyan-800',
+    icon: RiBriefcase2Line,
+    class: 'bg-cyan-100  text-cyan-800',
   },
 
   {
     title: 'Experience',
-    action: closeDropdown,
+    action: '',
     route: QH_ROUTES.USER.EXPERIENCE,
-    icon: RiHomeOfficeFill,
-    class: 'fill-blue-800  text-blue-800',
+    icon: RiHomeOfficeLine,
+    class: 'bg-blue-100  text-blue-800',
   },
   {
     title: 'Applied Jobs',
-    action: closeDropdown,
+    action: '',
     route: QH_ROUTES.USER.APPLIED_JOBS,
-    icon: RiSendPlaneFill,
-    class: 'fill-violet-800  text-violet-800',
+    icon: RiSendPlaneLine,
+    // active: route?.name.includes(QH_ROUTES.USER.APPLIED_JOBS),
+    class: 'bg-violet-100  text-violet-800',
   },
 
   {
     title: 'Projects',
-    action: closeDropdown,
+    action: '',
     route: QH_ROUTES.USER.PROJECTS,
-    icon: RiBox3Fill,
-    class: 'fill-indigo-800  text-indigo-800',
+    icon: RiBox3Line,
+    class: 'bg-indigo-100  text-indigo-800',
   },
   {
     title: 'Contact',
-    action: closeDropdown,
+    action: '',
     route: QH_ROUTES.USER.CONTACT,
-    icon: RiContactsFill,
-    class: 'fill-cyan-800  text-cyan-800',
+    icon: RiContactsLine,
+    class: 'bg-cyan-100  text-cyan-800',
   },
   {
     title: 'Settings',
-    action: closeDropdown,
+    action: '',
     route: QH_ROUTES.USER.SETTINGS,
-    icon: RiSettings4Fill,
-    class: 'fill-dark-400  text-dark-400',
+    icon: RiSettings4Line,
+    class: 'bg-dark-100  text-dark-500',
   },
-
   {
     title: 'Logout',
     action: openLogoutModal,

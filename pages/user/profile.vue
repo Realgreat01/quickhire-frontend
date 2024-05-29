@@ -2,9 +2,9 @@
   <div class="bg-white">
     <div class="mx-auto bg-white">
       <div
-        class="mb-10 flex items-start justify-between rounded-2xl bg-brand-100 p-6"
+        class="mb-10 flex flex-col-reverse items-center justify-center rounded-2xl bg-brand-100 p-6 md:flex-row md:justify-between"
       >
-        <div class="">
+        <div class="qh-flex-center flex-col md:block">
           <h1
             class="qh-text-1 text-stroke font-geologica font-bold capitalize text-brand"
           >
@@ -16,7 +16,7 @@
 
           <qh-resume-button
             :username="user?.username ?? ''"
-            class="qh-text-4 my-4 mt-10 h-8 w-40 rounded-full md:h-12 md:w-80"
+            class="qh-text-4 my-4 h-8 w-40 rounded-full md:mt-10 md:h-12 md:w-80"
           />
         </div>
         <div class="relative block" v-if="user?.profile_picture">
@@ -65,10 +65,12 @@
             />
           </h2>
 
-          <div class="grid justify-between gap-x-10 gap-y-4 md:grid-cols-1">
-            <qh-card>
+          <div
+            class="flex w-full flex-col justify-between gap-y-4 md:flex-row md:gap-x-10"
+          >
+            <qh-card class="!w-full">
               <h1 class="my-2 font-bold text-success-500">Top Skills</h1>
-              <div class="flex flex-wrap">
+              <div class="flex w-full flex-wrap">
                 <qh-devicon
                   v-for="(skill, index) in skills?.top_skills"
                   :key="index"
