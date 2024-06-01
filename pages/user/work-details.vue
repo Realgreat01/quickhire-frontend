@@ -15,6 +15,18 @@
         />
       </div>
       <div class="flex items-center justify-between gap-x-10">
+        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">
+          Years of Experience
+        </h2>
+        <qh-input
+          name="years_of_experience"
+          placeholder="3 years"
+          type="number"
+          class="!w-40 capitalize md:!w-64"
+          v-model="workDetails.years_of_experience"
+        />
+      </div>
+      <div class="flex items-center justify-between gap-x-10">
         <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Availability</h2>
         <qh-input
           name="availability"
@@ -96,9 +108,12 @@ const { updateUserDetails } = useUserStore();
 const modalStore = useModalStore();
 
 const experienceLevels = ref([
-  { label: 'Entry Level', value: 'entry' },
+  { label: 'Internships', value: 'internship' },
+  { label: 'Entry Level / Graduate', value: 'entry' },
+  { label: 'Junior Level ', value: 'junior' },
   { label: 'Mid Level', value: 'mid' },
   { label: 'Senior Level', value: 'senior' },
+  { label: 'Expert Level', value: 'expert' },
 ]);
 const availability = [
   'immediately',
@@ -127,6 +142,7 @@ const workDetails = ref({
   availability: user.value?.availability,
   highest_education_level: user.value?.highest_education_level,
   job_interest: user.value?.job_interest,
+  years_of_experience: user.value?.years_of_experience,
 });
 
 const updateUserWorkDetails = async () => {

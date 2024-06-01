@@ -4,11 +4,11 @@
       v-if="multiple"
       v-bind="$attrs"
       :multiple="true"
-      :is-clearable="false"
       :label="labelName"
       :options="options"
       v-model="modelValue"
       :placeholder="placeholder"
+      :is-clearable="clearable"
       class=""
     >
       <template #no-options="{ search, searching, loading }">
@@ -21,12 +21,11 @@
     <VueSelect
       v-else
       v-bind="$attrs"
-      :is-clearable="false"
       :options="getOptions"
       v-model="modelValue"
       :label="labelName"
-      :clearable="clearable"
       :placeholder="placeholder"
+      :clearable="clearable"
     >
       <template #no-options>
         <div class="flex flex-col items-center justify-center">
@@ -55,6 +54,7 @@ const props = defineProps({
     type: String,
     default: 'No Data Available',
   },
+
   multiple: Boolean,
   labelName: String,
   placeholder: String,

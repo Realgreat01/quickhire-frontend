@@ -1,11 +1,23 @@
 import ApiService from './api-service.service';
 
 // COMBINED JOB ACTIONS
-
+interface searchQuery {
+  title: string;
+  type: string;
+  location: string;
+  level: string;
+}
 export const GET_ALL_JOBS = async () => {
   return await ApiService.run({
     method: ApiService.GET,
     url: '/public/jobs/',
+  });
+};
+export const GET_MATCHED_JOBS = async (query?: searchQuery) => {
+  return await ApiService.run({
+    method: ApiService.GET,
+    url: '/public/jobs/matched',
+    params: query,
   });
 };
 
@@ -13,6 +25,13 @@ export const GET_SINGLE_JOB = async (id: string) => {
   return await ApiService.run({
     method: ApiService.GET,
     url: '/public/jobs/' + id,
+  });
+};
+
+export const GET_SIMILAR_JOB = async (id: string) => {
+  return await ApiService.run({
+    method: ApiService.GET,
+    url: '/job/similar/' + id,
   });
 };
 
@@ -33,13 +52,6 @@ export const GET_COMPANY_JOBS = async () => {
   });
 };
 
-export const GET_JOB_APPLICANT = async (jobId: string, applicantId: string) => {
-  return await ApiService.run({
-    method: ApiService.GET,
-    url: `/job/company/${jobId}/applicants/${applicantId}`,
-  });
-};
-
 export const GET_JOB_APPLICANTS = async (jobId: string) => {
   return await ApiService.run({
     method: ApiService.GET,
@@ -47,10 +59,21 @@ export const GET_JOB_APPLICANTS = async (jobId: string) => {
   });
 };
 
-export const UPDATE_JOB_APPLICANTS_STATUS = async (data: any) => {
+export const GET_JOB_APPLICANT = async (jobId: string, applicantId: string) => {
+  return await ApiService.run({
+    method: ApiService.GET,
+    url: `/job/company/${jobId}/applicants/${applicantId}`,
+  });
+};
+
+export const UPDATE_JOB_APPLICANTS_STATUS = async (
+  data: any,
+  jobId: string,
+  applicantId: string,
+) => {
   return await ApiService.run({
     method: ApiService.PUT,
-    url: '/job/company',
+    url: `/job/company/${jobId}/applicants/${applicantId}`,
     data,
   });
 };

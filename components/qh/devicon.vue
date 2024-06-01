@@ -1,6 +1,11 @@
 <template>
   <div class="tooltip qh-flex-center relative flex-col gap-1 p-2">
-    <img :src="`/dev-icon/${icon.icon}.svg`" alt="" class="block h-6 w-6" />
+    <img
+      v-if="!hideIcon"
+      :src="`/dev-icon/${icon.icon}.svg`"
+      alt=""
+      class="block h-6 w-6"
+    />
     <span
       v-if="!hideTooltip"
       class="tooltiptext qh-text-4 z-[999] bg-brand text-white"
@@ -24,6 +29,7 @@ defineProps({
     required: true,
   },
   hideTooltip: Boolean,
+  hideIcon: Boolean,
   showIconName: Boolean,
 });
 </script>

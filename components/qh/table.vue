@@ -131,7 +131,6 @@
 <script setup lang="ts">
 import EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
-import type { Header, Item, type SortType } from 'vue3-easy-data-table';
 import {
   RiCheckboxCircleFill,
   RiCloseCircleFill,
@@ -146,7 +145,7 @@ const props = defineProps({
   headers: { type: Array, required: true },
   searchField: { type: Array },
   label: { type: String },
-  sortType: { type: String as PropType<SortType> },
+  sortType: { type: String },
   sortBy: { type: String },
 });
 

@@ -1,5 +1,16 @@
 <template>
-  <qh-card class="w-full bg-white md:w-96" :class="Class">
+  <qh-card
+    class="flex w-full flex-col bg-white md:min-w-96 md:max-w-[500px]"
+    :class="Class"
+  >
+    <qh-button
+      v-if="job?.is_new"
+      class="my-2 !h-6 w-fit gap-1 self-end justify-self-end rounded-full bg-error-100 !py-2 px-4 text-xs capitalize"
+    >
+      <h2 class="text-red-500">NEW</h2>
+      <FireIcon class="h-4 w-4 text-orange-500" />
+    </qh-button>
+
     <div class="flex justify-between gap-x-2">
       <div class="flex">
         <img
@@ -16,6 +27,7 @@
               class="ml-1 h-[14px] w-[14px] fill-success-500"
             />
           </h1>
+
           <h1 class="qh-text-5 ml-0 text-dark-300">
             <span class="" v-if="job.posted_by?.address.state">
               {{ job.posted_by?.address.state }},
@@ -75,7 +87,7 @@
             @click="getSingleJob(job?._id)"
             class="apply-button qh-text-4 h-6 w-28 gap-x-4 self-end rounded-full border border-brand bg-transparent font-medium !text-brand"
           >
-            <span class="">Apply</span>
+            <span class="">{{ job?.is_applicant ? 'View' : 'Apply' }}</span>
             <ArrowRightCircleIcon
               class="apply-icon h-5 w-5 text-brand duration-500"
             />
@@ -97,6 +109,7 @@
 
 <script setup lang="ts">
 import { ArrowRightCircleIcon, ClockIcon } from '@heroicons/vue/24/outline';
+import { FireIcon } from '@heroicons/vue/24/solid';
 import {
   RiVerifiedBadgeFill,
   RiUserFill,

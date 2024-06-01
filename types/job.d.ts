@@ -25,6 +25,8 @@ export interface Job {
   isActive?: boolean;
   job_description: string;
   applicants: any[];
+  is_new: boolean;
+  is_applicant: boolean;
   application_ends: Date | null;
   job_type: JobType;
   posted_on: Date;
@@ -38,6 +40,12 @@ export interface Job {
     value: number;
   };
   job_status: 'open' | 'closed' | 'paused';
-  experience_level: 'entry' | 'mid' | 'senior';
+  experience_level:
+    | 'intership'
+    | 'entry'
+    | 'junior'
+    | 'mid'
+    | 'senior'
+    | 'expert';
   required_skills: Skills[];
 }

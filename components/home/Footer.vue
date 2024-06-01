@@ -53,9 +53,11 @@
                 v-model="subscriber.email"
                 label-class="!text-brand-200"
                 name="email"
+                type="email"
+                hideErrorMessage
                 :rules="ValidationRules.userDetails.email"
                 @input="showOtherFields = true"
-                class="w-full flex-1 rounded-none border-none"
+                class="w-full flex-1 rounded-none border-none focus:!ring-0 focus:!ring-transparent"
               />
               <qh-button
                 label="Subscribe"
@@ -248,5 +250,9 @@ const contactInformation = shallowRef([
 <style lang="scss">
 .link {
   @apply font-semibold text-brand-100;
+}
+
+input:focus {
+  @apply ring-0 ring-transparent;
 }
 </style>

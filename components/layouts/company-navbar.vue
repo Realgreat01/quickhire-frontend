@@ -51,7 +51,7 @@
           <img
             :src="company?.logo"
             alt=""
-            class="relative bottom-10 z-40 ml-4 h-20 w-20 rounded border border-dark-200 bg-white object-cover md:bottom-20 md:h-40 md:w-40"
+            class="relative bottom-10 z-40 ml-4 h-20 w-20 rounded border border-dark-200 bg-white object-contain p-4 md:bottom-20 md:h-40 md:w-40"
           />
           <qh-edit-button
             class="!-right-2 !-top-[4.5rem] z-50"

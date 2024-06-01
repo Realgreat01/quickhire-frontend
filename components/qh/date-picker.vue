@@ -6,17 +6,16 @@
     <DatePicker
       v-model="date"
       v-bind="$attrs"
-      auto-apply
+      :auto-apply="autoApply"
       :enable-time-picker="false"
       month-name-format="long"
-      :format="qhDates.formatDate"
+      :format="autoApply ? qhDates.formatDate : undefined"
       :clearable="false"
       no-today
       input-class-name="qh-calendar-input"
       calendar-class-name="qh-calendar"
       calendar-cell-class-name="qh-calendar-cell"
       menu-class-name="qh-calendar-menu"
-      @update:model-value="handleChange"
       :teleport="true"
       :disabled="disabled"
       :required="required"
@@ -47,19 +46,13 @@ import {
   RiArrowRightFill,
 } from 'vue-remix-icons';
 
-defineProps({
-  vModel: String,
+const props = defineProps({
   disabled: Boolean,
+  autoApply: { type: Boolean, default: true },
   required: { type: Boolean, default: false },
 });
-const emit = defineEmits(['update:modelValue', 'change']);
 
-const date = defineModel<Date | null>();
-
-const handleChange = (value: string) => {
-  emit('update:modelValue', qhDates.formatISODate(value));
-  emit('change', qhDates.formatISODate(value));
-};
+const date = defineModel<Date | Date[] | string | string[] | null>('');
 </script>
 
 <style lang="scss">

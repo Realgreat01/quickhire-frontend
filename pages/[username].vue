@@ -3,7 +3,7 @@
     <qh-button
       v-if="currentUser"
       @click="editProfile"
-      class="fixed left-4 top-4 z-50 flex h-10 gap-x-4 rounded-lg !font-medium"
+      class="fixed left-4 top-10 z-50 flex h-10 gap-x-4 rounded-lg !font-medium md:top-4"
       ><span class="">Edit Profile</span> <PencilSquareIcon class="h-6 w-6" />
     </qh-button>
     <user-layout-mobile-topbar class="block md:hidden" />

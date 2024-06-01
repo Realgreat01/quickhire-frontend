@@ -45,7 +45,7 @@
 
       <div class="flex gap-4">
         <qh-resume-button
-          :username="applicant.username ?? ''"
+          :username="applicant?.username ?? ''"
           class="qh-text-4 !h-10 w-full !rounded-full !bg-brand-100 !px-2 !py-2 !text-brand"
         />
         <qh-button
@@ -74,10 +74,24 @@
       </div>
 
       <div class="grid w-full grid-cols-2 items-center">
-        <h2 class="qh-text-3 font-semibold">Interview Dates</h2>
+        <div class="flex flex-col">
+          <h2 class="qh-text-3 font-semibold">Interview Dates</h2>
+
+          <div class="flex flex-col">
+            <button
+              class="qh-text-5 mt-1 block w-fit border-b border-l border-brand px-8 py-1 text-brand"
+              v-for="date in applicantStatus?.interview_dates"
+            >
+              {{ qhDates.formatDate(date) }}
+            </button>
+          </div>
+        </div>
         <qh-input
           name="interview_dates"
           type="date"
+          :multi-dates="{ limit: 3 }"
+          :autoApply="false"
+          hint="select upto 3 interview dates"
           v-model="applicantStatus.interview_dates"
           class="capitalize"
         />
@@ -86,6 +100,7 @@
       <div class="grid w-full grid-cols-2 items-center">
         <h2 class="qh-text-3 font-semibold">Interview Feedback</h2>
         <qh-button
+          disabled
           class="qh-text-4 flex h-4 items-center gap-x-2 rounded-full !bg-success-500 px-4 text-xs font-semibold capitalize"
         >
           <PencilSquareIcon class="h-6 w-6" />
@@ -101,9 +116,11 @@
         <qh-input name="notes" as="textarea" />
       </div>
 
-      <qh-button class="my-4 rounded-full !py-3 md:w-60"
-        >Save Changes</qh-button
-      >
+      <qh-button
+        @click="updateApplicantStatus"
+        class="qh-text-4 cols-span-2 my-4 flex h-12 !w-full rounded-full !py-3 md:w-60"
+        label="Save Changes"
+      />
     </qh-card>
   </div>
 </template>
@@ -127,17 +144,25 @@ useHead({
 const route = useRoute();
 const router = useRouter();
 const { jobApplicant } = storeToRefs(useJobStore());
-const { getJobApplicant } = useJobStore();
+const { getJobApplicant, updateJobApplicant } = useJobStore();
 
 const applicant = computed(() => jobApplicant.value?.user);
 
 const applicantStatus = ref({
-  status: jobApplicant.value?.status ?? '',
-  notes: jobApplicant.value?.notes ?? '',
-  evaluation_score: jobApplicant.value?.evaluation_score ?? '',
-  interview_dates: '',
-  interview_feedback: '',
+  status: jobApplicant.value?.status ?? 'Received',
+  notes: jobApplicant.value?.notes,
+  evaluation_score: jobApplicant.value?.evaluation_score,
+  interview_dates: jobApplicant.value?.interview_dates,
+  // interview_feedback: '',
 });
+
+const updateApplicantStatus = async () => {
+  await updateJobApplicant(
+    applicantStatus.value,
+    route.params.id as string,
+    route.params.applicant as string,
+  );
+};
 
 onBeforeMount(async () => {
   await getJobApplicant(

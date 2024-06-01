@@ -1,91 +1,138 @@
 <template>
   <div class="flex flex-col gap-4 p-4">
-    <div
-      class="grid grid-cols-[0.5fr,3fr,2fr,2fr,1.5fr] gap-4 rounded bg-dark-100 p-4"
-      v-for="{ user: applicant, ...status } in jobApplicants"
-      :key="applicant._id"
+    <EasyDataTable
+      v-if="jobApplicants"
+      :headers="headers"
+      :items="jobApplicants.map((job: any) => job.user)"
+      buttons-pagination
+      no-hover
+      hide-rows-per-page
+      theme-color="#023696"
+      class="text-dark-400"
     >
-      <div class="">
-        <img
-          :src="applicant.profile_picture"
-          alt=""
-          class="h-10 w-10 rounded-full"
-        />
-      </div>
-      <div class="">
-        <h1 class="qh-text-3 capitalize">
-          {{ applicant?.firstname + ' ' + applicant?.lastname }}
-        </h1>
-        <h2 class="qh-text-4 font-semibold capitalize">
-          {{ applicant?.skills?.stack ?? 'developer' }} /
-          {{ applicant?.experience_level }} Level
-        </h2>
-        <h2 class="qh-text-4">
-          {{ applicant?.address?.country }}
-        </h2>
-      </div>
-      <div class="flex w-fit flex-col gap-4 capitalize">
-        <qh-button
-          class="qh-text-4 flex h-4 items-center gap-x-2 rounded-full !bg-success-100 px-4 text-xs font-semibold !text-success-500"
+      <template #header="header">
+        <p
+          :class="header.class"
+          class="qh-flex-center qh-text-4 my-2 hidden h-10 w-full text-center font-semibold text-brand"
         >
-          <RiCashLine class="h-4 w-4" />
-          {{ qhNumbers.formatCurrency(applicant?.rate) }} /
-          <span class="">hour</span>
-        </qh-button>
-        <qh-button
-          class="qh-text-4 flex h-4 items-center gap-x-2 rounded-full !bg-brand-100 px-4 text-xs font-semibold capitalize !text-brand-500"
-        >
-          <RiHomeOfficeLine class="h-4 w-4" />
-          {{ applicant?.job_interest }}
-        </qh-button>
-      </div>
+          {{ header.text }}
+        </p>
+      </template>
 
-      <div class="flex w-fit flex-col gap-4">
-        <qh-resume-button
-          :username="applicant?.username ?? ''"
-          class="qh-text-4 !h-10 w-full !rounded-full !bg-cyan-100 !px-6 !py-2 !text-sm !font-medium !text-cyan-500"
-        />
-        <div class="flex">
-          <qh-devicon
-            v-for="icon in applicant?.skills?.top_skills"
-            :icon="icon"
+      <template #item-profile_picture="applicant">
+        <div class="w-12">
+          <img
+            :src="applicant.profile_picture"
+            alt=""
+            class="h-10 w-10 rounded-full"
           />
         </div>
-      </div>
-      <div class="flex flex-col gap-3">
-        <qh-button
-          label="View Portfolio"
-          @click="
-            router.push({
-              name: QH_ROUTES.USER.PREVIEW,
-              params: { username: applicant?.username },
-            })
-          "
-          class="h-8 w-full rounded-full !bg-brand-100 !text-brand"
-        />
-        <qh-button
-          label="Update Status"
-          @click="getCurrentJobApplicant(applicant._id)"
-          class="h-8 w-full rounded-full"
-        />
-      </div>
-    </div>
+      </template>
 
-    <!-- {{ jobApplicants }} -->
+      <template #item-username="applicant">
+        <div class="min-w-60">
+          <h1 class="qh-text-4 font-medium capitalize">
+            {{ applicant?.firstname + ' ' + applicant?.lastname }}
+          </h1>
+          <h2 class="qh-text-5 text-brand">
+            {{ applicant?.address?.country }}
+          </h2>
+          <h2 class="qh-text-5 capitalize">
+            {{ applicant?.skills?.stack ?? 'Software Developer' }} /
+            {{ applicant?.experience_level }} Level
+          </h2>
+        </div>
+      </template>
+
+      <template #item-rate="applicant">
+        <div class="flex w-fit min-w-64 flex-wrap gap-1 capitalize">
+          <qh-button
+            class="qh-text-5 qh-flex-center h-4 gap-x-2 rounded-full !bg-dark-50 text-xs !font-normal capitalize !text-dark"
+          >
+            <RiBriefcaseLine class="h-4 w-4" />
+            {{ applicant?.years_of_experience ?? 8 }} Years
+          </qh-button>
+          <qh-button
+            class="qh-text-5 qh-flex-center h-4 gap-x-2 rounded-full !bg-dark-50 text-xs !font-normal capitalize !text-dark"
+          >
+            <RiCashLine class="h-4 w-4" />
+            {{ qhNumbers.formatCurrency(applicant?.rate) }} / hour
+          </qh-button>
+          <qh-button
+            class="qh-text-5 qh-flex-center h-4 gap-x-2 rounded-full !bg-dark-50 text-xs !font-normal capitalize !text-dark"
+          >
+            <RiHomeOfficeLine class="h-4 w-4" />
+            {{ applicant?.job_interest }}
+          </qh-button>
+          <qh-button
+            class="qh-text-5 qh-flex-center h-4 gap-x-2 rounded-full !bg-dark-50 text-xs !font-normal capitalize !text-dark"
+          >
+            <RiAlarmLine class="h-4 w-4" />
+            {{ applicant?.availability }}
+          </qh-button>
+        </div>
+      </template>
+
+      <template #item-skills="applicant">
+        <div class="qh-flex-center flex-col gap-4 p-4">
+          <qh-resume-button
+            :username="applicant?.username ?? ''"
+            class="!h-6 w-full rounded-full !bg-brand-100 !text-brand"
+            >Download&nbsp;Resume</qh-resume-button
+          >
+          <div class="flex flex-wrap gap-x-4">
+            <qh-devicon
+              hide-tooltip
+              class="w-fit !py-0 px-0"
+              v-for="icon in applicant?.skills?.top_skills"
+              :icon="icon"
+            />
+          </div>
+        </div>
+      </template>
+
+      <template #item-action="applicant">
+        <div class="flex w-fit min-w-40 flex-col gap-3">
+          <qh-button
+            label="Update Status"
+            @click="getCurrentJobApplicant(applicant._id)"
+            class="h-8 w-full rounded-full"
+          />
+
+          <qh-button
+            label="View Portfolio"
+            @click="
+              router.push({
+                name: QH_ROUTES.USER.PREVIEW,
+                params: { username: applicant?.username },
+              })
+            "
+            class="h-8 w-full rounded-full !bg-dark-100 !text-brand"
+          />
+        </div>
+      </template>
+    </EasyDataTable>
   </div>
 </template>
 
 <script setup lang="ts">
 import { QH_ROUTES } from '~/constants/routes';
 import { useJobStore } from '~/store/job-store';
-import { RiCashLine, RiHomeOfficeLine } from 'vue-remix-icons';
-import EasyTable from 'vue3-easy-data-table';
+import {
+  RiCashLine,
+  RiHomeOfficeLine,
+  RiAlarmLine,
+  RiBriefcaseLine,
+} from 'vue-remix-icons';
+import EasyDataTable from 'vue3-easy-data-table';
+import 'vue3-easy-data-table/dist/style.css';
 
 const router = useRouter();
 const route = useRoute();
 const { jobApplicants } = storeToRefs(useJobStore());
 const { getJobApplicants, getJobApplicant } = useJobStore();
 
+// const applicants = computed(()=> jobApplicants.map => )
 definePageMeta({
   layout: 'company',
   middleware: ['auth', 'company'],
@@ -95,6 +142,11 @@ definePageMeta({
 useHead({
   title: 'QuickHire - Company Profile',
 });
+
+const searchField = ref('');
+const searchValue = ref('');
+const sortBy = ref('');
+const sortType = ref('');
 
 const getCurrentJobApplicant = async (applicantId: string) => {
   await getJobApplicant(route.params.id as string, applicantId);
@@ -106,6 +158,13 @@ const getCurrentJobApplicant = async (applicantId: string) => {
 onMounted(async () => {
   await getJobApplicants(route.params.id as string);
 });
+const headers = [
+  { text: '', value: 'profile_picture' },
+  { text: '', value: 'username' },
+  { text: '', value: 'rate' },
+  { text: '', value: 'skills' },
+  { text: '', value: 'action' },
+];
 </script>
 
 <style scoped></style>

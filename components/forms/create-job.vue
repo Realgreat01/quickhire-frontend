@@ -139,7 +139,7 @@ import { Form as VeeForm } from 'vee-validate';
 import { CREATE_NEW_JOB } from '~/services/job.service';
 import { skillIcons } from '~/constants/skill';
 import { useJobStore } from '~/store/job-store';
-const { otherJobs } = storeToRefs(useJobStore());
+const { similarJobs } = storeToRefs(useJobStore());
 const { getCompanyJobs } = useJobStore();
 
 const jobDetail = ref<any>({
@@ -168,9 +168,12 @@ const jobTypes = ref([
   'Internship',
 ]);
 const experienceLevels = ref([
-  { label: 'Entry Level', value: 'entry' },
+  { label: 'Internships', value: 'internship' },
+  { label: 'Entry Level / Graduate', value: 'entry' },
+  { label: 'Junior Level ', value: 'junior' },
   { label: 'Mid Level', value: 'mid' },
   { label: 'Senior Level', value: 'senior' },
+  { label: 'Expert Level', value: 'expert' },
 ]);
 const locationTypes = ref(['Onsite', 'Remote', 'Hybrid']);
 

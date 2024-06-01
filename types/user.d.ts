@@ -41,11 +41,18 @@ export interface User {
   cover_letter: string;
   hobbies?: string[];
   interests?: string[];
+  years_of_experience: number;
   settings: Settings;
   address: AddressInterface;
   reference: Reference[];
   social_media: SocialLinks;
-  experience_level: 'entry' | 'mid' | 'senior';
+  experience_level:
+    | 'intership'
+    | 'entry'
+    | 'junior'
+    | 'mid'
+    | 'senior'
+    | 'expert';
   rate: number;
   highest_education_level: Education['type'];
   job_interest: JobLocationType;

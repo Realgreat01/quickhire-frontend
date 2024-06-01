@@ -6,6 +6,9 @@ import {
   GET_COMPANY_JOBS,
   GET_JOB_APPLICANTS,
   GET_JOB_APPLICANT,
+  GET_SIMILAR_JOB,
+  GET_MATCHED_JOBS,
+  UPDATE_JOB_APPLICANTS_STATUS,
 } from '~/services/job.service';
 import type { Job } from '~/types/job';
 import type { User } from '~/types/user';
@@ -23,10 +26,17 @@ interface JobType {
   Job: Job | null;
   AllJobs: Job[] | null;
   Jobs: Job[] | null;
+  SimilarJobs: Job[] | null;
   Applied_Jobs: AppliedJob[] | null;
   CompanyJobs: Job[];
   JobApplicants: { user: User[] } | null;
   JobApplicant: User | null;
+  searchQuery: {
+    title: string;
+    type: string;
+    location: string;
+    level: string;
+  };
 }
 
 export const useJobStore = defineStore('job', {
@@ -35,10 +45,18 @@ export const useJobStore = defineStore('job', {
       Job: null,
       AllJobs: [],
       Jobs: [],
+      SimilarJobs: [],
       Applied_Jobs: [],
       CompanyJobs: [],
       JobApplicants: null,
       JobApplicant: null,
+
+      searchQuery: {
+        title: '',
+        type: '',
+        location: '',
+        level: '',
+      },
     };
   },
 
@@ -62,10 +80,8 @@ export const useJobStore = defineStore('job', {
       return this.JobApplicant;
     },
 
-    otherJobs(): Job[] | null {
-      if (this.AllJobs) {
-        return this.AllJobs.filter((job: any) => job._id != this.job._id);
-      } else return [];
+    similarJobs(): Job[] | null {
+      return this.SimilarJobs;
     },
 
     appliedJobs(): AppliedJob[] | null {
@@ -82,11 +98,27 @@ export const useJobStore = defineStore('job', {
       }
     },
 
+    async getMatchedJobs() {
+      const res = await GET_MATCHED_JOBS(this.searchQuery);
+      if (res.success) {
+        this.AllJobs = res.data;
+        this.Jobs = res.data;
+      }
+    },
+
     async getSingleJob(id: string) {
       const res = await GET_SINGLE_JOB(id);
       if (res.success) {
         this.Job = res.data;
+        this.SimilarJobs = (await GET_SIMILAR_JOB(id)).data;
       } else qhToast.error('Unable to get Job');
+    },
+
+    async getJobApplicants(id: string) {
+      const res = await GET_JOB_APPLICANTS(id);
+      if (res.success) {
+        this.JobApplicants = res.data;
+      } else qhToast.error('Unable to get Job applicants');
     },
 
     async getJobApplicant(jobId: string, applicantId: string) {
@@ -95,11 +127,13 @@ export const useJobStore = defineStore('job', {
         this.JobApplicant = res.data;
       } else qhToast.error('Unable to get Job applicants');
     },
-    async getJobApplicants(id: string) {
-      const res = await GET_JOB_APPLICANTS(id);
+
+    async updateJobApplicant(data: any, jobId: string, applicantId: string) {
+      const res = await UPDATE_JOB_APPLICANTS_STATUS(data, jobId, applicantId);
       if (res.success) {
-        this.JobApplicants = res.data;
-      } else qhToast.error('Unable to get Job applicants');
+        qhToast.success("updated applicant's status successfully");
+        await this.getJobApplicant(jobId, applicantId);
+      } else qhToast.error("Unable to update applicant's status");
     },
 
     async getApplyForJob(id: string) {

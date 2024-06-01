@@ -56,7 +56,6 @@
           v-else-if="type === 'select'"
           :options="options"
           :required="required"
-          :multiple="multiple"
           v-bind="$attrs"
           :labelName="labelName"
           :placeholder="placeholder"
@@ -114,6 +113,7 @@
         <qh-button
           :label="buttonText"
           v-if="buttonText"
+          type="button"
           @click="actionButtonClick"
           class="center-box !right-0 h-10 transform border border-brand-500 bg-brand-500 shadow-lg shadow-gray-300"
         >
@@ -141,12 +141,13 @@
           <qh-button
             v-for="(tag, index) in tags"
             :key="index"
+            type="button"
             class="qh-text-4 relative flex gap-x-4 !bg-dark-100 !py-2 px-4 !text-dark"
           >
             <span class=""> {{ tag }}</span>
             <XMarkIcon
               class="h-6 w-6 stroke-dark stroke-1 text-dark-600"
-              @click="removeTag(index)"
+              @click.self.prevent.once="removeTag(index)"
             />
           </qh-button>
         </div>
@@ -154,7 +155,7 @@
       <p class="mr-4 max-w-[96%] text-sm text-dark-300" v-if="hint">
         {{ hint }}
       </p>
-      <ErrorMessage :name="name" v-slot="{ message }">
+      <ErrorMessage :name="name" v-slot="{ message }" v-if="!hideErrorMessage">
         <span class="qh-text-4 ml-1 text-error first-letter:!capitalize">{{
           message
         }}</span>
@@ -188,7 +189,6 @@ const props = defineProps({
   label: { type: [String, Boolean], default: '' },
   rules: Object,
   required: Boolean,
-  clearable: Boolean,
   as: { type: String, default: 'input' },
   type: { type: String, default: 'text' },
   errors: Object,
@@ -199,10 +199,10 @@ const props = defineProps({
   labelName: String,
   suffix: String,
   options: { type: Array as PropType<any[]>, default: [] },
-  multiple: Boolean,
   noDataMessage: String,
   placeholder: String,
   hasCheckbox: Boolean,
+  hideErrorMessage: Boolean,
   checkboxText: { type: String, default: 'This should be a chekbox content' },
 });
 
@@ -357,6 +357,10 @@ textarea {
     color: #a0bdba;
   }
 
-  /* // @apply block w-full border ring-transparent  focus:border-2 focus:border-green-400 focus:outline-none; */
+  &:focus {
+    @apply ring-[0.5px] !ring-brand;
+  }
+
+  /* // @apply block w-full border ansparent  focus:border-2 focus:border-green-400 focus:outline-none; */
 }
 </style>

@@ -99,17 +99,17 @@
           v-show="actionButtonPages.includes(route.name as string)"
           @click="() => router.replace({ query: { add: route.meta.name } })"
         >
-          <RiAddCircleLine class="mr-3 h-4 w-4 rounded fill-white" />
-          <h1 class="qh-text-4 font-normal">Add</h1>
+          <RiAddCircleLine class="h-6 w-6 rounded fill-white" />
+          <!-- <h1 class="qh-text-4 font-normal"></h1> -->
         </qh-button>
 
         <!--  -->
         <qh-button
           @click="previewprofile"
-          class="h-8 border border-brand !bg-transparent !text-brand"
+          class="h-8 border border-brand !bg-transparent !text-brand md:w-28"
         >
-          <RiProfileLine class="mr-3 h-4 w-4 rounded fill-brand" />
-          <h1 class="qh-text-4 font-medium">Preview</h1>
+          <RiEyeLine class="h-6 w-6 rounded fill-brand" />
+          <!-- <h1 class="qh-text-4 font-medium"></h1> -->
         </qh-button>
       </div>
     </div>
@@ -122,6 +122,7 @@ import {
   RiProfileFill,
   RiAddCircleLine,
   RiProfileLine,
+  RiEyeLine,
   RiNotification3Fill,
   RiUser2Line,
   RiBriefcase2Line,

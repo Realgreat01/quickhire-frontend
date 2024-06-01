@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div
-      class="flex flex-col gap-y-4 rounded-lg border border-brand-50 bg-white p-4"
-    >
+  <div class="sticky top-10 overflow-y-scroll bg-white">
+    <div class="flex flex-col gap-y-4 p-4">
       <!-- 1 -->
       <div class="grid grid-cols-2 items-start justify-between md:flex">
         <div class="flex w-full gap-x-2">
@@ -24,11 +22,22 @@
                 class="!h-6 rounded-full !py-2 px-4 text-xs capitalize"
                 :class="{
                   '!bg-success-500': job.job_status === 'open',
-                  '!bg-dark-400 !text-success-600': job.job_status === 'paused',
-                  '!bg-error': job.job_status === 'closed',
+                  'disabled !bg-dark-500 !text-dark-100':
+                    job.job_status === 'paused',
+                  'disabled !bg-error': job.job_status === 'closed',
                 }"
+                :disabled="
+                  job.job_status === 'closed' || job.job_status === 'paused'
+                "
                 :label="job?.job_status === 'open' ? 'Active' : job.job_status"
               />
+              <qh-button
+                v-if="job?.is_new"
+                class="qh-text-center !h-6 gap-1 rounded-full bg-red-100 !py-2 px-4 text-xs capitalize"
+              >
+                <h2 class="text-red-500">NEW</h2>
+                <FireIcon class="h-4 w-4 text-orange-500" />
+              </qh-button>
             </div>
             <div class="flex w-full flex-wrap gap-2 text-xs !capitalize">
               <qh-button
@@ -88,18 +97,17 @@
           />
           <qh-button
             v-else-if="job.job_status === 'paused'"
-            class="disabled h-8 w-fit rounded-full bg-dark-400 px-8"
+            class="h-8 w-fit rounded-full bg-dark-500 px-8"
             label="Paused"
+            disabled
           />
           <qh-button
-            v-else-if="
-              job.applicants.some(
-                (applicant: any) => applicant.user === user?._id,
-              )
-            "
+            v-else-if="job.is_applicant"
             class="disabled h-8 w-fit rounded-full bg-brand-400 px-8"
-            label="Appllied"
+            label="Applied"
+            disabled
           />
+
           <qh-button
             v-else
             @click="getApplyForJob(job._id)"
@@ -113,6 +121,7 @@
           </h2>
         </div>
       </div>
+
       <hr class="border border-dashed border-brand" />
       <div class="">
         <h1 class="qh-text-3 font-bold">Job Description</h1>
@@ -124,11 +133,13 @@
       <div class="flex justify-between">
         <div class="">
           <h1 class="qh-text-4 font-bold">Posted By</h1>
-          <p class="">{{ qhDates.formatDate(job?.posted_on) }}</p>
+          <p class="qh-text-4">{{ qhDates.formatDate(job?.posted_on) }}</p>
         </div>
         <div class="">
           <h1 class="qh-text-4 font-bold">Application End</h1>
-          <p class="">{{ qhDates.formatDate(job?.application_ends) }}</p>
+          <p class="qh-text-4">
+            {{ qhDates.formatDate(job?.application_ends) }}
+          </p>
         </div>
       </div>
     </div>
@@ -150,6 +161,7 @@ import {
 } from 'vue-remix-icons';
 import { useJobStore } from '~/store/job-store';
 import { useUserStore } from '~/store/user-store';
+import { FireIcon } from '@heroicons/vue/24/solid';
 
 const { getApplyForJob } = useJobStore();
 const { job } = storeToRefs(useJobStore());

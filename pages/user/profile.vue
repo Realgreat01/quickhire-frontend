@@ -65,9 +65,7 @@
             />
           </h2>
 
-          <div
-            class="flex w-full flex-col justify-between gap-y-4 md:flex-row md:gap-x-10"
-          >
+          <div class="flex w-full flex-col justify-between gap-y-4 md:gap-x-10">
             <qh-card class="!w-full">
               <h1 class="my-2 font-bold text-success-500">Top Skills</h1>
               <div class="flex w-full flex-wrap">
