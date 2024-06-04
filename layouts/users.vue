@@ -7,7 +7,7 @@
       <div class="sticky bottom-0 top-0">
         <LayoutsNavbar class="sticky top-0 z-10" />
 
-        <NuxtPage class="scroll overflow-y-scroll bg-white pb-4 pl-2 md:p-4" />
+        <NuxtPage class="scroll overflow-y-scroll pb-4 pl-2 md:p-4" />
       </div>
     </div>
 
@@ -35,7 +35,7 @@ import { QH_ROUTES } from '~/constants/routes';
 const { getCurrentUser, getProjects, getExperiences, getEducation, getSkills } =
   useUserStore();
 
-const { getAllJobs, getAppliedJobs } = useJobStore();
+const { getAllJobs, getAppliedJobs, getJobRecommendations } = useJobStore();
 
 const route = useRoute();
 const router = useRouter();
@@ -73,14 +73,15 @@ const modalController = computed(() => {
   };
 });
 
-onBeforeMount(() => {
-  getCurrentUser();
-  getProjects();
-  getExperiences();
-  getEducation();
-  getAllJobs();
-  getSkills();
-  getAppliedJobs();
+onBeforeMount(async () => {
+  await getCurrentUser();
+  await getProjects();
+  await getExperiences();
+  await getEducation();
+  await getAllJobs();
+  await getSkills();
+  await getAppliedJobs();
+  await getJobRecommendations();
 });
 </script>
 

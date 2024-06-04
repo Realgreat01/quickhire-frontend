@@ -58,26 +58,20 @@
             </div>
             <div class="my-5">
               <RouterLink
-                v-for="{
-                  class: className,
-                  route: routeName,
-                  icon,
-                  title,
-                  action,
-                } in navbar"
-                :to="{ name: routeName }"
-                class="router flex w-full cursor-pointer p-1 pl-4 font-bold hover:scale-[1.025]"
+                :to="{ name: nav.route }"
+                class="router flex w-52 cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
+                v-for="nav in UserNavigations"
                 :class="
-                  route.name === routeName || route.path.includes(routeName)
-                    ? className
+                  currentRoute.name === nav.route ||
+                  currentRoute.path.includes(nav.route)
+                    ? nav.class
                     : 'text-dark-400'
                 "
-                :key="routeName"
-                @click="action"
+                :key="nav.route"
               >
-                <component :is="icon" class="mr-3 h-5 w-5 rounded" />
+                <component :is="nav.icon" class="mr-3 h-5 w-5 rounded" />
                 <h1 class="qh-text-4 font-normal">
-                  {{ title }}
+                  {{ nav.title }}
                 </h1>
               </RouterLink>
             </div>
@@ -96,8 +90,10 @@
         <!--  -->
         <qh-button
           class="h-8 md:w-28"
-          v-show="actionButtonPages.includes(route.name as string)"
-          @click="() => router.replace({ query: { add: route.meta.name } })"
+          v-show="actionButtonPages.includes(currentRoute.name as string)"
+          @click="
+            () => router.replace({ query: { add: currentRoute.meta.name } })
+          "
         >
           <RiAddCircleLine class="h-6 w-6 rounded fill-white" />
           <!-- <h1 class="qh-text-4 font-normal"></h1> -->
@@ -118,28 +114,9 @@
 
 <script setup lang="ts">
 import {
-  RiAddCircleFill,
-  RiProfileFill,
   RiAddCircleLine,
-  RiProfileLine,
   RiEyeLine,
   RiNotification3Fill,
-  RiUser2Line,
-  RiBriefcase2Line,
-  RiBox3Line,
-  RiGraduationCapLine,
-  RiSendPlaneLine,
-  RiSettings4Line,
-  RiHomeOfficeLine,
-  RiContactsLine,
-  RiUser2Fill,
-  RiBriefcase2Fill,
-  RiBox3Fill,
-  RiGraduationCapFill,
-  RiSendPlaneFill,
-  RiHomeOfficeFill,
-  RiSettings4Fill,
-  RiContactsFill,
 } from 'vue-remix-icons';
 import { ArrowRightStartOnRectangleIcon } from '@heroicons/vue/24/outline';
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/vue/24/solid';
@@ -149,11 +126,11 @@ import { storeToRefs } from 'pinia';
 import { useUserStore } from '~/store/user-store';
 import { QH_ROUTES } from '~/constants/routes';
 import chatHistory from '~/data/chats.json';
+import { UserNavigations } from './user-navigations';
 
-const { closeDropdown } = useModalStore();
 const { fullname, user, skills } = storeToRefs(useUserStore());
 
-const route = useRoute();
+const currentRoute = useRoute();
 const router = useRouter();
 const modalStore = useModalStore();
 
@@ -214,7 +191,7 @@ async function openLogoutModal() {
 }
 
 const routeNames = computed(() => {
-  switch (route.name) {
+  switch (currentRoute.name) {
     case QH_ROUTES.USER.DETAILS:
       return 'Profile';
     case QH_ROUTES.USER.EDUCATION:
@@ -239,75 +216,6 @@ const routeNames = computed(() => {
       return null;
   }
 });
-
-const navbar = markRaw([
-  {
-    title: 'Profile',
-    action: '',
-    route: QH_ROUTES.USER.DETAILS,
-    icon: RiUser2Line,
-    class: 'bg-teal-100  text-teal-600',
-  },
-  {
-    title: 'Education',
-    action: '',
-    route: QH_ROUTES.USER.EDUCATION,
-    icon: RiGraduationCapLine,
-    class: '!bg-brand-100  text-brand-600',
-  },
-  {
-    title: 'Work Details',
-    action: '',
-    route: QH_ROUTES.USER.WORK_DETAILS,
-    icon: RiBriefcase2Line,
-    class: 'bg-cyan-100  text-cyan-800',
-  },
-
-  {
-    title: 'Experience',
-    action: '',
-    route: QH_ROUTES.USER.EXPERIENCE,
-    icon: RiHomeOfficeLine,
-    class: 'bg-blue-100  text-blue-800',
-  },
-  {
-    title: 'Applied Jobs',
-    action: '',
-    route: QH_ROUTES.USER.APPLIED_JOBS,
-    icon: RiSendPlaneLine,
-    // active: route?.name.includes(QH_ROUTES.USER.APPLIED_JOBS),
-    class: 'bg-violet-100  text-violet-800',
-  },
-
-  {
-    title: 'Projects',
-    action: '',
-    route: QH_ROUTES.USER.PROJECTS,
-    icon: RiBox3Line,
-    class: 'bg-indigo-100  text-indigo-800',
-  },
-  {
-    title: 'Contact',
-    action: '',
-    route: QH_ROUTES.USER.CONTACT,
-    icon: RiContactsLine,
-    class: 'bg-cyan-100  text-cyan-800',
-  },
-  {
-    title: 'Settings',
-    action: '',
-    route: QH_ROUTES.USER.SETTINGS,
-    icon: RiSettings4Line,
-    class: 'bg-dark-100  text-dark-500',
-  },
-  {
-    title: 'Logout',
-    action: openLogoutModal,
-    route: '',
-    icon: ArrowRightStartOnRectangleIcon,
-    class: 'fill-error-800  text-error-800',
-  },
-]);
 </script>
 
 <style lang="scss" scoped></style>

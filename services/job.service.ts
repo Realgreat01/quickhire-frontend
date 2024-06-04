@@ -34,6 +34,12 @@ export const GET_SIMILAR_JOB = async (id: string) => {
     url: '/job/similar/' + id,
   });
 };
+export const GET_JOB_RECOMMENDATIONS = async () => {
+  return await ApiService.run({
+    method: ApiService.GET,
+    url: '/job/user/recommendations',
+  });
+};
 
 // COMPANY JOB ACTIONS
 

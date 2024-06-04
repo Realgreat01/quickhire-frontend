@@ -28,6 +28,13 @@ export const GET_USER_BY_USERNAME = async (username: string) => {
   });
 };
 
+export const GET_SIMILAR_USERS = async (username: string) => {
+  return await ApiService.run({
+    method: ApiService.GET,
+    url: '/public/users/' + username + '/similar',
+  });
+};
+
 export const UPDATE_USER_PROFILE_PICTURE = async (data: FormData) => {
   return await ApiService.run({
     method: ApiService.POST,

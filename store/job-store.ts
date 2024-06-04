@@ -9,6 +9,7 @@ import {
   GET_SIMILAR_JOB,
   GET_MATCHED_JOBS,
   UPDATE_JOB_APPLICANTS_STATUS,
+  GET_JOB_RECOMMENDATIONS,
 } from '~/services/job.service';
 import type { Job } from '~/types/job';
 import type { User } from '~/types/user';
@@ -25,8 +26,8 @@ interface AppliedJob extends Job {
 interface JobType {
   Job: Job | null;
   AllJobs: Job[] | null;
-  Jobs: Job[] | null;
   SimilarJobs: Job[] | null;
+  JobRecommendations: Job[] | null;
   Applied_Jobs: AppliedJob[] | null;
   CompanyJobs: Job[];
   JobApplicants: { user: User[] } | null;
@@ -44,8 +45,8 @@ export const useJobStore = defineStore('job', {
     return {
       Job: null,
       AllJobs: [],
-      Jobs: [],
       SimilarJobs: [],
+      JobRecommendations: [],
       Applied_Jobs: [],
       CompanyJobs: [],
       JobApplicants: null,
@@ -72,20 +73,24 @@ export const useJobStore = defineStore('job', {
       return this.Job;
     },
 
+    similarJobs(): Job[] | null {
+      return this.SimilarJobs;
+    },
+
+    jobRecommendations(): Job[] | null {
+      return this.JobRecommendations;
+    },
+
+    appliedJobs(): AppliedJob[] | null {
+      return this.Applied_Jobs;
+    },
+
     jobApplicants(): User[] | any {
       return this.JobApplicants;
     },
 
     jobApplicant(): User | any {
       return this.JobApplicant;
-    },
-
-    similarJobs(): Job[] | null {
-      return this.SimilarJobs;
-    },
-
-    appliedJobs(): AppliedJob[] | null {
-      return this.Applied_Jobs;
     },
   },
 
@@ -94,7 +99,6 @@ export const useJobStore = defineStore('job', {
       const res = await GET_ALL_JOBS();
       if (res.success) {
         this.AllJobs = res.data;
-        this.Jobs = res.data;
       }
     },
 
@@ -102,7 +106,12 @@ export const useJobStore = defineStore('job', {
       const res = await GET_MATCHED_JOBS(this.searchQuery);
       if (res.success) {
         this.AllJobs = res.data;
-        this.Jobs = res.data;
+      }
+    },
+    async getJobRecommendations() {
+      const res = await GET_JOB_RECOMMENDATIONS();
+      if (res.success) {
+        this.JobRecommendations = res.data;
       }
     },
 
@@ -143,6 +152,7 @@ export const useJobStore = defineStore('job', {
         await this.getAllJobs();
         await this.getSingleJob(id);
         await this.getAppliedJobs();
+        await this.getJobRecommendations();
       } else qhToast.error('Error applying for job');
     },
 

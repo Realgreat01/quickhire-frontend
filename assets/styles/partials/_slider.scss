@@ -3,10 +3,10 @@
   width: 100%;
 }
 .splide__slide.is-active {
-  border: 1px solid transparent !important;
+  // border: 1px solid #030698 !important;
 }
 .active-splide {
-  border: 1px solid #039855 !important;
+  // border: 1px solid #030698 !important;
   border-radius: 8px;
   background: #039855 !important;
   text-transform: capitalize;
@@ -16,13 +16,13 @@
 }
 
 .splide__track--nav > .splide__list {
-  // border: 2px solid #068e2f !important;
+  // border: 1px solid #030698 !important;
   border-radius: 8px;
   text-transform: capitalize;
   font-size: 16px !important;
 }
 .splide__slide.is-active {
-  border: 2px solid #068e2f;
+  // border: 1px solid #030698 !important;
   border-radius: 8px;
   text-transform: capitalize;
   font-size: 16px !important;

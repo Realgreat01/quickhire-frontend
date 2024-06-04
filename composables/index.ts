@@ -85,6 +85,7 @@ export const qhHelpers = {
       $ResetPinia();
       qhSecuredLS.clear();
       localStorage.clear();
+      document.cookie = '';
     }, 200);
   },
 

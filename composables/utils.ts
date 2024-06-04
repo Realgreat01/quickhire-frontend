@@ -20,7 +20,7 @@ export const qhDates = {
         v = n % 100;
       return n + (s[(v - 20) % 10] || s[v] || s[0]);
     }
-    if (date === null || '') return 'Present';
+    if (date === null || '' || undefined) return 'Present';
     const day = parseInt(format(date, 'd'), 10);
     const ordinalDay = getOrdinalNum(day);
     const month = format(date, 'MMMM');
@@ -29,8 +29,9 @@ export const qhDates = {
   },
 
   shortDate(date: string | Date | null) {
-    if (date === null || '') return 'Present';
-    const formattedDate = format(date, 'MMM yyyy');
+    if (date === null || '' || undefined) return 'Present';
+    const value = new Date(date);
+    const formattedDate = format(value, 'MMM yyyy');
     return formattedDate;
   },
 

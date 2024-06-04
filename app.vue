@@ -8,6 +8,7 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+    
     <qh-modal
       v-if="showModal"
       @continue="modalStore.continue"

@@ -9,6 +9,7 @@ import {
   EDIT_USER_DETAILS,
   EDIT_USER_PROJECTS,
   GET_ALL_USERS,
+  GET_SIMILAR_USERS,
   GET_USER_BY_USERNAME,
   GET_USER_DETAILS,
   GET_USER_EDUCATION,
@@ -33,7 +34,8 @@ interface UserType {
   Educations: Education[] | null;
   Experiences: Experience[] | null;
   Skills: Skills | null;
-  PublicUser: PublicUser | null;
+  PublicUser: User | null;
+  SimilarUsers: User[] | null;
   AllUsers: User[] | null;
   updating: boolean;
 }
@@ -47,7 +49,8 @@ export const useUserStore = defineStore('user', {
       Experiences: null,
       Skills: null,
       PublicUser: null,
-      AllUsers: null,
+      SimilarUsers: [],
+      AllUsers: [],
       updating: false,
     };
   },
@@ -76,8 +79,11 @@ export const useUserStore = defineStore('user', {
       return this.Skills;
     },
 
-    publicUser(): PublicUser | null {
+    publicUser(): User | null {
       return this.PublicUser;
+    },
+    similarUsers(): User[] | null {
+      return this.SimilarUsers;
     },
 
     fullname(): string {
@@ -92,9 +98,19 @@ export const useUserStore = defineStore('user', {
       const response = await GET_USER_BY_USERNAME(username);
       if (response.success) {
         this.PublicUser = response.data;
+        this.getSimilarUsers(username);
       }
       return response;
     },
+
+    async getSimilarUsers(username: string) {
+      const response = await GET_SIMILAR_USERS(username);
+      if (response.success) {
+        this.SimilarUsers = response.data;
+      }
+      return response;
+    },
+
     async getAllUsers() {
       const response = await GET_ALL_USERS();
       if (response.success) {

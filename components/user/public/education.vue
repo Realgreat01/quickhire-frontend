@@ -23,7 +23,7 @@
           </h1>
           <div class="hidden gap-x-1 md:flex">
             <h1 class="text-brand">
-              {{ qhDates.shortDate(education._date) }}
+              {{ qhDates.shortDate(education.entry_date) }}
             </h1>
             -
             <h1 class="text-brand">
@@ -41,7 +41,7 @@
               class="qh-text-4 flex gap-x-1 font-medium text-dark-400 md:hidden"
             >
               <h1 class=" ">
-                {{ qhDates.shortDate(education._date) }}
+                {{ qhDates.shortDate(education.entry_date) }}
               </h1>
               -
               <h1 class="">
