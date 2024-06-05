@@ -26,6 +26,7 @@
       :label="labelName"
       :placeholder="placeholder"
       :clearable="clearable"
+      class="qh-text-4 md:text-base"
     >
       <template #no-options>
         <div class="flex flex-col items-center justify-center">

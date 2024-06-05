@@ -26,3 +26,4 @@ logs
 
 # bin files
 bin
+package-lock.json

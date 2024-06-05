@@ -1,5 +1,7 @@
 <template>
-  <RiCloseFill class="my-auto flex h-6 w-6 items-center text-dark-400" />
+  <RiCloseFill
+    class="my-auto flex h-4 w-4 items-center text-dark-400 md:h-6 md:w-6"
+  />
 </template>
 
 <script setup lang="ts">

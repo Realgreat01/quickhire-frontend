@@ -20,20 +20,46 @@
     </div>
 
     <div
-      class="mx-auto flex w-full items-center gap-x-2 justify-self-end border-b border-brand-300 bg-white p-2"
+      class="mx-auto grid w-full grid-cols-2 items-center gap-x-2 justify-self-end border-b border-brand-300 bg-white p-2 md:flex md:flex"
     >
       <qh-input
         name="title"
         type="search"
-        class="flex-1 capitalize"
+        class="col-span-2 hidden flex-1 capitalize md:block"
         v-model="searchQuery.title"
         placeholder="frontend developer"
       />
       <qh-input
+        name="title"
+        type="search"
+        button-text="Search"
+        @button-click="searchJob"
+        class="col-span-2 block flex-1 capitalize md:hidden"
+        v-model="searchQuery.title"
+        placeholder="frontend developer"
+      />
+      <!-- <qh-button class="h-[42px] max-w-40" label="Search" @click="searchJob" /> -->
+      <div
+        class="text-brand"
+        v-for="job in jobQuery"
+        @click="job?.action ? getAllJob() : searchJob(job.key)"
+        :class="{
+          'bg-brand text-white':
+            searchQuery.title === job.key || route.query.title === job.key,
+        }"
+      >
+        <h2
+          class="qh-text-4 flex w-full cursor-pointer items-center justify-between border-b border-dashed border-brand-400 p-1 px-4 font-normal"
+        >
+          <span class="block"> {{ job.title }} </span>
+          <ArrowRightIcon class="h-4 w-4" />
+        </h2>
+      </div>
+      <qh-input
         name="job_location_type"
         type="select"
         v-model="searchQuery.location"
-        class="min-w-40 capitalize"
+        class="qh-text-4 capitalize placeholder:text-xs md:min-w-40"
         placeholder="Onsite"
         :options="jobLocationTypes"
         clearable
@@ -43,7 +69,7 @@
         type="select"
         v-model="searchQuery.type"
         placeholder="Full-Time"
-        class="min-w-40 capitalize"
+        class="qh-text-4 capitalize md:min-w-40"
         :options="jobTypes"
         clearable
       />
@@ -51,12 +77,16 @@
         name="experience_level"
         type="select"
         placeholder="Mid Level"
-        class="min-w-40 capitalize"
+        class="capitalize md:min-w-40"
         v-model="searchQuery.level"
         :options="experienceLevels"
         clearable
       />
-      <qh-button class="h-[42px] min-w-40" label="Search" @click="searchJob" />
+      <qh-button
+        class="qh-flex-center hidden h-[42px] md:flex md:min-w-40"
+        label="Search"
+        @click="searchJob"
+      />
     </div>
   </div>
 </template>
@@ -65,6 +95,7 @@
 import { ArrowLeftCircleIcon } from '@heroicons/vue/24/solid';
 import { QH_ROUTES } from '~/constants/routes';
 import { useJobStore } from '~/store/job-store';
+import { jobQuery } from './job-types';
 
 const { searchQuery } = storeToRefs(useJobStore());
 const { getAllJobs, getMatchedJobs } = useJobStore();
@@ -96,8 +127,9 @@ onMounted(() => {
   };
 });
 
-const searchJob = () => {
+const searchJob = (key?: string) => {
   router.replace({ name: QH_ROUTES.JOB.ALL, query: searchQuery.value });
+  if (key) searchQuery.value.title = key;
   if (
     searchQuery.value.title === '' &&
     searchQuery.value.location === '' &&
@@ -106,6 +138,12 @@ const searchJob = () => {
   ) {
     getAllJobs();
   } else getMatchedJobs();
+};
+
+const getAllJob = () => {
+  router.replace({ name: QH_ROUTES.JOB.ALL });
+  searchQuery.value.title = '';
+  getAllJobs();
 };
 </script>
 

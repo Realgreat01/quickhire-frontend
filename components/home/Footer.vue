@@ -103,7 +103,7 @@
         <h2 class="qh-text-3 mb-3 font-semibold text-brand-200 md:mb-20">
           Contact Address
         </h2>
-        <div class="flex flex-col-reverse">
+        <div class="flex flex-col">
           <div
             class="mb-4 flex items-center gap-x-6 fill-white"
             v-for="(contact, index) in contactInformation"
@@ -113,6 +113,17 @@
             <p class="cursor-pointer" @click="contact.action">
               {{ contact.contact }}
             </p>
+          </div>
+
+          <div
+            class="mb-4 flex items-center gap-x-6 fill-white"
+            v-for="(link, index) in socialLinks"
+            :key="index"
+          >
+            <component :is="link.icon" class="h-6 w-6" />
+            <a class="cursor-pointer" :href="link.link">
+              {{ link.title }}
+            </a>
           </div>
         </div>
       </div>
@@ -206,13 +217,38 @@ const othersLinks = ref([
 ]);
 
 const socialLinks = shallowRef([
-  { icon: RiInstagramFill, link: '' },
-  { icon: RiFacebookCircleFill, link: '' },
-  { icon: RiTwitterFill, link: '' },
-  { icon: RiLinkedinBoxFill, link: '' },
+  {
+    icon: RiTwitterFill,
+    link: 'https://x.com/quickhire_jobs',
+    title: 'X Formerly(Twitter)',
+  },
+  {
+    icon: RiLinkedinBoxFill,
+    link: 'https://www.linkedin.com/company/quickhire',
+    title: 'LinkedIn',
+  },
+  { icon: RiInstagramFill, link: '', title: 'Instagram' },
+  { icon: RiFacebookCircleFill, link: '', title: 'Facebook' },
 ]);
 
 const contactInformation = shallowRef([
+  {
+    icon: RiMapPinLine,
+    contact: 'Ugbowo Benin City, Edo State, Nigeria',
+    class: 'fill-white',
+    action: (): void => {
+      window.location.href =
+        'https://www.google.com/maps/search/' +
+        encodeURIComponent('Ugbowo Benin City, Edo State, Nigeria');
+    },
+  },
+  {
+    icon: RiMailLine,
+    contact: 'support@quickhire.com',
+    action: (): void => {
+      window.location.href = 'mailto:' + 'support@quickhire.com';
+    },
+  },
   {
     icon: RiWhatsappLine,
     contact: '+2347062215229',
@@ -225,23 +261,6 @@ const contactInformation = shallowRef([
     contact: '+2347062215229',
     action: (): void => {
       window.location.href = 'tel:' + '+2347062215229';
-    },
-  },
-  {
-    icon: RiMailLine,
-    contact: 'support@quickhire.com',
-    action: (): void => {
-      window.location.href = 'mailto:' + 'support@quickhire.com';
-    },
-  },
-  {
-    icon: RiMapPinLine,
-    contact: 'Ugbowo Benin City, Edo State, Nigeria',
-    class: 'fill-white',
-    action: (): void => {
-      window.location.href =
-        'https://www.google.com/maps/search/' +
-        encodeURIComponent('Ugbowo Benin City, Edo State, Nigeria');
     },
   },
 ]);

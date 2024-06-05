@@ -29,7 +29,7 @@
                 class="!h-6 rounded-full !py-2 px-4 text-xs capitalize"
                 :class="{
                   '!bg-success-500': job.job_status === 'open',
-                  '!bg-dark-400 !text-success-600': job.job_status === 'paused',
+                  '!bg-dark-400 !text-dark-50': job.job_status === 'paused',
                   '!bg-error': job.job_status === 'closed',
                 }"
                 :label="job?.job_status === 'open' ? 'Active' : job.job_status"
@@ -55,25 +55,25 @@
             <!-- Long Line -->
             <div class="hidden flex-wrap gap-1 !capitalize md:flex">
               <qh-button
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs text-xs !font-medium capitalize !text-brand-700"
+                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs !font-medium capitalize !text-brand-700"
               >
                 <RiHomeOfficeLine class="h-4 w-4" />
                 {{ job.job_location_type }}
               </qh-button>
               <qh-button
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs text-xs !font-medium !capitalize !text-brand-700"
+                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs !font-medium !capitalize !text-brand-700"
               >
                 <RiBriefcaseLine class="h-4 w-4" />
                 {{ job.job_type }}
               </qh-button>
               <qh-button
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs text-xs !font-medium capitalize !text-brand-700"
+                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs !font-medium capitalize !text-brand-700"
               >
                 <RiToolsLine class="h-4 w-4" />
                 {{ job?.experience_level + ' Level' }}
               </qh-button>
               <qh-button
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs text-xs !font-medium capitalize !text-brand-700"
+                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs !font-medium capitalize !text-brand-700"
               >
                 <RiHourglassLine class="h-4 w-4" />
                 {{

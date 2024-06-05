@@ -1,5 +1,5 @@
 <template>
-  <RiArrowDownSLine class="h-6 w-6 fill-dark-400" />
+  <RiArrowDownSLine class="my-auto flex h-4 w-4 text-dark-400 md:h-6 md:w-6" />
 </template>
 
 <script setup lang="ts">

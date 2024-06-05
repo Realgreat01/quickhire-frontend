@@ -270,7 +270,7 @@ const handleChange = (value: any) => {
 };
 
 const actionButtonClick = () => {
-  emit('button-click');
+  return emit('button-click');
 };
 
 const actionSelectedOptions = (value: any) => {
