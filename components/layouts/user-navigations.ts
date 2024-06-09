@@ -1,9 +1,3 @@
-import { storeToRefs } from 'pinia';
-import { useUserStore } from '~/store/user-store';
-import { RouterLink, useRouter } from 'vue-router';
-
-const router = useRouter();
-
 import {
   RiUser2Line,
   RiBriefcase2Line,
@@ -13,15 +7,6 @@ import {
   RiSettings4Line,
   RiHomeOfficeLine,
   RiContactsLine,
-
-  // RiUser2Fill,
-  // RiBriefcase2Fill,
-  // RiBox3Fill,
-  // RiGraduationCapFill,
-  // RiSendPlaneFill,
-  // RiSettings4Fill,
-  // RiHomeOfficeFill,
-  // RiContactsFill,
 } from 'vue-remix-icons';
 import { QH_ROUTES } from '~/constants/routes';
 

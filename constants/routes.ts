@@ -5,6 +5,7 @@ export class QH_ROUTES {
     INDEX: 'company',
     REGISTER: 'company-register',
     LOGIN: 'company-login',
+    FORGOT_PASSWORD: 'company-forgot-password',
 
     INFO: 'company-info',
     ADDRESS: 'company-address',
@@ -25,6 +26,10 @@ export class QH_ROUTES {
   static USER = {
     LOGIN: 'auth-login',
     REGISTER: 'create-account',
+    FORGOT_PASSWORD: 'forgot-password',
+    RESET_PASSWORD: 'reset-password',
+    CHANGE_PASSWORD: 'change-password',
+    UPDATE_PASSWORD: 'update-password',
 
     // MODALS AND ROUTES
     INDEX: 'user',

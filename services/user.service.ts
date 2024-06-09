@@ -37,7 +37,7 @@ export const GET_SIMILAR_USERS = async (username: string) => {
 
 export const UPDATE_USER_PROFILE_PICTURE = async (data: FormData) => {
   return await ApiService.run({
-    method: ApiService.POST,
+    method: ApiService.PUT,
     url: '/user/update/profile-picture',
     data,
     headers: {

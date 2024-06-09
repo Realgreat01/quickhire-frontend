@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div
+  <div class="grid grid-cols-[3fr,2fr]">
+    <qh-card
       class="flex flex-col gap-y-4 rounded-lg border border-brand-50 bg-white p-4"
     >
       <!-- 1 -->
@@ -24,8 +24,7 @@
                 class="!h-6 rounded-full !py-2 px-4 text-xs capitalize"
                 :class="{
                   '!bg-success-500': job?.job_status === 'open',
-                  '!bg-dark-400 !text-success-600':
-                    job?.job_status === 'paused',
+                  '!bg-dark-400 !text-dark-50': job?.job_status === 'paused',
                   '!bg-error': job?.job_status === 'closed',
                 }"
                 :label="job?.job_status === 'open' ? 'Active' : job?.job_status"
@@ -112,7 +111,7 @@
           <!-- <p class="">{{ qhDates.formatDate(job?.application_ends) }}</p> -->
         </div>
       </div>
-    </div>
+    </qh-card>
   </div>
 </template>
 

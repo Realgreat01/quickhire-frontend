@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div class="relative grid h-[80vh] w-full gap-4 md:grid-cols-[5fr,3fr]">
-      <jobs-single />
-      <jobs-related />
-    </div>
+  <div class="relative grid w-full gap-4 md:h-[80vh] md:grid-cols-[5fr,3fr]">
+    <jobs-single />
+    <jobs-related />
   </div>
 </template>
 

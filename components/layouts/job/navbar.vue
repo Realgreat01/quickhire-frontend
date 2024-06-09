@@ -20,6 +20,7 @@
     </div>
 
     <div
+      
       class="mx-auto grid w-full grid-cols-2 items-center gap-x-2 justify-self-end border-b border-brand-300 bg-white p-2 md:flex md:flex"
     >
       <qh-input
@@ -38,23 +39,18 @@
         v-model="searchQuery.title"
         placeholder="frontend developer"
       />
-      <!-- <qh-button class="h-[42px] max-w-40" label="Search" @click="searchJob" /> -->
-      <div
-        class="text-brand"
-        v-for="job in jobQuery"
-        @click="job?.action ? getAllJob() : searchJob(job.key)"
-        :class="{
-          'bg-brand text-white':
-            searchQuery.title === job.key || route.query.title === job.key,
-        }"
-      >
-        <h2
-          class="qh-text-4 flex w-full cursor-pointer items-center justify-between border-b border-dashed border-brand-400 p-1 px-4 font-normal"
-        >
-          <span class="block"> {{ job.title }} </span>
-          <ArrowRightIcon class="h-4 w-4" />
-        </h2>
-      </div>
+
+      <qh-input
+        name="job_location_type"
+        type="select"
+        v-model="searchQuery.title"
+        class="qh-text-4 qh-full-width capitalize placeholder:text-xs md:min-w-40"
+        placeholder="Onsite"
+        :options="jobQuery"
+        @change="searchJob"
+        :reduce="(item: any) => item.key"
+        label-name="title"
+      />
       <qh-input
         name="job_location_type"
         type="select"
@@ -92,7 +88,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowLeftCircleIcon } from '@heroicons/vue/24/solid';
+import { ArrowLeftCircleIcon, ArrowRightIcon } from '@heroicons/vue/24/solid';
 import { QH_ROUTES } from '~/constants/routes';
 import { useJobStore } from '~/store/job-store';
 import { jobQuery } from './job-types';

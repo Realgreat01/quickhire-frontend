@@ -38,6 +38,11 @@ interface JobType {
     location: string;
     level: string;
   };
+
+  loadingJob: boolean;
+  loadingJobRecommendations: boolean;
+  loadingCompanyJob: boolean;
+  loadingAppliedJob: boolean;
 }
 
 export const useJobStore = defineStore('job', {
@@ -58,6 +63,11 @@ export const useJobStore = defineStore('job', {
         location: '',
         level: '',
       },
+
+      loadingJob: false,
+      loadingJobRecommendations: false,
+      loadingCompanyJob: false,
+      loadingAppliedJob: false,
     };
   },
 
@@ -109,18 +119,22 @@ export const useJobStore = defineStore('job', {
       }
     },
     async getJobRecommendations() {
+      this.loadingJobRecommendations = true;
       const res = await GET_JOB_RECOMMENDATIONS();
       if (res.success) {
         this.JobRecommendations = res.data;
       }
+      this.loadingJobRecommendations = false;
     },
 
     async getSingleJob(id: string) {
+      this.loadingJob = true;
       const res = await GET_SINGLE_JOB(id);
       if (res.success) {
         this.Job = res.data;
         this.SimilarJobs = (await GET_SIMILAR_JOB(id)).data;
       } else qhToast.error('Unable to get Job');
+      this.loadingJob = false;
     },
 
     async getJobApplicants(id: string) {
@@ -157,16 +171,25 @@ export const useJobStore = defineStore('job', {
     },
 
     async getAppliedJobs() {
+      this.loadingAppliedJob = true;
       const res = await GET_APPLIED_JOB();
+
+      if (res) {
+        this.loadingAppliedJob = false;
+      }
+
       if (res.success) {
         this.Applied_Jobs = res.data;
       }
     },
+
     async getCompanyJobs() {
+      this.loadingCompanyJob = true;
       const res = await GET_COMPANY_JOBS();
       if (res.success) {
         this.CompanyJobs = res.data;
       }
+      this.loadingCompanyJob = false;
     },
   },
   persist: true,

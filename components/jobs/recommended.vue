@@ -1,5 +1,6 @@
 <template>
   <qh-card
+    :loading="loadingJobRecommendations"
     class="sticky top-0 mb-4 min-h-[calc(100vh-100px)] overflow-y-scroll bg-white p-4"
   >
     <h1 class="qh-text-2 mb-5 text-center font-bold text-brand">
@@ -65,7 +66,8 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid';
 import { storeToRefs } from 'pinia';
 import { QH_ROUTES } from '~/constants/routes';
 import { useJobStore } from '~/store/job-store';
-const { jobRecommendations } = storeToRefs(useJobStore());
+const { jobRecommendations, loadingJobRecommendations } =
+  storeToRefs(useJobStore());
 const { getSingleJob } = useJobStore();
 </script>
 

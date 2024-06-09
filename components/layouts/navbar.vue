@@ -58,12 +58,12 @@
             </div>
             <div class="my-5">
               <RouterLink
-                :to="{ name: nav.route }"
+                :to="{ name: nav?.route }"
                 class="router flex w-52 cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
                 v-for="nav in UserNavigations"
                 :class="
                   currentRoute.name === nav.route ||
-                  currentRoute.path.includes(nav.route)
+                  currentRoute.path.includes(nav?.route)
                     ? nav.class
                     : 'text-dark-400'
                 "
@@ -74,6 +74,15 @@
                   {{ nav.title }}
                 </h1>
               </RouterLink>
+              <div
+                class="router flex w-52 cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
+              >
+                <ArrowRightStartOnRectangleIcon
+                  class="mr-3 h-5 w-5 fill-error text-error"
+                  @click="openLogoutModal"
+                />
+                <h1 class="qh-text-4 font-normal">Logout</h1>
+              </div>
             </div>
           </div>
         </qh-dropdown>
@@ -118,7 +127,10 @@ import {
   RiEyeLine,
   RiNotification3Fill,
 } from 'vue-remix-icons';
-import { ArrowRightStartOnRectangleIcon } from '@heroicons/vue/24/outline';
+import {
+  ArrowRightStartOnRectangleIcon,
+  ArrowRightIcon,
+} from '@heroicons/vue/24/outline';
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/vue/24/solid';
 import { useRoute, useRouter } from 'vue-router';
 import { useModalStore } from '~/store/modal-store';

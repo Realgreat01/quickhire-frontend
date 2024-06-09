@@ -12,6 +12,7 @@
     >
       <div class="flex w-full gap-x-2">
         <img :src="company?.logo" alt="" class="block h-12" />
+
         <!-- 2 -->
         <div class="flex flex-col gap-2">
           <div class="flex gap-4">
@@ -29,6 +30,13 @@
                 '!bg-error': job.job_status === 'closed',
               }"
               :label="job?.job_status === 'open' ? 'Active' : job.job_status"
+            />
+
+            <qh-button
+              class="!h-6 rounded-full border bg-transparent !py-2 px-4 text-xs capitalize !text-dark"
+              :label="
+                qhNumbers.formatNumber(job.applicants_count) + ' Applicants'
+              "
             />
           </div>
           <div class="flex gap-x-1 !capitalize">
