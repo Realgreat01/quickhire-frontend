@@ -115,7 +115,7 @@ const DefaultContent = async () => {
           // },
           user?.email,
           user?.phone_number ?? '',
-          `${user?.address?.state + ',' ?? ''} ${user?.address?.country}`,
+          `${user?.address?.state ?? ''} ${user?.address?.country}`,
         ],
       },
     ],
@@ -327,18 +327,10 @@ const generatePDFTemplate = async () => {
         user?.settings.show_summary === true
           ? definitions?.SummaryColumn
           : null,
-        {
-          columns: [
-            {
-              width: '60%',
-              stack: [definitions?.experienceList, definitions?.projectList],
-            },
-            {
-              width: '40%',
-              stack: [definitions?.educationList, definitions?.stackList],
-            },
-          ],
-        },
+        definitions?.experienceList,
+        definitions?.educationList,
+        definitions?.stackList,
+        definitions?.projectList,
       ],
 
       info: {
