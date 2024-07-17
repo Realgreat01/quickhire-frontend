@@ -4,7 +4,7 @@
 
     <div
       class="mb-32 w-full items-start justify-self-start p-8 md:mb-0"
-      v-if="userNotFound"
+      v-else-if="userNotFound"
     >
       <icons-logo class="text-brand" />
       <div class="qh-flex-center h-[80vh] flex-col text-center">

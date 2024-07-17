@@ -5,11 +5,11 @@
       <qh-slider>
         <qh-slide
           v-for="(user, index) in similarUsers"
-          :key="user._id"
+          :key="user?._id"
           @click="
             router.push({
               name: QH_ROUTES.USER.PREVIEW,
-              params: { username: user.username },
+              params: { username: user?.username },
             })
           "
           class="card !h-48 !w-80 gap-4 bg-white p-4"
@@ -29,10 +29,11 @@
                 @{{ user?.username }}
               </h2>
               <h2 class="qh-text-5 font-medium text-success">
+                .
                 {{ user?.address.country }}
               </h2>
               <h1 class="qh-text-5 font-medium">
-                {{ user.skills?.stack ?? 'Software Developer' }}
+                {{ user?.skills?.stack ?? 'Software Developer' }}
               </h1>
             </div>
           </div>

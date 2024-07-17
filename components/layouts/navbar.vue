@@ -91,7 +91,7 @@
 
     <div class="mx-2 flex items-center justify-between md:mx-6">
       <h1
-        class="qh-text-1 font-bebas my-4 w-fit p-4 font-bold text-success-600"
+        class="qh-text-1 font-bebas my-4 w-fit p-4 font-bold text-secondary-600"
       >
         {{ routeNames }}
       </h1>

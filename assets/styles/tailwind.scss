@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer {
+  .dark {
+    .card {
+      background-color: var(--dark-300);
+    }
+    body {
+      //   @apply;
+    }
+  }
+}

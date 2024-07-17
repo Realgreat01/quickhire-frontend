@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap');
 
+@import './partials/qh-variables';
 @import './partials/qh-styles';
 @import './partials/qh-form';
 @import './partials/qh-toast';
@@ -105,9 +106,6 @@ input[type='number'] {
 }
 
 .card {
-  border: 1px solid #edeaea;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px #e8e8e8;
   transition: box-shadow 0.3s ease;
   &:hover {
     box-shadow: 0 5px 15px #7d7d7d4c;

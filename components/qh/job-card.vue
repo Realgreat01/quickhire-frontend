@@ -24,7 +24,7 @@
           <h1 class="qh-text-4 flex items-center font-bold text-brand">
             <span class=""> {{ job.posted_by?.company_name }}</span>
             <RiVerifiedBadgeFill
-              class="ml-1 h-[14px] w-[14px] fill-success-500"
+              class="ml-1 h-[14px] w-[14px] fill-secondary-500"
             />
           </h1>
 
@@ -55,7 +55,7 @@
           />
           <span class="text-sm text-dark-400">{{ job.job_location_type }}</span>
         </div>
-        <h1 class="qh-text-4 font-bold text-success">
+        <h1 class="qh-text-4 font-bold text-secondary">
           {{
             qhNumbers.formatCurrency(
               qhNumbers.convertCurrencyToNumber(

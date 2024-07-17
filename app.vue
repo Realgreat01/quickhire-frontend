@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="dark:bg-white dark:text-dark-800">
     <Notivue v-slot="item">
       <Notification :item="item" />
       <NotificationProgress :item="item" />
@@ -8,7 +8,7 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    
+
     <qh-modal
       v-if="showModal"
       @continue="modalStore.continue"

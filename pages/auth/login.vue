@@ -7,13 +7,21 @@
       >
         <qh-input label="email" name="email" required />
         <qh-input label="Password" name="password" type="password" required />
-        <qh-button
-          label="Login"
-          type="submit"
-          class="mt-4 h-10 w-full p-1"
-          :loading="isSubmitting"
-          :disabled="Object.keys(errors).length !== 0 || isSubmitting"
-        />
+        <div class="flex flex-col">
+          <qh-button
+            label="Login"
+            type="submit"
+            class="mb-0 mt-4 h-10 w-full p-1"
+            :loading="isSubmitting"
+            :disabled="Object.keys(errors).length !== 0 || isSubmitting"
+          />
+
+          <RouterLink
+            class="qh-text-4 my-1 flex w-full justify-end font-medium text-brand"
+            :to="{ name: QH_ROUTES.USER.FORGOT_PASSWORD }"
+            >Forgot Password ?</RouterLink
+          >
+        </div>
       </form>
     </VeeForm>
     <h1 class="qh-text-4 mb-2 mt-4 text-center">
@@ -24,7 +32,7 @@
     </h1>
     <h1 class="qh-text-4 text-center">
       <RouterLink class="text-brand" :to="{ name: QH_ROUTES.COMPANY.LOGIN }"
-        >Log in as Company</RouterLink
+        >QuickHire Business</RouterLink
       >
     </h1>
   </div>
@@ -42,7 +50,8 @@ definePageMeta({
   layout: 'auth',
   name: QH_ROUTES.USER.LOGIN,
   title: 'Sign In',
-   middleware: 'logged-in-user',
+  pageHint: 'Enter your email and password to continue!',
+  middleware: 'logged-in-user',
 });
 
 const router = useRouter();

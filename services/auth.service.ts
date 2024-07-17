@@ -1,11 +1,13 @@
 import type {
   LOGIN_COMPANY_PAYLOAD,
   REGISTER_COMPANY_PAYLOAD,
+  REGISTER_USER_PAYLOAD,
+  RESET_PASSWORD_PAYLOAD,
+  LOGIN_PAYLOAD,
 } from '~/types/auth';
 import ApiService from './api-service.service';
-import type { LOGIN_PAYlOAD } from '~/types/auth';
 
-export const LOG_IN_USER = async (data: LOGIN_PAYlOAD) => {
+export const LOG_IN_USER = async (data: LOGIN_PAYLOAD) => {
   return await ApiService.run({
     method: ApiService.POST,
     url: '/auth/login',
@@ -13,7 +15,7 @@ export const LOG_IN_USER = async (data: LOGIN_PAYlOAD) => {
   });
 };
 
-export const REGISTER_USER = async (data: LOGIN_PAYlOAD) => {
+export const REGISTER_USER = async (data: REGISTER_USER_PAYLOAD) => {
   return await ApiService.run({
     method: ApiService.POST,
     url: '/auth/register',
@@ -21,18 +23,18 @@ export const REGISTER_USER = async (data: LOGIN_PAYlOAD) => {
   });
 };
 
-export const CHANGE_PASSWORD_USER = async (data: LOGIN_PAYlOAD) => {
+export const FORGOT_PASSWORD_USER = async (data: { email: string }) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: '/auth/users/login',
+    url: '/auth/forgot-password',
     data,
   });
 };
 
-export const FORGOT_PASSWORD_USER = async (data: LOGIN_PAYlOAD) => {
+export const RESET_PASSWORD_USER = async (data: RESET_PASSWORD_PAYLOAD) => {
   return await ApiService.run({
     method: ApiService.POST,
-    url: '/auth/users/login',
+    url: '/auth/reset-password',
     data,
   });
 };
@@ -53,7 +55,7 @@ export const REGISTER_COMPANY = async (data: REGISTER_COMPANY_PAYLOAD) => {
   });
 };
 
-export const CHANGE_PASSWORD_COMPANY = async (data: LOGIN_PAYlOAD) => {
+export const RESET_PASSWORD_COMPANY = async (data: RESET_PASSWORD_PAYLOAD) => {
   return await ApiService.run({
     method: ApiService.POST,
     url: '/auth/users/login',
@@ -61,7 +63,7 @@ export const CHANGE_PASSWORD_COMPANY = async (data: LOGIN_PAYlOAD) => {
   });
 };
 
-export const FORGOT_PASSWORD_COMPANY = async (data: LOGIN_PAYlOAD) => {
+export const FORGOT_PASSWORD_COMPANY = async (data: { email: string }) => {
   return await ApiService.run({
     method: ApiService.POST,
     url: '/auth/users/login',

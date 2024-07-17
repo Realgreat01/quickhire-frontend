@@ -27,6 +27,7 @@ export class QH_ROUTES {
     LOGIN: 'auth-login',
     REGISTER: 'create-account',
     FORGOT_PASSWORD: 'forgot-password',
+    VERIFY_OTP: 'verify-otp',
     RESET_PASSWORD: 'reset-password',
     CHANGE_PASSWORD: 'change-password',
     UPDATE_PASSWORD: 'update-password',

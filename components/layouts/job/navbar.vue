@@ -4,7 +4,7 @@
       <h1
         class="qh-text-1 font-bebas flex w-fit items-center justify-center gap-x-6 p-4 font-bold text-success-600"
       >
-        <span class="block">JOB BOARD</span>
+        <span class="block text-secondary">JOB BOARD</span>
         <qh-button
           class="h-10 rounded-2xl !bg-transparent !px-0 !py-0"
           v-if="$route.name !== QH_ROUTES.JOB.ALL"
@@ -20,7 +20,6 @@
     </div>
 
     <div
-      
       class="mx-auto grid w-full grid-cols-2 items-center gap-x-2 justify-self-end border-b border-brand-300 bg-white p-2 md:flex md:flex"
     >
       <qh-input

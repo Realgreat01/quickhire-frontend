@@ -6,8 +6,9 @@
       />
       <div class="sticky bottom-0 top-0">
         <LayoutsNavbar class="sticky top-0 z-10" />
-
-        <NuxtPage class="scroll overflow-y-scroll pb-4 pl-2 md:p-4" />
+        <div class="scroll overflow-y-scroll pb-4 pl-2 md:p-4">
+          <NuxtPage />
+        </div>
       </div>
     </div>
 

@@ -1,7 +1,9 @@
 <template>
-  <div class="mt-20 bg-brand-950 py-20 text-slate-400">
+  <div
+    class="bg-brand-900 py-20 text-dark-300 dark:bg-brand-100 dark:text-dark-800"
+  >
     <div>
-      <h1 class="qh-text-1 mb-4 font-bold text-white">Join Our NewsLetter</h1>
+      <h1 class="qh-text-1 mb-4 font-bold">Join Our NewsLetter</h1>
 
       <VeeForm v-slot="{ handleSubmit, isSubmitting, errors }">
         <form
@@ -40,14 +42,14 @@
           <div class="flex flex-col gap-1">
             <label
               for="email"
-              class="font-medium text-brand-200"
+              class="font-medium text-brand-200 dark:text-brand-900"
               v-if="showOtherFields"
             >
               Email Address
               <span class="!font-normal text-error">*</span></label
             >
             <div
-              class="mb-10 mt-0 flex h-12 items-center overflow-hidden rounded-xl bg-white"
+              class="mb-10 mt-0 flex h-12 items-center overflow-hidden rounded-xl bg-white !p-0 dark:bg-dark-400"
             >
               <qh-input
                 v-model="subscriber.email"
@@ -57,11 +59,11 @@
                 hideErrorMessage
                 :rules="ValidationRules.userDetails.email"
                 @input="showOtherFields = true"
-                class="w-full flex-1 rounded-none border-none focus:!ring-0 focus:!ring-transparent"
+                class="w-full flex-1 rounded-none !rounded-r-none border-none focus:!ring-0 focus:!ring-transparent"
               />
               <qh-button
                 label="Subscribe"
-                class="h-14 md:!w-48"
+                class="!h-12 md:!w-48"
                 type="submit"
                 :loading="isSubmitting"
                 :disabled="Object.keys(errors).length !== 0 || isSubmitting"
@@ -72,7 +74,7 @@
       </VeeForm>
     </div>
 
-    <icons-logo class="text-white" />
+    <icons-logo class="text-white dark:text-dark-950" />
     <div class="grid gap-x-12 gap-y-6 md:grid-cols-[4fr,2fr,5fr,4fr]">
       <div class="">
         <p class="mt-4">
@@ -86,7 +88,9 @@
       <!--  -->
 
       <div class="">
-        <h2 class="qh-text-3 mb-2 font-semibold text-brand-200 md:mb-20">
+        <h2
+          class="qh-text-3 mb-2 font-semibold text-brand-200 md:mb-20 dark:text-brand-900"
+        >
           Quick Links
         </h2>
         <h2
@@ -100,7 +104,9 @@
 
       <!--  -->
       <div class="">
-        <h2 class="qh-text-3 mb-3 font-semibold text-brand-200 md:mb-20">
+        <h2
+          class="qh-text-3 mb-3 font-semibold text-brand-200 md:mb-20 dark:text-brand-900"
+        >
           Contact Address
         </h2>
         <div class="flex flex-col">
@@ -131,7 +137,9 @@
       <!--  -->
 
       <div class="">
-        <h2 class="qh-text-3 mb-3 font-semibold text-brand-200 md:mb-20">
+        <h2
+          class="qh-text-3 mb-3 font-semibold text-brand-200 md:mb-20 dark:text-brand-900"
+        >
           Resources
         </h2>
         <div class="flex h-80 flex-col flex-wrap">

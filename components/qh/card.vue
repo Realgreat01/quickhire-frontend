@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card p-4"
+    class="card rounded-lg border p-4"
     :class="{ Class, 'skeleton  bg-grays-100': loading }"
     v-bind="$attrs"
   >

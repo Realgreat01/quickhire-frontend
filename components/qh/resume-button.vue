@@ -335,7 +335,6 @@ const generatePDFTemplate = async () => {
 
       info: {
         title: fullname.value + ' Resumé',
-
         author: 'QuickHire',
         creator: 'QuickHire',
         producer: 'QuickHire',

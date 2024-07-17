@@ -67,7 +67,7 @@
 
           <div class="flex w-full flex-col justify-between gap-y-4 md:gap-x-10">
             <qh-card class="!w-full">
-              <h1 class="my-2 font-bold text-success-500">Top Skills</h1>
+              <h1 class="my-2 font-bold text-secondary-500">Top Skills</h1>
               <div class="flex w-full flex-wrap">
                 <qh-devicon
                   v-for="(skill, index) in skills?.top_skills"
@@ -78,7 +78,7 @@
               </div>
             </qh-card>
             <qh-card>
-              <h1 class="my-2 font-bold text-success-500">
+              <h1 class="my-2 font-bold text-secondary-500">
                 Programming Languages
               </h1>
               <div class="flex flex-wrap">
@@ -92,7 +92,7 @@
             </qh-card>
 
             <qh-card>
-              <h1 class="my-2 font-bold text-success-500">
+              <h1 class="my-2 font-bold text-secondary-500">
                 Framworks and Technologies
               </h1>
               <div class="flex flex-wrap">

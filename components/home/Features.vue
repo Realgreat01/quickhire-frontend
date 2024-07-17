@@ -1,42 +1,39 @@
 <template>
-  <div>
-    <h1 class="qh-text-1 invisible mb-4 md:mb-5">Features</h1>
+  <div
+    class="bg-brand-950 py-20 text-dark-100 dark:bg-brand-50 dark:text-dark-800"
+  >
+    <h1 class="qh-text-1 mb-4 text-dark-200 md:mb-5 dark:text-dark-800">
+      Features
+    </h1>
 
-    <div class="w-full">
-      <div
-        class="flex w-full flex-col-reverse gap-2 bg-white p-1 py-10 md:flex-row md:gap-40 md:p-6"
+    <div class="grid w-full grid-cols-3 gap-4">
+      <qh-card
+        class="flex flex-col-reverse gap-2 !border-dark-600 bg-brand-900 p-1 py-10 !shadow-none md:flex-row md:gap-40 md:p-6 dark:border-none dark:bg-brand-100"
         v-for="(feature, index) in features.filter((x) => x.show === true)"
-        :class="{ 'md:flex-row-reverse ': index % 2 === 1 }"
       >
-        <div
-          class="w-full md:w-[45%]"
-          :data-aos="index % 2 === 0 ? 'fade-up' : 'fade-left'"
-        >
-          <div class="flex items-start gap-x-4" :class="feature?.class">
+        <div class="w-full md:w-[100%]">
+          <div class="flex items-center gap-x-4" :classs="feature?.class">
             <component
               :is="feature.icon"
-              class="hidden h-16 w-16 fill-secondary-500"
-              :class="feature.class"
+              class="h-8 w-8 fill-brand-300 dark:fill-brand-700"
+              :classs="feature.class"
             />
 
             <h4
-              class="qh-text-1 mb-2 font-semibold text-brand-500 md:mb-8 md:text-5xl"
+              class="qh-text-3 font-semibold text-brand-100 dark:text-brand-900"
             >
               {{ feature.title }}
             </h4>
           </div>
 
-          <h4 class="qh-text-3 w-full font-normal">
+          <h4
+            class="qh-text-4 w-full font-normal text-dark-300 dark:text-dark-800"
+          >
             {{ feature.description }}
           </h4>
         </div>
         <div
-          :class="{
-            'md:rotate-[2deg] ': index % 2 === 0,
-            'md:rotate-[-2deg] ': index % 2 === 1,
-          }"
-          :data-aos="index % 2 === 0 ? 'fade-right' : 'fade-left'"
-          class="w-full border border-dashed border-dark-300 md:w-[55%]"
+          class="hidden w-full border border-dashed border-dark-300 md:w-[55%]"
         >
           <img
             :src="feature?.image"
@@ -44,7 +41,7 @@
             class="h-40 w-full transform object-cover object-top p-4 md:h-80 md:object-cover"
           />
         </div>
-      </div>
+      </qh-card>
     </div>
   </div>
 </template>

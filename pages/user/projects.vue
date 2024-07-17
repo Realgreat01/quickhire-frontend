@@ -22,7 +22,7 @@
         />
         <div class="my-4 font-light text-dark">
           <RiBox3Fill class="icon h-10 w-10 fill-brand" />
-          <h1 class="qh-text-2 font-bold text-success-500">
+          <h1 class="qh-text-2 font-bold text-secondary-500">
             {{ project.title }}
           </h1>
         </div>

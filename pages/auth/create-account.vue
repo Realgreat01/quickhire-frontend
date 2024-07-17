@@ -5,7 +5,7 @@
         class="mx-auto mt-4 w-full"
         @submit.prevent="handleSubmit($event, createAccount)"
       >
-        <div class="grid-col-2 grid gap-2">
+        <div class="grid gap-2 md:grid-cols-2">
           <qh-input
             name="email"
             :errors="errors"
@@ -72,15 +72,18 @@
     </VeeForm>
     <h1 class="qh-text-4 my-2 text-center">
       Already have an account ?
-      <RouterLink class="text-brand" :to="{ name: QH_ROUTES.USER.LOGIN }"
+      <RouterLink
+        class="font-medium text-brand"
+        :to="{ name: QH_ROUTES.USER.LOGIN }"
         >Login</RouterLink
       >
     </h1>
-    <h1 class="qh-text-4 text-center">
-      <RouterLink class="text-brand" :to="{ name: QH_ROUTES.COMPANY.REGISTER }"
-        >Register Company</RouterLink
-      >
-    </h1>
+
+    <RouterLink
+      class="qh-text-4 qh-flex-center text-center font-medium text-brand"
+      :to="{ name: QH_ROUTES.COMPANY.REGISTER }"
+      >QuickHire for Business</RouterLink
+    >
   </div>
 </template>
 
@@ -97,6 +100,7 @@ definePageMeta({
   layout: 'auth',
   name: QH_ROUTES.USER.REGISTER,
   title: 'Create Account',
+  pageHint: 'Enter your details to get started on QuickHire!',
   middleware: 'logged-in-user',
 });
 

@@ -22,6 +22,7 @@
     "date-fns": "^3.6.0",
     "devicon": "^2.16.0",
     "html-to-pdfmake": "^2.5.7",
+    "motion": "^10.18.0",
     "notivue": "^2.4.4",
     "numeral": "^2.0.6",
     "nuxt": "^3.11.2",
@@ -43,6 +44,7 @@
     "vue-use-active-scroll": "^1.1.1",
     "vue3-dropzone": "^2.2.1",
     "vue3-easy-data-table": "^1.5.47",
+    "vue3-otp-input": "^0.5.21",
     "yup": "^1.4.0"
   },
   "devDependencies": {

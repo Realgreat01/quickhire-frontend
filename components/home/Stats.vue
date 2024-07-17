@@ -1,16 +1,20 @@
 <template>
-  <div class="">
+  <div
+    class="bg-brand-950 py-20 text-dark-100 dark:bg-brand-50 dark:text-dark-800"
+  >
     <h1 class="qh-text-1 mb-3 mt-10 md:mb-5">Operational Insights</h1>
     <div class="mx-auto grid grid-cols-2 gap-2 md:grid-cols-4">
-      <div
-        class="rounded border p-4 text-brand shadow md:p-10"
+      <qh-card
+        class="rounded !border-none !border-dark-600 bg-brand-900 p-4 !shadow-none md:p-10 dark:!bg-brand-100"
         v-for="(stat, index) in stats"
         :key="index"
         :class="null"
       >
-        <h1 class="qh-text-4">{{ stat.title }}</h1>
-        <h1 class="qh-text-2 font-bold">{{ stat?.count }}+</h1>
-      </div>
+        <h1 class="qh-text-4 text-brand-200 dark:text-brand-900">
+          {{ stat.title }}
+        </h1>
+        <h1 class="qh-text-1 font-bold text-brand">{{ stat?.count }}+</h1>
+      </qh-card>
     </div>
   </div>
 </template>

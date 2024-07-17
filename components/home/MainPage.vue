@@ -1,16 +1,16 @@
 <template>
   <div
-    class="my-5 grid w-full items-start justify-between gap-x-10 md:grid-cols-1"
+    class="my-5 mt-10 grid w-full items-start justify-between gap-x-10 md:min-h-screen md:grid-cols-1"
   >
     <div class="qh-flex-center flex w-full flex-col gap-y-4">
       <h1 class="ml-1 flex justify-center text-center">
         <h1
-          class="font-geologica my-4 block text-center text-4xl font-bold text-brand md:text-8xl"
+          class="font-geologica my-4 block text-center text-3xl font-bold text-brand md:w-[64%] md:text-7xl"
         >
           The World Best
-          <span class="text-secondary-500">Developers</span>
+          <span class="text-rose-600">Developers</span>
           Centered Hiring
-          <span class="text-secondary-500">Platform </span> !
+          <span class="text-rose-600">Platform </span> !
         </h1>
         <h2 class="qh-text-2 mx-2 text-center font-semibold">
           Connect with Top Developers or

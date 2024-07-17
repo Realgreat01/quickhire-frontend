@@ -1,0 +1,168 @@
+html {
+  --white: white;
+  --black: #1e1e1e;
+
+  --brand: #023696;
+  --brand-50: #edf6fa;
+  --brand-100: #dcecf5;
+  --brand-200: #accfe6;
+  --brand-300: #81b0d6;
+  --brand-400: #3870b5;
+  --brand-500: #023696;
+  --brand-600: #012e87;
+  --brand-700: #012270;
+  --brand-800: #011a59;
+  --brand-900: #001145;
+  --brand-950: #000a2b;
+
+  /* Secondary Color Palette */
+  --secondary-50: #fff1f2;
+  --secondary-100: #ffe4e6;
+  --secondary-200: #fecdd3;
+  --secondary-300: #fda4af;
+  --secondary-400: #fb7185;
+  --secondary-500: #f43f5e;
+  --secondary-600: #e11d48;
+  --secondary-700: #be123c;
+  --secondary-800: #9f1239;
+  --secondary-900: #881337;
+  --secondary-950: #4c0519;
+
+  /* Error Color Palette */
+  --error: #bd0505;
+  --error-50: #fcf6f0;
+  --error-100: #f7eadf;
+  --error-200: #f0ccb6;
+  --error-300: #e6a78c;
+  --error-400: #d15843;
+  --error-500: #bd0505;
+  --error-600: #ab0505;
+  --error-700: #8c0303;
+  --error-800: #700202;
+  --error-900: #540101;
+  --error-950: #360101;
+
+  /* Warning Color Palette */
+  --warn: #ffdd00;
+  --warn-50: #fffef2;
+  --warn-100: #fffde6;
+  --warn-200: #fffabf;
+  --warn-300: #fff599;
+  --warn-400: #ffea4d;
+  --warn-500: #ffdd00;
+  --warn-600: #e6bb00;
+  --warn-700: #bf9300;
+  --warn-800: #996b00;
+  --warn-900: #734900;
+  --warn-950: #4a2a00;
+
+  /* Success Color Palette */
+  --success: #38b55e;
+  --success-50: #f2fbf4;
+  --success-100: #e0f8e6;
+  --success-200: #c3efcf;
+  --success-300: #93e2ab;
+  --success-400: #5dcb7e;
+  --success-500: #38b55e;
+  --success-600: #289148;
+  --success-700: #23723b;
+  --success-800: #205b32;
+  --success-900: #1c4b2c;
+  --success-950: #0a2915;
+
+  /* Dark Color Palette */
+  --dark: #1e1e1e;
+  --dark-50: #f5f5f5;
+  --dark-100: #e8e8e8;
+  --dark-200: #c7c7c7;
+  --dark-300: #a6a6a6;
+  --dark-400: #616161;
+  --dark-500: #1e1e1e;
+  --dark-600: #1c1919;
+  --dark-700: #171111;
+  --dark-800: #120b0b;
+  --dark-900: #0d0606;
+  --dark-950: #080202;
+
+  .dark {
+    --white: #1e1e1e;
+    --black: #fefefe;
+
+    --brand-50: #000a2b;
+    --brand-100: #001145;
+    --brand-200: #011a59;
+    --brand-300: #012270;
+    --brand-400: #012e87;
+    --brand-500: #023696;
+    --brand-600: #3870b5;
+    --brand-700: #81b0d6;
+    --brand-800: #accfe6;
+    --brand-900: #dcecf5;
+    --brand-950: #edf6fa;
+
+    /* Secondary colors - dark theme */
+    --secondary-50: #4c0519;
+    --secondary-100: #881337;
+    --secondary-200: #9f1239;
+    --secondary-300: #be123c;
+    --secondary-400: #e11d48;
+    --secondary-500: #f43f5e;
+    --secondary-600: #fb7185;
+    --secondary-700: #fda4af;
+    --secondary-800: #fecdd3;
+    --secondary-900: #ffe4e6;
+    --secondary-950: #fff1f2;
+
+    /* Error colors - dark theme */
+    --error-50: #360101;
+    --error-100: #540101;
+    --error-200: #700202;
+    --error-300: #8c0303;
+    --error-400: #ab0505;
+    --error-500: #bd0505;
+    --error-600: #d15843;
+    --error-700: #e6a78c;
+    --error-800: #f0ccb6;
+    --error-900: #f7eadf;
+    --error-950: #fcf6f0;
+
+    /* Warn colors - dark theme */
+    --warn-50: #4a2a00;
+    --warn-100: #734900;
+    --warn-200: #996b00;
+    --warn-300: #bf9300;
+    --warn-400: #e6bb00;
+    --warn-500: #ffdd00;
+    --warn-600: #ffea4d;
+    --warn-700: #fff599;
+    --warn-800: #fffabf;
+    --warn-900: #fffde6;
+    --warn-950: #fffef2;
+
+    /* Success colors - dark theme */
+    --success-50: #0a2915;
+    --success-100: #1c4b2c;
+    --success-200: #205b32;
+    --success-300: #23723b;
+    --success-400: #289148;
+    --success-500: #38b55e;
+    --success-600: #5dcb7e;
+    --success-700: #93e2ab;
+    --success-800: #c3efcf;
+    --success-900: #e0f8e6;
+    --success-950: #f2fbf4;
+
+    /* Dark colors - dark theme */
+    --dark-50: #080202;
+    --dark-100: #0d0606;
+    --dark-200: #120b0b;
+    --dark-300: #171111;
+    --dark-400: #1c1919;
+    --dark-500: #1e1e1e;
+    --dark-600: #616161;
+    --dark-700: #a6a6a6;
+    --dark-800: #c7c7c7;
+    --dark-900: #e8e8e8;
+    --dark-950: #f5f5f5;
+  }
+}

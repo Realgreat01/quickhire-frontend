@@ -4,7 +4,7 @@
     <label
       :for="name"
       :class="labelClass"
-      class="flex gap-x-1 text-base font-medium !capitalize !text-brand"
+      class="flex gap-x-1 text-base font-medium !capitalize !text-brand dark:!text-brand-900"
     >
       <slot v-if="$slots.default"></slot>
       <template v-else>
@@ -115,7 +115,7 @@
           v-if="buttonText"
           type="button"
           @click="actionButtonClick"
-          class="center-box !right-0 h-10 transform border border-brand-500 bg-brand-500 shadow-lg shadow-gray-300"
+          class="center-box !right-0 h-10 transform border border-brand-500 bg-brand-500 shadow-lg shadow-dark-200"
         >
           <slot name="buttonText">{{ buttonText }}</slot>
         </qh-button>
@@ -344,8 +344,7 @@ watch(
 
 input,
 textarea {
-  @apply border border-dark-50 text-dark-400;
-  background: #ffffff;
+  @apply border border-dark-50 bg-white text-dark-400 dark:bg-dark-400 dark:text-dark-600;
   outline: none;
   padding: 10px 14px;
   display: flex;
@@ -358,7 +357,7 @@ textarea {
   }
 
   &:focus {
-    @apply ring-[0.5px] !ring-brand;
+    @apply ring-[0.5px] ring-brand dark:ring-brand-800;
   }
 
   /* // @apply block w-full border ansparent  focus:border-2 focus:border-green-400 focus:outline-none; */
