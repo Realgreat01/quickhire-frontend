@@ -6,7 +6,7 @@
       Features
     </h1>
 
-    <div class="grid w-full grid-cols-3 gap-4">
+    <div class="grid w-full md:grid-cols-3 gap-4">
       <qh-card
         class="flex flex-col-reverse gap-2 !border-dark-600 bg-brand-900 p-1 py-10 !shadow-none md:flex-row md:gap-40 md:p-6 dark:border-none dark:bg-brand-100"
         v-for="(feature, index) in features.filter((x) => x.show === true)"
