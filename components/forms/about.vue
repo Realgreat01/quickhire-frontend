@@ -42,7 +42,7 @@
             taggable
             multiple
             placeholder="Open Source"
-            :options="about?.interests"
+            :options="developerInterests"
             v-model="about.interests"
           />
           <qh-input
@@ -52,7 +52,7 @@
             taggable
             multiple
             placeholder="Watching Movies"
-            :options="user?.hobbies"
+            :options="developerHobbies"
             v-model="about.hobbies"
           />
         </div>
@@ -78,6 +78,30 @@ import { useUserStore } from '~/store/user-store';
 
 const { getCurrentUser } = useUserStore();
 const { user } = storeToRefs(useUserStore());
+const developerInterests = [
+  'Open Source Contributions',
+  'Participation in Hackathons',
+  'Tech Blogging',
+  'Continuous Learning (Courses, Workshops)',
+  'Mentorship in Coding',
+  'Attendance at Tech Meetups and Conferences',
+  'Gaming',
+  'Robotics and DIY Projects',
+  'Digital Art and Design',
+  'Volunteering for Tech-Driven Non-Profits',
+];
+const developerHobbies = [
+  'Building Personal Projects with New Technologies',
+  'Blogging or Podcasting on Tech Topics',
+  'Participating in 3D Printing Projects',
+  'Photography',
+  'Playing Chess',
+  'Fitness and Outdoor Activities',
+  'Playing Musical Instruments',
+  'Volunteering in Community Services',
+  'Reading Science Fiction and Technology Books',
+  'Traveling and Exploring New Cultures',
+];
 
 const about = ref<User | any>({
   about_me: user.value?.about_me,

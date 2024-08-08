@@ -69,13 +69,13 @@
         <qh-button
           class="my-4 hidden rounded-full !py-3 md:w-60"
           @click="updateExperience"
-          v-if="experienceList.length > 0"
+          v-if="experienceList?.length > 0"
           :loading="updating"
           >Save Changes</qh-button
         ><qh-button
           class="my-4 rounded-full !py-3 md:w-60"
           @click="updateExperience"
-          v-if="experienceList.length > 0"
+          v-if="experienceList?.length > 0"
           :loading="updating"
           >Add Experience</qh-button
         >

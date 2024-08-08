@@ -34,6 +34,12 @@ export const qhDates = {
     return format(value, 'MMM dd, yyyy');
   },
 
+  resumeDate(date: string | Date | null) {
+    if (date === null || '' || undefined) return 'Present';
+    const value = new Date(date);
+    return format(value, 'MMMM yyyy');
+  },
+
   getReadableDate(value: string | Date) {
     const date = new Date(value);
     const shortMonth = date.toLocaleDateString('en-US', { month: 'short' });

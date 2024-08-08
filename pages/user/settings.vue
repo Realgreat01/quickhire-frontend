@@ -47,26 +47,23 @@
         </h2>
         <qh-toggle v-model="settings.send_cover_letter" />
       </div>
-
       <qh-button
         class="my-4 rounded-full !py-3 md:w-60"
         @click="updateUserSettings"
+        :loading="updating"
         >Save Changes</qh-button
       >
+      {{ settings }}
     </qh-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ArrowRightCircleIcon } from '@heroicons/vue/24/outline';
-import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid';
 import { storeToRefs } from 'pinia';
-import { RiWebhookFill, RiGithubFill, RiGlobalLine } from 'vue-remix-icons';
-import QH_CONSTANTS from '~/constants';
+
 import { QH_ROUTES } from '~/constants/routes';
 import { useUserStore } from '~/store/user-store';
-import { useModalStore } from '~/store/modal-store';
-import type { Settings } from '~/types/user';
+import type { Settings as ISettings } from '~/types/user';
 definePageMeta({
   layout: 'users',
   middleware: ['auth', 'user'],
@@ -76,10 +73,13 @@ definePageMeta({
 useHead({
   title: 'QuickHire - Settings',
 });
-const checked = ref(true);
-const { user } = storeToRefs(useUserStore());
+
+const { user: currentUser, updating } = storeToRefs(useUserStore());
 const { updateUserDetails } = useUserStore();
-const settings = ref<Settings>({
+
+const user = computed(() => currentUser.value);
+
+const settings = ref<ISettings>({
   allow_notifications: user.value?.settings.allow_notifications,
   portfolio_type: user.value?.settings.portfolio_type,
   cv_template: user.value?.settings.cv_template,

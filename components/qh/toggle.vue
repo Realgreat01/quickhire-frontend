@@ -2,16 +2,16 @@
   <div>
     <label class="switch">
       <input type="checkbox" :checked="modelValue" @change="toggleCheckbox" />
-      <span class="slider round"></span>
+      <span class="slider round"> </span>
     </label>
   </div>
 </template>
 
 <script setup lang="ts">
-const modelValue = defineModel<boolean>();
+const modelValue = defineModel<boolean>({ default: false });
 
 function toggleCheckbox(event: Event) {
-  const checked = (event.target as HTMLInputElement).checked;
+  modelValue.value = (event.target as HTMLInputElement).checked;
 }
 </script>
 

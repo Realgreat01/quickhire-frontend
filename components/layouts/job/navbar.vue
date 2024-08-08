@@ -1,10 +1,10 @@
 <template>
-  <div class="mb-4 flex h-40 flex-col justify-between gap-1 bg-white p-0">
-    <div class="mx-2 flex items-center justify-between md:mx-6">
+  <div class="flex flex-col justify-center gap-1 bg-white py-2">
+    <div class="mx-2 flex items-center justify-between px-4">
       <h1
-        class="qh-text-1 font-geologica flex w-fit items-center justify-center gap-x-6 p-4 font-bold text-success-600"
+        class="qh-text-1 font-geologica flex w-fit items-center justify-center gap-x-6 font-bold text-success-600"
       >
-        <span class="block text-success">JOB BOARD</span>
+        <span class="font-bebas block text-success">JOB BOARD</span>
         <qh-button
           class="h-10 rounded-2xl !bg-transparent !px-0 !py-0"
           v-if="$route.name !== QH_ROUTES.JOB.ALL"
@@ -20,34 +20,18 @@
     </div>
 
     <div
-      class="mx-auto grid w-full grid-cols-2 items-center gap-x-2 justify-self-end border-b border-brand-300 bg-white p-2 md:flex md:flex"
+      class="mx-auto grid w-full grid-cols-2 items-center gap-x-2 justify-self-end border-b-4 border-brand-100 bg-white p-2 px-4 md:flex"
     >
-      <qh-input
-        name="title"
-        type="search"
-        class="col-span-2 hidden flex-1 capitalize md:block"
-        v-model="searchQuery.title"
-        placeholder="frontend developer"
-      />
-      <qh-input
-        name="title"
-        type="search"
-        button-text="Search"
-        @button-click="searchJob"
-        class="col-span-2 block flex-1 capitalize md:hidden"
-        v-model="searchQuery.title"
-        placeholder="frontend developer"
-      />
-
       <qh-input
         name="key"
         type="select"
         class="qh-text-4 qh-full-width capitalize placeholder:text-xs md:min-w-40"
         placeholder="Software"
         :options="jobQuery"
+        taggable
+        tagPlaceholder="Search"
+        v-model="searchQuery.title"
         @update:modelValue="searchJob"
-        track-by="key"
-        label-name="title"
       />
       <qh-input
         name="job_location_type"
@@ -72,6 +56,7 @@
         type="select"
         placeholder="Mid Level"
         class="capitalize md:min-w-40"
+        tagPlaceholder="Search"
         v-model="searchQuery.level"
         :options="experienceLevels"
         clearable
@@ -114,17 +99,9 @@ const experienceLevels = ref([
 const route = useRoute();
 const router = useRouter();
 
-const searchJob = (key?: any) => {
+const searchJob = () => {
   router.replace({ name: QH_ROUTES.JOB.ALL, query: searchQuery.value });
-  if (key) searchQuery.value.title = key.key;
-  if (
-    searchQuery.value.title === '' &&
-    searchQuery.value.location === '' &&
-    searchQuery.value.type === '' &&
-    searchQuery.value.level === ''
-  ) {
-    getAllJobs();
-  } else getMatchedJobs();
+  getMatchedJobs();
 };
 
 const getAllJob = () => {

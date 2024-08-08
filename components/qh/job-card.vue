@@ -33,7 +33,7 @@
             </span>
             {{ job.posted_by?.address.country }}
           </h1>
-          <h1 class="qh-text-2 my-1 font-semibold">
+          <h1 class="qh-text-3 my-1 font-semibold">
             {{ qhHelpers.sliceWords(job.job_title, 30) }}
           </h1>
 
@@ -73,7 +73,7 @@
         >
           <qh-button
             @click="getSingleJob(job?._id)"
-            class="apply-button qh-text-4 h-6 w-28 gap-x-4 self-end rounded-full border border-brand bg-transparent font-medium !text-brand"
+            class="apply-button qh-text-4 h-6 w-28 gap-x-4 self-end !rounded-full border border-brand bg-transparent font-medium !text-brand"
           >
             <span class="">{{ job?.is_applicant ? 'View' : 'Apply' }}</span>
             <ArrowRightCircleIcon

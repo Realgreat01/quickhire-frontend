@@ -54,12 +54,12 @@
           :noDataMessage="noDataMessage"
           v-model="model"
           v-else-if="type === 'select'"
+          @tag="handleTag"
           :options="options"
           :required="required"
           v-bind="$attrs"
           :labelName="labelName"
           :placeholder="placeholder"
-          @change="handleChange"
         />
 
         <qh-text-editor
@@ -81,18 +81,6 @@
           :class="errorAvailable ? 'error-box' : 'normal-box'"
           class="relative w-full"
           @input="handleInput($event.target.value)"
-        />
-
-        <input
-          :name="name"
-          :rules="rules"
-          v-else-if="type === 'tag'"
-          :class="errorAvailable ? 'error-box' : 'normal-box'"
-          class="relative w-full"
-          v-model="tagsModel"
-          :placeholder="placeholder"
-          @input="handleTag"
-          @keydown.enter.prevent="addTags"
         />
 
         <Field
@@ -133,25 +121,6 @@
         />
       </div>
 
-      <div class="mt-0" v-if="type === 'tag'">
-        <h2 class="qh-text-4 text-error">
-          Separate each item with a comma (,)
-        </h2>
-        <div class="flex flex-wrap gap-2">
-          <qh-button
-            v-for="(tag, index) in tags"
-            :key="index"
-            type="button"
-            class="qh-text-4 relative flex gap-x-4 !bg-dark-100 !py-2 px-4 !text-dark"
-          >
-            <span class=""> {{ tag }}</span>
-            <XMarkIcon
-              class="h-6 w-6 stroke-dark stroke-1 text-dark-600"
-              @click.self.prevent.once="removeTag(index)"
-            />
-          </qh-button>
-        </div>
-      </div>
       <p class="mr-4 max-w-[96%] text-sm text-dark-300" v-if="hint">
         {{ hint }}
       </p>
@@ -206,22 +175,16 @@ const props = defineProps({
   checkboxText: { type: String, default: 'This should be a chekbox content' },
 });
 
-const model = defineModel({ default: null });
+const model = defineModel<any>({ default: null });
 const modelValue = ref<any>(model.value);
-
 const checkBox = ref(false);
-
-const tags = ref<any>(model.value);
-const tagsModel = ref('');
 
 const emit = defineEmits([
   'update:modelValue',
-  'update:selected',
   'update:checkbox',
   'input',
   'change',
   'button-click',
-  'selected',
 ]);
 
 const passwordType = ref('password');
@@ -236,45 +199,19 @@ const handleCheckbox = async (value: any) => {
   setTimeout(() => emit('update:checkbox', checkBox.value), 100);
 };
 
-const handleTag = () => {
-  const parts = tagsModel.value
-    .split(',')
-    .map((part: string) => part.trim())
-    .filter((part: string) => part);
-  if (parts.length > 1) {
-    tags.value.push(...parts.slice(0, -1));
-    tagsModel.value = parts.slice(-1)[0];
-  }
-};
-
-function addTags(value: any) {
-  if (tagsModel.value) {
-    tags.value.push(
-      ...tagsModel.value
-        .split(',')
-        .map((tag: any) => tag.trim())
-        .filter((tag: any) => tag),
-    );
-    tagsModel.value = '';
-  }
-}
-
-function removeTag(index: number) {
-  tags.value.splice(index, 1);
-}
-
 const handleChange = (value: any) => {
   emit('update:modelValue', value);
   emit('change', value);
-  emit('selected', value);
 };
 
 const actionButtonClick = () => {
   return emit('button-click');
 };
 
-const actionSelectedOptions = (value: any) => {
-  emit('update:selected', value);
+const handleTag = (value: any) => {
+  if (Array.isArray(model.value)) {
+    model.value.push(value);
+  } else model.value = value;
 };
 
 const showPassword = () => {
@@ -312,6 +249,7 @@ watch(
     else errorAvailable.value = false;
   },
 );
+
 watch(
   () => props.serverErrors,
   (errors: any) => {
@@ -319,6 +257,7 @@ watch(
     else errorAvailable.value = false;
   },
 );
+
 watch(
   () => model.value,
   (errors: any) => {
@@ -326,14 +265,6 @@ watch(
     if (props.serverErrors) props.serverErrors[props.name] = null;
     if (props.errors) props.errors[props.name] = null;
   },
-);
-
-watch(
-  tags,
-  (newTags) => {
-    emit('selected', newTags);
-  },
-  { deep: true },
 );
 </script>
 

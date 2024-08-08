@@ -93,7 +93,7 @@
         </div>
         <div class="flex h-full w-full items-end justify-between">
           <qh-button
-            class="hidden !h-8 rounded-full border border-brand bg-transparent !py-2 px-4 text-xs capitalize !text-dark md:block"
+            class="hidden !h-8 !rounded-full border border-brand bg-transparent !py-2 px-4 text-xs capitalize !text-dark md:block"
             :label="
               qhNumbers.formatNumber(job.applicants_count) + ' Applicants'
             "

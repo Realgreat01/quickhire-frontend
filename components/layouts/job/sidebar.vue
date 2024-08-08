@@ -1,21 +1,21 @@
 <template>
-  <div class="relative top-0 h-screen">
+  <div class="scroll relative top-0 h-screen">
     <icons-logo class="sticky top-0 h-40 bg-white text-brand" />
 
     <div class="mb-8">
       <div
         class="text-brand"
         v-for="job in jobQuery"
-        @click="job?.action ? getAllJob() : searchJob(job.key)"
+        @click="searchJob(job)"
         :class="{
           'bg-brand text-white':
-            searchQuery.title === job.key || route.query.title === job.key,
+            searchQuery.title === job || route.query.title === job,
         }"
       >
         <h2
-          class="qh-text-4 flex w-full cursor-pointer items-center justify-between border-b border-dashed border-brand-400 p-1 px-4 font-normal"
+          class="qh-text-4 flex w-full cursor-pointer items-center justify-between border-b border-brand-400 px-4 py-3 font-normal"
         >
-          <span class="block"> {{ job.title }} </span>
+          <span class="block"> {{ job }} </span>
           <ArrowRightIcon class="h-4 w-4" />
         </h2>
       </div>
@@ -32,13 +32,7 @@ const job = useJobStore();
 const router = useRouter();
 const route = useRoute();
 const { searchQuery } = storeToRefs(useJobStore());
-const { getAllJobs, getMatchedJobs } = useJobStore();
-
-const getAllJob = () => {
-  router.replace({ name: QH_ROUTES.JOB.ALL });
-  searchQuery.value.title = '';
-  getAllJobs();
-};
+const { getMatchedJobs } = useJobStore();
 
 const searchJob = (title: string) => {
   router.replace({ name: QH_ROUTES.JOB.ALL, query: { title } });

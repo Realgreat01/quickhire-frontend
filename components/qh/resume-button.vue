@@ -107,15 +107,9 @@ const DefaultContent = async () => {
         alignment: 'right',
         type: 'none',
         ol: [
-          // {
-          //   image: await getBase64Image(user?.profile_picture as string),
-          //   width: 50,
-          //   height: 50,
-          //   margin: [0, 0, 0, 0], // Top margin of 20
-          // },
           user?.email,
           user?.phone_number ?? '',
-          `${user?.address?.state ? user?.address?.state : ''} ${user?.address?.country}`,
+          `${user?.address?.state ? user?.address?.state + ',' : ''} ${user?.address?.country}`,
         ],
       },
     ],
@@ -150,8 +144,8 @@ const DefaultContent = async () => {
           },
           {
             columns: [
-              qhDates.formatDate(experience.start_date),
-              qhDates.formatDate(experience.end_date),
+              qhDates.resumeDate(experience.start_date),
+              qhDates.resumeDate(experience.end_date),
             ],
             color: 'gray',
           },
@@ -235,8 +229,8 @@ const DefaultContent = async () => {
           { text: school.type, color: brandColor },
           {
             columns: [
-              qhDates.formatDate(school.entry_date),
-              qhDates.formatDate(school.graduation_date),
+              qhDates.resumeDate(school.entry_date),
+              qhDates.resumeDate(school.graduation_date),
             ],
             color: 'gray',
             margin: [0, 0, 0, 0],
@@ -367,7 +361,9 @@ const generatePDFTemplate = async () => {
           ? definitions?.SummaryColumn
           : null,
         definitions?.experienceList,
-        definitions?.educationList,
+        user?.settings.show_education === true
+          ? definitions?.educationList
+          : null,
         definitions?.stackList,
         definitions?.projectList,
       ],

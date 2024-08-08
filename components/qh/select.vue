@@ -10,10 +10,10 @@
       :hide-selected="true"
       :allowEmpty="false"
       :showLabels="false"
+      :taggable="taggable"
       class="!bg-transparent"
       tagPosition="bottom"
-      tagPlaceholder="Create New Item"
-      @tag="addTag"
+      :tagPlaceholder="tagPlaceholder ?? 'Create New Item'"
       :placeholder="$attrs.placeholder ?? 'Select One'"
     >
       <template #caret="{ toggle }">
@@ -51,11 +51,17 @@ const props = defineProps({
     default: 'No Data Available',
   },
   multiple: Boolean,
+  tagPlaceholder: String,
   labelName: String,
   clearable: Boolean,
+  taggable: Boolean,
 });
 
-function addTag(tag: string) {
-  modelValue.value.push(tag);
-}
+// function addTag(tag: string) {
+//   if (props.taggable) {
+//     console.log(tag);
+//     // modelValue.value.push(tag);
+//     // props.options.push(tag);
+//   } else return;
+// }
 </script>

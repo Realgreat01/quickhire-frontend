@@ -9,7 +9,6 @@
           type="select"
           class="!w-40 capitalize md:!w-64"
           label-name="label"
-          :reduce="(val: any) => val.value"
           :options="experienceLevels"
           v-model="workDetails.experience_level"
         />
@@ -85,11 +84,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowRightCircleIcon } from '@heroicons/vue/24/outline';
-import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid';
 import { storeToRefs } from 'pinia';
-import { RiWebhookFill, RiGithubFill, RiGlobalLine } from 'vue-remix-icons';
-import QH_CONSTANTS from '~/constants';
 import { QH_ROUTES } from '~/constants/routes';
 import { useUserStore } from '~/store/user-store';
 import { useModalStore } from '~/store/modal-store';

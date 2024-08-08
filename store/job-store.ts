@@ -180,11 +180,15 @@ export const useJobStore = defineStore('job', {
     },
 
     async getMatchedJobs() {
-      const res = await GET_MATCHED_JOBS(this.searchQuery);
+      let res;
+      if (this.searchQuery.title === 'All') {
+        res = await GET_ALL_JOBS();
+      } else res = await GET_MATCHED_JOBS(this.searchQuery);
       if (res.success) {
         this.AllJobs = res.data;
       }
     },
+
     async getJobRecommendations() {
       this.loadingJobRecommendations = true;
       const res = await GET_JOB_RECOMMENDATIONS();

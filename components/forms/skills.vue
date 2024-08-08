@@ -110,6 +110,7 @@ import type { Skills } from '~/types/user';
 
 const { getSkills } = useUserStore();
 const { skills: userSkills } = storeToRefs(useUserStore());
+
 const skills = ref<Skills | any>({
   stack: userSkills.value?.stack,
   top_skills: userSkills.value?.top_skills,

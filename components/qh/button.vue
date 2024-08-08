@@ -1,17 +1,16 @@
 <template>
   <button
     v-if="loading"
-    @click="$emit('click')"
-    class="flex cursor-not-allowed items-center justify-center rounded bg-brand bg-opacity-50 px-4 py-4 text-[#fff]"
+    class="flex min-h-8 min-w-[180px] cursor-not-allowed items-center justify-center rounded bg-brand bg-opacity-50 px-4 py-4 text-[#fff]"
     :class="class"
     v-bind="$attrs"
   >
     <icons-loading class="" />
   </button>
+
   <button
     v-else-if="disabled"
-    @click="$emit('click')"
-    class="flex cursor-not-allowed items-center justify-center rounded bg-brand px-4 py-4 font-semibold text-[#fff] opacity-50"
+    class="flex min-h-8 cursor-not-allowed items-center justify-center rounded bg-brand px-4 py-2 font-semibold text-[#fff] opacity-50"
     :class="class"
     v-bind="$attrs"
   >
@@ -24,7 +23,7 @@
   <button
     v-else
     @click="$emit('click')"
-    class="flex items-center justify-center rounded bg-brand px-4 py-4 font-semibold text-[#fff]"
+    class="flex min-h-8 items-center justify-center rounded bg-brand px-4 py-2 font-semibold text-[#fff]"
     :class="class"
     v-bind="$attrs"
   >
@@ -43,6 +42,7 @@ defineProps({
   disabled: { type: Boolean, default: false },
   loading: { type: Boolean, default: false },
 });
+
 defineEmits(['click']);
 </script>
 

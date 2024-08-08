@@ -6,7 +6,9 @@
         <jobs-active-applications :count="2" />
         <jobs-recommendations />
       </div>
-      <div class="my-20 grid gap-6 md:grid-cols-[3fr,2fr]">
+      <div
+        class="my-20 grid items-start justify-start gap-6 md:grid-cols-[3fr,2fr]"
+      >
         <user-profile-about-me />
         <user-profile-skills />
       </div>
