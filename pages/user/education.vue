@@ -1,71 +1,87 @@
 <template>
-  <div class="">
-    <div class="flex flex-col gap-6 rounded" ref="draggable">
-      <qh-card
-        class="relative flex h-fit w-full cursor-pointer flex-col items-start justify-between rounded px-4 py-6 md:w-2/3 md:px-12 md:py-8"
-        :class="index % 2 === 0 ? '' : 'justify-self-end'"
-        v-for="(education, index) in educations"
-        :key="education._id"
-      >
-        <qh-edit-button
-          class="text-dark"
-          @click="editEducation(education._id)"
-        />
-        <qh-delete-button
-          class="top-12"
-          @click="deleteUserEducation(education._id)"
-        />
-        <div class="flex">
-          <RiSchoolFill class="icon !h-6 !w-6" />
-          <h2 class="qh-text-2 font-semibold">{{ education.institution }}</h2>
-        </div>
+  <div class="flex w-full gap-4">
+    <div class="flex-1">
+      <div class="flex flex-col gap-6 rounded" ref="draggable">
+        <qh-card
+          class="py- relative flex h-fit w-full cursor-pointer flex-col items-start justify-between rounded px-4 md:px-12 md:py-8"
+          :class="index % 2 === 0 ? '' : 'justify-self-end'"
+          v-for="(education, index) in educations"
+          :key="education._id"
+        >
+          <qh-edit-button
+            class="text-dark"
+            @click="editEducation(education._id)"
+          />
+          <qh-delete-button
+            class="top-12"
+            @click="deleteUserEducation(education._id)"
+          />
+          <div class="flex">
+            <RiSchoolFill class="icon !h-6 !w-6" />
+            <h2 class="qh-text-2 font-semibold">{{ education.institution }}</h2>
+          </div>
 
-        <div class="flex">
-          <RiGraduationCapFill class="icon !h-6 !w-6" />
-          <h2 class="qh-text-4 font-semibold">{{ education.type }}</h2>
-        </div>
+          <div class="flex">
+            <RiGraduationCapFill class="icon !h-6 !w-6" />
+            <h2 class="qh-text-4 font-semibold">{{ education.type }}</h2>
+          </div>
 
-        <div class="flex">
-          <RiBookFill class="icon !h-6 !w-6" />
-          <h2 class="qh-text-4 font-medium">{{ education.course }}</h2>
-        </div>
+          <div class="flex">
+            <RiBookFill class="icon !h-6 !w-6" />
+            <h2 class="qh-text-4 font-medium">{{ education.course }}</h2>
+          </div>
 
-        <div class="flex" v-if="education.school_website">
-          <RiGlobalFill class="icon !h-6 !w-6" />
-          <h2 class="qh-text-4 text-brand">
-            {{ qhHelpers.formatWebsiteName(education.school_website) }}
-          </h2>
-        </div>
+          <div class="flex" v-if="education.school_website">
+            <RiGlobalFill class="icon !h-6 !w-6" />
+            <h2 class="qh-text-4 text-brand">
+              {{ qhHelpers.formatWebsiteName(education.school_website) }}
+            </h2>
+          </div>
 
-        <div class="flex">
-          <RiCalendarFill class="icon !h-6 !w-6" />
-          <h2 class="qh-text-4">
-            <span class="">{{ qhDates.shortDate(education.entry_date) }}</span>
-            -
-            <span class="">{{
-              qhDates.shortDate(education.graduation_date)
-            }}</span>
-          </h2>
-        </div>
+          <div class="flex">
+            <RiCalendarFill class="icon !h-6 !w-6" />
+            <h2 class="qh-text-4">
+              <span class="">{{
+                qhDates.shortDate(education.entry_date)
+              }}</span>
+              -
+              <span class="">{{
+                qhDates.shortDate(education.graduation_date)
+              }}</span>
+            </h2>
+          </div>
 
-        <div class="flex">
-          <RiArticleFill class="icon !h-6 !w-6" />
-          <h2 class="qh-text-4 w-fit" v-html="education.description"></h2>
-        </div>
-      </qh-card>
+          <div class="flex">
+            <RiArticleFill class="icon !h-6 !w-6" />
+            <h2 class="qh-text-4 w-fit" v-html="education.description"></h2>
+          </div>
+        </qh-card>
+      </div>
+      <qh-empty-content
+        message="You have not added your education History"
+        v-if="educationList.length <= 0"
+      />
+
+      <div class="flex gap-x-8">
+        <qh-button
+          class="my-4 rounded-full !py-3 md:w-60"
+          @click="updateUserEducation"
+          v-if="educationList.length > 0"
+          :loading="updating"
+          >Save Changes</qh-button
+        >
+        <qh-button
+          variant="outline"
+          class="my-4 rounded-full !py-3 md:w-60"
+          @click="updateUserEducation"
+          v-if="educationList.length > 0"
+          :loading="updating"
+          >Add Education</qh-button
+        >
+      </div>
     </div>
-    <qh-empty-content
-      message="You have not added your education History"
-      v-if="educationList.length <= 0"
-    />
 
-    <qh-button
-      class="my-4 hidden rounded-full !py-3 md:w-60"
-      @click="updateUserEducation"
-      v-if="educationList.length > 0"
-      :loading="updating"
-      >Save Changes</qh-button
-    >
+    <qh-quick-ai />
   </div>
 </template>
 

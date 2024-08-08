@@ -6,6 +6,8 @@ import {
   GET_STATES_BY_COUNTRY,
 } from '~/services/utils.service';
 
+import type { RouteLocationRaw } from 'vue-router';
+
 interface Insights {
   users: number;
   companies: number;
@@ -22,6 +24,7 @@ interface UtilsType {
   Cities: any[];
   loadingCities: boolean;
   Insights: Insights | null;
+  redirectedFromRoute: RouteLocationRaw | null;
 }
 
 export const useUtilsStore = defineStore('utils', {
@@ -37,6 +40,7 @@ export const useUtilsStore = defineStore('utils', {
       loadingCities: false,
 
       Insights: { users: 0, companies: 0, jobs: 0, active_applications: 0 },
+      redirectedFromRoute: null,
     };
   },
 

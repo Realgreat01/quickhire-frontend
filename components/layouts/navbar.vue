@@ -6,6 +6,7 @@
       </h1>
 
       <div class="flex gap-x-3 p-4">
+        <qh-theme-changer />
         <qh-dropdown class="mx-3 hidden">
           <template #icon>
             <div class="relative h-10 w-10">
@@ -88,36 +89,6 @@
         </qh-dropdown>
       </div>
     </div>
-
-    <div class="mx-2 flex items-center justify-between md:mx-6">
-      <h1
-        class="qh-text-1 font-bebas my-4 w-fit p-4 font-bold text-secondary-600"
-      >
-        {{ routeNames }}
-      </h1>
-      <div class="flex justify-end gap-2 md:flex md:gap-x-4 md:p-4">
-        <!--  -->
-        <qh-button
-          class="h-8 md:w-28"
-          v-show="actionButtonPages.includes(currentRoute.name as string)"
-          @click="
-            () => router.replace({ query: { add: currentRoute.meta.name } })
-          "
-        >
-          <RiAddCircleLine class="h-6 w-6 rounded fill-white" />
-          <!-- <h1 class="qh-text-4 font-normal"></h1> -->
-        </qh-button>
-
-        <!--  -->
-        <qh-button
-          @click="previewprofile"
-          class="h-8 border border-brand !bg-transparent !text-brand md:w-28"
-        >
-          <RiEyeLine class="h-6 w-6 rounded fill-brand" />
-          <!-- <h1 class="qh-text-4 font-medium"></h1> -->
-        </qh-button>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -151,11 +122,6 @@ const editProfile = () => {
 };
 
 const emit = defineEmits(['close-modal']);
-const actionButtonPages = ref([
-  QH_ROUTES.USER.EDUCATION,
-  QH_ROUTES.USER.EXPERIENCE,
-  QH_ROUTES.USER.PROJECTS,
-]);
 
 const previewprofile = () => {
   router.replace({

@@ -1,78 +1,91 @@
 <template>
-  <div class="">
-    <div class="flex flex-col gap-6 rounded" ref="draggable">
-      <qh-card
-        v-for="experience in experiences"
-        :key="experience._id"
-        class="relative flex w-full flex-col justify-between gap-2 rounded-2xl p-4 shadow-xl md:w-4/5"
-      >
-        <qh-edit-button
-          class="text-dark"
-          @click="editExperience(experience._id)"
-        />
-        <qh-delete-button
-          class="top-12"
-          @click="deleteUserExperience(experience._id)"
-        />
-        <div class="">
-          <RiBuildingFill class="icon h-6 w-6" />
-          <h1 class="qh-text-3 font-bold text-secondary-500">
-            {{ experience.company }}
-          </h1>
-        </div>
+  <div class="flex gap-x-8">
+    <div class="">
+      <div class="flex flex-col gap-6 rounded" ref="draggable">
+        <qh-card
+          v-for="experience in experiences"
+          :key="experience._id"
+          class="relative flex w-full flex-col justify-between gap-2 rounded-2xl p-4 shadow-xl"
+        >
+          <qh-edit-button
+            class="text-dark"
+            @click="editExperience(experience._id)"
+          />
+          <qh-delete-button
+            class="top-12"
+            @click="deleteUserExperience(experience._id)"
+          />
+          <div class="">
+            <RiBuildingFill class="icon h-6 w-6" />
+            <h1 class="qh-text-3 font-bold text-secondary-500">
+              {{ experience.company }}
+            </h1>
+          </div>
 
-        <div class="flex">
-          <RiToolsFill class="icon h-6 w-6" />
-          <h1 class="font-medium text-brand">{{ experience.role }}</h1>
-        </div>
+          <div class="flex">
+            <RiToolsFill class="icon h-6 w-6" />
+            <h1 class="font-medium text-brand">{{ experience.role }}</h1>
+          </div>
 
-        <div class="flex">
-          <RiMapPinFill class="icon h-6 w-6" />
-          <h1 class="font-medium text-brand">
-            {{ experience.company_location }}
-          </h1>
-        </div>
+          <div class="flex">
+            <RiMapPinFill class="icon h-6 w-6" />
+            <h1 class="font-medium text-brand">
+              {{ experience.company_location }}
+            </h1>
+          </div>
 
-        <div class="flex">
-          <RiGlobeFill class="icon h-6 w-6" />
-          <h1 class="font-medium capitalize text-brand">
-            {{ experience.location_type }}
-          </h1>
-        </div>
+          <div class="flex">
+            <RiGlobeFill class="icon h-6 w-6" />
+            <h1 class="font-medium capitalize text-brand">
+              {{ experience.location_type }}
+            </h1>
+          </div>
 
-        <div class="flex">
-          <RiBriefcaseFill class="icon h-6 w-6" />
-          <h1 class="font-medium text-brand">{{ experience.job_type }}</h1>
-        </div>
+          <div class="flex">
+            <RiBriefcaseFill class="icon h-6 w-6" />
+            <h1 class="font-medium text-brand">{{ experience.job_type }}</h1>
+          </div>
 
-        <div class="flex">
-          <RiCalendar2Fill class="icon h-6 w-6" />
-          <h1 class="text-sm font-medium text-brand">
-            <span class="">{{ qhDates.shortDate(experience.start_date) }}</span>
-            -
-            <span class="">{{ qhDates.shortDate(experience.end_date) }}</span>
-          </h1>
-        </div>
+          <div class="flex">
+            <RiCalendar2Fill class="icon h-6 w-6" />
+            <h1 class="text-sm font-medium text-brand">
+              <span class="">{{
+                qhDates.shortDate(experience.start_date)
+              }}</span>
+              -
+              <span class="">{{ qhDates.shortDate(experience.end_date) }}</span>
+            </h1>
+          </div>
 
-        <div class="">
-          <RiFileListFill class="icon h-6 w-6" />
+          <div class="">
+            <RiFileListFill class="icon h-6 w-6" />
 
-          <h2 class="" v-html="experience.contributions"></h2>
-          <!-- <span class="block" v-html="experience.contributions"></span> -->
-        </div>
-      </qh-card>
+            <h2 class="" v-html="experience.contributions"></h2>
+            <!-- <span class="block" v-html="experience.contributions"></span> -->
+          </div>
+        </qh-card>
+      </div>
+      <div class="flex items-center gap-x-8">
+        <qh-button
+          class="my-4 hidden rounded-full !py-3 md:w-60"
+          @click="updateExperience"
+          v-if="experienceList.length > 0"
+          :loading="updating"
+          >Save Changes</qh-button
+        ><qh-button
+          class="my-4 rounded-full !py-3 md:w-60"
+          @click="updateExperience"
+          v-if="experienceList.length > 0"
+          :loading="updating"
+          >Add Experience</qh-button
+        >
+      </div>
+      <qh-empty-content
+        v-if="experienceList.length <= 0"
+        message="You have not added your work experience"
+      />
     </div>
-    <qh-button
-      class="my-4 hidden rounded-full !py-3 md:w-60"
-      @click="updateExperience"
-      v-if="experienceList.length > 0"
-      :loading="updating"
-      >Save Changes</qh-button
-    >
-    <qh-empty-content
-      v-if="experienceList.length <= 0"
-      message="You have not added your work experience"
-    />
+    <qh-quick-ai />
   </div>
 </template>
 

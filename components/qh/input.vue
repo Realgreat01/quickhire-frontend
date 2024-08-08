@@ -346,7 +346,7 @@ input,
 textarea {
   @apply border border-dark-50 bg-white text-dark-400 dark:bg-dark-400 dark:text-dark-600;
   outline: none;
-  padding: 10px 14px;
+  padding: 8px 10px;
   display: flex;
   align-items: center;
   justify-content: flex-start;

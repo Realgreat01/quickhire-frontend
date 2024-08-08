@@ -1,11 +1,11 @@
 <template>
   <qh-card
-    class="flex w-full flex-col bg-white md:min-w-96 md:max-w-[500px]"
+    class="flex w-full min-w-[45vw] flex-col bg-white md:min-w-[35vw] md:max-w-[45vw]"
     :class="Class"
   >
     <qh-button
       v-if="job?.is_new"
-      class="my-2 !h-6 w-fit gap-1 self-end justify-self-end rounded-full bg-error-100 !py-2 px-4 text-xs capitalize"
+      class="mb-4 mt-2 !h-6 w-fit gap-1 self-end justify-self-end rounded-full bg-error-100 !py-2 px-4 text-xs capitalize"
     >
       <h2 class="text-red-500">NEW</h2>
       <FireIcon class="h-4 w-4 text-orange-500" />
@@ -27,19 +27,23 @@
               class="ml-1 h-[14px] w-[14px] fill-secondary-500"
             />
           </h1>
-
           <h1 class="qh-text-5 ml-0 text-dark-300">
             <span class="" v-if="job.posted_by?.address.state">
               {{ job.posted_by?.address.state }},
             </span>
             {{ job.posted_by?.address.country }}
           </h1>
+          <h1 class="qh-text-2 my-1 font-semibold">
+            {{ qhHelpers.sliceWords(job.job_title, 30) }}
+          </h1>
+
           <h1 class="qh-text-5 capitalize">
-            {{ job.experience_level }} Level / {{ job.job_type }}
+            {{ job.experience_level }} Level {{ job.job_type }}
           </h1>
         </div>
       </div>
-      <div class="flex flex-col items-end">
+
+      <div class="flex flex-col items-end gap-2">
         <div class="flex items-center gap-x-1 capitalize">
           <RiBuildingLine
             class="h-4 w-4 fill-brand"
@@ -64,22 +68,6 @@
             )
           }}
         </h1>
-      </div>
-    </div>
-
-    <h1 class="qh-text-3 my-2 font-semibold">
-      {{ qhHelpers.sliceWords(job.job_title, 30) }}
-    </h1>
-    <h1
-      class="qh-text-5"
-      v-html="qhHelpers.sliceWords(job.job_description, 250)"
-    ></h1>
-    <div class="mt-5 flex w-full items-end justify-between">
-      <h1 class="qh-text-4 flex items-center gap-x-2 text-dark-400">
-        <ClockIcon class="apply-icon h-4 w-4 duration-500" />
-        <span class="">{{ qhDates.formatDate(job.posted_on) }}</span>
-      </h1>
-      <div class="flex flex-col">
         <router-link
           :to="{ name: QH_ROUTES.JOB.SINGLE, params: { id: job._id } }"
         >
@@ -93,7 +81,15 @@
             />
           </qh-button>
         </router-link>
+      </div>
+    </div>
 
+    <div class="flex w-full items-end justify-between">
+      <h1 class="qh-text-4 flex items-center gap-x-2 text-dark-400">
+        <ClockIcon class="apply-icon h-4 w-4 duration-500" />
+        <span class="">{{ qhDates.formatDate(job.posted_on) }}</span>
+      </h1>
+      <div class="flex flex-col">
         <h2 class="qh-text-4 mt-4 flex h-6 items-center gap-x-1 text-dark-400">
           <RiUserFill class="h-4 w-4" />
 

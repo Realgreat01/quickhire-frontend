@@ -55,13 +55,15 @@ definePageMeta({
 });
 
 const router = useRouter();
-
+const route = useRoute();
 const login = async (field: any) => {
   const res = await LOG_IN_USER(field);
   if (res.success) {
     ApiService.setToken(res.data.token);
     QH_CONSTANTS.SET_USER_TYPE('user');
-    router.replace({ name: QH_ROUTES.USER.PROFILE });
+    if (route.redirectedFrom) {
+      router.replace({ path: route.redirectedFrom.fullPath });
+    } else router.replace({ name: QH_ROUTES.USER.PROFILE });
   } else qhToast.error(res.message);
 };
 </script>

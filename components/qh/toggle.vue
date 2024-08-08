@@ -8,15 +8,10 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  modelValue: Boolean,
-});
-
-const emit = defineEmits(['update:modelValue']);
+const modelValue = defineModel<boolean>();
 
 function toggleCheckbox(event: Event) {
   const checked = (event.target as HTMLInputElement).checked;
-  emit('update:modelValue', checked);
 }
 </script>
 

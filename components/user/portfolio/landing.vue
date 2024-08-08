@@ -33,7 +33,7 @@
       <img
         :src="user?.profile_picture"
         alt="profile picture"
-        class="mx-auto my-auto block h-80 w-80 rounded-full"
+        class="mx-auto my-auto block h-80 w-80 rounded-full object-cover"
       />
     </div>
   </div>

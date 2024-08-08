@@ -18,12 +18,12 @@
             label="Top Skills"
             type="select"
             name="top_skills"
-            placeholder="Javascript"
             label-name="name"
             hint="Select your top 3 skills, useful in your job search!"
             no-data-message="Kindly suggest such skill to us!"
             multiple
-            :selectable="() => skills.top_skills.length < 3"
+            track-by="name"
+            :max="3"
             :options="skillIcons"
             v-model="skills.top_skills"
           />
@@ -33,6 +33,7 @@
             name="programming_languages"
             placeholder="JavaScript"
             label-name="name"
+            track-by="name"
             no-data-message="Kindly suggest such skill to us!"
             multiple
             :options="skillIcons"
@@ -44,6 +45,7 @@
             name="frameworks"
             placeholder="Vue Js"
             label-name="name"
+            track-by="name"
             no-data-message="Kindly suggest such skill to us!"
             multiple
             :options="skillIcons"
@@ -64,7 +66,10 @@
             label="Others"
             name="others"
             hint="only used in your resume"
-            type="tag"
+            type="select"
+            multiple
+            :options="skills.others"
+            taggable
             placeholder="Microsoft Word"
             v-model="skills.others"
           />
@@ -72,16 +77,20 @@
           <qh-input
             label="Soft Skills"
             name="soft_skills"
-            type="tag"
+            type="select"
+            multiple
+            taggable
             placeholder="Team Work"
             hint="only used in your resume"
+            generateNewTag
+            :options="skills.soft_skills"
             v-model="skills.soft_skills"
           />
         </div>
 
         <qh-button
           type="submit"
-          class="my-4 w-full"
+          class="my-4 h-10 w-full rounded"
           :loading="isSubmitting"
           :disabled="Object.keys(errors).length !== 0 || isSubmitting"
         />

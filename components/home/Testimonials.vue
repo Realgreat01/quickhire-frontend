@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-dark-100 pb-10 pt-1">
+  <div class="pb-10 pt-1">
     <h1 class="qh-text-1 mb-5 mt-20">Testimonials</h1>
     <div class="flex w-full flex-wrap justify-around gap-x-2 gap-y-6">
       <div

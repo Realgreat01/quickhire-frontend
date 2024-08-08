@@ -22,13 +22,13 @@ defineProps({ Class: String, loading: { type: Boolean, default: false } });
 
 @keyframes pulse-bg {
   0% {
-    background-color: #ddd;
+    background-color: #efeeee;
   }
   50% {
-    background-color: #d0d0d0;
+    background-color: #e8e8e8;
   }
   100% {
-    background-color: #ddd;
+    background-color: #efeeee;
   }
 }
 

@@ -1,10 +1,10 @@
 <template>
-  <div class="mb-4 flex h-40 flex-col justify-between gap-1 bg-brand-100 p-0">
+  <div class="mb-4 flex h-40 flex-col justify-between gap-1 bg-white p-0">
     <div class="mx-2 flex items-center justify-between md:mx-6">
       <h1
-        class="qh-text-1 font-bebas flex w-fit items-center justify-center gap-x-6 p-4 font-bold text-success-600"
+        class="qh-text-1 font-geologica flex w-fit items-center justify-center gap-x-6 p-4 font-bold text-success-600"
       >
-        <span class="block text-secondary">JOB BOARD</span>
+        <span class="block text-success">JOB BOARD</span>
         <qh-button
           class="h-10 rounded-2xl !bg-transparent !px-0 !py-0"
           v-if="$route.name !== QH_ROUTES.JOB.ALL"
@@ -40,14 +40,13 @@
       />
 
       <qh-input
-        name="job_location_type"
+        name="key"
         type="select"
-        v-model="searchQuery.title"
         class="qh-text-4 qh-full-width capitalize placeholder:text-xs md:min-w-40"
-        placeholder="Onsite"
+        placeholder="Software"
         :options="jobQuery"
-        @change="searchJob"
-        :reduce="(item: any) => item.key"
+        @update:modelValue="searchJob"
+        track-by="key"
         label-name="title"
       />
       <qh-input
@@ -94,6 +93,7 @@ import { jobQuery } from './job-types';
 
 const { searchQuery } = storeToRefs(useJobStore());
 const { getAllJobs, getMatchedJobs } = useJobStore();
+const searchItem = ref('');
 const jobLocationTypes = ref(['remote', 'onsite', 'hybrid']);
 const jobTypes = ref([
   'Full-Time',
@@ -113,18 +113,10 @@ const experienceLevels = ref([
 
 const route = useRoute();
 const router = useRouter();
-onMounted(() => {
-  searchQuery.value = {
-    title: '',
-    location: '',
-    type: '',
-    level: '',
-  };
-});
 
-const searchJob = (key?: string) => {
+const searchJob = (key?: any) => {
   router.replace({ name: QH_ROUTES.JOB.ALL, query: searchQuery.value });
-  if (key) searchQuery.value.title = key;
+  if (key) searchQuery.value.title = key.key;
   if (
     searchQuery.value.title === '' &&
     searchQuery.value.location === '' &&

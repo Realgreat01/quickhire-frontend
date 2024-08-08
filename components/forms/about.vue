@@ -37,17 +37,22 @@
 
           <qh-input
             label="Interests"
-            type="tag"
             name="interests"
+            type="select"
+            taggable
+            multiple
             placeholder="Open Source"
+            :options="about?.interests"
             v-model="about.interests"
           />
-
           <qh-input
             label="Hobbies"
-            type="tag"
             name="hobbies"
+            type="select"
+            taggable
+            multiple
             placeholder="Watching Movies"
+            :options="user?.hobbies"
             v-model="about.hobbies"
           />
         </div>

@@ -28,7 +28,7 @@
         </p>
       </div>
     </div>
-    <h2 class="my-5 mt-20 font-bold">
+    <h2 class="my-5 mt-20 font-bold text-brand">
       <icons-logo />
     </h2>
     <qh-button

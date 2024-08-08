@@ -1,19 +1,15 @@
 <template>
-  <div class="bg-dark-100 py-10">
+  <div class="py-10">
     <h1 class="qh-text-1 mb-3 mt-10 md:mb-5">Latest Jobs</h1>
     <div class="flex flex-wrap gap-4 md:hidden">
-      <qh-job-card
-        v-for="(job, index) in allJobs.slice(0, 4)"
-        :job="job"
-        class="!w-96"
-      />
+      <qh-job-card v-for="(job, index) in allJobs.slice(0, 4)" :job="job" />
     </div>
     <div class="hidden flex-wrap gap-4 md:flex">
       <qh-job-card v-for="job in allJobs.slice(0, 6)" :job="job" />
     </div>
     <RouterLink :to="{ name: QH_ROUTES.JOB.ALL }">
       <qh-button
-        class="apply-button mx-auto my-6 min-w-[40%] max-w-96 gap-x-6 rounded-full border border-brand bg-transparent font-medium !text-brand"
+        class="apply-button mx-auto my-6 min-w-[40%] max-w-96 gap-x-6 rounded-full border border-brand-500 bg-transparent font-medium !text-brand"
       >
         <span class="">See all Jobs</span>
         <ArrowRightCircleIcon

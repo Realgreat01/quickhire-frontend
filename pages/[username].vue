@@ -33,21 +33,21 @@
         ><span class="">Edit Profile</span>
         <PencilSquareIcon class="h-6 w-6" />
       </qh-button>
-      <user-layout-mobile-topbar class="block md:hidden" />
+      <user-portfolio-layout-mobile-topbar class="block md:hidden" />
       <div class="flex w-full flex-col md:flex-row">
         <!-- <user-layout-left-sidebar
         class="sticky bottom-0 top-0 hidden h-screen w-[10%] md:block"
       /> -->
         <div class="h-fit flex-1 border-y-transparent">
-          <user-public-landing />
-          <user-public-about />
-          <user-public-experience />
-          <user-public-education />
-          <user-public-projects />
-          <user-public-similar-users />
-          <user-public-contact />
+          <user-portfolio-landing />
+          <user-portfolio-about />
+          <user-portfolio-experience />
+          <user-portfolio-education />
+          <user-portfolio-projects />
+          <user-portfolio-similar-users />
+          <user-portfolio-contact />
         </div>
-        <user-layout-right-sidebar
+        <user-portfolio-layout-right-sidebar
           class="sticky bottom-0 top-0 hidden h-screen !w-[10%] md:flex"
         />
       </div>

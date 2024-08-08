@@ -115,7 +115,7 @@ const DefaultContent = async () => {
           // },
           user?.email,
           user?.phone_number ?? '',
-          `${user?.address?.state ?? ''} ${user?.address?.country}`,
+          `${user?.address?.state ? user?.address?.state : ''} ${user?.address?.country}`,
         ],
       },
     ],
@@ -139,20 +139,32 @@ const DefaultContent = async () => {
   // Experience
   const experience = user?.experience.map((experience) => {
     const list = [
-      { text: experience.company, bold: true, fontSize: 12 },
-      { text: experience.role, bold: true, fontSize: 10, color: brandColor },
       {
-        columns: [
-          qhDates.shortDate(experience.start_date),
-          qhDates.shortDate(experience.end_date),
+        ul: [
+          { text: experience.company, bold: true, fontSize: 12 },
+          {
+            text: experience.role,
+            bold: true,
+            fontSize: 10,
+            color: brandColor,
+          },
+          {
+            columns: [
+              qhDates.formatDate(experience.start_date),
+              qhDates.formatDate(experience.end_date),
+            ],
+            color: 'gray',
+          },
+          {
+            ul: qhHtmlToPDFMake(experience.contributions),
+            margin: [0, 0, 0, 12],
+            padding: 0,
+            // type: "none"
+          },
         ],
-        color: 'gray',
-      },
-      {
-        ul: qhHtmlToPDFMake(experience.contributions),
-        margin: [0, 0, 0, 12],
-        padding: 0,
-        // type: "none"
+        margin: [0, 2],
+        type: 'none',
+        unbreakable: true,
       },
     ];
     return list;
@@ -164,25 +176,35 @@ const DefaultContent = async () => {
     margin: [0, 10, 0, 12],
     ol: [
       { alignment: 'left', style: 'brand', text: 'EXPERIENCE', fontSize: 16 },
-      experience,
+      ...experience,
     ],
   };
 
   // Projects
   const project = user?.projects.map((project) => {
-    const tools = project.tools_used.slice(0, 5).map((tool) => tool.name + ' ');
+    const tools = project.tools_used
+      .slice(0, 5)
+      .map((tool, index) => `${index + 1}.${tool.name}`);
 
     const list = [
-      { text: project.title, bold: true, fontSize: 13 },
       {
-        text: tools.join(' '),
-        color: brandColor,
-        margin: [0, 0, 0, 12],
-      },
-      {
-        ul: [qhHtmlToPDFMake(project.description)],
+        ul: [
+          { text: project.title, bold: true, fontSize: 13 },
+          {
+            text: tools.join('     '),
+            color: brandColor,
+            margin: [0, 0, 0, 12],
+          },
+          {
+            ul: [qhHtmlToPDFMake(project.description)],
+            type: 'none',
+            margin: [0, 0, 0, 12],
+            unbreakable: true,
+          },
+        ],
+        unbreakable: true,
+        margin: [0, 2],
         type: 'none',
-        margin: [0, 0, 0, 12],
       },
     ];
     return list;
@@ -194,8 +216,7 @@ const DefaultContent = async () => {
     margin: [0, 10, 0, 12],
     ol: [
       { alignment: 'left', style: 'brand', text: 'PROJECTS', fontSize: 16 },
-
-      project,
+      ...project,
     ],
   };
 
@@ -203,22 +224,29 @@ const DefaultContent = async () => {
   const education = user?.education.map((school) => {
     const list = [
       {
-        text: school.institution,
-        bold: true,
-        fontSize: 12,
-        margin: [0, 4, 0, 0],
-      },
-      { text: school.course },
-      { text: school.type, color: brandColor },
-      {
-        columns: [
-          qhDates.shortDate(school.entry_date),
-          qhDates.shortDate(school.graduation_date),
+        ul: [
+          {
+            text: school.institution,
+            bold: true,
+            fontSize: 12,
+            margin: [0, 4, 0, 0],
+          },
+          { text: school.course },
+          { text: school.type, color: brandColor },
+          {
+            columns: [
+              qhDates.formatDate(school.entry_date),
+              qhDates.formatDate(school.graduation_date),
+            ],
+            color: 'gray',
+            margin: [0, 0, 0, 0],
+          },
+          { ul: qhHtmlToPDFMake(school.description) },
         ],
-        color: 'gray',
-        margin: [0, 0, 0, 0],
+        unbreakable: true,
+        margin: [0, 2],
+        type: 'none',
       },
-      { ul: qhHtmlToPDFMake(school.description) },
     ];
     return list;
   });
@@ -227,32 +255,38 @@ const DefaultContent = async () => {
     width: 200,
     type: 'none',
     margin: [0, 10, 0, 0],
+    unbreakable: true,
     ol: [
       { alignment: 'left', style: 'brand', text: 'EDUCATION', fontSize: 16 },
 
-      education,
+      ...education,
     ],
   };
 
   // SKILLS
   const programmingLanguages = user?.skills?.programming_languages.map(
-    (language) => language.name,
+    (language, index) => `${index + 1}.${language.name} `,
   );
 
   const frameworks = user?.skills?.frameworks.map(
-    (framework) => framework.name,
+    (framework, index) => `${index + 1}.${framework.name}`,
   );
 
   const technologies = user?.skills?.technologies.map(
-    (technology) => technology.name,
+    (technology, index) => `${index + 1}.${technology.name}`,
   );
-  const softSkills = user?.skills?.soft_skills.map((skill) => skill);
-  const otherSkills = user?.skills?.others.map((skill) => skill);
+  const softSkills = user?.skills?.soft_skills.map(
+    (skill, index) => `${index + 1}.${skill}`,
+  );
+  const otherSkills = user?.skills?.others.map(
+    (skill, index) => `${index + 1}.${skill}`,
+  );
 
   const stackList = {
     width: 200,
     type: 'none',
-    margin: [0, 10, 0, 12],
+    unbreakable: true,
+    margin: [0, 12, 0, 12],
     ol: [
       { alignment: 'left', style: 'brand', text: 'SKILLS', fontSize: 16 },
       {
@@ -262,40 +296,45 @@ const DefaultContent = async () => {
             { text: 'Programming Languages', bold: true },
 
             {
-              text: programmingLanguages?.join(' '),
+              text: programmingLanguages?.join('      '),
               color: '#023696',
+              lineHeight: 1.5,
               margin: [0, 0, 0, 12],
             },
           ],
           [
             { text: 'Frameworks', bold: true },
             {
-              text: frameworks?.join(' '),
+              text: frameworks?.join('      '),
               color: '#023696',
+              lineHeight: 1.5,
               margin: [0, 0, 0, 12],
             },
           ],
           [
             { text: 'Technologies', bold: true },
             {
-              text: technologies?.join(' '),
+              text: technologies?.join('      '),
               color: '#023696',
+              lineHeight: 1.5,
               margin: [0, 0, 0, 12],
             },
           ],
           [
             { text: 'Soft Skills', bold: true },
             {
-              text: softSkills?.join(' '),
+              text: softSkills?.join('      '),
               color: '#023696',
+              lineHeight: 1.5,
               margin: [0, 0, 0, 12],
             },
           ],
           [
             { text: 'Other Skills', bold: true },
             {
-              text: otherSkills?.join(' '),
+              text: otherSkills?.join('      '),
               color: '#023696',
+              lineHeight: 1.5,
               margin: [0, 0, 0, 12],
             },
           ],
@@ -356,7 +395,7 @@ const generatePDFTemplate = async () => {
             columnGap: 0,
             columns: [
               {
-                text: 'Generated by QuickHire',
+                text: `Generated by QuickHire`,
                 link: window.location.origin,
                 margin: [8, 0],
                 width: '*',
@@ -400,11 +439,11 @@ const generatePDFTemplate = async () => {
         columnGap: 20,
         fontSize: 10,
         color: '#1E1E1E',
-        font: 'Poppins',
+        font: 'Lora',
       },
     },
     tableLayouts,
-    { Poppins: useFontPresets().Poppins },
+    { Lora: useFontPresets().Lora },
   ).download(fullname.value + ' Resumé');
   return definitions;
 };

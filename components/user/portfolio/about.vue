@@ -10,7 +10,7 @@
         <button
           v-for="(skill, index) in skills"
           :key="index"
-          class="qh-flex-center max-w-28 flex-col rounded-lg bg-dark-50 p-1 md:w-28 md:p-3"
+          class="qh-flex-center max-w-28 flex-col rounded-lg bg-dark-50 p-1 md:w-24 md:p-3"
         >
           <qh-devicon :icon="skill" hide-tooltip show-icon-name />
         </button>

@@ -11,7 +11,9 @@
       class="tooltiptext qh-text-4 z-[999] bg-brand text-white"
       >{{ icon.name }}</span
     >
-    <p v-if="showIconName" class="qh-text-5">{{ icon.name }}</p>
+    <p v-if="showIconName" class="qh-text-5 whitespace-nowrap">
+      {{ icon.name }}
+    </p>
   </div>
 </template>
 

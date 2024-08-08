@@ -1,9 +1,9 @@
 <template>
   <div class="md:w-4/5">
-    <qh-card
-      class="flex flex-col gap-6 !bg-transparent !p-0 !px-0 !py-0 !shadow-none md:p-2"
+    <div
+      class="flex flex-col gap-6 border-none !bg-transparent !p-0 !px-0 !py-0 !shadow-none md:p-2"
     >
-      <qh-card class="relative border border-dark-50">
+      <qh-card class="relative">
         <h2 class="qh-text-2 my-10 font-bold">Address</h2>
         <qh-edit-button @click="editAddress" />
         <div class="flex flex-col gap-4">
@@ -33,7 +33,7 @@
         <h2 class="qh-text-2 my-10 font-bold">Social Links</h2>
         <qh-edit-button @click="editSocialLinks" />
         <div class="flex flex-col gap-4">
-          <div class="flex justify-between gap-x-20">
+          <div class="flex justify-between md:justify-normal md:gap-x-20">
             <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Github</h2>
             <qh-checked :value="Boolean(user?.social_media?.github)" />
           </div>
@@ -69,7 +69,7 @@
           </div>
         </div>
       </qh-card>
-    </qh-card>
+    </div>
   </div>
 </template>
 

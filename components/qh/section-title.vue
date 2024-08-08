@@ -7,7 +7,7 @@
     ></div>
 
     <qh-button
-      class="qh-text-2 h-10 w-40 rounded border border-brand !bg-transparent !text-brand md:w-[20rem]"
+      class="qh-text-3 h-10 w-40 rounded border border-brand !bg-transparent !text-brand md:w-[20rem]"
     >
       <slot>Contact&nbsp;Me</slot>
     </qh-button>

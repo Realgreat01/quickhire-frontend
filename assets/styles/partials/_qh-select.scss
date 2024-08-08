@@ -1,67 +1,121 @@
-* {
-  --vs-colors--lightest: #c7c7c7;
-  --vs-colors--light: #616161;
-  --vs-colors--dark: #616161;
-  --vs-colors--darkest: #101501;
+@import 'vue-multiselect/dist/vue-multiselect.css';
 
-  /* Search Input */
-  --vs-search-input-color: inherit;
-  --vs-search-input-bg: #ffffff;
-  --vs-search-input-placeholder-color: #adadad;
+// Inner Input
+.multiselect__input,
+.multiselect__single {
+  background: transparent !important;
+  // font-size: 16px !important;
+  text-transform: capitalize;
+  &::placeholder {
+    font-size: 16px !important;
+  }
+}
 
-  /* Font */
-  --vs-font-size: 14px;
-  --vs-line-height: 1.6;
+// .multiselect .multiselect__select {
+// height: 20px;
+// width: 20px;
+// }
 
-  /* Disabled State */
-  --vs-state-disabled-bg: #f8f8f8;
-  --vs-state-disabled-color: var(--vs-colors--light);
-  --vs-state-disabled-controls-color: var(--vs-colors--light);
-  --vs-state-disabled-cursor: not-allowed;
+// The container we can see
+.multiselect__tags {
+  border-radius: 8px;
+  border: 1px solid #acacac;
+  background: transparent;
+  font-size: 14px !important;
+  display: flex;
+  align-items: center;
+}
 
-  /* Borders */
-  --vs-border-color: var(--vs-colors--lightest);
-  --vs-border-width: 1px;
-  --vs-border-style: solid;
-  --vs-border-radius: 8px;
+.multiselect__option {
+  background-color: #fff;
+  width: 96%;
+  text-transform: capitalize;
+  border-radius: 4px;
+  font-size: 14px !important;
+  margin: 10px auto;
+}
+.multiselect__option--highlight {
+  background-color: #eef;
+  color: #0c090a;
+}
 
-  /* Actions: house the component controls */
-  --vs-actions-padding: 16px 6px 0 16px;
+.multiselect__tags {
+  min-height: 40px;
+  display: block;
+  padding: 8px 40px 0 8px;
+  border-radius: 5px;
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  font-size: 14px;
+}
 
-  /* Component Controls: Clear, Open Indicator */
-  --vs-controls-color: var(--vs-colors--light);
-  --vs-controls-size: 1.25;
-  --vs-controls--deselect-text-shadow: 0 1px 0 #fff;
+.multiselect__tag-icon {
+  cursor: pointer;
+  margin-left: 0px;
+  margin-right: 4px;
+  position: relative;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  font-weight: 700;
+  font-style: initial;
+  width: 22px;
+  text-align: center;
+  line-height: 22px;
+  transition: all 0.2s ease;
+  border-radius: 5px;
+}
 
-  /* Selected */
-  --vs-selected-bg: #fff;
-  --vs-selected-color: var(--vs-colors--dark);
-  --vs-selected-border-color: var(--vs-border-color);
-  --vs-selected-border-style: var(--vs-border-style);
-  --vs-selected-border-width: var(--vs-border-width);
+// Drop down
+.multiselect__content {
+  background: #fafafa;
+  color: #0c090a;
+  // font-size: 20px;
+  // border-radius: 8px !important;
+  // max-width: 100% !important;
+  // transition: all 2s ease !important;
+}
 
-  /* Dropdown */
-  --vs-dropdown-bg: #fff;
-  --vs-dropdown-color: inherit;
-  --vs-dropdown-z-index: 1000;
-  --vs-dropdown-min-width: 160px;
-  --vs-dropdown-max-height: 350px;
-  // --vs-dropdown-box-shadow: 0px 3px 6px 0px var(--vs-colors--darkest);
+.multiselect__placeholder {
+  color: #acacac;
+}
 
-  /* Options */
-  --vs-dropdown-option-bg: #000;
-  --vs-dropdown-option-color: var(--vs-dropdown-color);
-  --vs-dropdown-option-padding: 3px 20px;
+.multiselect__tag {
+  position: relative;
+  display: inline-block;
+  padding: 8px 30px 8px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  color: var(--secondary-300);
+  line-height: 1;
+  // margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  display: inline-flex; /* Use flexbox to align children */
+  align-items: center; /* Vertically center children */
+  justify-content: space-between; /* Spread out the children */
+  border-radius: 8px;
+  width: max-content;
+  border: 1px solid #acacac;
+  background: var(--brand);
+}
 
-  /* Active State */
-  --vs-dropdown-option--active-bg: #023696;
-  --vs-dropdown-option--active-color: #fff;
+.multiselect__tag-icon {
+  display: inline-flex;
+  position: absolute;
+  right: 0; /* Align to the right of the parent */
+  top: 45%; /* Start at the vertical center */
+  transform: translateY(
+    -50%
+  ); /* Shift it up by half its height to truly center it */
+}
+.multiselect__tag-icon::after {
+  content: url('/cancel.svg');
+}
 
-  /* Deselect State */
-  --vs-dropdown-option--deselect-bg: #fb5858;
-  --vs-dropdown-option--deselect-color: #fff;
-
-  /* Transitions */
-  --vs-transition-timing-function: cubic-bezier(1, -0.115, 0.975, 0.855);
-  --vs-transition-duration: 150ms;
+.multiselect__option--highlight::after {
+  content: attr(data-select);
+  background: var(--brand);
+  color: white;
 }

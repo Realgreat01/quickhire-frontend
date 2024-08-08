@@ -31,8 +31,7 @@ export const qhDates = {
   shortDate(date: string | Date | null) {
     if (date === null || '' || undefined) return 'Present';
     const value = new Date(date);
-    const formattedDate = format(value, 'MMM yyyy');
-    return formattedDate;
+    return format(value, 'MMM dd, yyyy');
   },
 
   getReadableDate(value: string | Date) {
@@ -68,6 +67,14 @@ export const qhNumbers = {
 
   formatRawCurrency(value: number): string {
     return `$${value.toFixed(2)}`;
+  },
+
+  getPercentage(numerator: number, denominator: number, isString?: boolean) {
+    const fraction = numerator / denominator;
+    const percentage = fraction * 100;
+    if (isString) {
+      return `${numeral(percentage).format('0.00')}%`;
+    } else return percentage;
   },
 
   convertCurrencyToNumber(value: string | number) {

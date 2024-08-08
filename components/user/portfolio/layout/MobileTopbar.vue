@@ -63,7 +63,8 @@ import {
   RiCloseFill,
   RiInstagramFill,
 } from 'vue-remix-icons';
-
+import { useUserStore } from '~/store/user-store';
+const { publicUser: user } = storeToRefs(useUserStore());
 const showModal = ref(false);
 const NavActions = ref([
   { title: 'About', route: '#about' },
@@ -74,22 +75,22 @@ const NavActions = ref([
 const socialMediaLinks = shallowRef([
   {
     icon: RiGithubFill,
-    link: 'https://github.com/Realgreat01',
+    link: user?.value?.social_media?.github ?? '',
     class: 'text-dark-800',
   },
   {
     icon: RiTwitterXLine,
-    link: 'https://x.com/SRealgreat',
+    link: user?.value?.social_media?.twitter ?? '',
     class: 'text-dark-800',
   },
   {
     icon: RiLinkedinBoxFill,
-    link: 'https://www.linkedin.com/in/samsonrealgreat/',
+    link: user?.value?.social_media?.linkedin ?? '',
     class: 'text-brand-400',
   },
   {
     icon: RiInstagramFill,
-    link: 'https://www.instagram.com/srealgreat/',
+    link: user?.value?.social_media?.instagram ?? '',
     class: '',
   },
 ]);

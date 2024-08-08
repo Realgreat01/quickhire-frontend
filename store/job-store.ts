@@ -56,7 +56,6 @@ export const useJobStore = defineStore('job', {
       CompanyJobs: [],
       JobApplicants: null,
       JobApplicant: null,
-
       searchQuery: {
         title: '',
         type: '',
@@ -101,6 +100,74 @@ export const useJobStore = defineStore('job', {
 
     jobApplicant(): User | any {
       return this.JobApplicant;
+    },
+
+    jobData(): {
+      title: string;
+      value: number | string;
+      data: string | number;
+    }[] {
+      if (this.appliedJobs !== undefined) {
+        const totalApplications = this.appliedJobs?.length ?? 0;
+        const activeApplications =
+          this.appliedJobs?.filter(
+            (job: AppliedJob) => job.job_status === 'open',
+          ).length ?? 0;
+        const successfulApplications =
+          this.appliedJobs?.filter(
+            (job: AppliedJob) => job.candidate.status === 'accepted',
+          ).length ?? 0;
+
+        return [
+          {
+            title: 'Total',
+            value: 100,
+            data: totalApplications?.toString() ?? '0',
+          },
+          {
+            title: 'Active',
+            value: qhNumbers.getPercentage(
+              activeApplications,
+              totalApplications,
+            ),
+            data: qhNumbers.getPercentage(
+              activeApplications,
+              totalApplications,
+              true,
+            ),
+          },
+          {
+            title: 'Successful',
+            value: qhNumbers.getPercentage(
+              successfulApplications,
+              totalApplications,
+            ),
+            data: qhNumbers.getPercentage(
+              successfulApplications,
+              totalApplications,
+              true,
+            ),
+          },
+        ];
+      }
+
+      return [
+        {
+          title: 'Total',
+          value: 100,
+          data: '0',
+        },
+        {
+          title: 'Active',
+          value: 0,
+          data: `0%`,
+        },
+        {
+          title: 'Successful',
+          value: 0,
+          data: `0%`,
+        },
+      ];
     },
   },
 

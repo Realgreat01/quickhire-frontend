@@ -1,10 +1,9 @@
 <template>
-  <SplideSlide class="">
+  <Slide class="">
     <slot />
-  </SplideSlide>
+  </Slide>
 </template>
 
 <script setup lang="ts">
-import { SplideSlide } from '@splidejs/vue-splide';
-defineProps({ Class: String });
+import { Slide } from 'vue3-carousel';
 </script>

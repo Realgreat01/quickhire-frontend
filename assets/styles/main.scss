@@ -77,6 +77,9 @@ input[type='number'] {
     @apply translate-x-2 transform text-white;
   }
 }
+img {
+  object-fit: cover;
+}
 
 input[type='number'] {
   &::-webkit-inner-spin-button,
