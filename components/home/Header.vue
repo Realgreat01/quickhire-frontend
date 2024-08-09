@@ -49,14 +49,14 @@
         </RouterLink>
       </div>
 
-      <qh-dropdown class="block md:hidden">
-        <qh-card class="!min-w-[320px]">
+      <qh-dropdown class="block md:hidden" v-slot="{ closeDropdown }">
+        <qh-card class="w-[80vw] pt-4">
           <div class="mb-8 flex flex-col gap-y-4">
             <NuxtLink
               :external="nav.external"
               :to="nav.link"
-              @click="qhDropdown.close"
-              class="mr-4 flex !bg-transparent !font-medium !text-brand-400 hover:!fill-brand-400 hover:!text-brand-400"
+              @click="closeDropdown"
+              class="border-b-2 font-medium text-brand"
               v-for="(nav, index) in headerNavigations"
               :key="index"
             >
@@ -67,20 +67,20 @@
           <div class="gap-x-4" v-if="isLoggedIn">
             <RouterLink :to="{ name: QH_ROUTES.USER.PROFILE }">
               <qh-button
-                class="-full !h-10 !w-60 !font-medium"
+                class="-full !h-10 !w-full !font-medium"
                 label="Dashboard"
               />
             </RouterLink>
           </div>
           <div class="grid w-full gap-4" v-else>
             <RouterLink :to="{ name: QH_ROUTES.USER.LOGIN }">
-              <qh-button class="!h-10 !w-56 !font-medium" label="Login" />
+              <qh-button class="!h-10 !w-full !font-medium" label="Login" />
             </RouterLink>
             <RouterLink :to="{ name: QH_ROUTES.USER.REGISTER }">
               <qh-button
                 variant="outlined"
                 label="Sign Up"
-                class="!h-10 !w-56 !font-medium"
+                class="!h-10 !w-full !font-medium"
               />
             </RouterLink>
           </div>
@@ -104,7 +104,7 @@ const { getAllJobs, getMatchedJobs } = useJobStore();
 const router = useRouter();
 
 const headerNavigations = ref([
-  { link: '/jobs', title: 'Jobs', external: false },
+  { link: '/jobs', title: 'Latest Jobs', external: false },
   {
     link: '/auth/company/login',
     title: 'For Employers',

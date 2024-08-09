@@ -30,15 +30,18 @@
             <div class="mt-2 flex gap-x-1">
               <qh-button
                 :label="job?.job_location_type"
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 !px-3 !py-3 !text-xs !font-normal capitalize !text-brand-700"
+                variant="light"
+                class="!h-6 !px-4 !text-xs !font-normal capitalize"
               />
               <qh-button
                 :label="job?.job_type"
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 !px-3 !py-3 !text-xs !font-normal capitalize !text-brand-700"
+                variant="light"
+                class="!h-6 !px-4 !text-xs !font-normal capitalize"
               />
               <qh-button
                 :label="job?.experience_level + ' Level'"
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 !px-3 !py-3 !text-xs !font-normal capitalize !text-brand-700"
+                variant="light"
+                class="!h-6 !px-4 !text-xs !font-normal capitalize"
               />
             </div>
           </div>

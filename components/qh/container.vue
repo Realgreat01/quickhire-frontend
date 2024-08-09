@@ -12,7 +12,7 @@
         >
           <div
             v-if="showModal"
-            class="scroll modal-content relative max-h-screen bg-white px-2 pb-4 md:rounded-lg md:px-4"
+            class="scroll modal-content relative grid max-h-screen justify-center bg-white px-2 pb-4 md:justify-normal md:rounded-lg md:px-4"
             :class="class"
           >
             <div
@@ -26,7 +26,7 @@
               </h2>
 
               <RiCloseFill
-                class="absolute right-0 top-0 m-4 block h-8 w-8 cursor-pointer justify-self-end text-brand"
+                class="fixed right-0 m-4 block h-8 w-8 cursor-pointer justify-self-end rounded-full border border-brand text-brand md:absolute md:top-0"
                 @click="closeModal"
               />
             </div>

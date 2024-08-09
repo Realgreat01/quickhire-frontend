@@ -28,7 +28,7 @@
           @click="emit('continue')"
         >
           <RiCheckboxCircleFill class="h-8 w-8 fill-brand" />
-          <span class="">Cancel</span>
+          <span class="">Continue</span>
         </qh-button>
       </div>
     </div>

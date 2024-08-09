@@ -109,14 +109,3 @@ export const qhHelpers = {
     return filtered;
   },
 };
-
-export const qhDropdown = reactive({
-  show: false,
-  close() {
-    this.show = false;
-    console.log('clikced close');
-  },
-  toggle() {
-    this.show = !this.show;
-  },
-});

@@ -75,7 +75,7 @@
             }}
           </h1>
         </div>
-        <h1 class="qh-text-3 hidden font-bold text-secondary md:block">
+        <h1 class="hidden text-sm font-bold text-secondary md:block">
           {{
             qhNumbers.formatCurrency(
               qhNumbers.convertCurrencyToNumber(
@@ -89,13 +89,11 @@
         >
           <qh-button
             @click="getSingleJob(job?._id)"
-            variant="outlined"
-            class="apply-button qh-text-4 h-6 w-28 gap-x-4 self-end !rounded-full border border-brand bg-transparent font-medium !text-brand"
+            :variant="job?.is_applicant ? 'inverse' : 'brand'"
+            class="apply-button !h-7 border border-brand"
           >
             <span class="">{{ job?.is_applicant ? 'View' : 'Apply' }}</span>
-            <ArrowRightCircleIcon
-              class="apply-icon h-5 w-5 text-brand duration-500"
-            />
+            <ArrowRightCircleIcon class="apply-icon h-5 w-5 duration-500" />
           </qh-button>
         </router-link>
       </div>

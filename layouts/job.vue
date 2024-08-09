@@ -12,6 +12,19 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useUserStore } from '~/store/user-store';
+import { useJobStore } from '~/store/job-store';
+import { QH_ROUTES } from '~/constants/routes';
+
+const { getCurrentUser } = useUserStore();
+
+const { getAllJobs, getAppliedJobs, getJobRecommendations } = useJobStore();
+onBeforeMount(async () => {
+  await getCurrentUser();
+  await getAllJobs();
+  await getJobRecommendations();
+});
+</script>
 
 <style scoped></style>

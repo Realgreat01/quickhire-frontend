@@ -17,7 +17,7 @@
             @click="openLogoutModal"
           />
         </div>
-        <qh-dropdown class="z-50 md:hidden">
+        <qh-dropdown class="z-50 md:hidden"  v-slot="{ closeDropdown }">
           <div class="">
             <div class="my-5">
               <RouterLink

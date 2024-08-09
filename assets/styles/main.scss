@@ -27,11 +27,11 @@
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   font-weight: normal;
-  --animate-duration: 1000ms;
+  --animate-duration: 500ms;
 }
 
 :root {
-  --animate-duration: 1000ms;
+  --animate-duration: 500ms;
 }
 html {
   scroll-behavior: smooth !important;

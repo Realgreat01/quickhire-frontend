@@ -29,7 +29,7 @@
       <qh-button
         v-if="currentUser"
         @click="editProfile"
-        class="fixed left-4 top-16 z-50 flex h-10 gap-x-4 rounded-lg !font-medium md:top-4"
+        class="fixed left-4 top-16 z-50 flex !h-10 !w-fit gap-x-4 !rounded-lg !font-medium md:top-4"
         ><span class="">Edit Profile</span>
         <PencilSquareIcon class="h-6 w-6" />
       </qh-button>

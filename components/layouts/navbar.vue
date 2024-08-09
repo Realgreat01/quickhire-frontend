@@ -40,17 +40,21 @@
           <p class="">Logout</p>
         </div>
 
-        <qh-dropdown class="md:hidden">
-          <div class="min-w-60">
+        <qh-dropdown
+          class="md:hidden"
+          v-slot="{ closeDropdown }"
+          deactivateClickOutside
+        >
+          <div class="min-w-60 p-0">
             <qh-card
-              class="font-poppins relative mb-4 flex max-h-80 w-full flex-col items-center justify-center border-2 !border-dark-50 bg-brand text-white"
+              class="font-poppins relative mb-4 flex max-h-80 w-full flex-col items-center justify-center bg-brand text-white"
             >
               <qh-edit-button class="text-dark" @click="editProfile" />
               <div class="relative block" v-if="user?.profile_picture">
                 <img
                   :src="user?.profile_picture"
                   alt=""
-                  class="block h-28 w-28 rounded-[50%] border-4 border-brand"
+                  class="lazy block h-28 w-28 rounded-[50%] border-2 border-white p-1"
                 />
                 <qh-edit-button
                   @click="uploadProfilePicture"
@@ -87,8 +91,9 @@
             </qh-card>
             <div class="my-5">
               <RouterLink
+                @click="closeDropdown"
                 :to="{ name: nav?.route }"
-                class="router flex w-52 cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
+                class="router flex w-full cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
                 v-for="nav in UserNavigations"
                 :class="
                   currentRoute.name === nav.route ||

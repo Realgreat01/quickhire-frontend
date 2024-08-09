@@ -27,12 +27,10 @@
       <qh-button
         @click="getAllJobs"
         variant="outlined"
-        class="apply-button my-6 !h-10 min-w-[40%] max-w-96 !gap-x-6 rounded-full border border-brand bg-transparent font-medium !text-brand"
+        class="apply-button my-4 !h-12 !w-max !px-10"
       >
         <span class="">Load more Jobs</span>
-        <ArrowRightCircleIcon
-          class="apply-icon h-5 w-5 text-brand duration-500"
-        />
+        <ArrowRightCircleIcon class="apply-icon h-5 w-5 duration-500" />
       </qh-button>
     </RouterLink>
   </div>

@@ -1,8 +1,8 @@
 <template>
   <div
-    class="flex flex-col justify-center gap-1 border-b-4 border-brand-100 bg-white md:h-[160px]"
+    class="flex h-32 flex-col justify-center gap-1 border-b-4 border-brand-100 bg-white pt-1 md:h-[160px] md:gap-0"
   >
-    <div class="mx-2 flex items-center justify-between px-4">
+    <div class="mx-2 flex h-fit items-center justify-between px-4">
       <h1
         class="qh-text-1 font-geologica flex w-fit items-center justify-center gap-x-6 font-bold text-success-600"
       >
@@ -22,7 +22,7 @@
       </h1>
       <div class="qh-flex-center flex-col">
         <div
-          class="qh-flex-center h-10 w-10 overflow-hidden rounded-full border-2 border-brand md:h-14 md:w-14"
+          class="qh-flex-center h-8 w-8 overflow-hidden rounded-full border-2 border-brand md:h-12 md:w-12"
         >
           <img
             :src="user?.profile_picture"
@@ -37,18 +37,18 @@
             @click="router.replace({ name: QH_ROUTES.USER.LOGIN })"
           />
         </div>
-        <h2 class="text-sm font-medium">
+        <h2 class="text-xs font-medium">
           {{ isLoggedIn && user ? 'Profile' : 'Sign In' }}
         </h2>
       </div>
       <qh-dropdown class="z-10 md:hidden" :deactivateClick="true">
         <template #icon>
           <div class="qh-flex-center flex-col">
-            <RiFilter3Line class="h-5 w-10 stroke-0 text-brand" />
-            <span class="text-[10px]">Filter</span>
+            <RiFilter3Line class="h-8 w-8 stroke-0 text-brand" />
+            <span class="text-[12px]">Filter</span>
           </div>
         </template>
-        <template v-slot="{ toggleDropdown }">
+        <template v-slot="{ closeDropdown }">
           <qh-card class="flex flex-col !gap-4"
             ><qh-input
               name="job_location_type"
@@ -78,21 +78,26 @@
             <qh-button
               class="qh-flex-center !h-[42px] !rounded-lg"
               label="Search"
-              @click="[searchJob, toggleDropdown()]" /></qh-card
+              @click="
+                searchJob;
+                closeDropdown;
+              " /></qh-card
         ></template>
       </qh-dropdown>
     </div>
-    <qh-input
-      name="key"
-      type="select"
-      class="qh-text-4 capitalize placeholder:text-xs md:hidden"
-      placeholder="Software"
-      :options="jobQuery"
-      taggable
-      tagPlaceholder="Search"
-      v-model="searchQuery.title"
-      @update:modelValue="searchJob"
-    />
+    <div class="mx-auto flex w-full items-center p-2 md:hidden">
+      <qh-input
+        name="key"
+        type="select"
+        class="qh-text-4 w-full capitalize placeholder:text-xs md:hidden"
+        placeholder="Software"
+        :options="jobQuery"
+        taggable
+        tagPlaceholder="Search"
+        v-model="searchQuery.title"
+        @update:modelValue="searchJob"
+      />
+    </div>
     <div
       class="mx-auto hidden w-full grid-cols-2 items-center gap-x-2 justify-self-end p-2 px-4 md:flex"
     >

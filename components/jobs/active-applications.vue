@@ -40,15 +40,17 @@
 
           <div class="px-2 md:hidden">
             <qh-button
-              class="qh-text-5 block !h-4 w-fit rounded-full bg-success p-0 px-10 capitalize"
+              variant="plain"
+              class="qh-text-5 !h-7 !w-fit bg-success capitalize text-white"
               :class="{
                 '!bg-dark-100 !text-brand':
                   job.candidate.status === 'submitted',
                 '!bg-dark-100 !text-success-600':
                   job.candidate.status === 'received',
-                '!bg-brand': job.candidate.status === 'processing',
-                'bg-success-500': job.candidate.status === 'accepted',
-                '!bg-error': job.candidate.status === 'rejected',
+                '!bg-brand !text-white': job.candidate.status === 'processing',
+                'bg-success-500 !text-white':
+                  job.candidate.status === 'accepted',
+                '!bg-error !text-white': job.candidate.status === 'rejected',
               }"
               :label="job.candidate.status"
             />

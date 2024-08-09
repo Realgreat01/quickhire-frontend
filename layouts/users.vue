@@ -27,10 +27,8 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router';
 import { useUserStore } from '~/store/user-store';
 import { useJobStore } from '~/store/job-store';
-import { useModalStore } from '~/store/modal-store';
 import { QH_ROUTES } from '~/constants/routes';
 
 const { getCurrentUser, getProjects, getExperiences, getEducation, getSkills } =
