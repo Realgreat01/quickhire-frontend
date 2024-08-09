@@ -1,18 +1,17 @@
 <template>
   <Teleport to="body">
-    <Transition name="fade" mode="out-in" appear>
+    <Transition mode="out-in" appear>
       <div
         @click.self="closeModal"
         class="fixed left-0 top-0 z-[100] flex h-screen w-full flex-col items-center justify-center bg-[#00000080] bg-opacity-70"
       >
         <Transition
           name="slideIn"
-          appear
-          mode="out-in"
           enter-active-class="animate__animated animate__zoomIn"
           leave-active-class="animate__animated animate__zoomOut"
         >
           <div
+            v-if="showModal"
             class="scroll modal-content relative max-h-screen bg-white px-2 pb-4 md:rounded-lg md:px-4"
             :class="class"
           >
@@ -41,15 +40,21 @@
 
 <script setup lang="ts">
 import { RiCloseFill } from 'vue-remix-icons';
-
 const emits = defineEmits(['close']);
 const props = defineProps({ class: String, title: String });
+
+const showModal = ref(false);
+
 const closeModal = () => {
-  emits('close');
+  showModal.value = false;
+  setTimeout(() => {
+    emits('close');
+  }, 500);
 };
 
 onMounted(() => {
   document.body.style.overflow = 'hidden';
+  showModal.value = true;
 });
 
 onUnmounted(() => {

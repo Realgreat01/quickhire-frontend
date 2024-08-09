@@ -5,7 +5,8 @@
         <qh-card
           v-for="experience in experiences"
           :key="experience._id"
-          class="relative flex w-full flex-col justify-between gap-2 rounded-2xl p-4 shadow-xl"
+          :class="{ 'cursor-pointer': editting }"
+          class="relative flex w-full flex-col justify-between gap-2 rounded-2xl bg-white p-4 shadow-xl"
         >
           <qh-edit-button
             class="text-dark"
@@ -57,7 +58,7 @@
             </h1>
           </div>
 
-          <div class="">
+          <div class="" v-if="!editting">
             <RiFileListFill class="icon h-6 w-6" />
 
             <h2 class="" v-html="experience.contributions"></h2>
@@ -67,7 +68,7 @@
       </div>
       <div class="mt-4 grid gap-4 gap-x-8 md:flex">
         <qh-button
-          class="!h-10 !rounded-full duration-500 md:!w-60"
+          class="!h-12 !rounded-full duration-500 md:!w-60"
           :class="editting ? '!bg-success-600' : ''"
           v-if="experiences && experiences.length > 0"
           :loading="updating"
@@ -80,7 +81,7 @@
 
         <qh-button
           variant="outlined"
-          class="!h-10 !rounded-full md:!w-60"
+          class="!h-12 !rounded-full md:!w-60"
           @click="addExperience"
           :disabled="updating"
         >

@@ -12,7 +12,7 @@
         class="w-fit !rounded-full border-none focus:!outline-none"
         placeholder="Search for jobs"
       />
-      <span class="qh-flex-center h-full w-12 bg-brand"
+      <span class="qh-flex-center h-full w-12 bg-brand" @click="searchJob"
         ><MagnifyingGlassIcon class="h-5 w-5 text-dark-50"
       /></span>
     </div>
@@ -38,12 +38,13 @@
       </div>
       <div class="hidden gap-x-4 md:flex" v-else>
         <RouterLink :to="{ name: QH_ROUTES.USER.LOGIN }">
-          <qh-button class="h-10 w-40 rounded-full font-medium" label="Login" />
+          <qh-button class="!h-10 !w-40 !font-medium" label="Login" />
         </RouterLink>
         <RouterLink :to="{ name: QH_ROUTES.USER.REGISTER }">
           <qh-button
             label="Sign Up"
-            class="h-10 w-40 rounded-full border border-brand bg-transparent font-medium !text-brand"
+            variant="outlined"
+            class="!h-10 !w-40 !border-2 !font-medium"
           />
         </RouterLink>
       </div>
@@ -71,17 +72,15 @@
               />
             </RouterLink>
           </div>
-          <div class="hidden gap-x-4 md:flex" v-else>
+          <div class="grid w-full gap-4" v-else>
             <RouterLink :to="{ name: QH_ROUTES.USER.LOGIN }">
-              <qh-button
-                class="h-10 w-60 rounded-full font-medium"
-                label="Login"
-              />
+              <qh-button class="!h-10 !w-56 !font-medium" label="Login" />
             </RouterLink>
             <RouterLink :to="{ name: QH_ROUTES.USER.REGISTER }">
               <qh-button
-                label="Create&nbsp;Account"
-                class="h-10 w-60 rounded-full border border-brand bg-transparent font-medium !text-brand"
+                variant="outlined"
+                label="Sign Up"
+                class="!h-10 !w-56 !font-medium"
               />
             </RouterLink>
           </div>
@@ -99,10 +98,10 @@ import QH_CONSTANTS from '~/constants';
 import { useJobStore } from '~/store/job-store';
 import { jobQuery } from '~/components/layouts/job/job-types';
 
+defineProps({ Class: String });
 const { searchQuery } = storeToRefs(useJobStore());
 const { getAllJobs, getMatchedJobs } = useJobStore();
-
-defineProps({ Class: String });
+const router = useRouter();
 
 const headerNavigations = ref([
   { link: '/jobs', title: 'Jobs', external: false },
@@ -117,6 +116,18 @@ const isLoggedIn = ref(false);
 const checkLoggedInStatus = () => {
   if (qhSecuredLS.get(QH_CONSTANTS.AUTH_TOKEN)) isLoggedIn.value = true;
   else isLoggedIn.value = false;
+};
+
+const searchJob = () => {
+  router.replace({ name: QH_ROUTES.JOB.ALL, query: searchQuery.value });
+  if (
+    searchQuery.value.title === '' &&
+    searchQuery.value.location === '' &&
+    searchQuery.value.type === '' &&
+    searchQuery.value.level === ''
+  ) {
+    getAllJobs();
+  } else getMatchedJobs();
 };
 
 onMounted(async () => setTimeout(() => checkLoggedInStatus(), 500));

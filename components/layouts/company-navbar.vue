@@ -72,10 +72,8 @@
               {{ company?.address.country }}
             </h1>
           </div>
-          <qh-button
-            class="qh-text-4 h-8 rounded-full md:h-12 md:!px-16"
-            @click="createJob"
-            >Post&nbsp;New&nbsp;Job</qh-button
+          <qh-button class="!h-12 !w-fit md:h-12 md:!px-16" @click="createJob"
+            >Post New Job</qh-button
           >
         </div>
       </div>

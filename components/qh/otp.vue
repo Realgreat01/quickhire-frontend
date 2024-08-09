@@ -20,12 +20,9 @@
       <qh-button
         @click.capture="restartCountDown()"
         :disabled="disableResendButton"
-        :class="
-          disableResendButton ? '' : '!border-2 !border-brand !bg-transparent'
-        "
-        class="!h-10 !rounded-3xl !px-12 disabled:!bg-brand"
+        class="!h-12 !px-12 disabled:!bg-brand"
         type="button"
-        variant="outlined"
+        :variant="disableResendButton ? 'brand' : 'outlined'"
       >
         <div class="qh-flex-center" v-if="disableResendButton">
           <span class="mx-2 block text-lg text-white">{{ countDown }}</span>
@@ -44,7 +41,12 @@ import VOtpInput from 'vue3-otp-input';
 
 const otpInput = ref<InstanceType<typeof VOtpInput> | null>(null);
 const bindValue = defineModel<string>('');
-const emit = defineEmits(['resend', 'update:modelValue']);
+const emit = defineEmits([
+  'resend',
+  'complete',
+  'in-complete',
+  'update:modelValue',
+]);
 const countDown = ref(59);
 const disableResendButton = ref(false);
 
@@ -66,11 +68,14 @@ const restartCountDown = () => {
 };
 
 const handleOnComplete = (value: string) => {
-  console.log('OTP completed: ', value);
+  emit('complete');
 };
 
 const handleOnChange = (value: string) => {
   emit('update:modelValue', value);
+  if (value.toString().length === 4) {
+    emit('complete');
+  } else emit('in-complete');
 };
 </script>
 

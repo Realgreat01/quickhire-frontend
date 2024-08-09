@@ -103,7 +103,7 @@
           v-if="buttonText"
           type="button"
           @click="actionButtonClick"
-          class="center-box !right-0 h-10 transform border border-brand-500 bg-brand-500 shadow-lg shadow-dark-200"
+          class="center-box !right-0 !h-full !rounded-lg"
         >
           <slot name="buttonText">{{ buttonText }}</slot>
         </qh-button>

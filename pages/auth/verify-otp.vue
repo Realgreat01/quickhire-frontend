@@ -5,13 +5,17 @@
         class="mx-auto mt-4 w-full gap-4"
         @submit.prevent="handleSubmit($event, SubmitOTP)"
       >
-        <qh-otp v-model="otp" @resend="resendOtp" />
+        <qh-otp
+          v-model="otp"
+          @resend="resendOtp"
+          @complete="completeOtp = true"
+          @in-complete="completeOtp = false"
+        />
         <qh-button
           label="Verify"
           type="submit"
-          class="mt-4 h-10 w-full p-1"
-          :loading="isSubmitting"
-          :disabled="Object.keys(errors).length !== 0 || isSubmitting"
+          class="mt-4 !h-12 w-full p-1"
+          :disabled="Object.keys(errors).length !== 0 || !completeOtp"
         />
       </form>
     </VeeForm>
@@ -36,6 +40,7 @@ definePageMeta({
 
 const otp = ref<number>();
 const router = useRouter();
+const completeOtp = ref(false);
 const route = useRoute();
 
 const resendOtp = async () => {
@@ -51,10 +56,12 @@ const resendOtp = async () => {
 };
 
 const SubmitOTP = async (field: any) => {
-  router.push({
-    name: QH_ROUTES.USER.RESET_PASSWORD,
-    query: { email: route.query.email, otp: otp.value },
-  });
+  if (completeOtp) {
+    router.push({
+      name: QH_ROUTES.USER.RESET_PASSWORD,
+      query: { email: route.query.email, otp: otp.value },
+    });
+  }
 };
 </script>
 

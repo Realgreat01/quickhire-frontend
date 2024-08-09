@@ -1,5 +1,5 @@
 <template>
-  <qh-container class="">
+  <qh-container class="qh-flex-center flex-col gap-10 md:block">
     <div class="mb-10">
       <img
         src="~/assets/svgs/question.svg"
@@ -13,24 +13,23 @@
       ></p>
 
       <div class="qh-flex-center mt-4 w-full gap-8">
-        <div
-          class="flex w-48 items-center justify-center rounded-lg border bg-error-100 px-4 py-2"
-          @click="$emit('cancelled')"
+        <qh-button
+          class="!h-12 max-w-48 !rounded-lg bg-error-100 !px-6 !text-error"
+          variant="plain"
+          @click="emit('cancelled')"
         >
           <RiCloseCircleFill class="h-8 w-8 fill-error" />
-          <qh-button class="!bg-transparent !px-2 !text-error" label="Cancel" />
-        </div>
+          <span class="">Cancel</span>
+        </qh-button>
 
-        <div
-          class="flex w-48 items-center justify-center gap-x-1 rounded-lg border bg-brand-100 px-4 py-2"
-          @click="emits('continue')"
+        <qh-button
+          class="!h-12 max-w-48 !rounded-lg bg-brand-100 !px-6 !text-brand"
+          variant="plain"
+          @click="emit('continue')"
         >
           <RiCheckboxCircleFill class="h-8 w-8 fill-brand" />
-          <qh-button
-            class="bg-transparent !px-2 !text-brand"
-            label="Continue"
-          />
-        </div>
+          <span class="">Cancel</span>
+        </qh-button>
       </div>
     </div>
   </qh-container>
@@ -40,7 +39,7 @@
 import { RiCheckboxCircleFill, RiCloseCircleFill } from 'vue-remix-icons';
 import { useModalStore } from '~/store/modal-store';
 
-const emits = defineEmits(['continue', 'cancelled']);
+const emit = defineEmits(['continue', 'cancelled']);
 
 const modalStore = useModalStore();
 </script>

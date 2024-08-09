@@ -1,9 +1,9 @@
 <template>
-  <div class="grid w-full gap-4 p-2 md:flex">
+  <div class="grid w-full gap-4 md:flex">
     <div class="flex-1">
       <div class="flex flex-col gap-6 rounded" ref="draggable">
         <qh-card
-          class="py- relative flex h-fit w-full cursor-pointer flex-col items-start justify-between rounded px-4 md:px-12 md:py-8"
+          class="relative flex h-fit w-full cursor-pointer flex-col items-start justify-between rounded px-4 duration-500 md:px-12 md:py-8"
           :class="index % 2 === 0 ? '' : 'justify-self-end'"
           v-for="(education, index) in educations"
           :key="education._id"
@@ -55,7 +55,7 @@
             </h2>
           </div>
 
-          <div class="flex">
+          <div class="flex" v-if="!editting">
             <RiArticleFill class="icon !h-6 !w-6" />
             <h2 class="qh-text-4 w-fit" v-html="education.description"></h2>
           </div>
@@ -68,7 +68,7 @@
 
       <div class="mt-4 grid gap-4 gap-x-8 md:flex">
         <qh-button
-          class="!h-10 !rounded-full duration-500 md:!w-60"
+          class="!h-12 !rounded-full duration-500 md:!w-60"
           :class="editting ? '!bg-success-600' : ''"
           v-if="educations && educations.length > 0"
           :loading="updating"
@@ -81,7 +81,7 @@
 
         <qh-button
           variant="outlined"
-          class="!h-10 !rounded-full md:!w-60"
+          class="!h-12 !rounded-full md:!w-60"
           @click="addEducation"
           :disabled="updating"
         >

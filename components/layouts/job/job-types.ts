@@ -1,6 +1,7 @@
 export const jobQuery = ref([
   'All',
   'Software Engineer',
+  'Software Developer',
   'Frontend Developer',
   'Backend Developer',
   'Fullstack Developer',

@@ -83,7 +83,7 @@ defineEmits(['click']);
 }
 
 .admin {
-  @apply qh-button bg-warn-600 text-brand;
+  @apply qh-button bg-orange-500 font-medium text-white;
 }
 
 .qh-button {

@@ -3,112 +3,139 @@
     <qh-card
       class="flex flex-col gap-y-4 rounded-lg border border-brand-50 bg-white p-4"
     >
-      <!-- 1 -->
-      <div class="grid grid-cols-2 items-start justify-between md:flex">
-        <div class="flex w-full gap-x-2">
+      <div
+        class="grid grid-cols-1 flex-col items-start justify-between md:flex"
+      >
+        <div class="flex w-full items-center gap-x-4">
           <img
             :src="job?.posted_by?.logo"
             alt=""
             class="block max-h-12 max-w-12"
           />
           <!-- 2 -->
-          <div class="flex flex-col gap-2">
-            <div class="flex gap-4">
-              <div class="">
-                <h1 class="qh-text-3 font-bold">{{ job?.job_title }}</h1>
-                <h1 class="qh-text-5 -mt-1 font-semibold text-brand">
-                  {{ job?.posted_by?.company_name }}
-                </h1>
-              </div>
+          <div
+            class="flex w-full flex-col-reverse justify-end md:flex-row md:items-center md:justify-between"
+          >
+            <div class="">
+              <h1 class="qh-text-3 font-bold">{{ job?.job_title }}</h1>
+              <h1 class="qh-text-5 -mt-1 font-semibold text-brand">
+                {{ job?.posted_by?.company_name }}
+              </h1>
+            </div>
+
+            <div class="flex justify-start gap-x-2 justify-self-end">
               <qh-button
-                class="!h-6 rounded-full !py-2 px-4 text-xs capitalize"
+                variant="plain"
+                class="!h-6 !w-fit !px-4 !py-2 !text-xs capitalize !text-white"
                 :class="{
-                  '!bg-success-500': job?.job_status === 'open',
-                  '!bg-dark-400 !text-dark-50': job?.job_status === 'paused',
-                  '!bg-error': job?.job_status === 'closed',
+                  '!bg-success-500 ': job?.job_status === 'open',
+                  'disabled !bg-dark-500 !text-dark-100':
+                    job?.job_status === 'paused',
+                  'disabled !bg-error': job?.job_status === 'closed',
                 }"
+                :disabled="
+                  job?.job_status === 'closed' || job?.job_status === 'paused'
+                "
                 :label="job?.job_status === 'open' ? 'Active' : job?.job_status"
               />
-            </div>
-            <div class="flex w-full flex-wrap gap-2 text-xs !capitalize">
               <qh-button
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 !px-3 !py-3 text-xs capitalize !text-brand-700"
+                v-if="job?.is_new"
+                variant="plain"
+                class="qh-text-center !h-6 !w-fit gap-1 bg-red-100 !py-2 px-4 text-xs capitalize"
               >
-                <RiHomeOfficeLine class="h-4 w-4" />
-                <p class="text-xs">{{ job?.job_location_type }}</p>
-              </qh-button>
-              <qh-button
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 !px-3 !py-3 text-xs capitalize !text-brand-700"
-              >
-                <RiBriefcaseLine class="h-4 w-4" />
-                <p class="text-xs">{{ job?.job_type }}</p>
-              </qh-button>
-              <qh-button
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 !px-3 !py-3 text-xs capitalize !text-brand-700"
-              >
-                <RiToolsLine class="h-4 w-4" />
-                <p class="">{{ job?.experience_level + ' Level' }}</p>
-              </qh-button>
-              <qh-button
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 !px-3 !py-3 text-xs capitalize !text-brand-700"
-              >
-                <RiHourglassLine class="h-4 w-4" />
-                <p class="">
-                  {{
-                    `${job?.job_duration.value} ${job?.job_duration.date}${job?.job_duration.value >= 1 ? 's' : ''}`
-                  }}
-                </p>
-              </qh-button>
-            </div>
-            <div class="flex items-center gap-x-5">
-              <qh-button
-                class="qh-text-4 flex h-4 items-center gap-x-2 rounded-full !bg-success-100 px-4 text-xs font-semibold !text-success-500"
-              >
-                <RiCashLine class="h-4 w-4" />
-                {{ qhNumbers.formatCurrency(job?.salary.value) }}
-              </qh-button>
-              <qh-button
-                class="qh-text-4 flex h-4 items-center gap-x-2 rounded-full !bg-error-100 px-4 text-xs font-semibold !text-error-600"
-              >
-                <RiCalendarCloseLine class="h-4 w-4" />
-                {{ qhDates.getReadableDate(job?.application_ends as Date) }}
+                <h2 class="text-red-500">NEW</h2>
+                <FireIcon class="h-4 w-4 text-orange-500" />
               </qh-button>
             </div>
           </div>
         </div>
-        <div class="flex h-full flex-col items-end justify-between">
-          <h2 class="hidden md:block">
-            {{ qhNumbers.formatNumber(job?.applicants.length) }}
-            Applicants
-          </h2>
+        <div
+          class="my-4 flex w-full flex-wrap gap-x-2 gap-y-1 text-xs !capitalize"
+        >
+          <qh-button variant="light" class="!w-fit !px-3 capitalize">
+            <RiHomeOfficeLine class="h-4 w-4" />
+            <p class="text-xs">{{ job?.job_location_type }}</p>
+          </qh-button>
+          <qh-button variant="light" class="!w-fit !px-3 capitalize">
+            <RiBriefcaseLine class="h-4 w-4" />
+            <p class="text-xs">{{ job?.job_type }}</p>
+          </qh-button>
+          <qh-button variant="light" class="!w-fit !px-3 capitalize">
+            <RiToolsLine class="h-4 w-4" />
+            <p class="">{{ job?.experience_level + ' Level' }}</p>
+          </qh-button>
+          <qh-button variant="light" class="!w-fit !px-3 capitalize">
+            <RiHourglassLine class="h-4 w-4" />
+            <p class="">
+              {{
+                `${job?.job_duration.value} ${job?.job_duration.date}${job?.job_duration.value >= 1 ? 's' : ''}`
+              }}
+            </p>
+          </qh-button>
+          <div class="flex items-center gap-x-5">
+            <qh-button
+              variant="plain"
+              class="qh-text-5 bg-success-100 !text-success-500"
+            >
+              <RiCashLine class="h-4 w-4" />
+              {{ qhNumbers.formatCurrency(job?.salary.value) }}
+            </qh-button>
+            <qh-button
+              variant="plain"
+              class="qh-text-5 !bg-error-100 !text-error-600"
+            >
+              <RiCalendarCloseLine class="h-4 w-4" />
+              {{ qhDates.getReadableDate(job?.application_ends as Date) }}
+            </qh-button>
+          </div>
+        </div>
+        <div class="flex w-full items-center justify-between">
           <qh-button
-            class="h-8 w-fit rounded-full bg-orange-500 px-5"
+            variant="outlined"
+            class="!h-8 !w-fit !border-dark !text-dark"
+            :label="
+              qhNumbers.formatNumber(job.applicants_count) + ' Applicants'
+            "
+          />
+          <qh-button
+            variant="admin"
+            class="h-8 !w-fit !px-5"
             @click="seeApplicants(job?._id)"
             >See&nbsp;Applicants</qh-button
           >
-
-          <h2 class="block md:hidden">
-            {{ qhNumbers.formatNumber(job?.applicants.length) }}
-            Applicants
-          </h2>
         </div>
-      </div>
-      <hr class="border border-dashed border-brand" />
-      <div class="">
-        <h1 class="qh-text-3 font-bold">Job Description</h1>
-        <p class="" v-html="job?.job_description"></p>
-      </div>
 
-      <hr class="my-4 border border-dashed border-brand" />
-
-      <div class="flex justify-between">
-        <div class="">
-          <h1 class="qh-text-4 font-bold">Posted By</h1>
-          <!-- <p class="">{{ qhDates.formatDate(job?.posted_on) }}</p> -->
+        <div class="my-4 flex flex-wrap gap-2">
+          <qh-devicon
+            v-for="icon in job?.required_skills"
+            :icon="icon"
+            class="min-w-20 rounded-lg bg-dark-100 p-2"
+            hide-tooltip
+            show-icon-name
+          />
         </div>
+
         <div class="">
-          <h1 class="qh-text-4 font-bold">Application End</h1>
-          <!-- <p class="">{{ qhDates.formatDate(job?.application_ends) }}</p> -->
+          <hr class="border border-dashed border-brand" />
+          <div class="">
+            <h1 class="qh-text-3 font-bold">Job Description</h1>
+            <p class="" v-html="job?.job_description"></p>
+          </div>
+
+          <hr class="my-4 border border-dashed border-brand" />
+
+          <div class="flex justify-between">
+            <div class="">
+              <h1 class="qh-text-4 font-bold">Posted By</h1>
+              <p class="qh-text-4">{{ qhDates.formatDate(job?.posted_on) }}</p>
+            </div>
+            <div class="">
+              <h1 class="qh-text-4 font-bold">Application End</h1>
+              <p class="qh-text-4">
+                {{ qhDates.formatDate(job?.application_ends) }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </qh-card>
@@ -120,7 +147,7 @@ import { QH_ROUTES } from '~/constants/routes';
 import QH_CONSTANTS from '~/constants';
 import { useJobStore } from '~/store/job-store';
 import { useUserStore } from '~/store/user-store';
-
+import { FireIcon } from '@heroicons/vue/24/solid';
 import {
   RiWebhookFill,
   RiToolsLine,

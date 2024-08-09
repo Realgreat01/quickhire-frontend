@@ -17,8 +17,8 @@
             class="block max-h-10 max-w-10 md:max-h-12 md:max-w-12"
           />
           <!-- 2 -->
-          <div class="flex flex-col gap-2">
-            <div class="flex gap-4">
+          <div class="flex flex-1 flex-col gap-2">
+            <div class="flex w-full flex-1 justify-between">
               <div class="">
                 <h1 class="qh-text-3 font-bold">{{ job.job_title }}</h1>
                 <h1 class="qh-text-5 -mt-1 font-semibold text-brand">
@@ -26,7 +26,7 @@
                 </h1>
               </div>
               <qh-button
-                class="!h-6 rounded-full !py-2 px-4 text-xs capitalize"
+                class="!h-6 !w-fit justify-self-end !py-2 px-4 text-xs capitalize"
                 :class="{
                   '!bg-success-500': job.job_status === 'open',
                   '!bg-dark-400 !text-dark-50': job.job_status === 'paused',
@@ -38,17 +38,19 @@
 
             <div class="px-2 md:hidden">
               <qh-button
-                class="qh-text-5 block !h-4 w-fit rounded-full bg-success p-0 px-10 capitalize"
+                variant="plain"
+                class="qh-text-5 !h-7 !w-fit bg-success capitalize"
                 :class="{
                   '!bg-dark-100 !text-brand':
                     job.candidate.status === 'submitted',
                   '!bg-dark-100 !text-success-600':
                     job.candidate.status === 'received',
-                  '!bg-brand': job.candidate.status === 'processing',
-                  'bg-success-500': job.candidate.status === 'accepted',
-                  '!bg-error': job.candidate.status === 'rejected',
+                  '!bg-brand !text-white':
+                    job.candidate.status === 'processing',
+                  'bg-success-500 !text-white':
+                    job.candidate.status === 'accepted',
+                  '!bg-error !text-white': job.candidate.status === 'rejected',
                 }"
-                variant="plain"
                 :label="job.candidate.status"
               />
             </div>
@@ -107,7 +109,8 @@
         </div>
         <div class="hidden flex-col items-end px-2 md:flex">
           <qh-button
-            class="qh-text-5 block h-6 w-fit rounded-full bg-success px-4 capitalize"
+            variant="plain"
+            class="qh-text-5 !h-10 !w-fit rounded-full bg-success capitalize"
             :class="{
               '!bg-dark-100 !text-brand': job.candidate.status === 'submitted',
               '!bg-dark-100 !text-success-600':

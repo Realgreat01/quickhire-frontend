@@ -64,7 +64,7 @@
         <qh-button
           type="submit"
           label="Create Account"
-          class="mt-4 h-10 w-full p-1"
+          class="mt-4 !h-12 w-full"
           :loading="isSubmitting"
           :disabled="Object.keys(errors).length !== 0 || isSubmitting"
         />

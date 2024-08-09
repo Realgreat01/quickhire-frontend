@@ -24,20 +24,23 @@
 
       <div class="mt-5">
         <div
-          class="mx-auto flex h-12 items-center justify-between overflow-hidden rounded-full border pl-5 md:h-14 md:w-[580px] md:pl-10"
+          class="mx-auto flex h-12 items-center justify-between overflow-hidden rounded-full border pl-5 md:h-14 md:pl-10 lg:w-[580px]"
         >
           <input
             v-model="searchQuery.title"
-            class="max-w-72 !rounded-full border-none focus:outline-none"
+            class="max-w-64 !rounded-full border-none focus:outline-none md:max-w-72"
             placeholder="Search for jobs"
           />
           <span
             class="qh-flex-center h-full w-14 bg-brand md:w-20"
             @click="searchJob"
-            ><MagnifyingGlassIcon class="h-5 w-5 text-dark-50"
-          /></span>
+          >
+            <MagnifyingGlassIcon class="h-5 w-5 text-dark-50" />
+          </span>
         </div>
-        <div class="mx-auto my-4 flex flex-wrap justify-center gap-x-4">
+        <div
+          class="mx-auto my-4 flex max-w-[80vw] flex-wrap justify-center gap-x-4"
+        >
           <qh-input
             name="job_location_type"
             type="select"

@@ -27,9 +27,10 @@
 
             <div class="flex justify-start gap-x-2 justify-self-end">
               <qh-button
-                class="!h-6 !w-fit rounded-full !py-2 px-4 text-xs capitalize"
+                variant="plain"
+                class="!h-6 !w-fit !px-4 !py-2 !text-xs capitalize !text-white"
                 :class="{
-                  '!bg-success-500': job?.job_status === 'open',
+                  '!bg-success-500 ': job?.job_status === 'open',
                   'disabled !bg-dark-500 !text-dark-100':
                     job?.job_status === 'paused',
                   'disabled !bg-error': job?.job_status === 'closed',
@@ -42,7 +43,7 @@
               <qh-button
                 v-if="job?.is_new"
                 variant="plain"
-                class="qh-text-center !h-6 !w-fit gap-1 rounded-full bg-red-100 !py-2 px-4 text-xs capitalize"
+                class="qh-text-center !h-6 !w-fit gap-1 bg-red-100 !py-2 px-4 text-xs capitalize"
               >
                 <h2 class="text-red-500">NEW</h2>
                 <FireIcon class="h-4 w-4 text-orange-500" />
@@ -100,9 +101,9 @@
           />
           <qh-button
             v-if="QH_CONSTANTS.GET_USER_TYPE() === 'company'"
-            class="!h-8 !w-fit rounded-full bg-orange-500 px-5"
-            label="See Applicants"
+            class="!h-8 !w-fit !px-5"
             variant="admin"
+            label="See Applicants"
           />
           <qh-button
             v-else-if="job?.job_status === 'paused'"
@@ -120,7 +121,7 @@
           <qh-button
             v-else
             @click="getApplyForJob(job?._id)"
-            class="h-8 w-fit rounded-full bg-brand px-8"
+            class="!h-8 !w-fit !px-8"
             label="Apply"
           />
         </div>

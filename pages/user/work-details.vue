@@ -1,6 +1,6 @@
 <template>
   <div>
-    <qh-card class="flex flex-col gap-4 md:w-4/5">
+    <qh-card class="mt-20 flex flex-col gap-4 md:w-4/5">
       <div class="flex items-center justify-between gap-x-10">
         <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Experience Level</h2>
         <qh-input
@@ -8,7 +8,6 @@
           placeholder="Mid Level"
           type="select"
           class="!w-40 capitalize md:!w-64"
-          label-name="label"
           :options="experienceLevels"
           v-model="workDetails.experience_level"
         />
@@ -31,7 +30,7 @@
           name="availability"
           placeholder="Immediately"
           type="select"
-          class="w-30 capitalize md:w-64"
+          class="!w-40 capitalize md:w-64"
           :options="availability"
           v-model="workDetails.availability"
         />
@@ -68,7 +67,7 @@
           name="experience_level"
           type="select"
           placeholder="Remote"
-          class="w-30 capitalize md:w-64"
+          class="w-40 capitalize md:w-64"
           :options="['onsite', 'remote', 'hybrid']"
           v-model="workDetails.job_interest"
         />
@@ -103,12 +102,12 @@ const { updateUserDetails } = useUserStore();
 const modalStore = useModalStore();
 
 const experienceLevels = ref([
-  { label: 'Internships', value: 'internship' },
-  { label: 'Entry Level / Graduate', value: 'entry' },
-  { label: 'Junior Level ', value: 'junior' },
-  { label: 'Mid Level', value: 'mid' },
-  { label: 'Senior Level', value: 'senior' },
-  { label: 'Expert Level', value: 'expert' },
+  'internship',
+  'entry',
+  'junior',
+  'mid',
+  'senior',
+  'expert',
 ]);
 const availability = [
   'immediately',
@@ -130,9 +129,7 @@ const educationLevels = ref([
 ]);
 
 const workDetails = ref({
-  experience_level: experienceLevels.value.find(
-    (exp) => exp.value === user.value?.experience_level,
-  ),
+  experience_level: user.value?.experience_level,
   rate: user.value?.rate,
   availability: user.value?.availability,
   highest_education_level: user.value?.highest_education_level,
@@ -143,7 +140,6 @@ const workDetails = ref({
 const updateUserWorkDetails = async () => {
   await updateUserDetails({
     ...workDetails.value,
-    experience_level: workDetails.value.experience_level?.value,
   });
 };
 </script>

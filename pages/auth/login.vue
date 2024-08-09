@@ -11,7 +11,7 @@
           <qh-button
             label="Login"
             type="submit"
-            class="mb-0 mt-4 h-10 w-full p-1"
+            class="mb-0 mt-4 !h-12 w-full p-1"
             :loading="isSubmitting"
             :disabled="Object.keys(errors).length !== 0 || isSubmitting"
           />
@@ -32,8 +32,8 @@
     </h1>
     <h1 class="qh-text-4 text-center">
       <RouterLink class="text-brand" :to="{ name: QH_ROUTES.COMPANY.LOGIN }"
-        >QuickHire Business</RouterLink
-      >
+        >Are you an Employer ?
+      </RouterLink>
     </h1>
   </div>
 </template>

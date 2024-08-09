@@ -19,7 +19,7 @@
         class="absolute right-2 top-10 max-w-[80vw] bg-white !p-0"
         v-if="showDropdown"
       >
-        <slot> </slot>
+        <slot :showDropdown :toggleDropdown> </slot>
       </qh-card>
     </Transition>
   </div>
@@ -28,22 +28,18 @@
 <script setup lang="ts">
 import { RiMenu4Fill } from 'vue-remix-icons';
 import { onClickOutside } from '@vueuse/core';
-import { vOnClickOutside } from '@vueuse/components';
-import { useModalStore } from '~/store/modal-store';
-import { storeToRefs } from 'pinia';
 
-defineProps({ Class: String });
-const showDropdown = ref(false);
+const props = defineProps({ Class: String, deactivateClick: Boolean });
 
+let showDropdown = ref(false);
 const closeDropdown = () => {
-  showDropdown.value = false;
+  if (!props.deactivateClick) {
+    showDropdown.value = false;
+  }
 };
-
 const toggleDropdown = () => {
   showDropdown.value = !showDropdown.value;
 };
-
-// const { closeDropdown, toggleDropdown } = useModalStore();
 
 const dropdown = ref();
 

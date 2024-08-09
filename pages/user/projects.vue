@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-x-8">
+  <div class="flex md:gap-x-8">
     <div class="">
       <div class="flex flex-wrap gap-6 rounded" ref="draggable">
         <qh-card
@@ -8,6 +8,7 @@
           class="relative flex w-full flex-col justify-between gap-y-4 overflow-hidden rounded-2xl !p-0 shadow-xl"
         >
           <img
+            v-if="!editting"
             :src="project.screenshot"
             alt=""
             class="h-60 bg-cover object-cover object-top"
@@ -47,23 +48,21 @@
             </div>
 
             <div class="flex w-fit justify-start gap-4 md:flex-row md:gap-x-10">
-              <a
-                :href="project.preview_url"
-                class="flex h-8 w-fit items-center justify-start gap-x-2 rounded-full bg-brand-50 px-5 !text-brand"
+              <qh-button variant="light" class="!w-fit">
+                <a :href="project.preview_url" class="flex gap-x-2">
+                  <RiGlobalLine class="h-5 w-5 fill-brand" />
+                  <span class="">Preview</span>
+                </a></qh-button
               >
-                <RiGlobalLine class="h-7 w-7 fill-brand" />
-                <span class="">Preview</span>
-              </a>
-              <a
-                :href="project.repository"
-                class="flex h-8 w-fit items-center justify-start gap-x-2 rounded-full bg-brand-50 px-5 !text-brand"
-              >
-                <RiGithubFill class="h-7 w-7 fill-brand" />
-                <span class="">Repository</span>
-              </a>
+              <qh-button variant="light" class="!w-fit">
+                <a :href="project.repository" class="flex gap-x-2">
+                  <RiGithubFill class="h-5 w-5 fill-brand" />
+                  <span class="">Repository</span>
+                </a>
+              </qh-button>
             </div>
 
-            <div class="md:w-3/5">
+            <div class="md:w-3/5" v-if="!editting">
               <RiToolsFill class="icon h-6 w-6 fill-brand" />
               <p class="qh-test-3 font-semibold text-brand">Tools Used</p>
               <div class="flex flex-wrap gap-2">
@@ -76,7 +75,7 @@
               </div>
             </div>
 
-            <div class="">
+            <div class="" v-if="!editting">
               <RiArticleFill class="icon h-6 w-6 fill-brand" />
 
               <p class="qh-test-3 font-semibold text-brand">Description</p>
@@ -85,7 +84,7 @@
               <!-- <span v-html="project.projectDescription"></span> -->
             </div>
 
-            <div class="">
+            <div class="" v-if="!editting">
               <RiLightbulbFlashFill class="icon h-6 w-6 fill-brand" />
               <p class="qh-test-3 font-semibold text-brand">Motivations</p>
               <h2 class="pr-6" v-html="project.motivations"></h2>
@@ -96,7 +95,7 @@
       </div>
       <div class="mt-4 grid gap-4 gap-x-8 md:flex">
         <qh-button
-          class="!h-10 !rounded-full duration-1000 md:!w-60"
+          class="!h-12 !rounded-full duration-1000 md:!w-60"
           :class="editting ? '!bg-success-600' : ''"
           v-if="projects && projects.length > 0"
           :loading="updating"
@@ -109,7 +108,7 @@
 
         <qh-button
           variant="outlined"
-          class="!h-10 !rounded-full md:!w-60"
+          class="!h-12 !rounded-full md:!w-60"
           @click="addProject"
           :disabled="updating"
         >
