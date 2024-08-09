@@ -19,7 +19,7 @@
         class="absolute right-2 top-10 max-w-[80vw] bg-white !p-0"
         v-if="showDropdown"
       >
-        <slot :showDropdown :toggleDropdown> </slot>
+        <slot :toggleDropdown> </slot>
       </qh-card>
     </Transition>
   </div>

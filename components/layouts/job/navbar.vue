@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col justify-between gap-1 border-b-4 border-brand-100 bg-white pt-6 md:h-[160px]"
+    class="flex flex-col justify-center gap-1 border-b-4 border-brand-100 bg-white md:h-[160px]"
   >
     <div class="mx-2 flex items-center justify-between px-4">
       <h1
@@ -9,7 +9,7 @@
         <span class="font-bebas block text-success">JOB BOARD</span>
         <qh-button
           class="h-10 rounded-2xl !bg-transparent !px-0 !py-0"
-          v-if="$route.name == QH_ROUTES.JOB.ALL"
+          v-if="$route.name !== QH_ROUTES.JOB.ALL"
         >
           <RouterLink
             :to="{ name: QH_ROUTES.JOB.ALL }"
@@ -25,11 +25,11 @@
           class="qh-flex-center h-10 w-10 overflow-hidden rounded-full border-2 border-brand md:h-14 md:w-14"
         >
           <img
-            :src="user.profile_picture"
+            :src="user?.profile_picture"
             @click="router.push({ name: QH_ROUTES.USER.PROFILE })"
             alt="profile picture"
             class="h-full w-full"
-            v-if="isLoggedIn && user"
+            v-if="isLoggedIn"
           />
           <RiHomeFill
             class="h-8 w-8 fill-brand"
@@ -85,7 +85,7 @@
     <qh-input
       name="key"
       type="select"
-      class="qh-text-4 flex-1 capitalize placeholder:text-xs md:hidden"
+      class="qh-text-4 capitalize placeholder:text-xs md:hidden"
       placeholder="Software"
       :options="jobQuery"
       taggable

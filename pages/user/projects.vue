@@ -172,6 +172,10 @@ const startDrag = () => {
   editting.value = true;
   projectList.value = Projects.value;
   dragFunction.start();
+  qhToast.info({
+    title: 'Edit Projects',
+    message: 'Kindly drag your projects to reorder',
+  });
 };
 
 const updateUserProject = async () => {

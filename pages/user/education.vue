@@ -136,6 +136,10 @@ const startDrag = () => {
   editting.value = true;
   educationList.value = Educations.value;
   dragFunction.start();
+  qhToast.info({
+    title: 'Edit Education',
+    message: 'Kindly drag your education to reorder',
+  });
 };
 
 const updateUserEducation = async () => {
