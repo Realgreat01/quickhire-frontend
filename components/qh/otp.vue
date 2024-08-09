@@ -25,7 +25,7 @@
         "
         class="!h-10 !rounded-3xl !px-12 disabled:!bg-brand"
         type="button"
-        variant="outline"
+        variant="outlined"
       >
         <div class="qh-flex-center" v-if="disableResendButton">
           <span class="mx-2 block text-lg text-white">{{ countDown }}</span>

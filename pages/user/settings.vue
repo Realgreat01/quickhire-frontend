@@ -48,12 +48,11 @@
         <qh-toggle v-model="settings.send_cover_letter" />
       </div>
       <qh-button
-        class="my-4 rounded-full !py-3 md:w-60"
+        class="my-4 !h-12 rounded-full md:!w-60"
         @click="updateUserSettings"
         :loading="updating"
         >Save Changes</qh-button
       >
-      {{ settings }}
     </qh-card>
   </div>
 </template>

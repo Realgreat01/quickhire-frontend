@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     '~/assets/styles/main.scss',
     '~/assets/styles/tailwind.scss',
     'notivue/notification.css',
+    'notivue/notification-progress.css',
     'notivue/animations.css',
     '@vuepic/vue-datepicker/dist/main.css',
   ],
@@ -42,12 +43,14 @@ export default defineNuxtConfig({
   },
 
   notivue: {
-    position: 'bottom-right',
+    position: 'top-right',
     limit: 4,
     enqueue: true,
     avoidDuplicates: true,
+    teleportTo: 'body',
     notifications: {
       global: {
+        // progress: true,
         duration: 3000,
       },
     },

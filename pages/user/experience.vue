@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-x-8">
+  <div class="grid gap-4 gap-x-8 md:flex">
     <div class="">
       <div class="flex flex-col gap-6 rounded" ref="draggable">
         <qh-card
@@ -17,7 +17,7 @@
           />
           <div class="">
             <RiBuildingFill class="icon h-6 w-6" />
-            <h1 class="qh-text-3 font-bold text-secondary-500">
+            <h1 class="qh-text-3 font-bold text-error-600">
               {{ experience.company }}
             </h1>
           </div>
@@ -65,23 +65,31 @@
           </div>
         </qh-card>
       </div>
-      <div class="flex items-center gap-x-8">
+      <div class="mt-4 grid gap-4 gap-x-8 md:flex">
         <qh-button
-          class="my-4 hidden rounded-full !py-3 md:w-60"
-          @click="updateExperience"
-          v-if="experienceList?.length > 0"
+          class="!h-10 !rounded-full duration-500 md:!w-60"
+          :class="editting ? '!bg-success-600' : ''"
+          v-if="experiences && experiences.length > 0"
           :loading="updating"
-          >Save Changes</qh-button
-        ><qh-button
-          class="my-4 rounded-full !py-3 md:w-60"
-          @click="updateExperience"
-          v-if="experienceList?.length > 0"
-          :loading="updating"
-          >Add Experience</qh-button
+        >
+          <span class="w-full" @click="updateExperience" v-if="editting"
+            >Save Changes</span
+          >
+          <span class="w-full" v-else @click="startDrag">Edit Changes</span>
+        </qh-button>
+
+        <qh-button
+          variant="outlined"
+          class="!h-10 !rounded-full md:!w-60"
+          @click="addExperience"
+          :disabled="updating"
+        >
+          <RiAddLine class="mr-4 h-6 w-6" />
+          Add Exprience</qh-button
         >
       </div>
       <qh-empty-content
-        v-if="experienceList.length <= 0"
+        v-if="!experiences"
         message="You have not added your work experience"
       />
     </div>
@@ -96,6 +104,7 @@ import {
   RiMapPinFill,
   RiGlobeFill,
   RiCalendar2Fill,
+  RiAddLine,
   RiFileListFill,
 } from 'vue-remix-icons';
 import QH_CONSTANTS from '~/constants';
@@ -116,17 +125,39 @@ useHead({
 });
 
 const router = useRouter();
-const { experiences, updating } = storeToRefs(useUserStore());
+const { experiences, updating, Experiences } = storeToRefs(useUserStore());
 const { deleteExperience, updateUserDetails } = useUserStore();
 const modalStore = useModalStore();
 
-const draggable = ref();
 const experienceList = ref<any>(experiences.value);
 
-// qhDraggable(draggable, experienceList.value);
+const draggable = ref<HTMLElement | undefined>();
+const editting = ref(false);
+const dragFunction = qhDraggable(draggable, ref(experienceList.value).value);
+
+const startDrag = () => {
+  editting.value = true;
+  experienceList.value = Experiences.value;
+  dragFunction.start();
+  qhToast.info({
+    title: 'Edit Experience',
+    message: 'Kindly drag your experience to reorder',
+  });
+};
+
+const updateExperience = async () => {
+  editting.value = false;
+  experienceList.value = experiences.value;
+  dragFunction.pause();
+  await updateUserDetails({ experience: experienceList.value });
+};
 
 const editExperience = (id: string) => {
   router.replace({ query: { edit: QH_ROUTES.USER.EXPERIENCE, id } });
+};
+
+const addExperience = (id: string) => {
+  router.replace({ query: { add: QH_ROUTES.USER.EXPERIENCE } });
 };
 
 const deleteUserExperience = async (id: string) => {
@@ -135,10 +166,12 @@ const deleteUserExperience = async (id: string) => {
     await deleteExperience(id);
   }
 };
-
-const updateExperience = async () => {
-  await updateUserDetails({ experience: experienceList.value });
-};
+onMounted(() => {
+  dragFunction.destroy();
+});
+onUnmounted(() => {
+  dragFunction.destroy();
+});
 </script>
 
 <style scoped>

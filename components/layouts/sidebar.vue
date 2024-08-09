@@ -3,14 +3,14 @@
     class="sticky bottom-0 top-0 flex h-screen flex-col items-center justify-center gap-2 bg-white px-2"
   >
     <qh-card
-      class="font-poppins relative my-4 flex h-80 w-full flex-col items-center justify-center border-2 !border-dark-50"
+      class="font-poppins relative my-4 flex max-h-80 w-full flex-col items-center justify-center border-2 !border-dark-50 bg-white"
     >
       <qh-edit-button class="text-dark" @click="editProfile" />
       <div class="relative block" v-if="user?.profile_picture">
         <img
           :src="user?.profile_picture"
           alt=""
-          class="block h-36 max-w-36 rounded-[50%] border-4 border-brand"
+          class="block h-28 w-28 rounded-[50%] border-4 border-brand"
         />
         <qh-edit-button
           @click="uploadProfilePicture"
@@ -21,33 +21,25 @@
       <h1 class="qh-text-4 w-full text-center font-semibold capitalize">
         {{ fullname }}
       </h1>
-      <h1 class="text-center text-xs text-brand">@{{ user?.username }}</h1>
+      <h1 class="text-center text-xs text-secondary-500">
+        @{{ user?.username }}
+      </h1>
       <h1 class="qh-text-5 text-center font-medium">
         {{ skills?.stack }}
       </h1>
-      <!-- v-show="actionButtonPages.includes(currentRoute.name as string)" 
-       <qh-button
-        class="h-8 md:w-28"
-        @click="
-          () => router.replace({ query: { add: currentRoute.meta.name } })
-        "
-      >
-        <RiAddCircleLine class="h-6 w-6 rounded fill-white" />
-        <h1 class="qh-text-4 font-normal"></h1>
-      </qh-button> -->
-
-      <!--  -->
 
       <qh-button
         @click="previewprofile"
-        class="my-2 mb-4 flex h-8 items-center gap-x-4 rounded-full border border-brand !bg-transparent !text-brand"
+        variant="outlined"
+        class="my-2 h-8 items-center gap-x-4 border border-brand"
       >
         <h1 class="qh-text-4 font-medium">Portfolio</h1>
-        <RiExternalLinkLine class="h-6 w-6 rounded fill-brand" />
+        <arrow-top-right-on-square-icon class="h-5 w-5 rounded text-brand" />
       </qh-button>
+
       <qh-resume-button
         :username="user?.username ?? ''"
-        class="qh-text-4 h-10 w-fit rounded-full px-8"
+        class="qh-text-4 h-8 w-max rounded-full !border-white px-8"
       />
     </qh-card>
 
@@ -73,6 +65,7 @@
 <script setup lang="ts">
 import { UserNavigations } from './user-navigations';
 import { storeToRefs } from 'pinia';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/outline';
 import { useUserStore } from '~/store/user-store';
 import { RouterLink, useRouter } from 'vue-router';
 import { QH_ROUTES } from '~/constants/routes';

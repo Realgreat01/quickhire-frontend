@@ -143,11 +143,11 @@ const DefaultContent = async () => {
             color: brandColor,
           },
           {
-            columns: [
-              qhDates.resumeDate(experience.start_date),
+            text:
+              qhDates.resumeDate(experience.start_date) +
+              '  —  ' +
               qhDates.resumeDate(experience.end_date),
-            ],
-            color: 'gray',
+            color: '#999990',
           },
           {
             ul: qhHtmlToPDFMake(experience.contributions),

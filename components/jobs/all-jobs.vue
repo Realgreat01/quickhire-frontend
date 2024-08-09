@@ -1,9 +1,12 @@
 <template>
-  <div class="w-full p-4">
-    <div class="flex flex-wrap gap-4" v-if="allJobs.length > 0">
-      <div class="" v-for="(job, index) in allJobs">
-        <qh-job-card :job="job" class="w-full" v-if="job._id" />
-      </div>
+  <div class="w-full p-2 md:p-4">
+    <div
+      class="flex grid-cols-2 flex-wrap gap-4 md:grid"
+      v-if="allJobs.length > 0"
+    >
+      <template v-for="(job, index) in allJobs">
+        <qh-job-card :job="job" class="" v-if="job._id" />
+      </template>
     </div>
 
     <qh-empty-content v-else
@@ -23,7 +26,8 @@
     >
       <qh-button
         @click="getAllJobs"
-        class="apply-button my-6 h-10 min-w-[40%] max-w-96 gap-x-6 rounded-full border border-brand bg-transparent font-medium !text-brand"
+        variant="outlined"
+        class="apply-button my-6 !h-10 min-w-[40%] max-w-96 !gap-x-6 rounded-full border border-brand bg-transparent font-medium !text-brand"
       >
         <span class="">Load more Jobs</span>
         <ArrowRightCircleIcon

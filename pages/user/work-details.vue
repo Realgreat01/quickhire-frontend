@@ -75,7 +75,7 @@
       </div>
 
       <qh-button
-        class="my-4 rounded-full !py-3 md:w-60"
+        class="my-4 !h-12 rounded-full !px-12 !py-3 md:!w-60"
         @click="updateUserWorkDetails"
         >Save Changes</qh-button
       >

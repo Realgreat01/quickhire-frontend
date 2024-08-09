@@ -3,17 +3,22 @@ import { push } from 'notivue';
 import { QH_ROUTES } from '~/constants/routes';
 import { getActivePinia } from 'pinia';
 import type { Pinia, Store } from 'pinia';
+import type { NotificationOptions } from 'notivue';
 import ApiService from '~/services/api-service.service';
 interface ExtendedPinia extends Pinia {
   _s: Map<string, Store>;
 }
 
 export const qhToast = {
-  success: (notification: Notification | string) => push.success(notification),
-  error: (notification: Notification | string) => push.error(notification),
-  warn: (notification: Notification | string) => push.warning(notification),
-  info: (notification: Notification | string) => push.info(notification),
-  default: (notification: Notification | string) => push.success(notification),
+  success: (notification: NotificationOptions | string) =>
+    push.success(notification),
+  error: (notification: NotificationOptions | string) =>
+    push.error(notification),
+  warn: (notification: NotificationOptions | string) =>
+    push.warning(notification),
+  info: (notification: NotificationOptions | string) => push.info(notification),
+  default: (notification: NotificationOptions | string) =>
+    push.success(notification),
 };
 
 export const qhCloseModal = async () => {

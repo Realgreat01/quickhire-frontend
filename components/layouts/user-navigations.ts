@@ -18,20 +18,6 @@ export const UserNavigations = markRaw([
     icon: RiUser2Line,
     class: 'bg-teal-100  text-teal-600',
   },
-  {
-    title: 'Education',
-    action: '',
-    route: QH_ROUTES.USER.EDUCATION,
-    icon: RiGraduationCapLine,
-    class: '!bg-brand-100  text-brand-600',
-  },
-  {
-    title: 'Work Details',
-    action: '',
-    route: QH_ROUTES.USER.WORK_DETAILS,
-    icon: RiBriefcase2Line,
-    class: 'bg-cyan-100  text-cyan-800',
-  },
 
   {
     title: 'Experience',
@@ -55,6 +41,20 @@ export const UserNavigations = markRaw([
     route: QH_ROUTES.USER.PROJECTS,
     icon: RiBox3Line,
     class: 'bg-indigo-100  text-indigo-800',
+  },
+  {
+    title: 'Education',
+    action: '',
+    route: QH_ROUTES.USER.EDUCATION,
+    icon: RiGraduationCapLine,
+    class: '!bg-brand-100  text-brand-600',
+  },
+  {
+    title: 'Work Details',
+    action: '',
+    route: QH_ROUTES.USER.WORK_DETAILS,
+    icon: RiBriefcase2Line,
+    class: 'bg-cyan-100  text-cyan-800',
   },
   {
     title: 'Contact',

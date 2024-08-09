@@ -42,21 +42,49 @@
 
         <qh-dropdown class="md:hidden">
           <div class="min-w-60">
-            <div
-              class="font-poppins flex h-60 w-full flex-col items-center justify-center rounded-lg bg-brand p-8 text-dark-100 shadow-md"
+            <qh-card
+              class="font-poppins relative mb-4 flex max-h-80 w-full flex-col items-center justify-center border-2 !border-dark-50 bg-brand text-white"
             >
               <qh-edit-button class="text-dark" @click="editProfile" />
-              <img
-                class="block h-32 w-32 rounded-full border border-brand object-cover"
-                :src="user?.profile_picture"
-                alt=""
-              />
-              <h1 class="text-center text-sm font-semibold capitalize">
+              <div class="relative block" v-if="user?.profile_picture">
+                <img
+                  :src="user?.profile_picture"
+                  alt=""
+                  class="block h-28 w-28 rounded-[50%] border-4 border-brand"
+                />
+                <qh-edit-button
+                  @click="uploadProfilePicture"
+                  class="right-1 top-1 rounded-lg bg-brand fill-white p-1 text-white"
+                />
+                <!-- class="!left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2 transform text-brand" -->
+              </div>
+              <h1 class="qh-text-4 w-full text-center font-semibold capitalize">
                 {{ fullname }}
               </h1>
-              <h1 class="qh-text-4 text-error-300">@{{ user?.username }}</h1>
-              <h1 class="qh-text-4 font-medium">{{ skills?.stack }}</h1>
-            </div>
+              <h1 class="text-center text-xs text-secondary-500">
+                @{{ user?.username }}
+              </h1>
+              <h1 class="qh-text-5 text-center font-medium">
+                {{ skills?.stack }}
+              </h1>
+
+              <qh-button
+                @click="previewprofile"
+                variant="inverse"
+                class="my-2 h-8 items-center gap-x-4 border border-brand"
+              >
+                <h1 class="qh-text-4 font-medium">Portfolio</h1>
+                <arrow-top-right-on-square-icon
+                  class="h-5 w-5 rounded text-brand"
+                />
+              </qh-button>
+
+              <qh-resume-button
+                variant="outlined"
+                :username="user?.username ?? ''"
+                class="qh-text-4 h-8 w-max rounded-full !border-white px-8 !text-white"
+              />
+            </qh-card>
             <div class="my-5">
               <RouterLink
                 :to="{ name: nav?.route }"
@@ -77,10 +105,10 @@
               </RouterLink>
               <div
                 class="router flex w-52 cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
+                @click="openLogoutModal"
               >
                 <ArrowRightStartOnRectangleIcon
                   class="mr-3 h-5 w-5 fill-error text-error"
-                  @click="openLogoutModal"
                 />
                 <h1 class="qh-text-4 font-normal">Logout</h1>
               </div>
@@ -98,6 +126,7 @@ import {
   RiEyeLine,
   RiNotification3Fill,
 } from 'vue-remix-icons';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/outline';
 import {
   ArrowRightStartOnRectangleIcon,
   ArrowRightIcon,
@@ -110,10 +139,13 @@ import { useUserStore } from '~/store/user-store';
 import { QH_ROUTES } from '~/constants/routes';
 import chatHistory from '~/data/chats.json';
 import { UserNavigations } from './user-navigations';
-
-const { fullname, user, skills } = storeToRefs(useUserStore());
+import { useUploadStore } from '~/store/upload-store';
+import { UPDATE_USER_PROFILE_PICTURE } from '~/services/user.service';
 
 const currentRoute = useRoute();
+const uploadStore = useUploadStore();
+const { fullname, user, skills } = storeToRefs(useUserStore());
+const { getCurrentUser } = useUserStore();
 const router = useRouter();
 const modalStore = useModalStore();
 
@@ -155,6 +187,7 @@ async function openNotificationModal() {
     // Handle cancel operation here
   }
 }
+
 async function openLogoutModal() {
   try {
     const result = await modalStore.openModal({
@@ -167,6 +200,28 @@ async function openLogoutModal() {
     }
   } catch (error) {}
 }
+
+const uploadProfilePicture = async () => {
+  try {
+    const result = await uploadStore.openModal();
+    if (result) {
+      const formData = new FormData();
+      formData.append('profile_picture', result[0]);
+      const res = await UPDATE_USER_PROFILE_PICTURE(formData);
+      if (res.success) {
+        getCurrentUser();
+        qhToast.success('update successful');
+        uploadStore.uploadComplete();
+      } else {
+        qhToast.error('picture update failed');
+        uploadStore.uploadFailed();
+        uploadProfilePicture();
+      }
+    }
+  } catch (error) {
+    console.log('user upload cancelled');
+  }
+};
 
 const routeNames = computed(() => {
   switch (currentRoute.name) {

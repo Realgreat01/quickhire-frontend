@@ -105,7 +105,7 @@ export const useJobStore = defineStore('job', {
     jobData(): {
       title: string;
       value: number | string;
-      data: string | number;
+      data: string;
     }[] {
       if (this.appliedJobs !== undefined) {
         const totalApplications = this.appliedJobs?.length ?? 0;
@@ -130,11 +130,7 @@ export const useJobStore = defineStore('job', {
               activeApplications,
               totalApplications,
             ),
-            data: qhNumbers.getPercentage(
-              activeApplications,
-              totalApplications,
-              true,
-            ),
+            data: `${activeApplications}/${totalApplications}`,
           },
           {
             title: 'Successful',
@@ -142,11 +138,7 @@ export const useJobStore = defineStore('job', {
               successfulApplications,
               totalApplications,
             ),
-            data: qhNumbers.getPercentage(
-              successfulApplications,
-              totalApplications,
-              true,
-            ),
+            data: `${successfulApplications}/${totalApplications}`,
           },
         ];
       }

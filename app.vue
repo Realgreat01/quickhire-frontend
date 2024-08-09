@@ -1,8 +1,9 @@
 <template>
   <div class="dark:bg-white dark:text-dark-800">
     <Notivue v-slot="item">
-      <Notification :item="item" />
-      <NotificationProgress :item="item" />
+      <Notification :item="item">
+        <NotificationProgress :item="item" />
+      </Notification>
     </Notivue>
 
     <NuxtLayout>

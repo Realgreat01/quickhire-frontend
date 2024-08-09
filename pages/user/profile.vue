@@ -1,8 +1,8 @@
 <template>
-  <div class="bg-white">
+  <div class="bg-white p-2">
     <div class="mx-auto bg-white">
       <user-profile-dashboard />
-      <div class="my-10 grid grid-cols-2 gap-x-10">
+      <div class="my-10 grid gap-x-10 md:grid-cols-2">
         <jobs-active-applications :count="2" />
         <jobs-recommendations />
       </div>

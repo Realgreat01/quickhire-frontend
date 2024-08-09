@@ -102,7 +102,7 @@
 
         <qh-button
           type="submit"
-          class="mt-4 w-full"
+          class="mt-4 !h-12 w-full"
           :loading="isSubmitting"
           :disabled="Object.keys(errors).length !== 0 || isSubmitting"
         />

@@ -1,5 +1,5 @@
 <template>
-  <div class="text-dark-100">
+  <div class="pt-10 text-dark-100 md:pt-20">
     <h1 class="qh-text-1 mb-4 text-dark-600 md:mb-5">Features</h1>
 
     <div class="grid w-full gap-4 md:grid-cols-3">

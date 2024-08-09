@@ -63,7 +63,7 @@
               />
               <qh-button
                 label="Subscribe"
-                class="!h-12 md:!w-48"
+                class="!h-12 !rounded-lg md:!w-48"
                 type="submit"
                 :loading="isSubmitting"
                 :disabled="Object.keys(errors).length !== 0 || isSubmitting"
@@ -153,13 +153,6 @@
         </div>
       </div>
     </div>
-    <h2
-      class="mx-auto mt-5 w-4/5 border-[1px] border-transparent border-t-[#455A64] pt-5 text-center md:mt-10 md:w-3/5 md:pt-10"
-    >
-      Project is liecenced under
-      <a href="" class="link">MIT</a>
-      and released in <span class="link">2024</span>
-    </h2>
   </div>
 </template>
 

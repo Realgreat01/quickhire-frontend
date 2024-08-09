@@ -48,32 +48,39 @@
                   'bg-success-500': job.candidate.status === 'accepted',
                   '!bg-error': job.candidate.status === 'rejected',
                 }"
+                variant="plain"
                 :label="job.candidate.status"
               />
             </div>
 
             <!-- Long Line -->
-            <div class="hidden flex-wrap gap-1 !capitalize md:flex">
+            <div class="hidden flex-wrap gap-1 font-medium !capitalize md:flex">
               <qh-button
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs !font-medium capitalize !text-brand-700"
+                variant="light"
+                class="qh-text-5 !font-medium capitalize"
               >
                 <RiHomeOfficeLine class="h-4 w-4" />
                 {{ job.job_location_type }}
               </qh-button>
+
               <qh-button
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs !font-medium !capitalize !text-brand-700"
+                variant="light"
+                class="qh-text-5 !font-medium capitalize"
               >
                 <RiBriefcaseLine class="h-4 w-4" />
                 {{ job.job_type }}
               </qh-button>
+
               <qh-button
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs !font-medium capitalize !text-brand-700"
+                variant="light"
+                class="qh-text-5 !font-medium capitalize"
               >
                 <RiToolsLine class="h-4 w-4" />
                 {{ job?.experience_level + ' Level' }}
               </qh-button>
               <qh-button
-                class="qh-text-5 flex h-4 items-center gap-x-2 rounded-full bg-dark-100 px-4 text-xs !font-medium capitalize !text-brand-700"
+                variant="light"
+                class="qh-text-5 !font-medium capitalize"
               >
                 <RiHourglassLine class="h-4 w-4" />
                 {{
@@ -121,7 +128,8 @@
       <div class="p-6">
         <RouterLink :to="{ name: QH_ROUTES.JOB.ALL }" class="p-6">
           <qh-button
-            class="apply-button mx-auto w-full gap-x-6 rounded-full border border-brand bg-transparent font-medium !text-brand md:w-96"
+            variant="outlined"
+            class="apply-button mx-auto !h-12 !w-full gap-x-6 font-medium md:w-96"
           >
             <span class="">See all Jobs </span>
             <ArrowRightCircleIcon

@@ -24,14 +24,16 @@
 
       <div class="mt-5">
         <div
-          class="mx-auto flex h-16 items-center justify-between overflow-hidden rounded-full border pl-10 md:w-[580px]"
+          class="mx-auto flex h-12 items-center justify-between overflow-hidden rounded-full border pl-5 md:h-14 md:w-[580px] md:pl-10"
         >
           <input
             v-model="searchQuery.title"
-            class="w-72 !rounded-full border-none focus:outline-none"
+            class="max-w-72 !rounded-full border-none focus:outline-none"
             placeholder="Search for jobs"
           />
-          <span class="qh-flex-center h-full w-20 bg-brand" @click="searchJob"
+          <span
+            class="qh-flex-center h-full w-14 bg-brand md:w-20"
+            @click="searchJob"
             ><MagnifyingGlassIcon class="h-5 w-5 text-dark-50"
           /></span>
         </div>
@@ -69,13 +71,14 @@
       <div
         class="flex flex-col justify-between gap-x-8 gap-y-4 md:flex-row md:justify-start"
       >
-        <qh-button class="h-10 w-80 rounded-full font-medium md:h-12 md:w-72">
+        <qh-button class="!h-14 !w-80 font-medium md:!h-12 md:!w-72">
           <router-link :to="{ name: QH_ROUTES.USER.REGISTER }">
             Get Started
           </router-link>
         </qh-button>
         <qh-button
-          class="h-10 w-80 rounded-full border border-brand bg-transparent font-medium !text-brand md:h-12 md:w-72"
+          variant="outlined"
+          class="!h-14 !w-80 font-medium md:!h-12 md:!w-72"
         >
           <router-link :to="{ name: QH_ROUTES.COMPANY.LOGIN }">
             For Business</router-link

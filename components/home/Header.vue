@@ -33,10 +33,7 @@
       <qh-theme-changer class="left-0 hidden" />
       <div class="hidden gap-x-4 md:flex" v-if="isLoggedIn">
         <RouterLink :to="{ name: QH_ROUTES.USER.PROFILE }">
-          <qh-button
-            class="h-10 w-60 rounded-full font-medium"
-            label="Dashboard"
-          />
+          <qh-button class="!h-10 !w-60 font-medium" label="Dashboard" />
         </RouterLink>
       </div>
       <div class="hidden gap-x-4 md:flex" v-else>
@@ -52,7 +49,7 @@
       </div>
 
       <qh-dropdown class="block md:hidden">
-        <div class="!min-w-[400px]">
+        <qh-card class="!min-w-[320px]">
           <div class="mb-8 flex flex-col gap-y-4">
             <NuxtLink
               :external="nav.external"
@@ -69,7 +66,7 @@
           <div class="gap-x-4" v-if="isLoggedIn">
             <RouterLink :to="{ name: QH_ROUTES.USER.PROFILE }">
               <qh-button
-                class="h-10 w-60 rounded-full font-medium"
+                class="-full !h-10 !w-60 !font-medium"
                 label="Dashboard"
               />
             </RouterLink>
@@ -88,7 +85,7 @@
               />
             </RouterLink>
           </div>
-        </div>
+        </qh-card>
       </qh-dropdown>
     </div>
   </div>

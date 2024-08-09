@@ -1,6 +1,10 @@
 <template>
   <div class="relative flex flex-col">
-    <div class="h-6 w-6 fill-brand stroke-brand" @click="toggleDropdown">
+    <div
+      class="h-6 w-6 fill-brand stroke-brand"
+      @click="toggleDropdown"
+      ref="dropdown"
+    >
       <slot name="icon"> <RiMenu4Fill class="fill-[inherit]" /></slot>
     </div>
 
@@ -14,7 +18,6 @@
         :class="Class"
         class="absolute right-2 top-10 max-w-[80vw] bg-white !p-0"
         v-if="showDropdown"
-        ref="dropdown"
       >
         <slot> </slot>
       </qh-card>

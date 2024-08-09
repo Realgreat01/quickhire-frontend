@@ -5,13 +5,14 @@
   >
     <qh-button
       v-if="job?.is_new"
-      class="mb-4 mt-2 !h-6 w-fit gap-1 self-end justify-self-end rounded-full bg-error-100 !py-2 px-4 text-xs capitalize"
+      variant="plain"
+      class="mb-4 mt-2 !h-6 !w-fit self-end bg-error-100 text-xs capitalize"
     >
       <h2 class="text-red-500">NEW</h2>
       <FireIcon class="h-4 w-4 text-orange-500" />
     </qh-button>
 
-    <div class="flex justify-between gap-x-2">
+    <div class="flex w-full flex-col justify-between gap-2 md:flex-row">
       <div class="flex">
         <img
           :src="job.posted_by?.logo"
@@ -43,23 +44,38 @@
         </div>
       </div>
 
-      <div class="flex flex-col items-end gap-2">
-        <div class="flex items-center gap-x-1 capitalize">
-          <RiBuildingLine
-            class="h-4 w-4 fill-brand"
-            v-if="job.job_location_type === 'onsite'"
-          />
-          <RiHomeOfficeLine
-            class="h-4 w-4 fill-brand"
-            v-if="job.job_location_type === 'hybrid'"
-          />
-          <RiHomeWifiLine
-            class="h-4 w-4 fill-brand"
-            v-if="job.job_location_type === 'remote'"
-          />
-          <span class="text-sm text-dark-400">{{ job.job_location_type }}</span>
+      <div
+        class="flex w-full items-center justify-between gap-2 md:w-fit md:flex-col md:items-end md:justify-normal"
+      >
+        <div class="">
+          <div class="flex items-center gap-x-1 capitalize">
+            <RiBuildingLine
+              class="h-4 w-4 fill-brand"
+              v-if="job.job_location_type === 'onsite'"
+            />
+            <RiHomeOfficeLine
+              class="h-4 w-4 fill-brand"
+              v-if="job.job_location_type === 'hybrid'"
+            />
+            <RiHomeWifiLine
+              class="h-4 w-4 fill-brand"
+              v-if="job.job_location_type === 'remote'"
+            />
+            <span class="text-sm text-dark-400">{{
+              job.job_location_type
+            }}</span>
+          </div>
+          <h1 class="qh-text-3 font-bold text-secondary md:hidden">
+            {{
+              qhNumbers.formatCurrency(
+                qhNumbers.convertCurrencyToNumber(
+                  job.salary.value as number,
+                ) as number,
+              )
+            }}
+          </h1>
         </div>
-        <h1 class="qh-text-4 font-bold text-secondary">
+        <h1 class="qh-text-3 hidden font-bold text-secondary md:block">
           {{
             qhNumbers.formatCurrency(
               qhNumbers.convertCurrencyToNumber(
@@ -73,6 +89,7 @@
         >
           <qh-button
             @click="getSingleJob(job?._id)"
+            variant="outlined"
             class="apply-button qh-text-4 h-6 w-28 gap-x-4 self-end !rounded-full border border-brand bg-transparent font-medium !text-brand"
           >
             <span class="">{{ job?.is_applicant ? 'View' : 'Apply' }}</span>

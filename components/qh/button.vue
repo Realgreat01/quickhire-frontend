@@ -1,17 +1,16 @@
 <template>
   <button
     v-if="loading"
-    class="flex min-h-8 min-w-[180px] cursor-not-allowed items-center justify-center rounded bg-brand bg-opacity-50 px-4 py-4 text-[#fff]"
-    :class="class"
+    class="brand min-w-[180px] cursor-not-allowed bg-opacity-50"
     v-bind="$attrs"
   >
-    <icons-loading class="" />
+    <icons-loading />
   </button>
 
   <button
     v-else-if="disabled"
-    class="flex min-h-8 cursor-not-allowed items-center justify-center rounded bg-brand px-4 py-2 font-semibold text-[#fff] opacity-50"
-    :class="class"
+    :class="[variant]"
+    class="cursor-not-allowed opacity-50"
     v-bind="$attrs"
   >
     <slot v-if="$slots.default"></slot>
@@ -20,13 +19,7 @@
     <template v-else>Custome Button</template>
   </button>
 
-  <button
-    v-else
-    @click="$emit('click')"
-    class="flex min-h-8 items-center justify-center rounded bg-brand px-4 py-2 font-semibold text-[#fff]"
-    :class="class"
-    v-bind="$attrs"
-  >
+  <button v-else @click="$emit('click')" :class="[variant]" class="">
     <slot v-if="$slots.default"></slot>
     <template v-else-if="label">{{ label }}</template>
     <template v-else-if="type.toLowerCase() === 'submit'">Submit</template>
@@ -35,15 +28,65 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  class: { type: String },
+const props = defineProps({
   label: { type: String, default: null },
   type: { type: String, default: 'button' },
   disabled: { type: Boolean, default: false },
   loading: { type: Boolean, default: false },
+  variant: {
+    type: String as PropType<
+      | 'brand'
+      | 'ring'
+      | 'outlined'
+      | 'plain'
+      | 'inverse'
+      | 'light'
+      | 'success'
+      | 'error'
+      | 'admin'
+    >,
+    default: 'brand',
+  },
 });
 
 defineEmits(['click']);
 </script>
 
-<style scoped></style>
+<style>
+.brand {
+  @apply qh-button bg-brand text-white;
+}
+
+.outlined {
+  @apply qh-button border border-brand text-brand;
+  /* border-width: 1px !important; */
+}
+
+.plain {
+  @apply qh-button text-brand;
+}
+
+.inverse {
+  @apply qh-button bg-white text-brand;
+}
+
+.light {
+  @apply qh-button bg-dark-100 text-brand-700;
+}
+
+.success {
+  @apply qh-button bg-success-600 text-white;
+}
+
+.error {
+  @apply qh-button bg-error-500 text-white;
+}
+
+.admin {
+  @apply qh-button bg-warn-600 text-brand;
+}
+
+.qh-button {
+  @apply flex h-8 w-[inherit] items-center justify-center  gap-x-2 rounded-full px-4 font-semibold;
+}
+</style>
