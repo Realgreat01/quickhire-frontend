@@ -79,8 +79,8 @@
               class="qh-flex-center !h-[42px] !rounded-lg"
               label="Search"
               @click="
-                searchJob;
-                closeDropdown;
+                searchJob();
+                closeDropdown();
               " /></qh-card
         ></template>
       </qh-dropdown>
