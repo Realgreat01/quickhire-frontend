@@ -16,7 +16,7 @@
         {{ user?.header_bio }}
       </p>
 
-      <div class="qh-text-3 mt-10 flex gap-x-2 md:w-2/3">
+      <div class="qh-text-3 mt-10 flex w-full gap-x-2 md:w-2/3">
         <qh-resume-button class="!h-12 w-full" :username="user?.username ?? ''"
           >Resume</qh-resume-button
         >
