@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mt-16 flex min-h-screen flex-col-reverse items-center justify-end bg-white p-4 text-dark md:mt-0 md:grid md:grid-cols-[5fr,3fr] md:px-10"
+    class="mt-16 flex min-h-screen flex-col-reverse items-center justify-center bg-white p-4 text-dark md:mt-0 md:grid md:grid-cols-[5fr,3fr] md:px-10"
   >
     <div class="flex flex-col justify-center text-dark" id="home">
       <h1 class="">

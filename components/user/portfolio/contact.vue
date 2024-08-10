@@ -11,7 +11,8 @@
     </p>
 
     <qh-button
-      class="my-5 h-10 w-80 border border-brand !bg-transparent !text-brand hover:bg-brand-400"
+      variant="outlined"
+      class="my-5 !h-10 !w-80 hover:bg-brand-400 hover:text-white"
       @click="SendMail"
       label="Say Hello !"
     />

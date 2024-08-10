@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col p-4 md:p-10" id="about">
+  <div class="flex flex-col p-4 md:py-10 md:pl-10 md:pr-0" id="about">
     <qh-section-title>About</qh-section-title>
 
     <div class="grid items-start justify-start md:grid-cols-2">

@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col pl-4 md:p-10" id="experience">
+  <div class="flex flex-col p-2 md:p-10" id="experience">
     <qh-section-title>Experience</qh-section-title>
     <div
-      class="grid grid-cols-[1px,9fr] items-center gap-x-4 md:gap-x-6"
+      class="grid grid-cols-[1px,9fr] items-center gap-x-4 pl-2 md:gap-x-6 md:pl-4"
       v-for="(experience, index) in user?.experience"
       :key="index"
     >
@@ -10,12 +10,12 @@
         class="relative flex h-full w-[1px] items-center justify-center bg-brand-400"
       >
         <h1
-          class="side-index absolute flex h-6 w-6 items-center justify-center rounded-full bg-brand p-1 text-xs text-white"
+          class="absolute flex h-7 w-7 items-center justify-center rounded-full bg-brand p-1 text-xs text-white"
         >
           {{ qhNumbers.formatIncrements(index + 1) }}
         </h1>
       </div>
-      <qh-card class="min-h-40 flex-1 md:m-4 md:p-6">
+      <qh-card class="mb-4 min-h-40 flex-1 md:m-4 md:p-6">
         <div class="flex w-full flex-col justify-between md:flex-row">
           <h1 class="qh-text-3 font-bold uppercase text-brand">
             {{ experience.role }}
