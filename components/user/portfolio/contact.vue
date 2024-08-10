@@ -32,7 +32,8 @@
       <icons-logo />
     </h2>
     <qh-button
-      class="w-[90%] !px-6 !py-2 md:w-96"
+      class="!h-12 !w-[90%] !px-6 md:!w-96"
+      variant="brand"
       @click="$router.push({ name: QH_ROUTES.HOME })"
     >
       Join QuickHire</qh-button

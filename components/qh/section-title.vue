@@ -6,9 +6,7 @@
       class="h-[1px] w-[4rem] bg-brand md:w-[10rem]"
     ></div>
 
-    <qh-button
-      class="qh-text-3 !h-10 !w-40 rounded border border-brand !bg-transparent !text-brand md:w-[20rem]"
-    >
+    <qh-button variant="outlined" class="qh-text-3 !h-12 !w-40 md:!w-[16rem]">
       <slot>Contact&nbsp;Me</slot>
     </qh-button>
 
