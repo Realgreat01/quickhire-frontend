@@ -66,7 +66,7 @@
           </div>
         </qh-card>
       </div>
-      <div class="mt-4 grid gap-4 gap-x-8 md:flex">
+      <div class="mt-4 grid gap-4 gap-x-8 md:flex" v-if="experiences">
         <qh-button
           class="!h-12 !rounded-full duration-500 md:!w-60"
           :class="editting ? '!bg-success-600' : ''"
@@ -89,10 +89,18 @@
           Add Exprience</qh-button
         >
       </div>
-      <qh-empty-content
-        v-if="!experiences"
-        message="You have not added your work experience"
-      />
+      <qh-card v-if="!experiences" class="grid place-items-center gap-4">
+        <qh-empty-content message="You have not added your work experience" />
+        <qh-button
+          variant="outlined"
+          class="!h-12 !rounded-full md:!w-60"
+          @click="addExperience"
+          :disabled="updating"
+        >
+          <RiAddLine class="mr-4 h-6 w-6" />
+          Add Exprience</qh-button
+        >
+      </qh-card>
     </div>
     <qh-quick-ai />
   </div>

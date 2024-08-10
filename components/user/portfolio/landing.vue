@@ -16,23 +16,18 @@
         {{ user?.header_bio }}
       </p>
 
-      <div class="qh-text-3 mt-10 grid grid-cols-2 gap-x-4 md:w-2/3">
-        <qh-resume-button
-          :username="user?.username ?? ''"
-          class="h-10 border-[1.5px] duration-500 hover:bg-brand-400 hover:font-medium md:h-12"
+      <div class="qh-text-3 mt-10 flex gap-x-2 md:w-2/3">
+        <qh-resume-button class="!h-12 w-full" :username="user?.username ?? ''"
           >Resume</qh-resume-button
         >
-        <qh-button
-          class="h-10 border-[1.5px] border-brand-400 !bg-transparent !text-brand duration-500 hover:!bg-brand-400 hover:font-medium hover:!text-brand-50 md:h-12"
-          >Hire&nbsp;Me</qh-button
-        >
+        <qh-button variant="outlined" class="!h-12">Hire&nbsp;Me</qh-button>
       </div>
     </div>
 
     <div class="flex items-start justify-start">
       <img
         :src="user?.profile_picture"
-        alt="profile picture"
+        alt=""
         class="mx-auto my-auto block h-80 w-80 rounded-full object-cover"
       />
     </div>

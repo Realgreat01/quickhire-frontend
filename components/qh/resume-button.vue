@@ -1,5 +1,9 @@
 <template>
-  <qh-button @click="generatePDFTemplate()" v-bind="$attrs" :loading="loading"
+  <qh-button
+    @click="generatePDFTemplate()"
+    v-bind="$attrs"
+    :loading="loading"
+    :variant="loading ? 'outlined' : 'brand'"
     ><slot>Download Resume</slot></qh-button
   >
 </template>

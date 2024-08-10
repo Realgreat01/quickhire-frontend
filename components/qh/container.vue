@@ -12,7 +12,7 @@
         >
           <div
             v-if="showModal"
-            class="scroll modal-content relative grid max-h-screen justify-center bg-white px-2 pb-4 md:justify-normal md:rounded-lg md:px-4"
+            class="scroll modal-content relative max-h-screen bg-white px-2 pb-4 md:justify-normal md:rounded-lg md:px-4"
             :class="class"
           >
             <div

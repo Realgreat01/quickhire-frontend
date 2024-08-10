@@ -61,12 +61,8 @@
           </div>
         </qh-card>
       </div>
-      <qh-empty-content
-        message="You have not added your education History"
-        v-if="educations && educations.length <= 0"
-      />
 
-      <div class="mt-4 grid gap-4 gap-x-8 md:flex">
+      <div class="mt-4 grid gap-4 gap-x-8 md:flex" v-if="educations">
         <qh-button
           class="!h-12 !rounded-full duration-500 md:!w-60"
           :class="editting ? '!bg-success-600' : ''"
@@ -89,6 +85,18 @@
           Add Education</qh-button
         >
       </div>
+      <qh-card class="grid place-items-center gap-4" v-if="!educations">
+        <qh-empty-content message="You have not added your education History" />
+        <qh-button
+          variant="outlined"
+          class="!h-12 !rounded-full md:!w-60"
+          @click="addEducation"
+          :disabled="updating"
+        >
+          <RiAddLine class="mr-4 h-6 w-6" />
+          Add Education</qh-button
+        >
+      </qh-card>
     </div>
 
     <qh-quick-ai />

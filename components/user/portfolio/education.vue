@@ -49,13 +49,10 @@
               </h1>
             </div>
             <div class="flex gap-x-4">
-              <qh-button
-                class="qh-text-4 flex h-6 items-center gap-x-2 rounded-full bg-brand-100 !px-4 !py-2 capitalize !text-brand"
-                >{{ education.type }}</qh-button
-              >
-              <qh-button
-                class="qh-text-4 flex h-6 items-center gap-x-2 rounded-full bg-brand-100 !px-4 !py-2 !text-brand"
-              >
+              <qh-button class="qh-text-5 !h-6" variant="outlined">
+                {{ education.type }}
+              </qh-button>
+              <qh-button class="qh-text-5 !h-6" variant="outlined">
                 <a class="font-medium" :href="education.school_website"
                   >{{ qhHelpers.formatWebsiteName(education.school_website) }}
                 </a>

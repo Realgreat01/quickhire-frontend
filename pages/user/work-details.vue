@@ -1,6 +1,6 @@
 <template>
   <div>
-    <qh-card class="mt-20 flex flex-col gap-4 md:w-4/5">
+    <qh-card class="mt-20 flex flex-col gap-4 md:mt-5 md:w-4/5">
       <div class="flex items-center justify-between gap-x-10">
         <h2 class="qh-text-4 max-w-40 font-medium md:w-60">Experience Level</h2>
         <qh-input
@@ -30,7 +30,7 @@
           name="availability"
           placeholder="Immediately"
           type="select"
-          class="!w-40 capitalize md:w-64"
+          class="!w-40 capitalize md:!w-64"
           :options="availability"
           v-model="workDetails.availability"
         />

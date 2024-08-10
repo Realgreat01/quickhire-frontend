@@ -1,7 +1,8 @@
 <template>
   <button
     v-if="loading"
-    class="brand min-w-[180px] cursor-not-allowed bg-opacity-50"
+    :class="[variant]"
+    class="cursor-not-allowed opacity-50"
     v-bind="$attrs"
   >
     <icons-loading />
@@ -59,7 +60,6 @@ defineEmits(['click']);
 
 .outlined {
   @apply qh-button border border-brand text-brand;
-  /* border-width: 1px !important; */
 }
 
 .plain {
@@ -67,7 +67,7 @@ defineEmits(['click']);
 }
 
 .inverse {
-  @apply qh-button bg-white text-brand;
+  @apply qh-button border bg-white text-brand;
 }
 
 .light {

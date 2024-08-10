@@ -5,7 +5,7 @@
   >
     <img
       src="~/assets/svgs/quickhire-logo.svg"
-      class="h-7 w-7 md:h-10 md:w-10"
+      class="h-7 w-7 object-contain md:h-10 md:w-10"
       :class="Class"
     />
     <span class="font-geologica select-none text-xl md:text-4xl" :class="Class"

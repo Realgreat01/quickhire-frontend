@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     },
   },
   ssr: false,
+  spaLoadingTemplate: true,
   css: [
     '~/assets/styles/main.scss',
     '~/assets/styles/tailwind.scss',

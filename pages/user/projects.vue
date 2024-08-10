@@ -93,7 +93,7 @@
           </div>
         </qh-card>
       </div>
-      <div class="mt-4 grid gap-4 gap-x-8 md:flex">
+      <div class="mt-4 grid gap-4 gap-x-8 md:flex" v-if="projects">
         <qh-button
           class="!h-12 !rounded-full duration-1000 md:!w-60"
           :class="editting ? '!bg-success-600' : ''"
@@ -117,10 +117,18 @@
         >
       </div>
     </div>
-    <qh-empty-content
-      v-if="!projects"
-      message="You have not added your projects"
-    />
+    <div class="grid place-items-center gap-4" v-if="!projects">
+      <qh-empty-content message="You have not added your projects" />
+      <qh-button
+        variant="outlined"
+        class="!h-12 !rounded-full md:!w-60"
+        @click="addProject"
+        :disabled="updating"
+      >
+        <RiAddLine class="mr-4 h-6 w-6" />
+        Add Projects</qh-button
+      >
+    </div>
 
     <qh-quick-ai />
   </div>

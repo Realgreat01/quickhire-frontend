@@ -45,7 +45,7 @@
 
     <RouterLink
       :to="{ name: nav.route }"
-      class="router flex w-52 cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
+      class="router flex w-full cursor-pointer p-1 py-[6px] pl-4 font-bold hover:scale-[1.025]"
       v-for="nav in UserNavigations"
       :class="
         currentRoute.name === nav.route || currentRoute.path.includes(nav.route)
