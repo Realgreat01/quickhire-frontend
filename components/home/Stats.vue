@@ -3,15 +3,15 @@
     <h1 class="qh-text-1 mb-3 mt-10 md:mb-5">Operational Insights</h1>
     <div class="mx-auto grid grid-cols-2 gap-2 md:grid-cols-4">
       <qh-card
-        class="rounded !border-none !border-dark-600 bg-brand-500 p-4 !shadow-none md:p-10 dark:!bg-brand-100"
+        class="rounded !border-none bg-white p-4 !shadow-none md:p-10 dark:!bg-brand-100"
         v-for="(stat, index) in stats"
         :key="index"
         :class="null"
       >
-        <h1 class="qh-text-3 text-warn-500">
+        <h1 class="qh-text-3 text-secondary-600">
           {{ stat.title }}
         </h1>
-        <h1 class="qh-text-1 font-bold text-brand-200">{{ stat?.count }}+</h1>
+        <h1 class="qh-text-1 font-bold text-brand-600">{{ stat?.count }}+</h1>
       </qh-card>
     </div>
   </div>

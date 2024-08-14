@@ -22,11 +22,11 @@
           </h1>
           <div class="hidden gap-x-1 md:flex">
             <h1 class="text-brand">
-              {{ qhDates.shortDate(experience.start_date) }}
+              {{ qhDates.resumeDate(experience.start_date) }}
             </h1>
             -
             <h1 class="text-brand">
-              {{ qhDates.shortDate(experience.end_date) }}
+              {{ qhDates.resumeDate(experience.end_date) }}
             </h1>
           </div>
         </div>

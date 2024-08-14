@@ -4,26 +4,26 @@
 
     <div class="grid w-full gap-4 md:grid-cols-3">
       <qh-card
-        class="flex flex-col-reverse gap-2 !border-dark-600 bg-brand-600 p-1 py-10 !shadow-none md:flex-row md:gap-40 md:p-6"
+        class="flex flex-col-reverse gap-2 border-2 !border-brand-50 bg-white p-1 py-10 !shadow-none md:flex-row md:gap-40 md:p-6"
         v-for="(feature, index) in features.filter((x) => x.show === true)"
       >
         <div class="w-full md:w-[100%]">
           <div class="flex items-center gap-x-4" :classs="feature?.class">
             <component
               :is="feature.icon"
-              class="h-8 w-8 fill-warn-600"
-              :classs="feature.class"
+              class="h-8 w-8 fill-brand-600"
+              classs="feature.class"
             />
 
             <h4
-              class="qh-text-3 font-semibold text-secondary-200 dark:text-brand-900"
+              class="qh-text-3 font-semibold text-secondary-600 dark:text-brand-900"
             >
               {{ feature.title }}
             </h4>
           </div>
 
           <h4
-            class="qh-text-4 mt-4 w-full font-normal text-dark-200 dark:text-dark-800"
+            class="qh-text-4 mt-4 w-full font-normal text-dark-500 dark:text-dark-800"
           >
             {{ feature.description }}
           </h4>

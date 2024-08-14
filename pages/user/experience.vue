@@ -6,7 +6,7 @@
           v-for="experience in experiences"
           :key="experience._id"
           :class="{ 'cursor-pointer': editting }"
-          class="relative flex w-full flex-col justify-between gap-2 rounded-2xl bg-white p-4 shadow-xl"
+          class="relative flex w-full flex-col justify-between gap-2 rounded-2xl bg-white p-4 text-sm shadow-xl"
         >
           <qh-edit-button
             class="text-dark"
@@ -18,7 +18,7 @@
           />
           <div class="">
             <RiBuildingFill class="icon h-6 w-6" />
-            <h1 class="qh-text-3 font-bold text-error-600">
+            <h1 class="qh-text-3 font-bold text-brand-500">
               {{ experience.company }}
             </h1>
           </div>
@@ -51,10 +51,12 @@
             <RiCalendar2Fill class="icon h-6 w-6" />
             <h1 class="text-sm font-medium text-brand">
               <span class="">{{
-                qhDates.shortDate(experience.start_date)
+                qhDates.resumeDate(experience.start_date)
               }}</span>
               -
-              <span class="">{{ qhDates.shortDate(experience.end_date) }}</span>
+              <span class="">{{
+                qhDates.resumeDate(experience.end_date)
+              }}</span>
             </h1>
           </div>
 

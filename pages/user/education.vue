@@ -46,11 +46,11 @@
             <RiCalendarFill class="icon !h-6 !w-6" />
             <h2 class="qh-text-4">
               <span class="">{{
-                qhDates.shortDate(education.entry_date)
+                qhDates.resumeDate(education.entry_date)
               }}</span>
               -
               <span class="">{{
-                qhDates.shortDate(education.graduation_date)
+                qhDates.resumeDate(education.graduation_date)
               }}</span>
             </h2>
           </div>
