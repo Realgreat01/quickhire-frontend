@@ -16,9 +16,12 @@
             class="top-12"
             @click="deleteUserEducation(education._id)"
           />
+
           <div class="flex">
             <RiSchoolFill class="icon !h-6 !w-6" />
-            <h2 class="qh-text-2 font-semibold">{{ education.institution }}</h2>
+            <h2 class="qh-text-2 font-semibold">
+              {{ education.institution }}
+            </h2>
           </div>
 
           <div class="flex">
@@ -54,11 +57,12 @@
               }}</span>
             </h2>
           </div>
-
-          <div class="flex" v-if="!editting">
-            <RiArticleFill class="icon !h-6 !w-6" />
-            <h2 class="qh-text-4 w-fit" v-html="education.description"></h2>
-          </div>
+          <transition name="fade" mode="out-in">
+            <div class="flex" v-if="!editting">
+              <RiArticleFill class="icon !h-6 !w-6" />
+              <h2 class="qh-text-5 w-fit" v-html="education.description"></h2>
+            </div>
+          </transition>
         </qh-card>
       </div>
 

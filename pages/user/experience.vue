@@ -23,33 +23,36 @@
             </h1>
           </div>
 
-          <div class="flex">
-            <RiToolsFill class="icon h-6 w-6" />
-            <h1 class="font-medium text-brand">{{ experience.role }}</h1>
+          <div class="flex items-center">
+            <RiToolsFill class="mr-2 h-6 w-6" />
+            <h1 class="qh-text-4 font-semibold">{{ experience.role }}</h1>
           </div>
 
-          <div class="flex">
-            <RiMapPinFill class="icon h-6 w-6" />
-            <h1 class="font-medium text-brand">
-              {{ experience.company_location }}
-            </h1>
-          </div>
+          <div class="flex flex-wrap gap-2">
+            <qh-button class="!w-fit !px-3 !text-black" variant="inverse">
+              <RiMapPinFill class="h-4 w-4 !text-black" />
+              <h1 class="qh-text-5 font-medium capitalize">
+                {{ experience.company_location }}
+              </h1>
+            </qh-button>
 
-          <div class="flex">
-            <RiGlobeFill class="icon h-6 w-6" />
-            <h1 class="font-medium capitalize text-brand">
-              {{ experience.location_type }}
-            </h1>
-          </div>
+            <qh-button class="!w-fit !px-3 !text-black" variant="inverse">
+              <RiGlobeFill class="h-4 w-4" />
+              <h1 class="qh-text-5 font-medium capitalize">
+                {{ experience.location_type }}
+              </h1>
+            </qh-button>
 
-          <div class="flex">
-            <RiBriefcaseFill class="icon h-6 w-6" />
-            <h1 class="font-medium text-brand">{{ experience.job_type }}</h1>
+            <qh-button class="!w-fit !px-3 !text-black" variant="inverse">
+              <RiBriefcaseFill class="h-4 w-4" />
+              <h1 class="qh-text-5 font-medium capitalize">
+                {{ experience.job_type }}
+              </h1>
+            </qh-button>
           </div>
-
           <div class="flex">
-            <RiCalendar2Fill class="icon h-6 w-6" />
-            <h1 class="text-sm font-medium text-brand">
+            <RiCalendar2Fill class="mr-3 h-4 w-4" />
+            <h1 class="qh-text-5 font-medium">
               <span class="">{{
                 qhDates.resumeDate(experience.start_date)
               }}</span>
@@ -59,13 +62,14 @@
               }}</span>
             </h1>
           </div>
+          <Transition name="fade" mode="out-in">
+            <div class="" v-if="!editting">
+              <RiFileListFill class="icon h-6 w-6" />
 
-          <div class="" v-if="!editting">
-            <RiFileListFill class="icon h-6 w-6" />
-
-            <h2 class="" v-html="experience.contributions"></h2>
-            <!-- <span class="block" v-html="experience.contributions"></span> -->
-          </div>
+              <h2 class="qh-text-5" v-html="experience.contributions"></h2>
+              <!-- <span class="block" v-html="experience.contributions"></span> -->
+            </div>
+          </Transition>
         </qh-card>
       </div>
       <div class="mt-4 grid gap-4 gap-x-8 md:flex" v-if="experiences">

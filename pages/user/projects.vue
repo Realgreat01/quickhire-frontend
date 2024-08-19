@@ -75,21 +75,21 @@
               </div>
             </div>
 
-            <div class="" v-if="!editting">
-              <RiArticleFill class="icon h-6 w-6 fill-brand" />
+            <transition name="fade" mode="out-in">
+              <div v-if="!editting">
+                <div class="">
+                  <RiArticleFill class="icon h-6 w-6 fill-brand" />
 
-              <p class="qh-test-3 font-semibold text-brand">Description</p>
-              <h2 class="" v-html="project.description"></h2>
-
-              <!-- <span v-html="project.projectDescription"></span> -->
-            </div>
-
-            <div class="" v-if="!editting">
-              <RiLightbulbFlashFill class="icon h-6 w-6 fill-brand" />
-              <p class="qh-test-3 font-semibold text-brand">Motivations</p>
-              <h2 class="pr-6" v-html="project.motivations"></h2>
-              <!-- <span v-html="project.projectLesson"></span> -->
-            </div>
+                  <p class="qh-test-4 font-semibold text-brand">Description</p>
+                  <h2 class="qh-text-5" v-html="project.description"></h2>
+                </div>
+                <div class="">
+                  <RiLightbulbFlashFill class="icon h-6 w-6 fill-brand" />
+                  <p class="qh-test-3 font-semibold text-brand">Motivations</p>
+                  <h2 class="qh-text-5 pr-6" v-html="project.motivations"></h2>
+                </div>
+              </div>
+            </transition>
           </div>
         </qh-card>
       </div>

@@ -39,7 +39,7 @@
             <div class="px-2 md:hidden">
               <qh-button
                 variant="plain"
-                class="qh-text-5 !h-7 !w-fit bg-success capitalize"
+                class="!h-6 !w-fit justify-self-end !py-2 px-4 text-xs capitalize"
                 :class="{
                   '!bg-dark-100 !text-brand':
                     job.candidate.status === 'submitted',
@@ -110,14 +110,14 @@
         <div class="hidden flex-col items-end px-2 md:flex">
           <qh-button
             variant="plain"
-            class="qh-text-5 !h-10 !w-fit rounded-full bg-success capitalize"
+            class="!h-6 !w-fit justify-self-end !py-2 px-4 text-xs capitalize"
             :class="{
               '!bg-dark-100 !text-brand': job.candidate.status === 'submitted',
               '!bg-dark-100 !text-success-600':
                 job.candidate.status === 'received',
-              '!bg-brand': job.candidate.status === 'processing',
-              'bg-success-500': job.candidate.status === 'accepted',
-              '!bg-error': job.candidate.status === 'rejected',
+              '!bg-brand !text-white': job.candidate.status === 'processing',
+              'bg-success-600 !text-white': job.candidate.status === 'accepted',
+              '!bg-error !text-white': job.candidate.status === 'rejected',
             }"
             :label="job.candidate.status"
           />
