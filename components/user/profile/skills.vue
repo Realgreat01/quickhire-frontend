@@ -37,7 +37,7 @@
         </h1>
         <div class="flex flex-wrap">
           <qh-devicon
-            v-for="(framework, index) in skills?.frameworks"
+            v-for="(framework, index) in frameworksAndTechnologies"
             :key="index"
             :icon="framework"
             class="colored p-2 text-3xl"
@@ -63,6 +63,12 @@ const editAbout = () => {
 const editSkills = () => {
   router.replace({ query: { edit: QH_ROUTES.USER.SKILLS } });
 };
+
+const frameworksAndTechnologies = computed(() =>
+  qhHelpers.removeDuplicates(
+    skills.value?.frameworks.concat(skills.value.technologies),
+  ),
+);
 </script>
 
 <style scoped></style>

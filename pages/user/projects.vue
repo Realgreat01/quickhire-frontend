@@ -1,7 +1,7 @@
 <template>
-  <div class="flex md:gap-x-8">
-    <div class="">
-      <div class="flex flex-wrap gap-6 rounded" ref="draggable">
+  <div class="grid w-full gap-4 gap-x-8 lg:flex">
+    <div class="w-full">
+      <div class="flex w-full flex-col gap-6 rounded" ref="draggable">
         <qh-card
           v-for="project in projects"
           :key="project._id"
@@ -93,7 +93,49 @@
           </div>
         </qh-card>
       </div>
-      <div class="mt-4 grid gap-4 gap-x-8 md:flex" v-if="projects">
+
+      <!-- <div
+        class="mt-4 grid w-full gap-4 gap-x-8 md:flex"
+        v-if="qhHelpers.isObjectTruthy(educations as object)"
+      >
+        <qh-button
+          class="!h-12 !rounded-full duration-500 md:!w-60"
+          :class="editting ? '!bg-success-600' : ''"
+          v-if="educations && educations.length > 0"
+          :loading="updating"
+        >
+          <span class="w-full" @click="updateUserEducation" v-if="editting"
+            >Save Changes</span
+          >
+          <span class="w-full" v-else @click="startDrag">Edit Changes</span>
+        </qh-button>
+
+        <qh-button
+          variant="outlined"
+          class="!h-12 !rounded-full md:!w-60"
+          @click="addEducation"
+          :disabled="updating"
+        >
+          <RiAddLine class="mr-4 h-6 w-6" />
+          Add Education</qh-button
+        >
+      </div>
+      <qh-card class="grid w-full place-items-center gap-4" v-else>
+        <qh-empty-content message="You have not added your education History" />
+        <qh-button
+          variant="outlined"
+          class="!h-12 !rounded-full md:!w-60"
+          @click="addEducation"
+          :disabled="updating"
+        >
+          <RiAddLine class="mr-4 h-6 w-6" />
+          Add Education</qh-button
+        >
+      </qh-card> -->
+      <div
+        class="mt-4 grid w-full gap-4 gap-x-8 md:flex"
+        v-if="qhHelpers.isObjectTruthy(projects as object)"
+      >
         <qh-button
           class="!h-12 !rounded-full duration-1000 md:!w-60"
           :class="editting ? '!bg-success-600' : ''"
@@ -116,18 +158,18 @@
           Add Projects</qh-button
         >
       </div>
-    </div>
-    <div class="grid place-items-center gap-4" v-if="!projects">
-      <qh-empty-content message="You have not added your projects" />
-      <qh-button
-        variant="outlined"
-        class="!h-12 !rounded-full md:!w-60"
-        @click="addProject"
-        :disabled="updating"
-      >
-        <RiAddLine class="mr-4 h-6 w-6" />
-        Add Projects</qh-button
-      >
+      <qh-card class="grid w-full place-items-center gap-4" v-else>
+        <qh-empty-content message="You have not added your projects" />
+        <qh-button
+          variant="outlined"
+          class="!h-12 !rounded-full md:!w-60"
+          @click="addProject"
+          :disabled="updating"
+        >
+          <RiAddLine class="mr-4 h-6 w-6" />
+          Add Projects</qh-button
+        >
+      </qh-card>
     </div>
 
     <qh-quick-ai />

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid w-full items-start justify-between gap-x-10 py-10 md:min-h-screen md:grid-cols-1"
+    class="grid w-full items-start justify-between gap-x-10 py-10 lg:min-h-screen lg:grid-cols-1 lg:items-center lg:justify-center"
   >
     <div class="qh-flex-center flex w-full flex-col gap-y-4">
       <h1 class="ml-1 flex justify-center text-center">

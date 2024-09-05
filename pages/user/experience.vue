@@ -1,7 +1,7 @@
 <template>
-  <div class="grid gap-4 gap-x-8 md:flex">
-    <div class="">
-      <div class="flex flex-col gap-6 rounded" ref="draggable">
+  <div class="grid w-full gap-4 gap-x-8 lg:flex">
+    <div class="w-full">
+      <div class="flex w-full flex-col gap-6 rounded" ref="draggable">
         <qh-card
           v-for="experience in experiences"
           :key="experience._id"
@@ -72,7 +72,10 @@
           </Transition>
         </qh-card>
       </div>
-      <div class="mt-4 grid gap-4 gap-x-8 md:flex" v-if="experiences">
+      <div
+        class="mt-4 grid w-full gap-4 gap-x-8 md:flex"
+        v-if="qhHelpers.isObjectTruthy(experiences as object)"
+      >
         <qh-button
           class="!h-12 !rounded-full duration-500 md:!w-60"
           :class="editting ? '!bg-success-600' : ''"
@@ -95,7 +98,7 @@
           Add Exprience</qh-button
         >
       </div>
-      <qh-card v-if="!experiences" class="grid place-items-center gap-4">
+      <qh-card v-else class="grid w-full place-items-center gap-4">
         <qh-empty-content message="You have not added your work experience" />
         <qh-button
           variant="outlined"

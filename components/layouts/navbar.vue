@@ -49,7 +49,7 @@
             <qh-card
               class="font-poppins relative mb-4 flex max-h-80 w-full flex-col items-center justify-center bg-brand text-white"
             >
-              <qh-edit-button class="text-dark" @click="editProfile" />
+              <qh-edit-button class="text-white" @click="editProfile" />
               <div class="relative block" v-if="user?.profile_picture">
                 <img
                   :src="user?.profile_picture"

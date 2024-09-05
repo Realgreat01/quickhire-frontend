@@ -1,7 +1,7 @@
 <template>
-  <div class="grid w-full gap-4 md:flex">
-    <div class="flex-1">
-      <div class="flex flex-col gap-6 rounded" ref="draggable">
+  <div class="grid w-full gap-4 gap-x-8 lg:flex">
+    <div class="w-full">
+      <div class="flex w-full flex-col gap-6 rounded" ref="draggable">
         <qh-card
           class="relative flex h-fit w-full cursor-pointer flex-col items-start justify-between rounded px-4 duration-500 md:px-12 md:py-8"
           :class="index % 2 === 0 ? '' : 'justify-self-end'"
@@ -66,7 +66,10 @@
         </qh-card>
       </div>
 
-      <div class="mt-4 grid gap-4 gap-x-8 md:flex" v-if="educations">
+      <div
+        class="mt-4 grid w-full gap-4 gap-x-8 md:flex"
+        v-if="qhHelpers.isObjectTruthy(educations as object)"
+      >
         <qh-button
           class="!h-12 !rounded-full duration-500 md:!w-60"
           :class="editting ? '!bg-success-600' : ''"
@@ -89,7 +92,7 @@
           Add Education</qh-button
         >
       </div>
-      <qh-card class="grid place-items-center gap-4" v-if="!educations">
+      <qh-card class="grid w-full place-items-center gap-4" v-else>
         <qh-empty-content message="You have not added your education History" />
         <qh-button
           variant="outlined"

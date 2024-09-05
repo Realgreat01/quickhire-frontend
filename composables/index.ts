@@ -69,6 +69,11 @@ export const qhHelpers = {
     return url.replace(/^(https?:\/\/)/, '');
   },
 
+  isObjectTruthy(obj: object) {
+    // Check if the object is not null, is an object, and has properties
+    return obj && typeof obj === 'object' && Object.keys(obj).length > 0;
+  },
+
   async getImageBase64(url: string) {
     const response = await axios.get(url, { responseType: 'arraybuffer' });
     return `data:${response.headers['content-type'].toLowerCase()};base64,${Buffer.from(response.data).toString('base64')}`;

@@ -103,6 +103,7 @@ import { useModalStore } from '~/store/modal-store';
 import { useCompanyStore } from '~/store/company-store';
 import { useUploadStore } from '~/store/upload-store';
 import { UPDATE_COVER_IMAGE, UPDATE_LOGO } from '~/services/company.service';
+
 const { company } = storeToRefs(useCompanyStore());
 
 const modalStore = useModalStore();

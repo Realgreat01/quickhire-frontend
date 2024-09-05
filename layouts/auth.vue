@@ -26,7 +26,7 @@
         <img
           src="/quickhire-logo.svg"
           alt=""
-          class="mx-auto mb-4 block h-10 w-10 md:hidden"
+          class="mx-auto mb-4 block h-10 w-10 object-contain md:hidden"
         />
         <h1 class="qh-text-1 mt-0 text-center font-bold text-brand-600">
           {{ $route.meta.title }}

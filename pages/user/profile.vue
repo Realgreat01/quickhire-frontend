@@ -4,7 +4,7 @@
       <user-profile-dashboard />
       <div class="my-10 grid gap-4 gap-x-10 md:grid-cols-2">
         <jobs-active-applications :count="2" />
-        <jobs-recommendations />
+        <jobs-recommendations :count="4" />
       </div>
       <div
         class="my-20 grid items-start justify-start gap-6 md:grid-cols-[3fr,2fr]"

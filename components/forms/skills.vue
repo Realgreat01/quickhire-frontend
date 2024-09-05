@@ -56,9 +56,10 @@
             type="select"
             name="technologies"
             placeholder="VS Code"
-            label-name="name"
             no-data-message="Kindly suggest such to us!"
             multiple
+            label-name="name"
+            track-by="name"
             :options="skillIcons"
             v-model="skills.technologies"
           />

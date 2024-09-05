@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col p-2 md:p-10" id="experience">
+  <div class="flex flex-col p-2 lg:p-10" id="experience">
     <qh-section-title>Experience</qh-section-title>
     <div
-      class="grid grid-cols-[1px,9fr] items-center gap-x-4 pl-2 md:gap-x-6 md:pl-4"
+      class="grid grid-cols-[1px,1fr] items-center gap-x-4 pl-2 md:gap-x-6 md:pl-4"
       v-for="(experience, index) in user?.experience"
       :key="index"
     >
