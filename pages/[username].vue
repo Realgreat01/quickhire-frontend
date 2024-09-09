@@ -20,7 +20,11 @@
             v-model="username"
             label="Search for Other Users"
           />
-          <qh-button label="Search" class="h-11 px-12" type="submit" />
+          <qh-button
+            label="Search"
+            class="!h-11 !w-28 !rounded-lg px-12"
+            type="submit"
+          />
         </form>
       </div>
     </div>
@@ -39,7 +43,7 @@
         class="sticky bottom-0 top-0 hidden h-screen w-[10%] md:block"
       /> -->
         <div class="h-fit flex-1 border-y-transparent">
-          <user-portfolio-landing />
+          <user-portfolio-hero />
           <user-portfolio-about />
           <user-portfolio-experience />
           <user-portfolio-education />

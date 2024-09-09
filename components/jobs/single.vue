@@ -91,7 +91,7 @@
             </qh-button>
           </div>
         </div>
-        <div class="flex h-full w-full items-end justify-between">
+        <div class="flex w-full items-end justify-between">
           <qh-button
             variant="outlined"
             class="!h-8 !w-fit !border-dark !text-dark"
@@ -125,7 +125,7 @@
             label="Apply"
           />
         </div>
-        <div class="my-4 flex flex-wrap gap-2">
+        <div class="my-4 flex h-max flex-wrap gap-2">
           <qh-devicon
             v-for="icon in job?.required_skills"
             :icon="icon"

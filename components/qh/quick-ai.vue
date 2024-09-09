@@ -4,9 +4,12 @@
       class="qh-flex-center hidden !max-h-[520px] min-h-[400px] min-w-[400px] flex-col md:flex"
     >
       <h2 class="qh-text-2 my-3 text-center font-bold">
+        <RiSparkling2Fill class="mb-4 h-12 w-12 text-brand" />
         Quick AI Suggestions!
       </h2>
-      <div class="my-[100px] place-items-center text-center text-lg">
+      <div
+        class="my-[100px] place-items-center text-center text-lg font-medium"
+      >
         Coming Soon!
       </div>
     </qh-card>

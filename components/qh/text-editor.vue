@@ -3,7 +3,7 @@
     content-type="html"
     v-model:content="modelValue"
     v-bind="$attrs"
-    class="min-h-[200px] border border-dark-100 bg-white !text-base"
+    class="font-poppins min-h-[200px] border border-dark-100 bg-white !text-base"
   />
 </template>
 

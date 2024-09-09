@@ -33,13 +33,13 @@
         <div class="flex gap-6">
           <qh-button
             @click="open"
-            class="qh-text-4 my-4 h-10 w-32 rounded-full !bg-brand-100 !py-3 font-semibold !text-brand md:w-60"
+            class="qh-text-4 my-4 !h-10 !w-32 rounded-full !bg-brand-100 !py-3 font-semibold !text-brand md:!w-60"
             >Choose Files
           </qh-button>
           <qh-button
             :loading="uploading"
             :disabled="files.length < 1 || maxFileExceeded"
-            class="qh-text-4 my-4 h-10 w-32 rounded-full !py-3 font-semibold md:my-4 md:w-60"
+            class="qh-text-4 my-4 !h-10 !w-32 rounded-full !py-3 font-semibold md:my-4 md:!w-60"
             @click="emits('upload')"
             >Upload
           </qh-button>

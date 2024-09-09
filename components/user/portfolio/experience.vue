@@ -15,7 +15,7 @@
           {{ qhNumbers.formatIncrements(index + 1) }}
         </h1>
       </div>
-      <qh-card class="mb-4 min-h-40 flex-1 md:m-4 md:p-6">
+      <qh-card class="mb-4 flex-1 md:m-4 md:p-6">
         <div class="flex w-full flex-col justify-between md:flex-row">
           <h1 class="qh-text-3 font-bold uppercase text-brand">
             {{ experience.role }}

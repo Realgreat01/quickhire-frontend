@@ -49,7 +49,7 @@
         <router-link
           :to="{ name: QH_ROUTES.JOB.SINGLE, params: { id: job._id } }"
         >
-          <ArrowTopRightOnSquareIcon
+          <LinkIcon
             @click="getSingleJob(job?._id)"
             class="h-6 w-6 rounded-3xl p-1 text-brand hover:bg-brand hover:text-white"
           />
@@ -71,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid';
+import { ArrowTopRightOnSquareIcon, LinkIcon } from '@heroicons/vue/24/solid';
 import { storeToRefs } from 'pinia';
 import { QH_ROUTES } from '~/constants/routes';
 import { useJobStore } from '~/store/job-store';

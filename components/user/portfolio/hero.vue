@@ -20,7 +20,9 @@
         <qh-resume-button class="!h-12 w-full" :username="user?.username ?? ''"
           >Resume</qh-resume-button
         >
-        <qh-button variant="outlined" class="!h-12">Hire&nbsp;Me</qh-button>
+        <qh-button variant="outlined" class="!h-12" @click="scrollToButton"
+          >Hire&nbsp;Me</qh-button
+        >
       </div>
     </div>
 
@@ -37,6 +39,13 @@
 <script setup lang="ts">
 import { useUserStore } from '~/store/user-store';
 const { publicUser: user } = storeToRefs(useUserStore());
+
+const scrollToButton = () => {
+  window.scrollTo({
+    top: document.documentElement.scrollHeight,
+    behavior: 'smooth', // Optional for smooth scrolling
+  });
+};
 </script>
 
 <style scoped></style>

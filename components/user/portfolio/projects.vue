@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col p-4 md:p-10" id="projects">
     <qh-section-title>Projects</qh-section-title>
-    <div class="gap-small grid flex-wrap gap-4 md:grid-cols-3">
+    <div class="gap-small mt-4 grid flex-wrap gap-4 md:grid-cols-3">
       <qh-card
-        class="flex min-h-[30rem] w-full cursor-pointer flex-col overflow-y-hidden rounded-lg bg-white !p-0 shadow-sm hover:bg-slate-50"
+        class="flex w-full cursor-pointer flex-col overflow-y-hidden rounded-lg bg-white !p-0 shadow-sm hover:bg-slate-50"
         v-for="(project, index) in user?.projects"
         :key="index"
       >

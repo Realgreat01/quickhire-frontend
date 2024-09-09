@@ -253,7 +253,7 @@ const DefaultContent = async () => {
     width: 200,
     type: 'none',
     margin: [0, 10, 0, 0],
-    unbreakable: true,
+    // unbreakable: true,
     ol: [
       { alignment: 'left', style: 'brand', text: 'EDUCATION', fontSize: 16 },
 
@@ -283,7 +283,7 @@ const DefaultContent = async () => {
   const stackList = {
     width: 200,
     type: 'none',
-    unbreakable: true,
+    // unbreakable: true,
     margin: [0, 12, 0, 12],
     ol: [
       { alignment: 'left', style: 'brand', text: 'SKILLS', fontSize: 16 },
