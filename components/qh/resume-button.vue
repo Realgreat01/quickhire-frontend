@@ -21,6 +21,15 @@ const props = defineProps({
   username: { type: String, required: true },
 });
 
+const ProfileHeadline = [
+  'Profound knowledge of Vue.js, React, and TypeScript',
+  'Knowledge of other frontend frameworks like Tailwind CSS, Svelte, Nuxt.js, Astro, etc.',
+  'Web performance optimization',
+  'Exceptional problem-solving skills',
+  'Passion for building robust and scalable solutions',
+  'Strong ability to work independently while still being collaborative and inclusive',
+];
+
 const brandColor = '#023696';
 const secondaryColor = '#38b55e';
 
@@ -81,7 +90,7 @@ const DefaultContent = async () => {
             width: 320,
             fontSize: 21,
           },
-          user?.header_bio,
+          { alignment: 'left', text: user?.header_bio },
           {
             columnGap: 10,
             columns: [
@@ -134,6 +143,27 @@ const DefaultContent = async () => {
     ],
   };
 
+  const ProfileHeadlineColumn = {
+    alignment: 'justify',
+    width: 200,
+    type: 'none',
+    margin: [0, 5, 0, 5],
+    ol: [
+      {
+        alignment: 'left',
+        style: 'brand',
+        text: 'PROFILE SUMMARY',
+        fontSize: 16,
+      },
+      {
+        ul: ProfileHeadline,
+        margin: [0, 0, 0, 0],
+        padding: 0,
+        // type: "none"
+      },
+    ],
+  };
+
   // Experience
   const experience = user?.experience.map((experience) => {
     const list = [
@@ -171,7 +201,7 @@ const DefaultContent = async () => {
   const experienceList = {
     type: 'none',
     width: 320,
-    margin: [0, 10, 0, 12],
+    margin: [0, 0, 0, 10],
     ol: [
       { alignment: 'left', style: 'brand', text: 'EXPERIENCE', fontSize: 16 },
       ...experience,
@@ -180,9 +210,9 @@ const DefaultContent = async () => {
 
   // Projects
   const project = user?.projects.map((project) => {
-    const tools = project.tools_used
-      .slice(0, 5)
-      .map((tool, index) => `${index + 1}.${tool.name}`);
+    const tools = project.tools_used.map(
+      (tool, index) => `${index + 1}.${tool.name}`,
+    );
 
     const list = [
       {
@@ -211,7 +241,7 @@ const DefaultContent = async () => {
   const projectList = {
     width: 320,
     type: 'none',
-    margin: [0, 10, 0, 12],
+    margin: [0, 10, 0, 10],
     ol: [
       { alignment: 'left', style: 'brand', text: 'PROJECTS', fontSize: 16 },
       ...project,
@@ -232,13 +262,13 @@ const DefaultContent = async () => {
           { text: school.course },
           { text: school.type, color: brandColor },
           {
-            columns: [
-              qhDates.resumeDate(school.entry_date),
+            text:
+              qhDates.resumeDate(school.entry_date) +
+              ' — ' +
               qhDates.resumeDate(school.graduation_date),
-            ],
-            color: 'gray',
-            margin: [0, 0, 0, 0],
+            color: '#999990',
           },
+
           { ul: qhHtmlToPDFMake(school.description) },
         ],
         unbreakable: true,
@@ -252,7 +282,7 @@ const DefaultContent = async () => {
   const educationList = {
     width: 200,
     type: 'none',
-    margin: [0, 10, 0, 0],
+    margin: [0, 10, 0, 10],
     // unbreakable: true,
     ol: [
       { alignment: 'left', style: 'brand', text: 'EDUCATION', fontSize: 16 },
@@ -284,7 +314,7 @@ const DefaultContent = async () => {
     width: 200,
     type: 'none',
     // unbreakable: true,
-    margin: [0, 12, 0, 12],
+    margin: [0, 5, 0, 10],
     ol: [
       { alignment: 'left', style: 'brand', text: 'SKILLS', fontSize: 16 },
       {
@@ -297,7 +327,7 @@ const DefaultContent = async () => {
               text: programmingLanguages?.join('      '),
               color: '#023696',
               lineHeight: 1.5,
-              margin: [0, 0, 0, 12],
+              margin: [0, 0, 0, 5],
             },
           ],
           [
@@ -306,7 +336,7 @@ const DefaultContent = async () => {
               text: frameworks?.join('      '),
               color: '#023696',
               lineHeight: 1.5,
-              margin: [0, 0, 0, 12],
+              margin: [0, 0, 0, 5],
             },
           ],
           [
@@ -315,7 +345,7 @@ const DefaultContent = async () => {
               text: technologies?.join('      '),
               color: '#023696',
               lineHeight: 1.5,
-              margin: [0, 0, 0, 12],
+              margin: [0, 0, 0, 5],
             },
           ],
           [
@@ -324,7 +354,7 @@ const DefaultContent = async () => {
               text: softSkills?.join('      '),
               color: '#023696',
               lineHeight: 1.5,
-              margin: [0, 0, 0, 12],
+              margin: [0, 0, 0, 5],
             },
           ],
           [
@@ -333,7 +363,7 @@ const DefaultContent = async () => {
               text: otherSkills?.join('      '),
               color: '#023696',
               lineHeight: 1.5,
-              margin: [0, 0, 0, 12],
+              margin: [0, 0, 0, 5],
             },
           ],
         ],
@@ -344,6 +374,7 @@ const DefaultContent = async () => {
   return {
     headerColumn,
     SummaryColumn,
+    ProfileHeadlineColumn,
     experienceList,
     projectList,
     educationList,
@@ -356,7 +387,6 @@ const tableLayouts = {};
 const generatePDFTemplate = async () => {
   const PDFMake = usePDFMake();
   const definitions = await DefaultContent();
-
   PDFMake.createPdf(
     {
       content: [
@@ -364,6 +394,7 @@ const generatePDFTemplate = async () => {
         user?.settings.show_summary === true
           ? definitions?.SummaryColumn
           : null,
+        // definitions?.ProfileHeadlineColumn,
         definitions?.experienceList,
         user?.settings.show_education === true
           ? definitions?.educationList
@@ -412,7 +443,7 @@ const generatePDFTemplate = async () => {
               },
             ],
           },
-          { text: '', width: '*' },
+          { text: '', width: '*', alignment: 'center' },
         ],
       },
 
@@ -436,14 +467,14 @@ const generatePDFTemplate = async () => {
         },
       },
       defaultStyle: {
-        columnGap: 20,
+        columnGap: 16,
         fontSize: 10,
         color: '#1E1E1E',
-        font: 'Lora',
+        font: 'Poppins',
       },
     },
     tableLayouts,
-    { Lora: useFontPresets().Lora },
+    { Poppins: useFontPresets().Poppins },
   ).download(fullname.value + ' Resumé');
   return definitions;
 };
