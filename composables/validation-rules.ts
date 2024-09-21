@@ -88,13 +88,20 @@ export class ValidationRules {
   static about = {
     header_bio: Yup.string()
       .min(10, 'short bio should be at least  10 characters  ')
-      .max(100, 'short bio cannot be more than 1000 characters '),
+      .max(100, 'short bio cannot be more than 1000 characters ')
+      .optional(),
     summary: Yup.string()
       .min(24, 'summary should be at least  24 characters  ')
-      .max(300, 'summary cannot be more than 300 characters '),
+      .max(300, 'summary cannot be more than 300 characters ')
+      .optional(),
+    profile_headline: Yup.string()
+      .min(32, 'Profile headline should be at least  32 characters  ')
+      .max(800, 'Profile headline cannot be more than 800 characters ')
+      .optional(),
     about_me: Yup.string()
-      .min(100, 'about should be at least  100 characters  ')
-      .max(1200, 'about cannot be more than 1200 characters '),
+      .min(100, 'About should be at least  100 characters  ')
+      .max(1200, 'About cannot be more than 1200 characters ')
+      .optional(),
   };
 
   static project = {

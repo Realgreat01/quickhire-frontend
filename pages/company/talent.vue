@@ -42,7 +42,15 @@
           class="qh-text-4 !h-10 !rounded-full !px-6 !py-2 !text-sm !font-medium"
         />
         <div class="flex">
-          <qh-devicon v-for="icon in user?.skills?.top_skills" :icon="icon" />
+          <qh-button
+            variant="inverse"
+            v-for="(skill, index) in user.skills?.top_skills"
+            :key="index"
+            :icon="skill"
+            class="!w-fit text-sm !font-medium !text-black"
+          >
+            {{ skill }}
+          </qh-button>
         </div>
       </div>
       <div class="">

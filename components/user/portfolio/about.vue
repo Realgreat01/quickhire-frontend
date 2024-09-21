@@ -23,8 +23,7 @@
 import { useUserStore } from '~/store/user-store';
 const { publicUser: user } = storeToRefs(useUserStore());
 const skills = computed(() => {
-  const userSkills = user.value?.skills?.top_skills
-    .concat(user.value?.skills?.programming_languages)
+  const userSkills = user.value?.skills?.programming_languages
     .concat(user.value?.skills?.frameworks)
     .concat(user.value?.skills?.technologies);
 

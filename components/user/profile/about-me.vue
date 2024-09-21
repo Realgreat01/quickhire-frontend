@@ -14,6 +14,14 @@
         message="You have not added your about profile summary"
       />
     </qh-card>
+    <qh-card class="qh-text-4 my-2 grid gap-2">
+      <h2 class="qh-text-3 font-bold text-brand">Core Skills</h2>
+      <p v-html="user?.profile_headline" v-if="user?.profile_headline"></p>
+      <qh-empty-content
+        v-else
+        message="You have not added your about profile headline / core skills"
+      />
+    </qh-card>
     <qh-card class="qh-text-4 grid gap-2">
       <h2 class="qh-text-3 font-bold text-brand">About</h2>
       <p v-html="user?.about_me" v-if="user?.about_me"></p>

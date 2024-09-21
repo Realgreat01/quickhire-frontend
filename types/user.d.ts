@@ -21,6 +21,7 @@ export interface Settings {
   show_summary?: boolean;
   show_education?: boolean;
   send_cover_letter?: boolean;
+  use_profile_headline?: boolean;
 }
 
 export interface User {
@@ -34,6 +35,8 @@ export interface User {
   lastname: string;
   middlename: string;
   phone_number: string;
+  is_premium_member: boolean;
+  profile_headline: string;
   gender: 'male' | 'female' | 'others';
   about_me: string;
   header_bio: string;
@@ -67,7 +70,7 @@ export interface User {
 export interface Skills {
   _id: string;
   stack: string;
-  top_skills: Stacks[];
+  top_skills: string[];
   programming_languages: Stacks[];
   frameworks: Stacks[];
   technologies: Stacks[];
@@ -101,6 +104,7 @@ export interface Experience {
   company: string;
   contributions: string;
   company_location: string;
+  company_website: string;
   location_type: JobLocationType;
   job_type: JobType;
   start_date: Date;

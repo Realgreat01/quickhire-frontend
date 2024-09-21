@@ -27,6 +27,16 @@
             required
           />
           <qh-input
+            label="Company Website"
+            type="text"
+            name="company_webiste"
+            class="qh-full-width"
+            placeholder="https://www.quickhire.site"
+            v-model="experience.company_website"
+            :rules="ValidationRules.URL"
+            required
+          />
+          <qh-input
             label="Company Location"
             type="text"
             name="company_location"

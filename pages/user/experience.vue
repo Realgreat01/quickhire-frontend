@@ -24,11 +24,22 @@
           </div>
 
           <div class="flex items-center">
-            <RiToolsFill class="mr-2 h-6 w-6" />
+            <RiUser2Fill class="mr-2 h-6 w-6" />
             <h1 class="qh-text-4 font-semibold">{{ experience.role }}</h1>
           </div>
 
           <div class="flex flex-wrap gap-2">
+            <qh-button class="!w-fit !px-3 !text-black" variant="inverse">
+              <RiGlobalFill class="h-4 w-4 !text-black" />
+              <nuxt-link
+                :to="experience.company_website"
+                external
+                target="_blank"
+                class="qh-text-5 font-medium"
+              >
+                {{ qhHelpers.formatWebsiteName(experience.company_website) }}
+              </nuxt-link>
+            </qh-button>
             <qh-button class="!w-fit !px-3 !text-black" variant="inverse">
               <RiMapPinFill class="h-4 w-4 !text-black" />
               <h1 class="qh-text-5 font-medium capitalize">
@@ -65,8 +76,7 @@
           <Transition name="fade" mode="out-in">
             <div class="" v-if="!editting">
               <RiFileListFill class="icon h-6 w-6" />
-
-              <h2 class="qh-text-5" v-html="experience.contributions"></h2>
+              <h2 class="qh-text-4" v-html="experience.contributions"></h2>
               <!-- <span class="block" v-html="experience.contributions"></span> -->
             </div>
           </Transition>
@@ -124,13 +134,16 @@ import {
   RiCalendar2Fill,
   RiAddLine,
   RiFileListFill,
+  RiGlobalFill,
+  RiUser2Fill,
+  RiBriefcaseFill,
 } from 'vue-remix-icons';
+
 import QH_CONSTANTS from '~/constants';
 import { useUserStore } from '~/store/user-store';
 import { useModalStore } from '~/store/modal-store';
 import { storeToRefs } from 'pinia';
 import { QH_ROUTES } from '~/constants/routes';
-import { RiBriefcaseFill } from 'vue-remix-icons';
 
 definePageMeta({
   layout: 'users',

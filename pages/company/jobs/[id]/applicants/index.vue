@@ -81,12 +81,15 @@
             >Download&nbsp;Resume</qh-resume-button
           >
           <div class="flex flex-wrap gap-x-4">
-            <qh-devicon
-              hide-tooltip
-              class="w-fit !py-0 px-0"
-              v-for="icon in applicant?.skills?.top_skills"
-              :icon="icon"
-            />
+            <qh-button
+              variant="inverse"
+              v-for="(skill, index) in applicant?.skills?.top_skills"
+              :key="index"
+              :icon="skill"
+              class="!w-fit text-sm !font-medium !text-black"
+            >
+              {{ skill }}
+            </qh-button>
           </div>
         </div>
       </template>

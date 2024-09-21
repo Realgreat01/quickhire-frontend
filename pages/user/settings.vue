@@ -2,13 +2,13 @@
   <div class="md:w-4/5">
     <qh-card class="flex flex-col gap-y-6">
       <div class="flex items-center justify-between gap-x-20">
-        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">
+        <h2 class="qh-text-4 max-w-40 font-medium md:min-w-60">
           Allow Notifications
         </h2>
         <qh-toggle v-model="settings.allow_notifications" />
       </div>
       <div class="flex items-center justify-between gap-x-20">
-        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">
+        <h2 class="qh-text-4 max-w-40 font-medium md:min-w-60">
           Portfolio Template
         </h2>
         <qh-button
@@ -17,32 +17,41 @@
         />
       </div>
       <div class="flex items-center justify-between gap-x-20">
-        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">CV Template</h2>
+        <h2 class="qh-text-4 max-w-40 font-medium md:min-w-60">CV Template</h2>
         <qh-button
           class="disabled w-fit cursor-not-allowed rounded-lg !bg-dark-50 !py-1 capitalize !text-dark"
           :label="settings.cv_template"
         />
       </div>
       <div class="flex items-center justify-between gap-x-20">
-        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">
+        <h2 class="qh-text-4 max-w-40 font-medium md:min-w-60">
           Show Education on Portfolio
         </h2>
         <qh-toggle v-model="settings.show_education" />
       </div>
       <div class="flex items-center justify-between gap-x-20">
-        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">
+        <h2 class="qh-text-4 max-w-40 font-medium md:min-w-60">
           Show Summary on CV
         </h2>
         <qh-toggle v-model="settings.show_summary" />
       </div>
       <div class="flex items-center justify-between gap-x-20">
-        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">
+        <h2 class="qh-text-4 max-w-40 font-medium md:min-w-60">
+          Show Profile Headline
+          <span class="block text-xs text-gray-400">
+            This will hide the skill section, try it out!
+          </span>
+        </h2>
+        <qh-toggle v-model="settings.use_profile_headline" />
+      </div>
+      <div class="flex items-center justify-between gap-x-20">
+        <h2 class="qh-text-4 max-w-40 font-medium md:min-w-60">
           Show References on CV
         </h2>
         <qh-toggle v-model="settings.show_references" />
       </div>
       <div class="flex items-center justify-between gap-x-20">
-        <h2 class="qh-text-4 max-w-40 font-medium md:w-60">
+        <h2 class="qh-text-4 max-w-40 font-medium md:min-w-60">
           Send Cover Letter
         </h2>
         <qh-toggle v-model="settings.send_cover_letter" />
@@ -86,6 +95,7 @@ const settings = ref<ISettings>({
   send_cover_letter: user.value?.settings.send_cover_letter,
   show_references: user.value?.settings.show_references,
   show_summary: user.value?.settings.show_summary,
+  use_profile_headline: user.value?.settings.use_profile_headline,
 });
 
 const updateUserSettings = async () => {

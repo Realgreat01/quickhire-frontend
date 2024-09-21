@@ -10,13 +10,16 @@
     <div class="flex w-full flex-col justify-between gap-y-4 md:gap-x-10">
       <qh-card class="!w-full">
         <h1 class="my-2 font-bold text-secondary-500">Top Skills</h1>
-        <div class="flex w-full flex-wrap">
-          <qh-devicon
+        <div class="flex w-full flex-wrap gap-2">
+          <qh-button
+            variant="inverse"
             v-for="(skill, index) in skills?.top_skills"
             :key="index"
             :icon="skill"
-            class="colored p-2 text-3xl"
-          />
+            class="!w-fit text-sm !font-medium !text-black"
+          >
+            {{ skill }}
+          </qh-button>
         </div>
       </qh-card>
       <qh-card>

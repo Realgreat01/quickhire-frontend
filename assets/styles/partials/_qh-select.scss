@@ -119,3 +119,32 @@
   background: var(--brand);
   color: white;
 }
+
+.multiselect__option--group {
+  background: var(--brand);
+  color: #fff;
+}
+
+// .multiselect__option--group.multiselect__option--highlight {
+//   background: #35495e;
+//   color: #fff;
+// }
+
+// .multiselect__option--group.multiselect__option--highlight::after {
+//   background: #35495e;
+// }
+
+// .multiselect__option--disabled.multiselect__option--highlight {
+//   background: #dedede;
+// }
+
+// .multiselect__option--group-selected.multiselect__option--highlight {
+//   background: #ff6a6a;
+//   color: #fff;
+// }
+
+// .multiselect__option--group-selected.multiselect__option--highlight::after {
+//   background: #ff6a6a;
+//   content: attr(data-deselect);
+//   color: #fff;
+// }

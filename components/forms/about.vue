@@ -16,15 +16,27 @@
           />
 
           <qh-input
+            label="Profile Headline"
+            type="editor"
+            hint="Used only in resumè, include things like your skills proficiencies and others"
+            name="profile_headline"
+            :placeholder="profileHeadline"
+            v-model="about.profile_headline"
+            as="textarea"
+            :rules="ValidationRules.about.summary"
+          />
+
+          <qh-input
             label="Summary"
             type="text"
-            hint="Used only in resumè"
+            hint="Used only in resumè, not you can use the profile headline option above alone too"
             name="summary"
             placeholder="A software developer with over 4 years experience"
             v-model="about.summary"
             as="textarea"
             :rules="ValidationRules.about.summary"
           />
+
           <qh-input
             label="About"
             type="editor"
@@ -103,12 +115,20 @@ const developerHobbies = [
   'Traveling and Exploring New Cultures',
 ];
 
+const profileHeadline = ref(
+  `Profound knowledge of Vue.js, React, and TypeScript
+Knowledge of other frontend frameworks like Tailwind CSS, Svelte, Nuxt.js, Astro, etc.
+Web performance optimization.
+Exceptional problem-solving skills`,
+);
+
 const about = ref<User | any>({
   about_me: user.value?.about_me,
   header_bio: user.value?.header_bio,
   summary: user.value?.summary,
   hobbies: user.value?.hobbies,
   interests: user.value?.interests,
+  profile_headline: user.value?.profile_headline,
 });
 
 const submitAboutDetails = async (field: any) => {
